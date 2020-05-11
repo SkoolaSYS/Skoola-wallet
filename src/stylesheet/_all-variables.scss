@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Palanquin:300,400,500,600,700');
+$ff-base: 'palanquin';
+
+
+/*font-weight variables*/
+
+$fw-bold: 500;
+$fw-normal: 400;
+$fw-light: 300;
+
+// Variable overrides
+$black: #000000;
+$white: #ffffff;
+$green: #45c4a8;
+$darkBlue: #0f2a3d;
+$darkBlueGrey: #2f4858;
+$darkGrey: #475b63;
+$lightgreen: #EEFFEF;
+$disabledGreen: #a2e1d3;
+$borderGrey: #dfdfdf;
+$error: #fe5000;
+$primary: #45c4a8;
+$border-grey: #ececec;
+
+$cyan: #64b4b5;
+$blackishGrey: #575757;
+$darkTextGrey: #202B33;
+$darkTextGrey2: #485C6B;
+$lightGrey: #979797;
+$lightGrey2: #D7D9DE;
+$lightGrey3: #ADB3B5;
+$lightGreyBg: #EEEEEE;
+$lightGreyBg2: #F6F2F2;
+$line-green: #86DAAF;
+$light-bg-green: #E4F5EF;
+$greyishgreen: #1E353C;
+$lightGreen: #03ab00;
+$trueRed: #ff0000;
+
+
+
+
+/*font-size variables*/
+$s-100: 6.25rem; // 100px
+$s-60: 3.75rem; //60px
+$s-40: 2.5rem; // 40px
+$s-36: 2.25rem; // 36px
+$s-32: 2rem; // 32px
+$s-30: 1.875rem; // 30px
+$s-28: 1.75rem; // 28px
+$s-25: 1.5625rem; // 25px
+$s-24: 1.5rem; // 24px
+$s-22: 1.375rem; // 22px
+$s-21: 1.3125rem; // 21px
+$s-20: 1.25rem; // 20px
+$s-19: 1.2rem; // 19px
+$s-18: 1.125rem; // 18px
+$s-17: 1.0625rem; // 17px
+$s-16: 1rem; // 16px -- Base size
+$s-15: 0.9375rem; // 15px
+$s-14: 0.875rem; // 14px
+$s-13: 0.8125rem; // 13px
+$s-12: 0.75rem; // 12px
+$s-11: 0.6875rem; // 11px
+$s-10: 0.625rem; // 10px

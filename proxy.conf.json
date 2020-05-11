@@ -1,0 +1,7 @@
+{  
+    "/rest/*": {  
+       "target": "http://183.78.168.72:8080/cyclos",  
+       "secure": false,  
+       "logLevel": "debug"  
+    }  
+ }  
