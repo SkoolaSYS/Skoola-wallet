@@ -1,0 +1,32 @@
+<div class="container-fluid common-cls welcome p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="login-bg">
+                <div class="d8p-main-back-btn">
+                    <img src="assets/icons-img/back-arrow-black.svg"  routerLink="/loginMobileno" />
+                </div>
+                <div class="login-container max-width-100 overflow-hidden">
+                    <form>
+                        <label class="d8p-h3 line-height-40">Enter your password</label>
+                        <div class="formfield max-width-100 flex-container-row field-underline">
+                            <input 
+                            type="password" 
+                            name="pwd" 
+                            class="d8p-input-pwd max-width-100 overflow-hidden" 
+                            maxlength="6"
+                            [(ngModel)]="pwd"
+                             />
+                        </div>
+                        <div class="button-container">
+                            <button 
+                                class="d8p-button d8p-btn-green mb-4"
+                                [disabled]="!pwd"
+                                routerLink="/dashboard"
+                            >Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
