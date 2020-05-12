@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   LoginComponent,
   LoginPwdComponent,
+  DashboardComponent,
 } from './pages';
 
 
@@ -22,6 +23,12 @@ export const routes: Routes = [
     path: "loginPwd",
     component: LoginPwdComponent
   },
+  {
+    path: "dashboard",
+    component: DashboardComponent
+  },
+
+  
   
   { path: "**", component: LoginComponent }
 ];

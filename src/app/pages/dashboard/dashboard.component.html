@@ -1,0 +1,18 @@
+<div>
+    <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Nav block - start -->
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav>
+          <mat-nav-list>
+            <a href="#" mat-list-item><small><img class="mr-2 w-50" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</a>
+            <a href="#" mat-list-item><small><img class="mr-2 w-50" src="assets/icons-img/d8p-logout.svg" /></small>Logout</a>
+          </mat-nav-list>
+        </mat-sidenav>
+        <!-- Nav block - end -->
+        <mat-sidenav-content fxFlexFill>
+            <app-dashboard-header></app-dashboard-header>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+</div>

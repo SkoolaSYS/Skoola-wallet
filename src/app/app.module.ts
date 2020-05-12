@@ -18,12 +18,17 @@ import { FormsModule } from '@angular/forms';
   import { MatIconModule } from '@angular/material/icon';
   import { MatToolbarModule } from '@angular/material/toolbar';
   import { MatListModule } from '@angular/material/list';
+  import { MatTabsModule } from '@angular/material/tabs';
 
 import {
   LoginComponent,
   LoginPwdComponent,
+  DashboardComponent,
 } from "./pages";
 
+import { 
+  DashboardHeaderComponent 
+} from './components';
 
 
 import { Services } from 'src/app/pages/services/service';
@@ -33,6 +38,10 @@ import { Services } from 'src/app/pages/services/service';
     AppComponent,
     LoginComponent,
     LoginPwdComponent,
+    DashboardComponent,
+
+    //components
+    DashboardHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +54,7 @@ import { Services } from 'src/app/pages/services/service';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatTabsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: "always" }),
   ],
