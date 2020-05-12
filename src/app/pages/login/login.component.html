@@ -7,20 +7,12 @@
                     <img class="max-width-60" src="assets/icons-img/linegrey1.png" />
                 </div>
                 <div class="login-container max-width-100 overflow-hidden">
-                    <div class="text-center mt-5 mb-4 pt-5">
+                    <div class="text-center mt-xl-4 mb-4 pt-5">
                         <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
                         <div class="d8p-h4 color-cyan">WEALTH. UMMAH.SECURE</div>
                     </div>
                     <form>
                         <div class="formfield max-width-100">
-                            <!-- <input 
-                                type="text" 
-                                pattern="\d*" 
-                                maxlength="10" 
-                                name="mobileno" 
-                                [(ngModel)]="mobileno"
-                                class="d8p-input max-width-100 overflow-hidden"
-                            /> -->
                             <div class="input-group mb-3 group-input-border-radius">
                                 <input 
                                     type="text" 
@@ -34,7 +26,7 @@
                                     aria-describedby="basic-addon2"
                                 />
                                 <div class="input-group-append">
-                                    <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                    <span class="input-group-text group-input-icon-field" id="basic-addon2" routerLink="/loginPwd" >
                                         <button class="d8p-transparent-btn" *ngIf="mobileno">
                                             <img class="max-width-100" src="assets/icons-img/icon-correct1.png"  />
                                         </button>
@@ -52,6 +44,11 @@
                             </button>
                         </div>
                     </form>
+                </div>
+                
+                <div class="sponsored text-center">
+                    <img class="max-width-40 mr-2 mr-xl-4" src="assets/icons-img/logod8s1.png" />
+                    <img class="max-width-40 ml-2 ml-xl-4" src="assets/icons-img/logokomeps.png" />
                 </div>
             </div>
         </div>
