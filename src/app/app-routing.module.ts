@@ -6,6 +6,7 @@ import {
   LoginComponent,
   LoginPwdComponent,
   DashboardComponent,
+  TransferComponent
 } from './pages';
 
 
@@ -26,6 +27,11 @@ export const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent
+  },
+  {
+    path: "transfer",
+    component: TransferComponent
+
   },
 
   
