@@ -24,6 +24,7 @@ import {
   LoginComponent,
   LoginPwdComponent,
   DashboardComponent,
+  TransferComponent,
 } from "./pages";
 
 import { 
@@ -39,6 +40,7 @@ import { Services } from 'src/app/pages/services/service';
     LoginComponent,
     LoginPwdComponent,
     DashboardComponent,
+    TransferComponent,
 
     //components
     DashboardHeaderComponent,
