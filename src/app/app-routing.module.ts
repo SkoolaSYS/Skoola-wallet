@@ -6,7 +6,8 @@ import {
   LoginComponent,
   LoginPwdComponent,
   DashboardComponent,
-  TransferComponent
+  TransferComponent,
+  TransactionDetailsComponent
 } from './pages';
 
 
@@ -31,9 +32,11 @@ export const routes: Routes = [
   {
     path: "transfer",
     component: TransferComponent
-
   },
-
+  {
+    path: "transfer-details",
+    component: TransactionDetailsComponent
+  },
   
   
   { path: "**", component: LoginComponent }

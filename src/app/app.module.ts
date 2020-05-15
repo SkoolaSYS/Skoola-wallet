@@ -25,10 +25,14 @@ import {
   LoginPwdComponent,
   DashboardComponent,
   TransferComponent,
+  TransactionDetailsComponent,
 } from "./pages";
 
 import { 
-  DashboardHeaderComponent 
+  DashboardHeaderComponent,
+  TransactionViewComponent,
+  TransferRecipientComponent,
+  OtpcardComponent,
 } from './components';
 
 
@@ -41,9 +45,13 @@ import { Services } from 'src/app/pages/services/service';
     LoginPwdComponent,
     DashboardComponent,
     TransferComponent,
+    TransactionDetailsComponent,
 
     //components
     DashboardHeaderComponent,
+    TransactionViewComponent,
+    TransferRecipientComponent,
+    OtpcardComponent,
   ],
   imports: [
     BrowserModule,
