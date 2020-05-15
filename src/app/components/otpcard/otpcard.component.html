@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <!-- Authenication Method -->
+    <div class="row no-gutters justify-content-center">
+        <div class="col-9 titlebg">
+            <div>Authenication Method</div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4 pb-4 border-bottom-grey">
+        <div class="col-3 flex-align-center border-right-grey">
+            <img class="max-width-100" src="assets/icons-img/icon-smsotp1.png" />
+        </div>
+        <div class="col-3 flex-align-center border-right-grey">
+            <img class="max-width-100" src="assets/icons-img/icon-oobpush1.png" />
+        </div><div class="col-3 flex-align-center">
+            <img class="max-width-100" src="assets/icons-img/icon-face1.png" />
+        </div>
+    </div>
+    <!-- OTP -->
+    <div class="row no-gutters justify-content-center">
+        <div class="col-9 titlebg">
+            <div>SMS OTP</div>
+        </div>
+    </div>
+    <div class="row no-gutters justify-content-center mt-4 pb-4">
+        <div class="col-10">
+            <form>
+                <div class="formfield max-width-100">
+                    <div class="input-group mb-3 group-input-border-radius">
+                        <input 
+                            type="text" 
+                            class="form-control d8p-input border-grey min-height-60" 
+                            placeholder="Ex: 123456" 
+                            pattern="\d*" 
+                            maxlength="10" 
+                            name="otp" 
+                            [(ngModel)]="otp"
+                            aria-label="otp" 
+                            aria-describedby="basic-addon2"
+                        />
+                        <div class="input-group-append">
+                            <span class="input-group-text group-input-icon-field" id="basic-addon2" routerLink="/transfer" >
+                                <button class="d8p-transparent-btn" *ngIf="otp">
+                                    <img class="max-width-100" src="assets/icons-img/icon-correct1.png"  />
+                                </button>
+                                <button class="d8p-transparent-btn" *ngIf="!otp">
+                                    <img class="max-width-100" src="assets/icons-img/icon-correct2.png"  />
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
