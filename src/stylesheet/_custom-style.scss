@@ -754,6 +754,14 @@ select.arrowstyle {
         }
     }
 }
+.bankdetailview{
+    @extend .recipientview;
+    background: $yellow;
+    .transaction-box{
+        background: url('assets/icons-img/imagemaybank.png') no-repeat;
+        background-size: contain;
+    }
+}
 
 
 //material design - override

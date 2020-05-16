@@ -7,7 +7,9 @@ import {
   LoginPwdComponent,
   DashboardComponent,
   TransferComponent,
-  TransactionDetailsComponent
+  TransactionDetailsComponent,
+  BankloadComponent,
+  BankloadDetailsComponent
 } from './pages';
 
 
@@ -36,6 +38,14 @@ export const routes: Routes = [
   {
     path: "transfer-details",
     component: TransactionDetailsComponent
+  },
+  {
+    path: "bankload",
+    component: BankloadComponent
+  },
+  {
+    path: "bankload-details",
+    component: BankloadDetailsComponent
   },
   
   

@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-bank-details',
+  templateUrl: './bank-details.component.html'
+})
+export class BankDetailsComponent implements OnInit {
+  username: string;
+  pwd: string;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
