@@ -28,6 +28,8 @@ import {
   TransactionDetailsComponent,
   BankloadComponent,
   BankloadDetailsComponent,
+  WithdrawComponent,
+  WithdrawDetailsComponent
 } from "./pages";
 
 import { 
@@ -36,10 +38,12 @@ import {
   TransferRecipientComponent,
   OtpcardComponent,
   BankDetailsComponent,
+  WithdrawBankDetailsComponent,
 } from './components';
 
 
 import { Services } from 'src/app/pages/services/service';
+import {  } from './components/withdraw-bank-details/withdraw-bank-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,8 @@ import { Services } from 'src/app/pages/services/service';
     TransactionDetailsComponent,
     BankloadComponent,
     BankloadDetailsComponent,
+    WithdrawComponent,
+    WithdrawDetailsComponent,
 
     //components
     DashboardHeaderComponent,
@@ -58,6 +64,7 @@ import { Services } from 'src/app/pages/services/service';
     TransferRecipientComponent,
     OtpcardComponent,
     BankDetailsComponent,
+    WithdrawBankDetailsComponent,
   ],
   imports: [
     BrowserModule,
