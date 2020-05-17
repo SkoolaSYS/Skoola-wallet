@@ -9,7 +9,9 @@ import {
   TransferComponent,
   TransactionDetailsComponent,
   BankloadComponent,
-  BankloadDetailsComponent
+  BankloadDetailsComponent,
+  WithdrawComponent,
+  WithdrawDetailsComponent
 } from './pages';
 
 
@@ -46,6 +48,14 @@ export const routes: Routes = [
   {
     path: "bankload-details",
     component: BankloadDetailsComponent
+  },
+  {
+    path: "withdraw",
+    component: WithdrawComponent
+  },
+  {
+    path: "withdraw-details",
+    component: WithdrawDetailsComponent
   },
   
   
