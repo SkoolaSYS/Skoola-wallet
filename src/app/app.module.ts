@@ -26,6 +26,8 @@ import {
   DashboardComponent,
   TransferComponent,
   TransactionDetailsComponent,
+  BankloadComponent,
+  BankloadDetailsComponent,
 } from "./pages";
 
 import { 
@@ -33,6 +35,7 @@ import {
   TransactionViewComponent,
   TransferRecipientComponent,
   OtpcardComponent,
+  BankDetailsComponent,
 } from './components';
 
 
@@ -46,12 +49,15 @@ import { Services } from 'src/app/pages/services/service';
     DashboardComponent,
     TransferComponent,
     TransactionDetailsComponent,
+    BankloadComponent,
+    BankloadDetailsComponent,
 
     //components
     DashboardHeaderComponent,
     TransactionViewComponent,
     TransferRecipientComponent,
     OtpcardComponent,
+    BankDetailsComponent,
   ],
   imports: [
     BrowserModule,
