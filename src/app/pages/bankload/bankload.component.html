@@ -1,0 +1,157 @@
+<div>
+    <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Nav block - start -->
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav>
+          <mat-nav-list>
+            <a href="#" mat-list-item><small><img class="mr-2 w-50" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</a>
+            <a href="#" mat-list-item><small><img class="mr-2 w-50" src="assets/icons-img/d8p-logout.svg" /></small>Logout</a>
+          </mat-nav-list>
+        </mat-sidenav>
+        <!-- Nav block - end -->
+        <mat-sidenav-content fxFlexFill>
+          <div class="container-fluid p-0">
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12 col-xl-9">
+                <div class="dashboard-header-box">
+                  <app-dashboard-header></app-dashboard-header>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12 col-xl-9"> 
+                <div class="dashboard-content-box pb-5">
+                  <!-- Quick links -->
+                  <div class="container-fluid quicklinkbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              BANK LOAD
+                            </div>
+                          </div>
+                          <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                            <div class="col-3 flex-align-center flex-column border-right-white">
+                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-bankload2.png" /></div>
+                            </div>
+                            <div class="col-9 pl-3 color-white">
+                                Funds residing in my internet banking account will be used to load my D-8P Acc. MYR e-Wallet.
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Amount -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Amount (RM)
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Internet Banking Channels -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Internet Banking Channels
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-4 border-right-grey">
+                              <div class="height-60 flex-align-center text-center"><img class="max-width-40" src="assets/icons-img/logomaybank1.png" /></div>
+                            </div>
+                            <div class="col-4 border-right-grey">
+                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logocimbbank1.png" /></div>
+                            </div>
+                            <div class="col-4 flex-column">
+                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logorhbbank1.png" /></div>
+                            </div>
+                            <div class="col-4 border-top-grey border-right-grey">
+                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logobankrakyat1.png" /></div>
+                            </div>
+                            <div class="col-4 border-top-grey border-right-grey">
+                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logopublicbank1.png" /></div>
+                            </div>
+                            <div class="col-4 border-top-grey">
+                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logobankmuamalat1.png" /></div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Reference -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Reference
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" name="reference number" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Confirmation -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Confirmation
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                              <div class="button-container text-center">
+                                <button class="d8p-btn-default" routerLink="/bankload-details">
+                                    Confirm
+                                    <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
+                                </button>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+</div>
