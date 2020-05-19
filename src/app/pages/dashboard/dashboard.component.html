@@ -6,8 +6,8 @@
       <mat-sidenav-container>
         <mat-sidenav #sidenav>
           <mat-nav-list>
-            <a href="#" mat-list-item><small><img class="mr-2 w-50" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</a>
-            <a href="#" mat-list-item><small><img class="mr-2 w-50" src="assets/icons-img/d8p-logout.svg" /></small>Logout</a>
+            <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
+            <div class="mt-2" mat-list-item><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
           </mat-nav-list>
         </mat-sidenav>
         <!-- Nav block - end -->
@@ -37,15 +37,15 @@
                           <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
                             <div class="col-3 flex-align-center flex-column border-right-white">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info2.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-transfer2.png" /></div>
+                              <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-60" src="assets/icons-img/icon-transfer2.png" /></div>
                             </div>
                             <div class="col-3 flex-align-center flex-column border-right-white">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info2.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-utilities2.png" /></div>
+                              <div class="height-60 text-center"><img class="max-width-50" src="assets/icons-img/icon-utilities2.png" /></div>
                             </div>
                             <div class="col-3 flex-align-center flex-column border-right-white">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info2.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-bankload2.png" /></div>
+                              <div class="height-60 text-center" routerLink="/bankload"><img class="max-width-60" src="assets/icons-img/icon-bankload2.png" /></div>
                             </div>
                             <div class="col-3 flex-align-center flex-column">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info2.png" /></div>
@@ -69,11 +69,11 @@
                           <div class="row no-gutters mt-2 mb-4">
                             <div class="col-4 flex-align-center flex-column border-right-grey pb-4 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-bankload1.png" /></div>
+                              <div class="height-60 text-center" routerLink="/bankload"><img class="max-width-60" src="assets/icons-img/icon-bankload1.png" /></div>
                             </div>
                             <div class="col-4 flex-align-center flex-column border-right-grey pb-4 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-transfer1.png" /></div>
+                              <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-60" src="assets/icons-img/icon-transfer1.png" /></div>
                             </div>
                             <div class="col-4 flex-align-center flex-column pb-4 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-4 flex-align-center flex-column border-top-grey border-right-grey pt-2 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-withdraw1.png" /></div>
+                              <div class="height-60 text-center" routerLink="/withdraw"><img class="max-width-60" src="assets/icons-img/icon-withdraw1.png" /></div>
                             </div>
                             <div class="col-4 flex-align-center flex-column border-top-grey border-right-grey pt-2 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
@@ -116,14 +116,14 @@
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" /></div>
                               <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-salarybig1.png" /></div>
                             </div>
-                            <div class="col-3 flex-align-center flex-column pb-xl-5">
+                            <div class="col-3 flex-align-center flex-column border-right-grey pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-utilities1.png" /></div>
+                              <div class="height-60 text-center"><img class="max-width-50" src="assets/icons-img/icon-utilities1.png" /></div>
                             </div>
 
                             <div class="col-3 flex-align-center flex-column pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-donate1.png" /></div>
+                              <div class="height-60 text-center"><img class="max-width-50" src="assets/icons-img/icon-donate1.png" /></div>
                             </div>
                           </div>
                         </div>
