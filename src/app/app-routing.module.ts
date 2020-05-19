@@ -11,7 +11,8 @@ import {
   BankloadComponent,
   BankloadDetailsComponent,
   WithdrawComponent,
-  WithdrawDetailsComponent
+  WithdrawDetailsComponent,
+  RecentTransactionsComponent
 } from './pages';
 
 
@@ -57,7 +58,10 @@ export const routes: Routes = [
     path: "withdraw-details",
     component: WithdrawDetailsComponent
   },
-  
+  {
+    path: "recent-transactions",
+    component: RecentTransactionsComponent
+  },
   
   { path: "**", component: LoginComponent }
 ];
