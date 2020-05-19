@@ -129,6 +129,9 @@
 .grey-gradient{
     background: linear-gradient(0deg, #d3d5d4 0%, #ffffff 100%);
 }
+.whitespace-nowrap{
+    white-space: nowrap;
+}
 .line-height-15{
     line-height: 15px;
 }
@@ -570,6 +573,22 @@ select.arrowstyle {
 
     }
 }
+.headergoldbox{
+    background: url(assets/icons-img/gold-view-bg.png) no-repeat;
+    background-size: contain;
+    background-position-x: center;
+    font-size: $s-11;
+    border-radius: $s-10;
+    max-width: 130px;
+    min-height: 38px;
+    background-size: 95%;
+    margin-top: $s-12;
+    .gram-txt{
+        max-width: 130px;
+        padding: 0 1.5rem;
+        text-align: center;
+    }
+}
 .summary-gold-view{
     border: 1px solid $gold;
     border-radius: 15px;
@@ -627,14 +646,14 @@ select.arrowstyle {
 //transaction list - start
 .d8p-transaction-list{
     border-top: 1px solid $lightGrey2;
-    height: 320px;
+    height: 270px;
     overflow-y: scroll;
 }
 .d8p-transaction-list ul{
     padding: 0 0 $s-10;
     margin: 0;
     li{
-        padding: 0 $s-25 $s-15;
+        padding: $s-10 $s-15;
         list-style-type: none;
         ul{
             padding: 0;
@@ -781,6 +800,9 @@ select.arrowstyle {
 .mat-sidenav-container .mat-list-item:nth-last-child{
     position: absolute;
     bottom: 1rem;
+}
+.mat-drawer:not(.mat-drawer-side){
+    width: 200px;
 }
 //material tab override
 .mat-tab-label-container .mat-ink-bar{

@@ -29,7 +29,8 @@ import {
   BankloadComponent,
   BankloadDetailsComponent,
   WithdrawComponent,
-  WithdrawDetailsComponent
+  WithdrawDetailsComponent,
+  RecentTransactionsComponent
 } from "./pages";
 
 import { 
@@ -43,7 +44,7 @@ import {
 
 
 import { Services } from 'src/app/pages/services/service';
-import {  } from './components/withdraw-bank-details/withdraw-bank-details.component';
+import {  } from './components/withdraw-bank-details/withdraw-bank-details.component'
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     BankloadDetailsComponent,
     WithdrawComponent,
     WithdrawDetailsComponent,
+    RecentTransactionsComponent,
 
     //components
     DashboardHeaderComponent,
