@@ -56,6 +56,10 @@
 .font-size-20{
     font-size: $s-20 !important;
 }
+.font-size-15{
+    font-size: $s-15;
+    line-height: $s-19;
+}
 .vertical-align-bottom{
     vertical-align: bottom;
 }
@@ -150,6 +154,10 @@
 .flex-container-row{
     display: flex;
     flex-direction: row;
+}
+.flex-valign-75{
+    align-items: center;
+    height: 75px;
 }
 .overflow-dots{
     text-overflow: ellipsis;
@@ -299,6 +307,7 @@ select.arrowstyle {
     border-radius: $s-10;
     background: $white;
     text-align: center;
+    max-width: 100%;
 }
 .d8p-input-pwd{
     -webkit-text-security: disc;
@@ -612,7 +621,7 @@ select.arrowstyle {
     }
 }
 .dashboard-content-box{
-    padding-top: 20rem;
+    padding-top: 15.5rem;
     background: $white;
     @media screen and (min-width: 768px){
         padding-top: 22rem;
@@ -720,6 +729,7 @@ select.arrowstyle {
 //dashboard menu
 .quicklinkbg{
     background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
+    height: 130px;
 }
 
 //transaction view
@@ -817,8 +827,8 @@ select.arrowstyle {
     justify-content: center;
 }
 .mat-tab-body-content {
-    min-height: 132px;
-    padding-bottom: 1rem;
+    // min-height: 132px;
+    padding-bottom: 0.5rem;
 }
 .mat-tab-label{
     background: linear-gradient(0deg, #000000 0%, #323232 100%);
