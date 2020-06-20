@@ -541,7 +541,6 @@ select.arrowstyle {
     }
 }
 
-
 //dashboard-header - start
 .dashboard-header-box{
     position: fixed;
@@ -561,27 +560,6 @@ select.arrowstyle {
 .profile-info{
     display: flex;
 }
-.summary-currency-view{
-    border: 1px solid $blackishGrey;
-    border-radius: 15px;
-    padding: 0.2rem 1rem;
-    margin: 1rem 1rem 0;
-    text-align: center;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: $s-13;
-    @media screen and (min-width: 768px){
-        width: 40%;
-        margin: 0 auto 0.5rem;
-    }
-    img{
-        max-width: 20px;
-        @media screen and (min-width: 768px){
-            width: 30px;
-        }
-
-    }
-}
 .headergoldbox{
     background: url(assets/icons-img/gold-view-bg.png) no-repeat;
     background-size: contain;
@@ -598,26 +576,46 @@ select.arrowstyle {
         text-align: center;
     }
 }
-.summary-gold-view{
-    border: 1px solid $gold;
-    border-radius: 15px;
-    padding: 0.2rem 1rem;
-    margin: 0.5rem 1rem 0;
-    color: $gold;
-    background: $lightGrey;
+.summary-currency-view{
+    border: 1px solid $blackishGrey;
+    border-radius: 10px;
+    // padding: 0.1rem 1rem;
+    margin: 0.5rem 0.5rem 0;
     text-align: center;
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: $s-13;
     @media screen and (min-width: 768px){
         width: 40%;
         margin: 0 auto 0.5rem;
     }
-    
+    img{
+        max-width: 20px;
+        @media screen and (min-width: 768px){
+            width: 30px;
+        }        
+    }
+}
+.summary-gold-view{
+    border: 1px solid $gold;
+    border-radius: 10px;
+    // padding: 0.1rem 1rem;
+    margin: 0.5rem 0.5rem 0;
+    color: $gold;
+    background: $lightGrey;
+    text-align: center;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: $s-13;
+    @media screen and (min-width: 768px){
+        width: 40%;
+        margin: 0 auto 0.5rem;
+    }
     img{
         max-width: 20px;
         @media screen and (min-width: 768px){
             width: 30px;
         }
-
     }
 }
 .dashboard-content-box{
@@ -651,7 +649,6 @@ select.arrowstyle {
     }
 }
 
-
 //transaction list - start
 .d8p-transaction-list{
     border-top: 1px solid $lightGrey2;
@@ -671,7 +668,6 @@ select.arrowstyle {
                 border-bottom: 1px solid $lightGrey2;
                 padding: 0 0 $s-15;
             }
-
         }
     }
 }
@@ -794,7 +790,6 @@ select.arrowstyle {
         background-size: contain;
     }
 }
-
 
 //material design - override
 .mat-sidenav-container {
