@@ -29,15 +29,17 @@
                             <mat-tab label="MYR" class="min-height-132">
                                 <div class="d8p-normal-text font-arial text-center mt-3">D8-P Acc. No.: 812342289912</div>
                                 <div class="d8p-h3 font-arial text-center mt-2">RM <span class="font-weight-bold">250.00</span></div>
-                                <!-- <div class="flex-align-center flex-column"> -->
+                                <div class="tranDetails tenPadding" *ngIf="active_transaction==true">
+                                    <!-- <div class="flex-align-center flex-column"> -->
                                     <div class="transaction-box flex-align-center">
-                                    <div class="summary-currency-view">
-                                        <span class="mr-2"><img src="assets/icons-img/icon-creditsmall2.png"/></span>
-                                        RM 100.05
-                                    </div>
-                                    <div class="summary-gold-view">                                        
-                                        0.1001g Gold
-                                        <span class="mr-2"><img src="assets/icons-img/icon-creditsmall1.png"/></span>
+                                        <div class="summary-currency-view">
+                                            <span class="mr-2"><img src="assets/icons-img/icon-creditsmall2.png"/></span>
+                                            RM 100.05
+                                        </div>
+                                        <div class="summary-gold-view">                                        
+                                            0.1001g Gold
+                                            <span class="mr-2"><img src="assets/icons-img/icon-creditsmall1.png"/></span>
+                                        </div>
                                     </div>
                                 </div>
                             </mat-tab>

@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
 
 export class Services {
+    private username: string;
+    private password: string;
+
     authorizationData = 'Basic ' + btoa('rosli' + ':' + 'rosli');
     headerOptions = {
         headers: new HttpHeaders({
@@ -25,14 +29,14 @@ export class Services {
     }
 
     public getAccountTransactionList(){
-        return this.http.get('/rest/accounts/default/history', this.headerOptions)
+        return this.http.get('/rest/accounts/default/history', this.headerOptions);
     }
 
     public getProfileData(){
-        return this.http.get('rest/members/me', this.headerOptions)
+        return this.http.get('rest/members/me', this.headerOptions);
     }
 
     public getTransferTypes(){
-        return this.http.get('/rest/transferTypes', this.headerOptions)
+        return this.http.get('/rest/transferTypes', this.headerOptions);
     }
 }
