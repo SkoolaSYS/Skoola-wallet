@@ -7,7 +7,7 @@ import { fadeInAnimation } from '../../animation-effect/index';
   host: { '[@fadeInAnimation]': '' }
 })
 export class LoginComponent implements OnInit {
-  mobileno: string;
+  username: string;
   constructor() { }
 
   ngOnInit(): void {
