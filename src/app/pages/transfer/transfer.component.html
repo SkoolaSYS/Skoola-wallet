@@ -82,10 +82,13 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <select class="d8p-select arrowstyle" name="Choose Favorite">
+                              <select class="d8p-select arrowstyle" name="recipient-members">
                                 <option>choose favorite</option>
-                                <option>Amar</option>
-                                <option>Rosli</option>
+                                <!-- <option>Amar</option> -->
+                                <!-- <option>Rosli</option> -->
+                                <option *ngFor="let member of membersList" [ngValue]="member.id">
+                                  {{member.name}}
+                                </option>
                               </select>
                             </div>
                           </div>

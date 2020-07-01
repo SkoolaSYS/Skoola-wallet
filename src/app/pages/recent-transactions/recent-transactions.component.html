@@ -37,9 +37,9 @@
                           <div class="row no-gutters mt-2 mb-4">
                             <div class="col-12">
                                 <div class="d8p-transaction-list">
-                                    <ul>
+                                    <ul *ngFor = "let trxlist of transactionList">
                                         <li>
-                                            <div class="d8p-h6 font-weight-bold">20 May</div>
+                                            <div class="d8p-h6 font-weight-bold">{{trxlist.date | date}}</div>
                                             <ul class="d8p-txn">
                                                 <li>
                                                     <div class="container-fluid p-0">
@@ -48,62 +48,20 @@
                                                                 <img src='assets/icons-img/dollar-icon-green.svg' />
                                                             </div>
                                                             <div class="col-8">
-                                                                <div class="d8p-normal-text font-weight-bold color-black">Rosli</div>
-                                                                <div class="d8p-normal-text overflow-dots">You just received RM 1000  conversion</div>
+                                                                <div class="d8p-normal-text font-weight-bold color-black">{{trxlist.transferType.name}}</div>
+                                                                <div class="d8p-normal-text overflow-dots">{{trxlist.transferType.from.currency.name}} {{trxlist.amount | number : '1.2-2'}} {{ trxlist.description }}</div>
+                                                                <!-- <div class="d8p-normal-text overflow-dots" *ngIf="trxlist.transferType.name == 'Debit to member'">{{trxlist.transferType.from.currency.name}} {{trxlist.amount | number : '1.2-2'}} has been credited into your account : {{ trxlist.description }}</div> -->
+                                                                <!-- <div class="d8p-normal-text overflow-dots" *ngIf="trxlist.transferType.name == 'External trade transfer' || trxlist.transferType.name == 'Trade transfer'">{{trxlist.transferType.from.currency.name}} {{trxlist.amount * -1 | number : '1.2-2'}} has been debited from your account, Trasaction info - {{ trxlist.description }}</div> -->
                                                             </div>
                                                             <div class="col-2">
-                                                                <div class="d8p-smaller-text font-weight-bold text-right whitespace-nowrap">06: 00 : AM</div>
+                                                                <div class="d8p-smaller-text font-weight-bold text-right whitespace-nowrap">{{trxlist.date | date:"h:mm a"}}</div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <div class="d8p-h6 font-weight-bold">18 Apr</div>
-                                            <ul class="d8p-txn">
-                                                <li>
-                                                    <div class="container-fluid p-0">
-                                                        <div class="row no-gutters">
-                                                            <div class="col-2">
-                                                                <img src='assets/icons-img/dollar-icon-green.svg' />
-                                                            </div>
-                                                            <div class="col-8">
-                                                                <div class="d8p-normal-text font-weight-bold color-black">Rosli</div>
-                                                                <div class="d8p-normal-text overflow-dots">You just received RM 1000  conversion</div>
-                                                            </div>
-                                                            <div class="col-2">
-                                                                <div class="d8p-smaller-text font-weight-bold text-right whitespace-nowrap">06: 00 : AM</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="d8p-h6 font-weight-bold">24 Mar</div>
-                                            <ul class="d8p-txn">
-                                                <li>
-                                                    <div class="container-fluid p-0">
-                                                        <div class="row no-gutters">
-                                                            <div class="col-2">
-                                                                <img src='assets/icons-img/dollar-icon-green.svg' />
-                                                            </div>
-                                                            <div class="col-8">
-                                                                <div class="d8p-normal-text font-weight-bold color-black">Rosli</div>
-                                                                <div class="d8p-normal-text overflow-dots">You just received RM 1000  conversion</div>
-                                                            </div>
-                                                            <div class="col-2">
-                                                                <div class="d8p-smaller-text font-weight-bold text-right whitespace-nowrap">06: 00 : AM</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>
+                                        </li>                                        
                                     </ul>
                                 </div>
                                 

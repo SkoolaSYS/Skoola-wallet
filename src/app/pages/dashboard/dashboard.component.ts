@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -9,8 +8,8 @@ import { fadeInAnimation } from '../../animation-effect/index';
   host: { '[@fadeInAnimation]': '' }
 })
 export class DashboardComponent implements OnInit {
-  constructor(
-    ) { }
+
+  constructor() { }
 
   ngOnInit(): void {
 
