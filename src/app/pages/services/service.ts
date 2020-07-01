@@ -20,9 +20,15 @@ export class Services {
             Authorization: this.authorizationData
         })
     };
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient){ }
 
-    }
+    public setUserName(username: string) { this.username = username; }
+
+    public setPassword(password: string) { this.password = password; }
+
+    public getUserName(){ return this.username; }
+
+    public getPassword(){ return this.password; }
 
     public getAccountBalance(){
         return this.http.get('/rest/accounts/info', this.headerOptions);
@@ -38,5 +44,9 @@ export class Services {
 
     public getTransferTypes(){
         return this.http.get('/rest/transferTypes', this.headerOptions);
+    }
+
+    public getMemberList(){
+        return this.http.get('rest/members', this.headerOptions);
     }
 }

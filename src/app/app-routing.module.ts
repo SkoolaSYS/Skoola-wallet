@@ -23,46 +23,35 @@ export const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: "login",
-    component: LoginComponent
+    path: "login", component: LoginComponent
   },
   {
-    path: "loginPwd",
-    component: LoginPwdComponent
+    path: "loginPwd", component: LoginPwdComponent
   },
   {
-    path: "dashboard",
-    component: DashboardComponent
+    path: "dashboard", component: DashboardComponent
   },
   {
-    path: "transfer",
-    component: TransferComponent
+    path: "transfer", component: TransferComponent
   },
   {
-    path: "transfer-details",
-    component: TransactionDetailsComponent
+    path: "transfer-details", component: TransactionDetailsComponent
   },
   {
-    path: "bankload",
-    component: BankloadComponent
+    path: "bankload", component: BankloadComponent
   },
   {
-    path: "bankload-details",
-    component: BankloadDetailsComponent
+    path: "bankload-details", component: BankloadDetailsComponent
   },
   {
-    path: "withdraw",
-    component: WithdrawComponent
+    path: "withdraw", component: WithdrawComponent
   },
   {
-    path: "withdraw-details",
-    component: WithdrawDetailsComponent
+    path: "withdraw-details", component: WithdrawDetailsComponent
   },
   {
-    path: "recent-transactions",
-    component: RecentTransactionsComponent
+    path: "recent-transactions", component: RecentTransactionsComponent
   },
-  
   { path: "**", component: LoginComponent }
 ];
 
