@@ -46,6 +46,7 @@
                       </div>
                     </div>
                   </div>
+                  <form novalidate #form="ngForm">
                   <!-- Amount -->
                   <div class="container-fluid">
                     <div class="row no-gutters">
@@ -58,7 +59,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" />
+                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="transferForm.amount" required/>
                             </div>
                           </div>
                         </div>
@@ -82,7 +83,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <select class="d8p-select arrowstyle" name="recipient-members">
+                              <select class="d8p-select arrowstyle" name="recipient-members" [(ngModel)]="transferForm.toMemberId" (change)="memberChange()" required>
                                 <option>choose favorite</option>
                                 <!-- <option>Amar</option> -->
                                 <!-- <option>Rosli</option> -->
@@ -108,7 +109,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" name="reference number" />
+                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" name="reference number" [(ngModel)]="transferForm.description" required/>
                             </div>
                           </div>
                         </div>
@@ -149,7 +150,7 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <div class="button-container text-center">
-                                <button class="d8p-btn-default" routerLink="/transfer-details">
+                                <button class="d8p-btn-default" routerLink="/transfer-details" [disabled]="form.invalid">
                                     Confirm
                                     <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                 </button>
@@ -160,7 +161,7 @@
                       </div>
                     </div>
                   </div>
-
+                  </form>
                   
                 </div>
 

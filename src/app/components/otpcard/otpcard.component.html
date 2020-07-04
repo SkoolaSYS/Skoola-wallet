@@ -42,8 +42,8 @@
                             aria-describedby="basic-addon2"
                         />
                         <div class="input-group-append">
-                            <span class="input-group-text group-input-icon-field" id="basic-addon2" routerLink="/dashboard" >
-                                <button class="d8p-transparent-btn" *ngIf="otp">
+                            <span class="input-group-text group-input-icon-field" id="basic-addon2" (click)="otpSubmit.emit(otp)" >
+                                <button class="d8p-transparent-btn" *ngIf="otp" >
                                     <img class="max-width-100" src="assets/icons-img/icon-correct1.png"  />
                                 </button>
                                 <button class="d8p-transparent-btn" *ngIf="!otp">

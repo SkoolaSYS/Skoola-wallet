@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-otpcard',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OtpcardComponent implements OnInit {
   otp: number;
+  @Output() otpSubmit: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {

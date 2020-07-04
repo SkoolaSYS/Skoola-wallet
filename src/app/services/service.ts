@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 
@@ -11,6 +11,8 @@ import { tap } from 'rxjs/operators';
 export class Services {
     private $username: string;
     private $password: string;
+    public  forms: any = {};
+    public  currentUser: Promise<any>;
     private storage: Storage = localStorage;
     private ACCESS_TOKEN = 'accessToken';
     headerOptions = {
@@ -21,7 +23,11 @@ export class Services {
             Authorization: this.token
         })
     };
-    constructor(private http: HttpClient){ }
+    constructor(private http: HttpClient){
+        if (this.isLoggedIn()){
+            this.currentUser = this.getProfileData().toPromise();
+        }
+     }
 
     public set username(username: string) { this.$username = username; }
     public get username(){ return this.$username; }
@@ -55,8 +61,9 @@ export class Services {
                 Authorization: authorizationData
             })
         };
-        return this.http.get('/rest/accounts/info', headerOptions).pipe(tap (data => {
+        return this.http.get('/rest/members/me', headerOptions).pipe(tap (data => {
             this.storeSession({accessToken: authorizationData});
+            this.currentUser = of(data).toPromise();
         }));
     }
     public logout(): void {
@@ -80,5 +87,8 @@ export class Services {
 
     public getMemberList(){
         return this.http.get('rest/members', this.headerOptions);
+    }
+    public paymentTransfer(data: any){
+        return this.http.post('/rest/payments/confirmMemberPayment', data , this.headerOptions);
     }
 }
