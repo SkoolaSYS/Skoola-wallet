@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Services } from '../services/service';
+import { Services } from '../../services/service';
 
 @Component({
   selector: 'app-transfer',

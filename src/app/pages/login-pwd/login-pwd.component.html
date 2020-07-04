@@ -11,7 +11,7 @@
                         <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
                         <div class="d8p-h4 color-cyan">WEALTH. UMMAH. SECURE</div>
                     </div>
-                    <form>
+                    <form (submit)="submit()">
                         <div class="formfield max-width-100">
                             <div class="input-group mb-3 group-input-border-radius">
                                 <input 
@@ -21,17 +21,17 @@
                                     pattern="\d*" 
                                     maxlength="6" 
                                     name="pwd" 
-                                    [(ngModel)]="pwd"
+                                    [(ngModel)]="services.password"
                                     aria-label="Recipient's username" 
                                     aria-describedby="basic-addon2"
                                     autocomplete="new-password"
                                 />
                                 <div class="input-group-append">
-                                    <span class="input-group-text group-input-icon-field" id="basic-addon2" routerLink="/dashboard">
-                                        <button class="d8p-transparent-btn" *ngIf="pwd">
+                                    <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                        <button class="d8p-transparent-btn" *ngIf="services.password">
                                             <img class="max-width-100" src="assets/icons-img/icon-login2.png"  />
                                         </button>
-                                        <button class="d8p-transparent-btn" *ngIf="!pwd">
+                                        <button class="d8p-transparent-btn" *ngIf="!services.password">
                                             <img class="max-width-100" src="assets/icons-img/icon-login1.png"  />
                                         </button>
                                     </span>

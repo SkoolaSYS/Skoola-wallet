@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Services } from 'src/app/pages/services/service';
+import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-dashboard-header',

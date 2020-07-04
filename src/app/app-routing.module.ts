@@ -14,6 +14,7 @@ import {
   WithdrawDetailsComponent,
   RecentTransactionsComponent
 } from './pages';
+import { AuthenticationGuard } from './services/authentication.guard';
 
 
 export const routes: Routes = [
@@ -29,28 +30,28 @@ export const routes: Routes = [
     path: "loginPwd", component: LoginPwdComponent
   },
   {
-    path: "dashboard", component: DashboardComponent
+    path: "dashboard", component: DashboardComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "transfer", component: TransferComponent
+    path: "transfer", component: TransferComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "transfer-details", component: TransactionDetailsComponent
+    path: "transfer-details", component: TransactionDetailsComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "bankload", component: BankloadComponent
+    path: "bankload", component: BankloadComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "bankload-details", component: BankloadDetailsComponent
+    path: "bankload-details", component: BankloadDetailsComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "withdraw", component: WithdrawComponent
+    path: "withdraw", component: WithdrawComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "withdraw-details", component: WithdrawDetailsComponent
+    path: "withdraw-details", component: WithdrawDetailsComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "recent-transactions", component: RecentTransactionsComponent
+    path: "recent-transactions", component: RecentTransactionsComponent, canActivate: [AuthenticationGuard]
   },
   { path: "**", component: LoginComponent }
 ];

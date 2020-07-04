@@ -41,7 +41,7 @@ import {
 } from './components';
 
 
-import { Services } from 'src/app/pages/services/service';
+import { Services } from 'src/app/services/service';
 import {  } from './components/withdraw-bank-details/withdraw-bank-details.component'
 
 @NgModule({
