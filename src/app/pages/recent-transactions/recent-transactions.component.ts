@@ -11,12 +11,12 @@ export class RecentTransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getAccountTransactionList().subscribe((res: any) => {
-      console.log(res);
       this.transactionList = res.elements;
+      // console.log(res);
     },
     (err) => {
+      this.service.logout();
       console.log(err);
     });
   }
-
 }

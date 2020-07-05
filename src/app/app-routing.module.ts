@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//import Components
+// import Components
 import {
   LoginComponent,
   LoginPwdComponent,
@@ -16,44 +16,43 @@ import {
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
-
 export const routes: Routes = [
   {
-    path: "",
-    redirectTo: "login",
-    pathMatch: "full"
+      path: '',
+      redirectTo: 'login',
+      pathMatch: 'full'
   },
   {
-    path: "login", component: LoginComponent
+      path: 'login', component: LoginComponent
   },
   {
-    path: "loginPwd", component: LoginPwdComponent
+    path: 'loginPwd', component: LoginPwdComponent
   },
   {
-    path: "dashboard", component: DashboardComponent, canActivate: [AuthenticationGuard]
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "transfer", component: TransferComponent, canActivate: [AuthenticationGuard]
+    path: 'transfer', component: TransferComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "transfer-details", component: TransactionDetailsComponent, canActivate: [AuthenticationGuard]
+    path: 'transfer-details', component: TransactionDetailsComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "bankload", component: BankloadComponent, canActivate: [AuthenticationGuard]
+    path: 'bankload', component: BankloadComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "bankload-details", component: BankloadDetailsComponent, canActivate: [AuthenticationGuard]
+    path: 'bankload-details', component: BankloadDetailsComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "withdraw", component: WithdrawComponent, canActivate: [AuthenticationGuard]
+    path: 'withdraw', component: WithdrawComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "withdraw-details", component: WithdrawDetailsComponent, canActivate: [AuthenticationGuard]
+    path: 'withdraw-details', component: WithdrawDetailsComponent, canActivate: [AuthenticationGuard]
   },
   {
-    path: "recent-transactions", component: RecentTransactionsComponent, canActivate: [AuthenticationGuard]
+    path: 'recent-transactions', component: RecentTransactionsComponent, canActivate: [AuthenticationGuard]
   },
-  { path: "**", component: LoginComponent }
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({
@@ -61,4 +60,3 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-

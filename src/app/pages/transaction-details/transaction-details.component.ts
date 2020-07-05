@@ -24,6 +24,7 @@ export class TransactionDetailsComponent implements OnInit {
     transactionPassword: otp,
     description: this.form.description,
    }).toPromise();
+   this.services.activetransaction = true;
    this.router.navigate(['dashboard']);
   }
 }

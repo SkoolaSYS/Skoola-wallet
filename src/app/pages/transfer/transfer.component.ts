@@ -14,7 +14,7 @@ export class TransferComponent implements OnInit {
   ngOnInit(): void {
     this.service.forms.transferForm = this.transferForm;
     this.service.getMemberList().subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.membersList = res.elements;
     },
     (err) => {

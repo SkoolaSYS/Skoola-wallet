@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,9 +29,9 @@ import {
   WithdrawComponent,
   WithdrawDetailsComponent,
   RecentTransactionsComponent
-} from "./pages";
+} from './pages';
 
-import { 
+import {
   DashboardHeaderComponent,
   TransactionViewComponent,
   TransferRecipientComponent,
@@ -42,7 +42,7 @@ import {
 
 
 import { Services } from 'src/app/services/service';
-import {  } from './components/withdraw-bank-details/withdraw-bank-details.component'
+import {  } from './components/withdraw-bank-details/withdraw-bank-details.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     WithdrawDetailsComponent,
     RecentTransactionsComponent,
 
-    //components
+    // components
     DashboardHeaderComponent,
     TransactionViewComponent,
     TransferRecipientComponent,
@@ -79,7 +79,7 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     MatButtonModule,
     MatTabsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { paramsInheritanceStrategy: "always" }),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
   ],
   providers: [Services],
   bootstrap: [AppComponent]
