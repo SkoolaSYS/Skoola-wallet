@@ -9,7 +9,7 @@
                 <div class="login-container max-width-100 overflow-hidden">
                     <div class="text-center mt-xl-4 mb-4 pt-5">
                         <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
-                        <div class="d8p-h4 color-cyan">WEALTH. UMMAH. SECURE</div>
+                        <div class="d8p-h4 color-cyan">WEALTH. HUMANITY. SECURE</div>
                     </div>
                     <form>
                         <div class="formfield max-width-100">
@@ -18,8 +18,8 @@
                                     type="text" 
                                     class="form-control d8p-input min-height-60" 
                                     placeholder="User name" 
-                                    pattern="\d*" 
-                                    maxlength="10" 
+                                    pattern="([A-z0-9À-ž]){2,}" 
+                                    maxlength="16" 
                                     name="username" 
                                     [(ngModel)]="services.username"
                                     aria-label="Recipient's username" 
