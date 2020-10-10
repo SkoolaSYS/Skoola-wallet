@@ -28,7 +28,11 @@ import {
   BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
-  RecentTransactionsComponent
+  RecentTransactionsComponent,
+  BuygoldComponent,
+  BuyGoldDetailsComponent,
+  SellgoldComponent,
+  SellGoldDetailsComponent
 } from './pages';
 
 import {
@@ -38,11 +42,14 @@ import {
   OtpcardComponent,
   BankDetailsComponent,
   WithdrawBankDetailsComponent,
+  BuyGoldDetailsViewComponent,
+  BuygoldTopViewComponent,
+  SellGoldDetailsViewComponent,
+  SellgoldTopViewComponent
 } from './components';
 
 
 import { Services } from 'src/app/services/service';
-import {  } from './components/withdraw-bank-details/withdraw-bank-details.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +64,10 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     WithdrawComponent,
     WithdrawDetailsComponent,
     RecentTransactionsComponent,
+    BuygoldComponent,
+    BuyGoldDetailsComponent,
+    SellgoldComponent,
+    SellGoldDetailsComponent,
 
     // components
     DashboardHeaderComponent,
@@ -65,6 +76,10 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     OtpcardComponent,
     BankDetailsComponent,
     WithdrawBankDetailsComponent,
+    BuyGoldDetailsViewComponent,
+    BuygoldTopViewComponent,
+    SellGoldDetailsViewComponent,
+    SellgoldTopViewComponent
   ],
   imports: [
     BrowserModule,

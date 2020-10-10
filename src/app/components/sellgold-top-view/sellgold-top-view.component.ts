@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-transaction-view',
-  templateUrl: './transaction-view.component.html'
+  selector: 'app-sellgold-top-view',
+  templateUrl: './sellgold-top-view.component.html'
 })
-export class TransactionViewComponent implements OnInit {
+export class SellgoldTopViewComponent implements OnInit {
+  buygold: boolean = true;
   constructor() { }
   @Input() sender: string;
   @Input() amount: string;
