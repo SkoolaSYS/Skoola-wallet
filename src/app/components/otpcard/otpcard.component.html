@@ -1,64 +1,91 @@
 <div class="container-fluid">
-    <!-- Authenication Method -->
-    <div class="row no-gutters justify-content-center">
-        <div class="col-9 titlebg">
-            <div>Authenication Method</div>
-        </div>
+  <!-- Authenication Method -->
+  <div class="row no-gutters justify-content-center">
+    <div class="col-9 titlebg">
+      <div>Authenication Method</div>
     </div>
-    <div class="row justify-content-center mt-3 pb-4 border-bottom-grey">
-        <div class="col-3 flex-align-center flex-column border-right-grey">
-            <div class="text-right w-100 pb-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-            <img class="max-width-100" src="assets/icons-img/icon-smsotp1.png" />
+  </div>
+  <div class="row justify-content-center mt-3 pb-4 border-bottom-grey">
+    <div class="col-12 col-xl-8">
+      <div class="row no-gutters justify-content-center">
+        <div class="col-3 pr-4 flex-align-center flex-column border-right-grey">
+          <div class="text-right w-100 pb-2">
+            <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
+          </div>
+          <img class="max-width-100" src="assets/icons-img/icon-smsotp1.png" />
         </div>
-        <div class="col-3 flex-align-center flex-column border-right-grey">
-            <div class="text-right w-100 pb-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-            <img class="max-width-100" src="assets/icons-img/icon-oobpush1.png" />
+        <div class="col-1"></div>
+        <div class="col-3 pr-3 flex-align-center flex-column border-right-grey">
+          <div class="text-right w-100 pb-2">
+            <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
+          </div>
+          <img class="max-width-100" src="assets/icons-img/icon-oobpush1.png" />
         </div>
-        <div class="col-3 flex-align-center flex-column">
-            <div class="text-right w-100 pb-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-            <img class="max-width-100" src="assets/icons-img/icon-face1.png" />
+        <div class="col-1"></div>
+        <div class="col-3 pr-4 flex-align-center flex-column">
+          <div class="text-right w-100 pb-2">
+            <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
+          </div>
+          <img class="max-width-100" src="assets/icons-img/icon-face1.png" />
         </div>
+      </div>
     </div>
-    <!-- OTP -->
-    <div class="row no-gutters justify-content-center">
-        <div class="col-9 titlebg">
-            <div>SMS OTP</div>
-        </div>
+  </div>
+  <!-- OTP -->
+  <div class="row no-gutters justify-content-center">
+    <div class="col-9 titlebg">
+      <div>SMS OTP</div>
     </div>
-    <div class="row no-gutters justify-content-center mt-4 pb-4">
-        <div class="col-10">
-            <form>
-                <div class="formfield max-width-100">
-                    <div class="input-group mb-3 group-input-border-radius">
-                        <input 
-                            type="text" 
-                            class="form-control d8p-input border-grey min-height-60" 
-                            placeholder="Ex: 123456" 
-                            pattern="\d*" 
-                            maxlength="10" 
-                            name="otp" 
-                            [(ngModel)]="otp"
-                            aria-label="otp" 
-                            aria-describedby="basic-addon2"
-                        />
-                        <div class="input-group-append">
-                            <span class="input-group-text group-input-icon-field" id="basic-addon2" (click)="otpSubmit.emit(otp)" >
-                                <button class="d8p-transparent-btn" *ngIf="otp" >
-                                    <img class="max-width-100" src="assets/icons-img/icon-correct1.png"  />
-                                </button>
-                                <button class="d8p-transparent-btn" *ngIf="!otp">
-                                    <img class="max-width-100" src="assets/icons-img/icon-correct2.png"  />
-                                </button>
-                            </span>
-                        </div>
-                    </div>
+  </div>
+  <div class="row no-gutters justify-content-center mt-4 pb-4">
+    <div class="col-10">
+      <div class="row no-gutters justify-content-center">
+        <div class="col-9 col-xl-6">
+          <form>
+            <div class="formfield max-width-100">
+              <div class="input-group mb-3 group-input-border-radius">
+                <input
+                  type="text"
+                  class="form-control d8p-input border-grey min-height-60"
+                  placeholder="Ex: 123456"
+                  pattern="\d*"
+                  maxlength="10"
+                  name="otp"
+                  [(ngModel)]="otp"
+                  aria-label="otp"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span
+                    class="input-group-text group-input-icon-field"
+                    id="basic-addon2"
+                    (click)="otpSubmit.emit(otp)"
+                  >
+                    <button class="d8p-transparent-btn" *ngIf="otp">
+                      <img
+                        class="max-width-100"
+                        src="assets/icons-img/icon-correct1.png"
+                      />
+                    </button>
+                    <button class="d8p-transparent-btn" *ngIf="!otp">
+                      <img
+                        class="max-width-100"
+                        src="assets/icons-img/icon-correct2.png"
+                      />
+                    </button>
+                  </span>
                 </div>
-                <div class="color-lightgrey text-center">
-                    <small>
-                        SMS OTP has been to xxx-xxxxxx02 (24 AUG 2020 08:00:00). Insert above and confirm.
-                    </small>
-                </div>
-            </form>
+              </div>
+            </div>
+            <div class="color-lightgrey text-center">
+              <small>
+                SMS OTP has been to xxx-xxxxxx02 (24 AUG 2020 08:00:00). Insert
+                above and confirm.
+              </small>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>

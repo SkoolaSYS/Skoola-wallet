@@ -3,12 +3,12 @@
     <div class="col-12 subtitlebg">
       <div class="row no-gutters justify-content-center">
         <div class="col-12 col-xl-9">
-          <div>TRANSFER: RM {{ amount | number: '.2-2' }}</div>
+          <div>BUYGOLD : 0.5577 g Gold (999.9)</div>
           <img
             class="d-flex max-width-60 margin-zero-auto"
             src="assets/icons-img/linewhite2.png"
           />
-          <div>Effective 24 AUG 2020 (Today)</div>
+          <div>Effective 24 OCT 2020 (Today)</div>
         </div>
       </div>
     </div>
@@ -20,17 +20,17 @@
           <div class="col-12 col-xl-6">
             <div class="row no-gutters">
               <div class="col-6 flex-align-center text-center flex-column">
-                <div class="transaction-box flex-align-center">
-                  <div class="d-flex flex-row">
-                    <span class="mr-2"
-                      ><img
+                <div class="transaction-box flex-view-box">
+                  <div class="d-flex flex-row mb-2">
+                    <span class="mr-2">
+                      <img
                         class="wh-20-20"
                         src="assets/icons-img/icon-info3.png"
                     /></span>
                     <div
-                      class="summary-currency-view"
+                      class="summary-currency-view justify-content-between"
                       style="
-                        min-width: 128px;
+                        min-width: 125px;
                         min-height: 28px;
                         padding: 0 0.4rem;
                       "
@@ -38,7 +38,23 @@
                       <span class="mr-2"
                         ><img src="assets/icons-img/icon-creditsmall2.png"
                       /></span>
-                      RM {{ amount | number: '.2-2' }}
+                      RM 103.45
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row">
+                    <span class="mr-2"
+                      ><img
+                        class="wh-20-20"
+                        src="assets/icons-img/icon-info3.png"
+                    /></span>
+                    <div
+                      class="gold-view justify-content-between"
+                      style="min-width: 125px; min-height: 30px"
+                    >
+                      <span class="mr-2"
+                        ><img src="assets/icons-img/icon-debitsmall2.png"
+                      /></span>
+                      0.0001g Gold
                     </div>
                   </div>
                 </div>
@@ -60,9 +76,16 @@
                 </div>
               </div>
               <div class="col-3 flex-align-center text-center flex-column">
-                <div class="d8p-h6 font-weight-bold mb-1">RECIPIENT</div>
-                <div class=""><img src="assets/icons-img/recipient.jpg" /></div>
-                <div class="d8p-h6 line-height-15 mt-2">{{ receiver }}</div>
+                <div class="d8p-h6 font-weight-bold mb-1">SELLER</div>
+                <div class="goldcoin-box">
+                  <img
+                    class="max-width-60"
+                    src="assets/icons-img/gold-coin.png"
+                  />
+                </div>
+                <div class="d8p-h6 line-height-17 mt-2">
+                  Exchange Participant
+                </div>
               </div>
             </div>
           </div>
