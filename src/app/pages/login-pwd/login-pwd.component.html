@@ -9,30 +9,30 @@
                 <div class="login-container max-width-100 overflow-hidden">
                     <div class="text-center mt-xl-4 mb-4 pt-5">
                         <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
-                        <div class="d8p-h4 color-cyan">WEALTH. UMMAH.SECURE</div>
+                        <div class="d8p-h4 color-cyan">WEALTH. HUMANITY. SECURE</div>
                     </div>
-                    <form>
+                    <form (submit)="submit()">
                         <div class="formfield max-width-100">
                             <div class="input-group mb-3 group-input-border-radius">
                                 <input 
                                     type="password" 
                                     class="form-control d8p-input min-height-60" 
                                     placeholder="Password" 
-                                    pattern="\d*" 
-                                    maxlength="6" 
+                                    pattern="([A-z0-9À-ž]){2,}" 
+                                    maxlength="16" 
                                     name="pwd" 
-                                    [(ngModel)]="pwd"
+                                    [(ngModel)]="services.password"
                                     aria-label="Recipient's username" 
                                     aria-describedby="basic-addon2"
                                     autocomplete="new-password"
                                 />
                                 <div class="input-group-append">
-                                    <span class="input-group-text group-input-icon-field" id="basic-addon2" routerLink="/dashboard">
-                                        <button class="d8p-transparent-btn" *ngIf="pwd">
-                                            <img class="max-width-100" src="assets/icons-img/icon-login2.png"  />
+                                    <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                        <button class="d8p-transparent-btn" *ngIf="services.password">
+                                            <img class="btnicon" src="assets/icons-img/icon-login2.png"  />
                                         </button>
-                                        <button class="d8p-transparent-btn" *ngIf="!pwd">
-                                            <img class="max-width-100" src="assets/icons-img/icon-login1.png"  />
+                                        <button class="d8p-transparent-btn" *ngIf="!services.password">
+                                            <img class="btnicon" src="assets/icons-img/icon-login1.png"  />
                                         </button>
                                     </span>
                                 </div>

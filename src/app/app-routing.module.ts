@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//import Components
+// import Components
 import {
   LoginComponent,
   LoginPwdComponent,
@@ -12,63 +12,79 @@ import {
   BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
-  RecentTransactionsComponent
+  RecentTransactionsComponent,
+  BuygoldComponent,
+  BuyGoldDetailsComponent,
+  SellgoldComponent,
+  SellGoldDetailsComponent
 } from './pages';
-
+import { AuthenticationGuard } from './services/authentication.guard';
 
 export const routes: Routes = [
   {
-    path: "",
-    redirectTo: "login",
-    pathMatch: "full"
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: "login",
-    component: LoginComponent
+    path: 'login', component: LoginComponent
   },
   {
-    path: "loginPwd",
-    component: LoginPwdComponent
+    path: 'loginPwd', component: LoginPwdComponent
   },
   {
-    path: "dashboard",
-    component: DashboardComponent
+    path: 'dashboard', component: DashboardComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "transfer",
-    component: TransferComponent
+    path: 'transfer', component: TransferComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "transfer-details",
-    component: TransactionDetailsComponent
+    path: 'transfer-details', component: TransactionDetailsComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "bankload",
-    component: BankloadComponent
+    path: 'bankload', component: BankloadComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "bankload-details",
-    component: BankloadDetailsComponent
+    path: 'bankload-details', component: BankloadDetailsComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "withdraw",
-    component: WithdrawComponent
+    path: 'withdraw', component: WithdrawComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "withdraw-details",
-    component: WithdrawDetailsComponent
+    path: 'withdraw-details', component: WithdrawDetailsComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
-    path: "recent-transactions",
-    component: RecentTransactionsComponent
+    path: 'recent-transactions', component: RecentTransactionsComponent, canActivate: [AuthenticationGuard]
   },
-  
-  { path: "**", component: LoginComponent }
+  {
+    path: 'buy-gold', component: BuygoldComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'buy-gold-details', component: BuyGoldDetailsComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'sell-gold', component: SellgoldComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'sell-gold-details', component: SellGoldDetailsComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
-
+export class AppRoutingModule { }

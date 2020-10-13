@@ -9,7 +9,7 @@
                 <div class="login-container max-width-100 overflow-hidden">
                     <div class="text-center mt-xl-4 mb-4 pt-5">
                         <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
-                        <div class="d8p-h4 color-cyan">WEALTH. UMMAH.SECURE</div>
+                        <div class="d8p-h4 color-cyan">WEALTH. HUMANITY. SECURE</div>
                     </div>
                     <form>
                         <div class="formfield max-width-100">
@@ -17,21 +17,21 @@
                                 <input 
                                     type="text" 
                                     class="form-control d8p-input min-height-60" 
-                                    placeholder="Mobile Number" 
-                                    pattern="\d*" 
-                                    maxlength="10" 
-                                    name="mobileno" 
-                                    [(ngModel)]="mobileno"
+                                    placeholder="User name" 
+                                    pattern="([A-z0-9À-ž]){2,}" 
+                                    maxlength="16" 
+                                    name="username" 
+                                    [(ngModel)]="services.username"
                                     aria-label="Recipient's username" 
                                     aria-describedby="basic-addon2"
                                 />
                                 <div class="input-group-append">
                                     <span class="input-group-text group-input-icon-field" id="basic-addon2" routerLink="/loginPwd" >
-                                        <button class="d8p-transparent-btn" *ngIf="mobileno">
-                                            <img class="max-width-100" src="assets/icons-img/icon-correct1.png"  />
+                                        <button class="d8p-transparent-btn " *ngIf="services.username">
+                                            <img class="btnicon" src="assets/icons-img/icon-correct1.png"  />
                                         </button>
-                                        <button class="d8p-transparent-btn" *ngIf="!mobileno">
-                                            <img class="max-width-100" src="assets/icons-img/icon-correct2.png"  />
+                                        <button class="d8p-transparent-btn" *ngIf="!services.username">
+                                            <img class="btnicon" src="assets/icons-img/icon-correct2.png"  />
                                         </button>
                                     </span>
                                 </div>

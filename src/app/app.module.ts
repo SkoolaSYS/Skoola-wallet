@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,14 +11,12 @@ import { routes } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-
-  
-  import { MatSidenavModule } from '@angular/material/sidenav';
-  import { MatButtonModule } from '@angular/material/button';
-  import { MatIconModule } from '@angular/material/icon';
-  import { MatToolbarModule } from '@angular/material/toolbar';
-  import { MatListModule } from '@angular/material/list';
-  import { MatTabsModule } from '@angular/material/tabs';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import {
   LoginComponent,
@@ -30,21 +28,28 @@ import {
   BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
-  RecentTransactionsComponent
-} from "./pages";
+  RecentTransactionsComponent,
+  BuygoldComponent,
+  BuyGoldDetailsComponent,
+  SellgoldComponent,
+  SellGoldDetailsComponent
+} from './pages';
 
-import { 
+import {
   DashboardHeaderComponent,
   TransactionViewComponent,
   TransferRecipientComponent,
   OtpcardComponent,
   BankDetailsComponent,
   WithdrawBankDetailsComponent,
+  BuyGoldDetailsViewComponent,
+  BuygoldTopViewComponent,
+  SellGoldDetailsViewComponent,
+  SellgoldTopViewComponent
 } from './components';
 
 
-import { Services } from 'src/app/pages/services/service';
-import {  } from './components/withdraw-bank-details/withdraw-bank-details.component'
+import { Services } from 'src/app/services/service';
 
 @NgModule({
   declarations: [
@@ -59,14 +64,22 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     WithdrawComponent,
     WithdrawDetailsComponent,
     RecentTransactionsComponent,
+    BuygoldComponent,
+    BuyGoldDetailsComponent,
+    SellgoldComponent,
+    SellGoldDetailsComponent,
 
-    //components
+    // components
     DashboardHeaderComponent,
     TransactionViewComponent,
     TransferRecipientComponent,
     OtpcardComponent,
     BankDetailsComponent,
     WithdrawBankDetailsComponent,
+    BuyGoldDetailsViewComponent,
+    BuygoldTopViewComponent,
+    SellGoldDetailsViewComponent,
+    SellgoldTopViewComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +94,7 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     MatButtonModule,
     MatTabsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { paramsInheritanceStrategy: "always" }),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
   ],
   providers: [Services],
   bootstrap: [AppComponent]

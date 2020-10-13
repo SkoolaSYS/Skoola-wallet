@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-transfer-recipient',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransferRecipientComponent implements OnInit {
   constructor() { }
-
+  @Input() receiver: string;
+  @Input() amount: number;
   ngOnInit(): void {
   }
 

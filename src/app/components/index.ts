@@ -1,6 +1,12 @@
+import { from } from 'rxjs';
+
 export * from './dashboard-header/dashboard-header.component';
 export * from './transaction-view/transaction-view.component';
 export * from './transfer-recipient/transfer-recipient.component';
 export * from './otpcard/otpcard.component';
 export * from './bank-details/bank-details.component';
 export * from './withdraw-bank-details/withdraw-bank-details.component';
+export * from './buygold-details-view/buygold-details-view.component';
+export * from './buygold-top-view/buygold-top-view.component';
+export * from './sellgold-details-view/sellgold-details-view.component';
+export * from './sellgold-top-view/sellgold-top-view.component';
