@@ -434,6 +434,17 @@ select.arrowstyle-white:focus {
 .d8p-transparent-btn {
   background: transparent;
   border: 0;
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+    /* Safari and Chrome */
+    .btnicon {
+     width: 22px;
+    }
+
+    /* Safari only override */
+    ::i-block-chrome,.btnicon {
+      width: 28px;
+    }
+}
 }
 .group-input-border-radius {
   input {
