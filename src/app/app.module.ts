@@ -32,7 +32,12 @@ import {
   BuygoldComponent,
   BuyGoldDetailsComponent,
   SellgoldComponent,
-  SellGoldDetailsComponent
+  SellGoldDetailsComponent,
+  QrcodeComponent,
+  QrcodeShoppingComponent,
+  BuynearShoppingComponent,
+  BuynearQrcodeComponent,
+  BuynearCartDetailsComponent
 } from './pages';
 
 import {
@@ -45,7 +50,10 @@ import {
   BuyGoldDetailsViewComponent,
   BuygoldTopViewComponent,
   SellGoldDetailsViewComponent,
-  SellgoldTopViewComponent
+  SellgoldTopViewComponent,
+  ShoppingProductsComponent,
+  qrViewComponent,
+  BuynearTopViewComponent
 } from './components';
 
 
@@ -68,6 +76,11 @@ import { Services } from 'src/app/services/service';
     BuyGoldDetailsComponent,
     SellgoldComponent,
     SellGoldDetailsComponent,
+    QrcodeComponent,
+    QrcodeShoppingComponent,
+    BuynearShoppingComponent,
+    BuynearQrcodeComponent,
+    BuynearCartDetailsComponent,
 
     // components
     DashboardHeaderComponent,
@@ -79,7 +92,10 @@ import { Services } from 'src/app/services/service';
     BuyGoldDetailsViewComponent,
     BuygoldTopViewComponent,
     SellGoldDetailsViewComponent,
-    SellgoldTopViewComponent
+    SellgoldTopViewComponent,
+    ShoppingProductsComponent,
+    qrViewComponent,
+    BuynearTopViewComponent
   ],
   imports: [
     BrowserModule,

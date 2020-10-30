@@ -16,7 +16,12 @@ import {
   BuygoldComponent,
   BuyGoldDetailsComponent,
   SellgoldComponent,
-  SellGoldDetailsComponent
+  SellGoldDetailsComponent,
+  QrcodeComponent,
+  QrcodeShoppingComponent,
+  BuynearShoppingComponent,
+  BuynearQrcodeComponent,
+  BuynearCartDetailsComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -61,7 +66,8 @@ export const routes: Routes = [
     // canActivate: [AuthenticationGuard]
   },
   {
-    path: 'recent-transactions', component: RecentTransactionsComponent, canActivate: [AuthenticationGuard]
+    path: 'recent-transactions', component: RecentTransactionsComponent,
+    // canActivate: [AuthenticationGuard]
   },
   {
     path: 'buy-gold', component: BuygoldComponent,
@@ -79,7 +85,26 @@ export const routes: Routes = [
     path: 'sell-gold-details', component: SellGoldDetailsComponent,
     // canActivate: [AuthenticationGuard]
   },
-
+  {
+    path: 'qr-code', component: QrcodeComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'qr-code-shopping', component: QrcodeShoppingComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'buynear-shopping', component: BuynearShoppingComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'buynear-qr-code', component: BuynearQrcodeComponent,
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'buynear-cart-details', component: BuynearCartDetailsComponent,
+    // canActivate: [AuthenticationGuard]
+  },
   { path: '**', component: LoginComponent }
 ];
 
