@@ -1,0 +1,154 @@
+<div>
+  <button
+    class="d8p-handburger"
+    mat-icon-button
+    (click)="sidenav.toggle()"
+    fxShow="true"
+    fxHide.gt-sm
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <div class="mt-4" mat-list-item routerLink="/recent-transactions">
+          <small
+            ><img
+              class="m-2 max-width-20"
+              src="assets/icons-img/d8p-inbox.svg" /></small
+          >Recent transaction
+        </div>
+        <div class="mt-2" mat-list-item routerLink="/login">
+          <small
+            ><img
+              class="m-2 max-width-20"
+              src="assets/icons-img/d8p-logout.svg" /></small
+          >Logout
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box">
+              <app-dashboard-header></app-dashboard-header>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box pb-5">
+                <!-- Buy near top-view -->
+                <app-buynear-top-view></app-buynear-top-view>
+                <!-- Shopping products -->
+                <app-shopping-products></app-shopping-products>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advance Product Search -->
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="container-fluid p-0 menu-grid">
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">Advance Product Search</div>
+                </div>
+                <div
+                  class="row no-gutters justify-content-center mt-4 mb-4"
+                >
+                  <div class="col-10 col-xl-4">
+                    <div class="formfield max-width-100">
+                      <div class="input-group mb-3 group-input-border-radius">
+                          <input 
+                              type="text" 
+                              class="form-control d8p-input-normal min-height-60" 
+                              placeholder="Ex: Peanut Butter"
+                              name="advance-search"
+                              aria-label="advance-search" 
+                              aria-describedby="basic-addon2"
+                          />
+                          <div class="input-group-append">
+                              <span class="input-group-text group-input-icon-field" >
+                                  <button class="d8p-transparent-btn">
+                                      <img class="btnicon" src="assets/icons-img/icon-correct1.png"  />
+                                  </button>
+                              </span>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search by Category -->
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="container-fluid p-0 menu-grid">
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">Search by Category</div>
+                </div>
+                <div
+                  class="row no-gutters justify-content-center mt-4 mb-4"
+                >
+                  <div class="col-10 col-xl-4">
+                    <select
+                      class="arrowstyle-white d8p-select-white"
+                      name="category"
+                      required
+                      style="background-color: #eee"
+                    >
+                      <option>Groceries</option>
+                      <option>Seafood</option>
+                      <option>Electronics</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="container-fluid p-0 menu-grid">
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">Confirmation</div>
+                </div>
+                <div
+                  class="row no-gutters justify-content-center mt-4 mb-4"
+                >
+                  <div class="col-10">
+                    <div class="button-container text-center">
+                      <button
+                        class="d8p-btn-default"
+                        routerLink="/buynear-cart-details"
+                      >
+                        Confirm
+                        <span class="ml-2"
+                          ><img
+                            class="p-1 max-width-25-px"
+                            src="assets/icons-img/icon-correct2.png"
+                        /></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
