@@ -1,0 +1,78 @@
+<div>
+  <button
+    class="d8p-handburger"
+    mat-icon-button
+    (click)="sidenav.toggle()"
+    fxShow="true"
+    fxHide.gt-sm
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <div class="mt-4" mat-list-item routerLink="/recent-transactions">
+          <small
+            ><img
+              class="m-2 max-width-20"
+              src="assets/icons-img/d8p-inbox.svg" /></small
+          >Recent transaction
+        </div>
+        <div class="mt-2" mat-list-item routerLink="/login">
+          <small
+            ><img
+              class="m-2 max-width-20"
+              src="assets/icons-img/d8p-logout.svg" /></small
+          >Logout
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box">
+              <app-dashboard-header></app-dashboard-header>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box pb-5">
+              <app-qr-view></app-qr-view>
+              <!-- Gallery -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">Scan from Gallery</div>
+                      </div>
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10">
+                          <div class="button-container text-center">
+                            <button
+                              class="d8p-btn-default"
+                              routerLink="/qr-code-shopping"
+                            >
+                              Gallery
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,59 @@
+@import './all-variables';
+
+$control-width: 80px;
+$control-height: 24px;
+
+.control {
+    display: flex;
+    width: $control-width;
+    height: $control-height;
+    margin-top: $s-10;
+
+    .bttn-left {
+      border-top-left-radius: $s-10;
+      border-bottom-left-radius: $s-10;
+    }
+
+    .input {
+      width: calc(#{$control-width} * 0.5);
+      padding:0;
+      margin:0;
+      text-align: center;
+      border-top: 1px solid $blackishGrey;
+      border-bottom: 1px solid $blackishGrey;
+      border-left: none;
+      border-right: none;  
+    }    
+
+    a.bttn {
+      color: $blackishGrey;
+      text-decoration: none;
+    }
+
+    a.bttn, .bttn {
+      width: $s-20;
+      padding:0;
+      text-align: center;
+      border: 1px solid $blackishGrey;
+      box-shadow: none;
+      font-size: $s-16;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      span {
+        margin: auto !important;
+      }
+    }
+
+    .bttn-right {
+      border-top-right-radius: $s-10;
+      border-bottom-right-radius: $s-10;
+    }
+  }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,21 +28,36 @@ import {
   BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
-  RecentTransactionsComponent
-} from "./pages";
+  RecentTransactionsComponent,
+  BuygoldComponent,
+  BuyGoldDetailsComponent,
+  SellgoldComponent,
+  SellGoldDetailsComponent,
+  QrcodeComponent,
+  QrcodeShoppingComponent,
+  BuynearShoppingComponent,
+  BuynearQrcodeComponent,
+  BuynearCartDetailsComponent
+} from './pages';
 
-import { 
+import {
   DashboardHeaderComponent,
   TransactionViewComponent,
   TransferRecipientComponent,
   OtpcardComponent,
   BankDetailsComponent,
   WithdrawBankDetailsComponent,
+  BuyGoldDetailsViewComponent,
+  BuygoldTopViewComponent,
+  SellGoldDetailsViewComponent,
+  SellgoldTopViewComponent,
+  ShoppingProductsComponent,
+  qrViewComponent,
+  BuynearTopViewComponent
 } from './components';
 
 
-import { Services } from 'src/app/pages/services/service';
-import {  } from './components/withdraw-bank-details/withdraw-bank-details.component'
+import { Services } from 'src/app/services/service';
 
 @NgModule({
   declarations: [
@@ -57,14 +72,30 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     WithdrawComponent,
     WithdrawDetailsComponent,
     RecentTransactionsComponent,
+    BuygoldComponent,
+    BuyGoldDetailsComponent,
+    SellgoldComponent,
+    SellGoldDetailsComponent,
+    QrcodeComponent,
+    QrcodeShoppingComponent,
+    BuynearShoppingComponent,
+    BuynearQrcodeComponent,
+    BuynearCartDetailsComponent,
 
-    //components
+    // components
     DashboardHeaderComponent,
     TransactionViewComponent,
     TransferRecipientComponent,
     OtpcardComponent,
     BankDetailsComponent,
     WithdrawBankDetailsComponent,
+    BuyGoldDetailsViewComponent,
+    BuygoldTopViewComponent,
+    SellGoldDetailsViewComponent,
+    SellgoldTopViewComponent,
+    ShoppingProductsComponent,
+    qrViewComponent,
+    BuynearTopViewComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +110,7 @@ import {  } from './components/withdraw-bank-details/withdraw-bank-details.compo
     MatButtonModule,
     MatTabsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { paramsInheritanceStrategy: "always" }),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
   ],
   providers: [Services],
   bootstrap: [AppComponent]

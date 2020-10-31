@@ -1,0 +1,63 @@
+<!-- Quick links -->
+<div class="container-fluid qrbg">
+  <div class="row no-gutters">
+    <div class="col-12">
+      <div class="container-fluid p-0 menu-grid">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9 d8p-h4 text-center font-weight-bold mt-2 mb-2 color-white">
+            <div *ngIf="!buynearview">QR Pay</div>
+            <div *ngIf="buynearview">BUYNEAR</div>
+          </div>
+        </div>
+        <div class="row no-gutters justify-content-center">
+          <img class="max-width-60" src="assets/icons-img/linewhite2.png" />
+        </div>
+        <div class="row no-gutters justify-content-center">
+          <div class="col-3 flex-align-center flex-column">
+            <div class="text-center">
+              <img class="max-width-150 mt-4 mb-4" src="assets/icons-img/qrcode1.png"
+              />
+            </div>
+          </div>
+        </div>
+        
+        <!--Below code qr-buy-box only enable buy near flow -->
+        <div *ngIf="buynearview" class="row no-gutters justify-content-center">
+          <div class="col-7 text-center">
+              <div class="qr-buy-box">
+                <div class="row no-gutters mb-4">
+                  <div class="col-6">
+                    <img
+                      class="shoplogo max-width-80 border-white-slim border-radius-16"
+                      src="../../../assets/icons-img/logo99speedmart1.png"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <img
+                      class="shoplogo max-width-80 border-white-slim border-radius-16"
+                      src="../../../assets/icons-img/logo99speedmart1.png"
+                    />
+                  </div>
+                </div>
+                <div class="row no-gutters mb-4">
+                  <div class="col-12 text-center" routerLink="/dashboard">
+                    <button class="d8p-btn-gray border-radius-16 pb-1 border-none">Drop Product</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <img class="max-width-60" src="assets/icons-img/linewhite2.png" />
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9 d8p-h6 text-center mt-2 mb-2 color-white">
+            Scan Barcode or QR Code Now
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

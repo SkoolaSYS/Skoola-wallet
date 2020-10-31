@@ -7,7 +7,7 @@
         <mat-sidenav #sidenav>
           <mat-nav-list>
             <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
-            <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
+            <div class="mt-2" mat-list-item (click)="logout()"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
           </mat-nav-list>
         </mat-sidenav>
         <!-- Nav block - end -->
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-3 flex-align-center flex-column">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info2.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-buygold2.png" /></div>
+                              <div class="height-60 text-center" routerLink="/buy-gold"><img class="max-width-60" src="assets/icons-img/icon-buygold2.png" /></div>
                             </div>
                           </div>
                         </div>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-4 flex-align-center flex-column pb-4 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-buygold1.png" /></div>
+                              <div class="height-60 text-center" routerLink="/buy-gold"><img class="max-width-60" src="assets/icons-img/icon-buygold1.png" /></div>
                             </div>
                             <div class="col-4 flex-align-center flex-column border-top-grey border-right-grey pt-2 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="col-4 flex-align-center flex-column border-top-grey pt-2 pb-xl-5">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-sellgold1.png" /></div>
+                              <div class="height-60 text-center" routerLink="/sell-gold"><img class="max-width-60" src="assets/icons-img/icon-sellgold1.png" /></div>
                             </div>
                             
                           </div>
@@ -167,7 +167,7 @@
                           <div class="row no-gutters mt-2 mb-2">
                             <div class="col-6 flex-align-center flex-column border-right-grey pb-4">
                               <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-buynear.png" width="120" /></div>
+                              <div class="height-60 text-center" routerLink="/buynear-shopping"><img class="max-width-60" src="assets/icons-img/icon-buynear.png" width="120" /></div>
                             </div>
                             <div class="col-6 flex-align-center flex-column pb-4">
                               <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" /></div>

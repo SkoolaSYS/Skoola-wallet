@@ -1,6 +1,6 @@
 {  
-    "/rest/*": {  
-       "target": "http://183.78.168.72:8080/cyclos",  
+    "/rest/": {  
+       "target": "http://183.78.168.72:8080/komeps",  
        "secure": false,  
        "logLevel": "debug"  
     }  

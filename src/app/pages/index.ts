@@ -1,5 +1,3 @@
-import { from } from 'rxjs';
-
 export * from './login/login.component';
 export * from './login-pwd/login-pwd.component';
 export * from './dashboard/dashboard.component';
@@ -10,3 +8,12 @@ export * from './bankload-details/bankload-details.component';
 export * from './withdraw/withdraw.component';
 export * from './withdraw-details/withdraw-details.component';
 export * from './recent-transactions/recent-transactions.component';
+export * from './buy-gold/buy-gold.component';
+export * from './buy-gold-details/buy-gold-details.component';
+export * from './sell-gold/sell-gold.component';
+export * from './sell-gold-details/sell-gold-details.component';
+export * from './qr-code/qr-code.component';
+export * from './qr-code-shopping/qr-code-shopping.component';
+export * from './buynear-shopping/buynear-shopping.component';
+export * from './buynear-qr-code/buynear-qr-code.component';
+export * from './buynear-cart-details/buynear-cart-details.component';

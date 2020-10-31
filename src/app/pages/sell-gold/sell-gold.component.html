@@ -1,0 +1,302 @@
+<div>
+  <button
+    class="d8p-handburger"
+    mat-icon-button
+    (click)="sidenav.toggle()"
+    fxShow="true"
+    fxHide.gt-sm
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <div class="mt-4" mat-list-item routerLink="/recent-transactions">
+          <small
+            ><img
+              class="m-2 max-width-20"
+              src="assets/icons-img/d8p-inbox.svg" /></small
+          >Recent transaction
+        </div>
+        <div class="mt-2" mat-list-item routerLink="/login">
+          <small
+            ><img
+              class="m-2 max-width-20"
+              src="assets/icons-img/d8p-logout.svg" /></small
+          >Logout
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box">
+              <app-dashboard-header></app-dashboard-header>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box pb-5">
+              <!-- Quick links -->
+              <div class="container-fluid quicklinkbg sellgoldbg-height">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">SELL GOLD</div>
+                      </div>
+                      <div
+                        class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75"
+                      >
+                        <div
+                          class="col-3 flex-align-center flex-column border-right-white"
+                        >
+                          <div class="height-60 text-center">
+                            <img
+                              class="max-width-60"
+                              src="assets/icons-img/icon-sellgold2.png"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-9 pl-3 color-white font-size-15">
+                          Gold residing in my D-8P Acc. Gold e-Wallet will be
+                          listed in the D-8P Retail Gold Exchange to be sold.
+                        </div>
+                      </div>
+
+                      <div class="row no-gutters">
+                        <div class="col-12">
+                          <img
+                            class="mw-100 mb-3 d-flex margin-zero-auto"
+                            src="assets/icons-img/linewhite2.png"
+                          />
+                        </div>
+                      </div>
+                      <!-- Content title row -->
+                      <div class="row no-gutters flex-valign-75">
+                        <div class="col-2 flex-align-center flex-column">
+                          <div class="height-60 text-center">
+                            <img
+                              class="max-width-100"
+                              src="assets/icons-img/gold-coin.png"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-9 pl-3 color-white font-size-15">
+                          <div class="row no-gutters">
+                            <div class="col-7">
+                              <div
+                                class="d8p-normal-text font-size-17 font-arial color-white pt-1"
+                              >
+                                <div>
+                                  <span class="text-shadow font-weight-bold"
+                                    >D-8P</span
+                                  >
+                                  Retail
+                                </div>
+                                <div class="pt-1">Gold Exchange</div>
+                              </div>
+                            </div>
+                            <div class="col-5">
+                              <div class="pergram">
+                                <div class="p-1 border-bottom-white">
+                                  AVG 1 g =
+                                </div>
+                                <div class="p-1"><small> RM 190.00</small></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 flex-align-center flex-column">
+                          <div class="height-60 text-center">
+                            <img
+                              class="max-width-60"
+                              src="assets/icons-img/icon-info2.png"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Average Gold Equivalent Price (g) -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">
+                          Average Gold Equivalent Price (g)
+                        </div>
+                      </div>
+                      <div class="row no-gutters justify-content-end">
+                        <div class="col-1">
+                          <img
+                            class="gold-infoicon"
+                            src="assets/icons-img/icon-info1.png"
+                          />
+                        </div>
+                      </div>
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-9 color-cyan font-arial font-size-15">
+                          As of: 24 AUG 2020 08:00:00
+                        </div>
+                      </div>
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10 col-xl-4">
+                          <input
+                            class="d8p-input-normal w-100"
+                            placeholder="Ex: 0.0255"
+                            type="text"
+                            name="avg-gold"
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10 col-xl-5">
+                          <div class="avg-box grey-gradient border-grey row">
+                            <div
+                              class="col-4 flex-align-center min-height-60 border-right-grey"
+                            >
+                              AVG Price
+                            </div>
+                            <div
+                              class="col-8 flex-align-center min-height-60 color-cyan"
+                            >
+                              RM XXX XX
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Amount (g) -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">Amount (g)</div>
+                      </div>
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10 col-xl-4">
+                          <input
+                            class="d8p-input-normal w-100"
+                            placeholder="Ex: 1.5"
+                            type="text"
+                            name="amount"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Selling Price (RM) -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">
+                          Selling Price (RM)
+                        </div>
+                      </div>
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10 col-xl-4">
+                          <input
+                            class="d8p-input-normal w-100"
+                            placeholder="Ex: 275.00"
+                            type="text"
+                            name="selling-price"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reference -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">Reference</div>
+                      </div>
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10 col-xl-4">
+                          <input
+                            class="d8p-input-normal w-100"
+                            placeholder="Ex: Monday Listing"
+                            type="text"
+                            name="reference number"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confirmation -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">Confirmation</div>
+                      </div>
+                      <div
+                        class="row no-gutters justify-content-center mt-4 mb-4"
+                      >
+                        <div class="col-10">
+                          <div class="button-container text-center">
+                            <button
+                              class="d8p-btn-default"
+                              routerLink="/buy-gold-details"
+                            >
+                              Confirm
+                              <span class="ml-2"
+                                ><img
+                                  class="p-1 max-width-25-px"
+                                  src="assets/icons-img/icon-correct2.png"
+                              /></span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
