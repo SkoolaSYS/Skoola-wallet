@@ -1,6 +1,6 @@
 <div class="container-fluid quicklinkbg greenbg-height-240">
-  <div class="row no-gutters">
-    <div class="col-12">
+  <div class="row no-gutters justify-content-center">
+    <div class="col-12 col-xl-9">
       <div class="container-fluid p-0 menu-grid">
         <div class="row no-gutters justify-content-center">
           <div class="col-12 col-xl-9 titlebg">BUYNEAR</div>
@@ -34,14 +34,14 @@
         <!-- Content title row -->
         <div class="row no-gutters flex-valign-75 mb-md-3">
           <div class="col-2 flex-align-center flex-column">
-            <div class="height-60 text-center">
+            <div class="text-center">
               <img
-                class="max-width-100"
+                class="max-width-60"
                 src="assets/icons-img/d8p-apple-touch.png"
               />
             </div>
           </div>
-          <div class="col-9 pl-3 color-white font-size-15">
+          <div class="col-10 pl-3 color-white font-size-15">
             <div class="row no-gutters">
               <div class="col-6">
                 <div class="d8p-normal-text font-size-17 font-arial color-white pt-1">
@@ -55,14 +55,15 @@
                 </div>
               </div>
               <div class="col-6">
-                <select
-                  class="arrowstyle-white d8p-select-white pl-2"
-                  name="currency"
-                  required
-                  style="background-color: #eee"
-                >
-                <option> Cart </option>
-              </select>
+                <div class="d-flex justify-content-center">
+                  <button class="d8p-btn-gray border-left-rad-10 min-height-50" routerLink="/buynear-cart-details">
+                    <span class="cart-count">5</span>
+                    <img class="max-width-25-px " src="assets/icons-img/cart.png"/>
+                  </button>
+                  <button class="d8p-btn-black border-right-rad-10" routerLink="/buynear-qr-code">
+                    <img class="max-width-25-px" src="assets/icons-img/cart-checkout.png"/>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
