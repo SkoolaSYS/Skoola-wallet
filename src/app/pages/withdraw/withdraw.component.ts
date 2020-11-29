@@ -23,8 +23,8 @@ export class WithdrawComponent implements OnInit {
     let $this = this
     this.botService.sendInitRequest({
       credentials: {
-        username: 'khunhannan92',
-        password: 'ninibijak87'
+        username: '',
+        password: ''
       }
     }).subscribe(res => {
       if (res.status == "success")
