@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BotService {
 
-    apiBase = "http://af76cad9fecc.ap.ngrok.io";
+    apiBase = "https://ef4303a1eca6.ap.ngrok.io";
 
     constructor(private httpClient: HttpClient) { }
     sendInitRequest( params ) {
@@ -28,18 +28,33 @@ export class BotService {
 
     sendDoTransferRequest( params ) {
         return this.httpClient.post<any>(this.apiBase + '/plugins/maybank/execute/do-transfer', {
-            TFR_AMOUNT: params.amount,
-            TFR_TRXID: params.description
+            env: {
+                TFR_AMOUNT: params.amount,
+                TFR_TRXID: params.description
+            }
         });
     }
 
     sendTacRequest( params ) {
         return this.httpClient.post<any>(this.apiBase + '/plugins/maybank/execute/enter-tac', {
-            TAC: params.tac
+            env: {
+                TAC: params.tac
+            }
         });
     }
 
     sendCheckEnvRequest() {
         return this.httpClient.get<any>(this.apiBase + '/plugins/maybank');
+    }
+
+    sendDoWithdrawRequest( params ) {
+        return this.httpClient.post<any>(this.apiBase + '/plugins/maybank/execute/do-transfer', {
+            env: {
+                TFR_AMOUNT: params.amount,
+                TFR_TRXID: params.description,
+                TFR_ACCOUNT: '151306769312',
+                TFR_EMAIL: 'haziman.hashim@abh.my'
+            }
+        });
     }
 }
