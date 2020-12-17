@@ -14,8 +14,7 @@ export class BankDetailsComponent implements OnInit {
     this.botService = botService
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   doLabt(): void {
     let $this = this
