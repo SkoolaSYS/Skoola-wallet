@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -56,8 +58,31 @@ import {
   BuynearTopViewComponent
 } from './components';
 
-
 import { Services } from 'src/app/services/service';
+
+@Pipe({
+  name: 'safeHtml'
+})
+export class SafeHtmlPipe implements PipeTransform {
+ 
+  constructor(private sanitizer: DomSanitizer) {
+  }
+  transform(value: any, args?: any): any {
+    return this.sanitizer.bypassSecurityTrustHtml(value);
+  }
+}
+
+@Pipe({
+  name: 'safeUrl'
+})
+export class SafeUrlPipe implements PipeTransform {
+ 
+  constructor(private sanitizer: DomSanitizer) {
+  }
+  transform(value: any, args?: any): any {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -95,7 +120,11 @@ import { Services } from 'src/app/services/service';
     SellgoldTopViewComponent,
     ShoppingProductsComponent,
     qrViewComponent,
-    BuynearTopViewComponent
+    BuynearTopViewComponent,
+
+    // pipes
+    SafeHtmlPipe,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
