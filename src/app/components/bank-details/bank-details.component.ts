@@ -44,7 +44,7 @@ export class BankDetailsComponent implements OnInit {
   doTransfer(): void {
     console.log("Requesting transfer to KOMEPS..")
     this.botService.sendDoTransferRequest({
-      amount: "5.00",
+      amount: "1.00",
       description: "10101"
     }).subscribe(res => {
       console.log("Transfer requested successfully. Please enter TAC")
