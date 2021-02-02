@@ -17,3 +17,5 @@ export * from './qr-code-shopping/qr-code-shopping.component';
 export * from './buynear-shopping/buynear-shopping.component';
 export * from './buynear-qr-code/buynear-qr-code.component';
 export * from './buynear-cart-details/buynear-cart-details.component';
+export * from './signup/signup.component';
+export * from './signup-details/signup-details.component';

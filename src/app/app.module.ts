@@ -39,7 +39,9 @@ import {
   QrcodeShoppingComponent,
   BuynearShoppingComponent,
   BuynearQrcodeComponent,
-  BuynearCartDetailsComponent
+  BuynearCartDetailsComponent,
+  SignupComponent,
+  SignupDetailsComponent
 } from './pages';
 
 import {
@@ -106,6 +108,8 @@ export class SafeUrlPipe implements PipeTransform {
     BuynearShoppingComponent,
     BuynearQrcodeComponent,
     BuynearCartDetailsComponent,
+    SignupComponent,
+    SignupDetailsComponent,
 
     // components
     DashboardHeaderComponent,
