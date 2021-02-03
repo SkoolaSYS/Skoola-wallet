@@ -21,7 +21,9 @@ import {
   QrcodeShoppingComponent,
   BuynearShoppingComponent,
   BuynearQrcodeComponent,
-  BuynearCartDetailsComponent
+  BuynearCartDetailsComponent,
+  SignupComponent,
+  SignupDetailsComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -39,71 +41,79 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard', component: DashboardComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'transfer', component: TransferComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'transfer-details', component: TransactionDetailsComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'bankload', component: BankloadComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'bankload-details', component: BankloadDetailsComponent,
-    canActivate: [AuthenticationGuard]
+////    canActivate: [AuthenticationGuard]
   },
   {
     path: 'withdraw', component: WithdrawComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'withdraw-details', component: WithdrawDetailsComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'recent-transactions', component: RecentTransactionsComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'buy-gold', component: BuygoldComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'buy-gold-details', component: BuyGoldDetailsComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'sell-gold', component: SellgoldComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'sell-gold-details', component: SellGoldDetailsComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'qr-code', component: QrcodeComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'qr-code-shopping', component: QrcodeShoppingComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'buynear-shopping', component: BuynearShoppingComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'buynear-qr-code', component: BuynearQrcodeComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
   },
   {
     path: 'buynear-cart-details', component: BuynearCartDetailsComponent,
-    canActivate: [AuthenticationGuard]
+//    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'signup', component: SignupComponent,
+//    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'signup-details', component: SignupDetailsComponent,
+//    canActivate: [AuthenticationGuard]
   },
   { path: '**', component: LoginComponent }
 ];

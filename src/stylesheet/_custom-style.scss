@@ -244,8 +244,14 @@
 .color-lightgrey {
   color: $blackishGrey;
 }
+.bg-white {
+  background: $white;
+}
 .bg-lightgreen {
   background: $light-bg-green;
+}
+.bg-cyangradient{
+  background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
 }
 .titlebg {
   background: linear-gradient(0deg, #323232 0%, #848484 100%);
@@ -263,6 +269,9 @@
   min-height: 65px;
   text-align: center;
   font: normal $s-16 $ff-base;
+}
+.bg-cyangradient{
+  background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
 }
 .border-left-rad-10{
   border-top-left-radius: 10px;
