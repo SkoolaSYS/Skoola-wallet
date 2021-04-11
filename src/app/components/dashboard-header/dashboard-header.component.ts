@@ -27,13 +27,27 @@ export class DashboardHeaderComponent implements OnInit {
     });
 
     this.service.getProfileData().subscribe((res: any) => {
+
+    function getAccNumber(element, index, array) { 
+        console.log(element.internalName);
+        if (element.internalName == 'AccNumber') 
+          return index;
+     }
+
       // console.log(res);
-      this.userName = res.name;
-      this.cardNumber = res.customValues[4].value;
+      this.userName = res.name;      
+      var accnum = res.customValues.filter(getAccNumber);
+
+      // for (var i=0; i < accnum.length; i++){
+      //   console.log(accnum[i].value);
+      // }
+      // console.log('accnum : ' + accnum[0].value);
+      // this.cardNumber = res.customValues[3].value;
+      this.cardNumber = accnum[0].value ? accnum[0].value : '00000000'
     },
     (err) => {
       console.log(err);
       this.service.logout();
     });
-  }
+  }   
 }

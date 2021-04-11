@@ -17,6 +17,8 @@ export class Services {
     public  currentUser: Promise<any>;
     private storage: Storage = localStorage;
     private ACCESS_TOKEN = 'accessToken';
+    public opsTagging: string;
+
     headerOptions = {
         headers: new HttpHeaders({
             'Content-Type':  'application/json',
@@ -25,6 +27,7 @@ export class Services {
             Authorization: this.token
         })
     };
+
     constructor(private http: HttpClient){
         if (this.isLoggedIn()){
             this.currentUser = this.getProfileData().toPromise();
@@ -70,7 +73,8 @@ export class Services {
         },
         (err) => {
             // console.log('login() Error...');
-            console.log(err);
+            alert("Login failed. " + err.status);
+            console.log("Login failed. " + err.name);
         }));
     }
     public logout(): void {
@@ -163,5 +167,6 @@ export class Services {
         };
         // return this.http.post('/rest/payments/confirmMemberPayment', data , this.headerOptions);
         return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions);
+        //return this.http.post('/rest/payments/memberPayment', data , headerOptions);
     }
 }

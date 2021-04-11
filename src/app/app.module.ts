@@ -61,6 +61,7 @@ import {
 } from './components';
 
 import { Services } from 'src/app/services/service';
+import { OtpbankComponent } from './components/otpbank/otpbank.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -116,6 +117,7 @@ export class SafeUrlPipe implements PipeTransform {
     TransactionViewComponent,
     TransferRecipientComponent,
     OtpcardComponent,
+    OtpbankComponent,
     BankDetailsComponent,
     WithdrawBankDetailsComponent,
     BuyGoldDetailsViewComponent,

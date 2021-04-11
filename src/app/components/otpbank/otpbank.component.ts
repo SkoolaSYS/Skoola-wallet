@@ -3,15 +3,15 @@ import { BotService } from '../../services/bot.service';
 import { Services } from '../../services/service';
 
 @Component({
-  selector: 'app-otpcard',
-  templateUrl: './otpcard.component.html'
+  selector: 'app-otpbank',
+  templateUrl: './otpbank.component.html'
 })
-export class OtpcardComponent implements OnInit {
+export class OtpbankComponent implements OnInit {
   otp: number;
   @Output() otpSubmit: EventEmitter<any> = new EventEmitter<any>();
   botService: BotService;
   private opsTagging: string;
-
+  
   constructor(botService: BotService, private service: Services) {
     this.botService = botService
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Services } from '../../services/service';
 
 @Component({
   selector: 'app-bankload',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankloadComponent implements OnInit {
 
-  constructor() { }
+  // constructor() { }
+  constructor(private service: Services) { }
 
   ngOnInit(): void {
+    this.service.opsTagging = 'bankload';
   }
 
 }

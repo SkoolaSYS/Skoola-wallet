@@ -13,6 +13,7 @@ export class TransferComponent implements OnInit {
   constructor(private service: Services) { }
   ngOnInit(): void {
     this.service.forms.transferForm = this.transferForm;
+    this.service.opsTagging = 'transfer';
     this.service.getMemberList().subscribe((res: any) => {
       // console.log(res);
       this.membersList = res.elements;
