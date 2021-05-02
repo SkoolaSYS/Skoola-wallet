@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
+import { NgPopupsModule, NgPopupsService } from 'ng-popups';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,10 @@ export class Services {
     private $username: string;
     private $password: string;
     private authToken: string;
+    private $newusername: string;
+    private $newpassword: string;
+    private $confirmnewusername: string;    
+    private $confirmnewpassword: string;
     public  forms: any = {};
     public  currentUser: Promise<any>;
     private storage: Storage = localStorage;
@@ -28,7 +33,7 @@ export class Services {
         })
     };
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient, private router: Router, private ngPopups: NgPopupsService){
         if (this.isLoggedIn()){
             this.currentUser = this.getProfileData().toPromise();
         }
@@ -39,6 +44,18 @@ export class Services {
 
     public set password(password: string) { this.$password = password; }
     public get password(){ return this.$password; }
+
+    public set newusername(newusername: string) { this.$newusername = newusername; }
+    public get newusername(){ return this.$newusername; }
+
+    public set confirmnewusername(confirmnewusername: string) { this.$confirmnewusername = confirmnewusername; }
+    public get confirmnewusername(){ return this.$confirmnewusername; }
+
+    public set newpassword(newpassword: string) { this.$newpassword = newpassword; }
+    public get newpassword(){ return this.$newpassword; }
+
+    public set confirmnewpassword(confirmnewpassword: string) { this.$confirmnewpassword = confirmnewpassword; }
+    public get confirmnewpassword(){ return this.$confirmnewpassword; }
 
     storeSession({accessToken}: {
         accessToken?: string;
@@ -55,7 +72,6 @@ export class Services {
         return !!this.token;
     }
     public login(username: string, password: string): Observable<any> {
-        // console.log('username : ' + username + ', password : ' + password);
         const authorizationData = 'Basic ' + btoa(username + ':' + password);
         const headerOptions = {
             headers: new HttpHeaders({
@@ -66,15 +82,16 @@ export class Services {
             })
         };
         return this.http.get('/rest/members/me', headerOptions).pipe(tap (data => {
-            // console.log(data);
             this.storeSession({accessToken: authorizationData});
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
         },
         (err) => {
-            // console.log('login() Error...');
-            alert("Login failed. " + err.status);
             console.log("Login failed. " + err.name);
+            this.ngPopups.alert('Login Error. Invalid credentials!');
+			this.username='';
+			this.password='';
+			this.router.navigate(['login']);
         }));
     }
     public logout(): void {
@@ -84,8 +101,6 @@ export class Services {
         this.$password = null;
     }
     public getAccountBalance(){
-        // console.log('this.token -> ' + this.token.toString());
-        // console.log('Service.getAccountBalance()');
         const headerOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -94,10 +109,8 @@ export class Services {
                 Authorization: this.token
             })
         };
-        // return this.http.get('/rest/accounts/info', this.headerOptions);
         return this.http.get('/rest/accounts/info', headerOptions).pipe(tap (data => {
-            // console.log('Service.getAccountBalance(). OK');
-            console.log(data);
+            // console.log(data);
         },
         (err) => {
             console.log('getAccountBalance() Error...');
@@ -114,8 +127,13 @@ export class Services {
                 Authorization: this.token
             })
         };
-        // return this.http.get('/rest/accounts/default/history', this.headerOptions);
-        return this.http.get('/rest/accounts/default/history', headerOptions);
+        return this.http.get('/rest/accounts/default/history', headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('getTransactionHistory() Error...');
+            console.log(err);
+        }));;
     }
 
     public getProfileData(){
@@ -127,8 +145,13 @@ export class Services {
                 Authorization: this.token
             })
         };
-        // return this.http.get('rest/members/me', this.headerOptions);
-        return this.http.get('rest/members/me', headerOptions);
+        return this.http.get('rest/members/me', headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('getProfileData() Error...');
+            console.log(err);
+        }));;
     }
 
     public getTransferTypes(){
@@ -140,8 +163,13 @@ export class Services {
                 Authorization: this.token
             })
         };
-        // return this.http.get('/rest/transferTypes', this.headerOptions);
-        return this.http.get('/rest/transferTypes', headerOptions);
+        return this.http.get('/rest/transferTypes', headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('getTransferType() Error...');
+            console.log(err);
+        }));;
     }
 
     public getMemberList(){
@@ -153,8 +181,13 @@ export class Services {
                 Authorization: this.token
             })
         };
-        // return this.http.get('rest/members', this.headerOptions);
-        return this.http.get('rest/members', headerOptions);
+        return this.http.get('rest/members', headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('getMemberListing() Error...');
+            console.log(err);
+        }));;
     }
     public paymentTransfer(data: any){
         const headerOptions = {
@@ -165,8 +198,30 @@ export class Services {
                 Authorization: this.token
             })
         };
-        // return this.http.post('/rest/payments/confirmMemberPayment', data , this.headerOptions);
-        return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions);
-        //return this.http.post('/rest/payments/memberPayment', data , headerOptions);
+        return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('MemberPerformPayment() Error...');
+            console.log(err);
+        }));;
+    }
+
+    public changeMemberProfilePassword(data: any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.post('/rest/members/changeMemberProfilePassword', data , headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('changeMemberProfilePassword() Error...');
+            console.log(err);
+        }));;
     }
 }

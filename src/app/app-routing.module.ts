@@ -23,7 +23,8 @@ import {
   BuynearQrcodeComponent,
   BuynearCartDetailsComponent,
   SignupComponent,
-  SignupDetailsComponent
+  SignupDetailsComponent,
+  UpdateUsernamePwdComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -115,7 +116,11 @@ export const routes: Routes = [
     path: 'signup-details', component: SignupDetailsComponent,
   //  canActivate: [AuthenticationGuard]
   },
-  { path: '**', component: LoginComponent }
+ {
+   path: 'update-username-pwd', component: UpdateUsernamePwdComponent,
+    canActivate: [AuthenticationGuard]
+ },
+ { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

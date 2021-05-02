@@ -13,3 +13,4 @@ export * from './sellgold-top-view/sellgold-top-view.component';
 export * from './shopping-products/shopping-products.component';
 export * from './qr-view/qr-view.component';
 export * from './buynear-top-view/buynear-top-view.component';
+export * from './otpbank/otpbank.component';

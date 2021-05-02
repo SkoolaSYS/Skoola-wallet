@@ -19,3 +19,4 @@ export * from './buynear-qr-code/buynear-qr-code.component';
 export * from './buynear-cart-details/buynear-cart-details.component';
 export * from './signup/signup.component';
 export * from './signup-details/signup-details.component';
+export * from './update-username-pwd/update-username-pwd-component';

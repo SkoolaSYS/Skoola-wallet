@@ -20,6 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { NgPopupsModule } from 'ng-popups';
+
 import {
   LoginComponent,
   LoginPwdComponent,
@@ -41,7 +43,8 @@ import {
   BuynearQrcodeComponent,
   BuynearCartDetailsComponent,
   SignupComponent,
-  SignupDetailsComponent
+  SignupDetailsComponent,  
+  UpdateUsernamePwdComponent
 } from './pages';
 
 import {
@@ -57,11 +60,11 @@ import {
   SellgoldTopViewComponent,
   ShoppingProductsComponent,
   qrViewComponent,
-  BuynearTopViewComponent
+  BuynearTopViewComponent,
+  OtpbankComponent,
 } from './components';
 
 import { Services } from 'src/app/services/service';
-import { OtpbankComponent } from './components/otpbank/otpbank.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -111,6 +114,7 @@ export class SafeUrlPipe implements PipeTransform {
     BuynearCartDetailsComponent,
     SignupComponent,
     SignupDetailsComponent,
+    UpdateUsernamePwdComponent,
 
     // components
     DashboardHeaderComponent,
@@ -127,6 +131,7 @@ export class SafeUrlPipe implements PipeTransform {
     ShoppingProductsComponent,
     qrViewComponent,
     BuynearTopViewComponent,
+    OtpbankComponent,
 
     // pipes
     SafeHtmlPipe,
@@ -144,8 +149,21 @@ export class SafeUrlPipe implements PipeTransform {
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
-    HttpClientModule,
+    HttpClientModule,    
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
+    NgPopupsModule.forRoot(
+      // {
+      //   theme: 'default', // available themes: 'default' | 'material' | 'dark'
+      //   okButtonText: 'Yes',
+      //   cancelButtonText: 'No',
+      //   color: '#8030c3',
+      //   titles: {
+      //     alert: 'Danger!',
+      //     confirm: 'Confirmation',
+      //     prompt: 'Website asks...'
+      //   }
+      // }
+    ),
   ],
   providers: [Services],
   bootstrap: [AppComponent]

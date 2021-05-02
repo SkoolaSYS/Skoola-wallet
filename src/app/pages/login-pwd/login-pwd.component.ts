@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from '../../services/service';
 import { Router } from '@angular/router';
+import { NgPopupsModule, NgPopupsService } from 'ng-popups';
 
 @Component({
   selector: 'app-login-pwd',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
   host: { '[@fadeInAnimation]': '' }
 })
 export class LoginPwdComponent implements OnInit {
-  constructor(public services: Services, private router: Router) { }
+  constructor(public services: Services, private router: Router, private ngPopups: NgPopupsService) { }
+
 
   ngOnInit(): void {
     if (this.services.isLoggedIn())
@@ -21,9 +23,17 @@ export class LoginPwdComponent implements OnInit {
       this.router.navigate(['login']);
     }
   }
+  
   async submit(): Promise<void> {
-    const res = await this.services.login(this.services.username, this.services.password).toPromise();
-    this.router.navigate(['dashboard']);
+    const res = await this.services.login(this.services.username, this.services.password).toPromise()
+    // this.router.navigate(['dashboard']);
+    if( true ){ //res.temporaryUser 
+      // window.alert(12345);
+      this.ngPopups.alert('Credential Update. You need to change your credentials!');
+       this.router.navigate(['update-username-pwd']);
+     } else {
+       this.router.navigate(['dashboard']);
+     }
   }
 
 }
