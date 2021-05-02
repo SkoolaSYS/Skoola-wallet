@@ -22,6 +22,7 @@ export class Services {
     public  currentUser: Promise<any>;
     private storage: Storage = localStorage;
     private ACCESS_TOKEN = 'accessToken';
+    private $forceChangePassword: boolean;
     public opsTagging: string;
 
     headerOptions = {
@@ -57,6 +58,9 @@ export class Services {
     public set confirmnewpassword(confirmnewpassword: string) { this.$confirmnewpassword = confirmnewpassword; }
     public get confirmnewpassword(){ return this.$confirmnewpassword; }
 
+    public get forceChangePassword(): boolean { return this.$forceChangePassword; }
+    public set forceChangePassword(value: boolean) { this.$forceChangePassword = value; }
+
     storeSession({accessToken}: {
         accessToken?: string;
     }): void {
@@ -82,13 +86,15 @@ export class Services {
             })
         };
         return this.http.get('/rest/members/me', headerOptions).pipe(tap (data => {
+            // console.log(data);
             this.storeSession({accessToken: authorizationData});
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
+            this.forceChangePassword = data.forceChangePassword;
         },
         (err) => {
-            console.log("Login failed. " + err.name);
-            this.ngPopups.alert('Login Error. Invalid credentials!');
+            console.log(err);
+            this.ngPopups.alert(err.error.errorCode + '!\n ' + err.error.errorDetails);
 			this.username='';
 			this.password='';
 			this.router.navigate(['login']);

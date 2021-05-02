@@ -26,9 +26,7 @@ export class LoginPwdComponent implements OnInit {
   
   async submit(): Promise<void> {
     const res = await this.services.login(this.services.username, this.services.password).toPromise()
-    // this.router.navigate(['dashboard']);
-    if( true ){ //res.temporaryUser 
-      // window.alert(12345);
+    if( this.services.forceChangePassword ) {
       this.ngPopups.alert('Credential Update. You need to change your credentials!');
        this.router.navigate(['update-username-pwd']);
      } else {

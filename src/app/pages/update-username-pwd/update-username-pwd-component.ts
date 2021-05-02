@@ -44,7 +44,8 @@ export class UpdateUsernamePwdComponent implements OnInit {
           "newUsername": this.services.newusername
       }).toPromise();{
         this.ngPopups.alert('Your new credential has been sucessfully updated!');
-        const res = await this.services.login(this.services.newusername, this.services.newpassword).toPromise();
+        const res = await this.services.login(this.services.newusername, this.services.newpassword).toPromise()
+        
         if (this.services.isLoggedIn())
         {
           this.services.newusername='';
