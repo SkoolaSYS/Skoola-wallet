@@ -1,5 +1,6 @@
 {  
     "/rest/": {  
+       "_target": "http://27.131.42.88:8090/komeps",  
        "target": "http://localhost:8080/komeps",  
        "secure": false,  
        "logLevel": "debug"  
