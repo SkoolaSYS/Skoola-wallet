@@ -204,12 +204,12 @@ export class Services {
                 Authorization: this.token
             })
         };
-        return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions).pipe(tap (data => {
-            // console.log(data);
+        console.log('paymentTransfer data : ' + data.toMemberId);
+        return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions).pipe(tap (data => {            
+            console.log(data);
         },
         (err) => {
-            console.log('MemberPerformPayment() Error...');
-            console.log(err);
+            console.log('MemberPerformPayment() Error : ' + err);
         }));;
     }
 
