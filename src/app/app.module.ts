@@ -44,7 +44,8 @@ import {
   BuynearCartDetailsComponent,
   SignupComponent,
   SignupDetailsComponent,  
-  UpdateUsernamePwdComponent
+  UpdateUsernamePwdComponent,
+  UpdateProfileComponent
 } from './pages';
 
 import {
@@ -65,6 +66,7 @@ import {
 } from './components';
 
 import { Services } from 'src/app/services/service';
+// import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -115,6 +117,7 @@ export class SafeUrlPipe implements PipeTransform {
     SignupComponent,
     SignupDetailsComponent,
     UpdateUsernamePwdComponent,
+    UpdateProfileComponent,
 
     // components
     DashboardHeaderComponent,
@@ -135,7 +138,8 @@ export class SafeUrlPipe implements PipeTransform {
 
     // pipes
     SafeHtmlPipe,
-    SafeUrlPipe
+    SafeUrlPipe,
+    // UpdateProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,9 @@
     </button>
     <!-- Nav block - start -->
       <mat-sidenav-container>
-        <mat-sidenav #sidenav>
+        <mat-sidenav #sidenav mode="over" position="end">
           <mat-nav-list>
+            <div class="mt-4" mat-list-item routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Update Profile</div>
             <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
             <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
           </mat-nav-list>
@@ -76,24 +77,30 @@
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
-                            <div class="col-4 border-right-grey">
-                              <div class="height-60 flex-align-center text-center"><img class="max-width-40" src="assets/icons-img/logomaybank1.png" /></div>
-                            </div>
-                            <div class="col-4 border-right-grey">
-                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logocimbbank1.png" /></div>
-                            </div>
-                            <div class="col-4 flex-column">
-                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logorhbbank1.png" /></div>
-                            </div>
-                            <div class="col-4 border-top-grey border-right-grey">
-                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logobankrakyat1.png" /></div>
-                            </div>
-                            <div class="col-4 border-top-grey border-right-grey">
-                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logopublicbank1.png" /></div>
-                            </div>
-                            <div class="col-4 border-top-grey">
-                              <div class="height-60 flex-align-center text-center"><img class="max-width-60" src="assets/icons-img/logobankmuamalat1.png" /></div>
-                            </div>
+                            <div class="height-60 flex-align-center text-center">
+                              <input type="radio" id="mayBank" value="mayBank" name="bankChannels">
+                              <img class="max-width-40" src="assets/icons-img/logomaybank1.png" /></div>
+                          </div>
+                          <div class="col-4 border-right-grey">
+                            <div class="height-60 flex-align-center text-center">
+                              <input type="radio" id="cimbBank" value="cimbBank" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logocimbbank1.png" /></div>
+                          </div>
+                          <div class="col-4 flex-column">
+                            <div class="height-60 flex-align-center text-center">
+                              <input type="radio" id="rhbBank" value="rhbBank" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logorhbbank1.png" /></div>
+                          </div>
+                          <div class="col-4 border-top-grey border-right-grey">
+                            <div class="height-60 flex-align-center text-center">
+                              <input type="radio" id="bankRakyat" value="bankRakyat" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logobankrakyat1.png" /></div>
+                          </div>
+                          <div class="col-4 border-top-grey border-right-grey">
+                            <div class="height-60 flex-align-center text-center">
+                              <input type="radio" id="publicBank" value="publicBank" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logopublicbank1.png" /></div>
+                          </div>
+                          <div class="col-4 border-top-grey">
+                            <div class="height-60 flex-align-center text-center">
+                              <input type="radio" id="bankMuamalat" value="bankMuamalat" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logobankmuamalat1.png" /></div>
+                          </div>
                             
                           </div>
                         </div>
@@ -148,8 +155,8 @@
                   
                 </div>
 
-              </div>
             </div>
+           
           </div>
 
         </mat-sidenav-content>

@@ -24,7 +24,8 @@ import {
   BuynearCartDetailsComponent,
   SignupComponent,
   SignupDetailsComponent,
-  UpdateUsernamePwdComponent
+  UpdateUsernamePwdComponent,
+  UpdateProfileComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -119,6 +120,10 @@ export const routes: Routes = [
  {
    path: 'update-username-pwd', component: UpdateUsernamePwdComponent,
     canActivate: [AuthenticationGuard]
+ },
+ {
+   path:'update-profile', component: UpdateProfileComponent,
+   canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }
 ];

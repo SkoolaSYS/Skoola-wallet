@@ -1,12 +1,19 @@
 <div>
-    <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
-    </button>
+  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+      <mat-icon>
+        <svg width="25" height="45">
+          <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
+          <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
+          <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
+      </svg>
+      </mat-icon>
+  </button>
     <!-- Nav block - start -->
-      <mat-sidenav-container>
-        <mat-sidenav #sidenav>
-          <mat-nav-list>
-            <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <div class="mt-4" mat-list-item routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Update Profile</div>
+          <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
             <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
           </mat-nav-list>
         </mat-sidenav>
@@ -35,10 +42,10 @@
                             </div>
                           </div>
                           <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
-                            <div class="col-3 flex-align-center flex-column border-right-white">
+                            <div class="col-3 flex-align-center flex-column border-right-white mt-2">
                               <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-transfer2.png" /></div>
                             </div>
-                            <div class="col-9 pl-3 color-white font-size-15">
+                            <div class="col-9 pl-3 color-white font-size-15 mt-3">
                                 Funds residing in my D-8P Account MYR e-Wallet will be transferred to another recipient's D-8P Account MYR e-Wallet.
                               </div>
                           </div>
@@ -48,7 +55,7 @@
                   </div>
                   <form novalidate #form="ngForm">
                   <!-- Amount -->
-                  <div class="container-fluid">
+                  <div class="container-fluid fifthbg">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
@@ -59,7 +66,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="transferForm.amount" required/>
+                              <input class="d8p-input-normal w-100" placeholder="Eg: 100" type="number" name="transfer-amount" [(ngModel)]="transferForm.amount" required/>
                             </div>
                           </div>
                         </div>
@@ -67,7 +74,7 @@
                     </div>
                   </div>
                   <!-- Recipient Account Number -->
-                  <div class="container-fluid">
+                  <div class="container-fluid recipbg">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
@@ -78,7 +85,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: 1234567890" type="number" name="recipient-accountno" />
+                              <input class="d8p-input-normal" placeholder="Eg: 1234567890" type="number" name="recipient-accountno" />
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
@@ -97,8 +104,8 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Recipient Account Number -->
-                  <div class="container-fluid">
+                  <!-- Reference -->
+                  <div class="container-fluid fifthbg">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
@@ -109,7 +116,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" name="reference number" [(ngModel)]="transferForm.description" required/>
+                              <input class="d8p-input-normal" placeholder="Eg: Pembelian bulan May" type="text" name="reference number" [(ngModel)]="transferForm.description" required/>
                             </div>
                           </div>
                         </div>
@@ -118,7 +125,7 @@
                   </div>
 
                   <!-- Effective Date -->
-                  <div class="container-fluid">
+                  <div class="container-fluid fifthbg">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
@@ -129,7 +136,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal w-100 text-transform-uppercase" placeholder="Choose Transfer Date" type="Date" name="transfer date" />
+                              <input class="d8p-input-normal w-100 text-transform-uppercase" placeholder="Choose Transfer Date" type="text" onMouseOver="(this.type='date')" onMouseOut="(this.type='text')"  class="form-control"/>
                             </div>
                           </div>
                         </div>
@@ -138,7 +145,7 @@
                   </div>
 
                   <!-- Confirmation -->
-                  <div class="container-fluid">
+                  <div class="container-fluid fifthbg">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
