@@ -20,6 +20,7 @@ export class UpdateProfileComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
 
       reader.onload=(event)=>{
+        // if error, comment & uncomment coding below
         this.imageUrl=event.target.result;
       }
     }

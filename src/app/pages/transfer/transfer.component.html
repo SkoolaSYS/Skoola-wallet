@@ -1,22 +1,22 @@
 <div>
   <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-      <mat-icon>
-        <svg width="25" height="45">
-          <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
-          <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
-          <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
-      </svg>
-      </mat-icon>
+    <mat-icon>
+      <svg width="25" height="45">
+        <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
+        <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
+        <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
+    </svg>
+    </mat-icon>
   </button>
-    <!-- Nav block - start -->
+  <!-- Nav block - start -->
     <mat-sidenav-container>
       <mat-sidenav #sidenav mode="over" position="end">
         <mat-nav-list>
-          <div class="mt-4" mat-list-item routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Update Profile</div>
+          <div class="mt-4" mat-list-item routerLink="/update-profile"><small><img class="m-2 max-width-20" src="assets/icons-img/user-dp.png" /></small>Update Profile</div>
           <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
-            <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
-          </mat-nav-list>
-        </mat-sidenav>
+          <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
+        </mat-nav-list>
+      </mat-sidenav>
         <!-- Nav block - end -->
         <mat-sidenav-content fxFlexFill>
           <div class="container-fluid p-0">
