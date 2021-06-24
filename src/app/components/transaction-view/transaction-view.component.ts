@@ -8,6 +8,7 @@ export class TransactionViewComponent implements OnInit {
   constructor() { }
   @Input() sender: string;
   @Input() amount: string;
+  @Input() image: string;
   ngOnInit(): void {
   }
 

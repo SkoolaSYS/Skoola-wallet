@@ -8,6 +8,7 @@ export class TransferRecipientComponent implements OnInit {
   constructor() { }
   @Input() receiver: string;
   @Input() amount: number;
+  @Input() image: string;
   ngOnInit(): void {
   }
 
