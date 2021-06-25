@@ -24,6 +24,7 @@ export class Services {
     private ACCESS_TOKEN = 'accessToken';
     private $forceChangePassword: boolean;
     public opsTagging: string;
+    private $allowWithdrawal: boolean;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -61,6 +62,9 @@ export class Services {
     public get forceChangePassword(): boolean { return this.$forceChangePassword; }
     public set forceChangePassword(value: boolean) { this.$forceChangePassword = value; }
 
+    public get allowWithdrawal(): boolean { return this.$allowWithdrawal; }
+    public set allowWithdrawal(value: boolean) { this.$allowWithdrawal = value; }
+
     storeSession({accessToken}: {
         accessToken?: string;
     }): void {
@@ -91,6 +95,7 @@ export class Services {
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
             this.forceChangePassword = data.forceChangePassword;
+            this.allowWithdrawal = data.allowWithdrawal;
         },
         (err) => {
             console.log(err);

@@ -20,4 +20,12 @@ export class DashboardComponent implements OnInit {
     this.services.logout();
     this.router.navigate(['login']);
   }
+
+  async doRoute(): Promise<void> {
+    const currentUser: any = await this.services.currentUser;
+
+    // Only merchants are allowed to make withdrawal.
+    if (currentUser.allowWithdrawal)
+      this.router.navigate(['withdraw']);
+  }
 }

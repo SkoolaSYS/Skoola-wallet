@@ -21,6 +21,11 @@ export class TransferComponent implements OnInit {
     (err) => {
       console.log(err);
     });
+
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    this.transferForm.effectiveDate = (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + today.getFullYear();
   }
   memberChange(): void {
     const selected = this.membersList.find(member => member.id === this.transferForm.toMemberId);
