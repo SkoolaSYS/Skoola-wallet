@@ -25,7 +25,9 @@ import {
   SignupComponent,
   SignupDetailsComponent,
   UpdateUsernamePwdComponent,
-  UpdateProfileComponent
+  UpdateProfileComponent,
+  CimbBankloadComponent,
+  IdVerificationComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -123,6 +125,14 @@ export const routes: Routes = [
  },
  {
    path:'update-profile', component: UpdateProfileComponent,
+   canActivate: [AuthenticationGuard]
+ },
+ {
+    path:'cimb-bankload', component:  CimbBankloadComponent,
+   canActivate: [AuthenticationGuard]
+ },
+ {
+    path:'id-verification', component:  IdVerificationComponent,
    canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }

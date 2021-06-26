@@ -82,34 +82,43 @@
                             Internet Banking Channels
                           </div>
                         </div>
+
+
+                        <!--  BANKS WITH IMAGES: BASIC RADIO BUTTON-->
                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-4 border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="mayBank" value="mayBank" name="bankChannels">
-                              <img class="max-width-40" src="assets/icons-img/logomaybank1.png" /></div>
+                              <input type="radio" id="mayBank" value="mayBank" name="bankChannels" (change)="setRouter(1)">
+                              <img class="max-width-40" src="assets/icons-img/maybank-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="cimbBank" value="cimbBank" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logocimbbank1.png" /></div>
+                              <input type="radio" id="cimbBank" value="cimbBank" name="bankChannels" (change)="setRouter(2)">
+                              <img class="max-width-40" src="assets/icons-img/cimb-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 flex-column">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="rhbBank" value="rhbBank" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logorhbbank1.png" /></div>
+                              <input type="radio" id="rhbBank" value="rhbBank" name="bankChannels">
+                              <img class="max-width-40" src="assets/icons-img/rhb-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-top-grey border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="bankRakyat" value="bankRakyat" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logobankrakyat1.png" /></div>
+                              <input type="radio" id="bankRakyat" value="bankRakyat" name="bankChannels">
+                              <img class="max-width-40" src="assets/icons-img/irakyat-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-top-grey border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="publicBank" value="publicBank" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logopublicbank1.png" /></div>
+                              <input type="radio" id="publicBank" value="publicBank" name="bankChannels">
+                              <img class="max-width-40" src="assets/icons-img/publicbank-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-top-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="bankMuamalat" value="bankMuamalat" name="bankChannels"><img class="max-width-60" src="assets/icons-img/logobankmuamalat1.png" /></div>
+                              <input type="radio" id="bankMuamalat" value="bankMuamalat" name="bankChannels">
+                              <img class="max-width-40" src="assets/icons-img/agrobank-ios-ltst@3x.png" /></div>
                           </div>
-                          
                         </div>
+                        
+
                       </div>
                     </div>
                   </div>
@@ -147,12 +156,12 @@
                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-10">
                             <div class="button-container text-center">
-                              <button class="d8p-btn-default" routerLink="/bankload-details">
+                              <button class="d8p-btn-default" type="button" (click)="changeRoute()">
                                   Confirm
                                   <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                               </button>
                           </div>
-                        </div>
+                          </div>
                         </div>
                       </div>
                     </div>

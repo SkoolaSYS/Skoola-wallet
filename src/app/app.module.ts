@@ -45,7 +45,9 @@ import {
   SignupComponent,
   SignupDetailsComponent,  
   UpdateUsernamePwdComponent,
-  UpdateProfileComponent
+  UpdateProfileComponent,
+  CimbBankloadComponent,
+  IdVerificationComponent
 } from './pages';
 
 import {
@@ -63,10 +65,13 @@ import {
   qrViewComponent,
   BuynearTopViewComponent,
   OtpbankComponent,
+  CimbbankDetailsComponent,
+  CimbbankTransactionComponent
+
 } from './components';
 
 import { Services } from 'src/app/services/service';
-// import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
+
 
 @Pipe({
   name: 'safeHtml'
@@ -118,6 +123,8 @@ export class SafeUrlPipe implements PipeTransform {
     SignupDetailsComponent,
     UpdateUsernamePwdComponent,
     UpdateProfileComponent,
+    CimbBankloadComponent,
+    IdVerificationComponent,
 
     // components
     DashboardHeaderComponent,
@@ -135,11 +142,14 @@ export class SafeUrlPipe implements PipeTransform {
     qrViewComponent,
     BuynearTopViewComponent,
     OtpbankComponent,
+    CimbbankDetailsComponent,
+    CimbbankTransactionComponent,
 
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
-    // UpdateProfileComponent
+    
+   
   ],
   imports: [
     BrowserModule,

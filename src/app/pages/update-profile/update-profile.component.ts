@@ -11,7 +11,7 @@ export class UpdateProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  imageUrl: string="";
+  imageUrl: string= "";
 
   onSelectedFile(event){
     if (event.target.files && event.target.files[0]){
@@ -20,8 +20,7 @@ export class UpdateProfileComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
 
       reader.onload=(event)=>{
-        // if error, comment & uncomment coding below
-        this.imageUrl=event.target.result;
+        this.imageUrl=event.target.result as string;
       }
     }
   }
