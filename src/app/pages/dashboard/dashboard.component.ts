@@ -11,7 +11,7 @@ import { Utility } from 'src/utils';
   host: { '[@fadeInAnimation]': '' }
 })
 export class DashboardComponent implements OnInit {
-  private imageSrc: any = "assets/icons-img/user-dp.png";
+  public imageSrc: any = "assets/icons-img/user-dp.png";
 
   constructor(private services: Services, private router: Router) { }
 

@@ -236,4 +236,22 @@ export class Services {
             console.log(err);
         }));;
     }
+
+    // For uploading user profile with image (rwa)
+    public updateProfileWithImage(data: FormData) {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateProfileWithImage', data , headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('uploadFile() Error...');
+            console.log(err);
+        }));;
+    }    
 }

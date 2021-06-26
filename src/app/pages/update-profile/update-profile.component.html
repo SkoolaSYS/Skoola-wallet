@@ -47,8 +47,8 @@
                               
                         <!-- USER IMAGE -->
                                 <label >
-                                    <img class="userdp" [src]="imageUrl ? imageUrl:'assets/icons-img/user-dp.png' " style="height: 4rem;width: 4rem;">
-                                   <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event) #fileInput>
+                                    <img class="userdp" [src]="imageSrc" style="height: 4rem;width: 4rem;">
+                                    <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event) #fileInput>
                                    <!-- <button (click)="fileInput.click()">Select File</button> -->
                                   </label>
                                   <br>
@@ -71,7 +71,7 @@
                           <div class="row no-gutters justify-content-center">
                              
                             <!-- FORM -->
-                              <form>
+                              <form #form="ngForm">
 
                                   <div class="form-group">
                                       <label class="userEmail">Email:</label>
@@ -81,7 +81,7 @@
                                       placeholder="example@example.com"
                                       class="form-control" 
                                       required 
-                                      ngModel 
+                                      [(ngModel)]="updateForm.email"
                                       name="userEmail" 
                                       #userEmail="ngModel">
                                     
@@ -94,7 +94,7 @@
                                       placeholder="01X-1234567"
                                       class="form-control" 
                                       required 
-                                      ngModel 
+                                      [(ngModel)]="updateForm.phone"
                                       name="phoneNo" 
                                       #phoneNo="ngModel">
                                       <div class="alert alert-danger" 
@@ -104,7 +104,7 @@
                                       <label class="homeAddress">Home Address:</label>
                                       <textarea 
                                       required 
-                                      ngModel 
+                                      [(ngModel)]="updateForm.address" 
                                       name="homeAddress" 
                                       #homeAddress="ngModel" 
                                       id="homeAddress" 
@@ -122,7 +122,7 @@
                                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                                               <div class="col-10">
                                                  <div class="button-container text-center">
-                                                   <button class="d8p-btn-default" routerLink="/">
+                                                   <button class="d8p-btn-default" (click)="onSubmit()" >
                                                      Update
                                                     <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                                      </button>
