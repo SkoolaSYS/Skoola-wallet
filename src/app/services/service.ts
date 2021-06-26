@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { NgPopupsModule, NgPopupsService } from 'ng-popups';
+import { NgPopupsService } from 'ng-popups';
 
 @Injectable({
   providedIn: 'root',
@@ -158,6 +158,7 @@ export class Services {
         };
         return this.http.get('rest/members/me', headerOptions).pipe(tap (data => {
             // console.log(data);
+            this.currentUser = of(data).toPromise();
         },
         (err) => {
             console.log('getProfileData() Error...');
