@@ -1,3 +1,7 @@
-<app-transaction-view [sender]="currentUser?.name" [amount]="form?.amount"></app-transaction-view>
-<app-transfer-recipient [receiver]="receiver?.name" [amount]="form?.amount"></app-transfer-recipient>
+<app-transaction-view 
+  [sender]="currentUser?.name" [amount]="form?.amount" [image]="senderImg ? senderImg : 'assets/icons-img/user-dp.png'">
+</app-transaction-view>
+<app-transfer-recipient 
+  [receiver]="receiver?.name" [amount]="form?.amount" [image]="receiverImg ? receiverImg : 'assets/icons-img/user-dp.png'">
+</app-transfer-recipient>
 <app-otpcard (otpSubmit)="otpSubmit($event)"></app-otpcard>

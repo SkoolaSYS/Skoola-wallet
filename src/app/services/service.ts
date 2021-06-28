@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { NgPopupsModule, NgPopupsService } from 'ng-popups';
+import { NgPopupsService } from 'ng-popups';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,7 @@ export class Services {
     private ACCESS_TOKEN = 'accessToken';
     private $forceChangePassword: boolean;
     public opsTagging: string;
+    private $allowWithdrawal: boolean;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -61,6 +62,9 @@ export class Services {
     public get forceChangePassword(): boolean { return this.$forceChangePassword; }
     public set forceChangePassword(value: boolean) { this.$forceChangePassword = value; }
 
+    public get allowWithdrawal(): boolean { return this.$allowWithdrawal; }
+    public set allowWithdrawal(value: boolean) { this.$allowWithdrawal = value; }
+
     storeSession({accessToken}: {
         accessToken?: string;
     }): void {
@@ -91,6 +95,7 @@ export class Services {
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
             this.forceChangePassword = data.forceChangePassword;
+            this.allowWithdrawal = data.allowWithdrawal;
         },
         (err) => {
             console.log(err);
@@ -153,6 +158,7 @@ export class Services {
         };
         return this.http.get('rest/members/me', headerOptions).pipe(tap (data => {
             // console.log(data);
+            this.currentUser = of(data).toPromise();
         },
         (err) => {
             console.log('getProfileData() Error...');
@@ -230,4 +236,22 @@ export class Services {
             console.log(err);
         }));;
     }
+
+    // For uploading user profile with image (rwa)
+    public updateProfileWithImage(data: FormData) {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateProfileWithImage', data , headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('uploadFile() Error...');
+            console.log(err);
+        }));;
+    }    
 }

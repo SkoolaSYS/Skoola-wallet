@@ -39,10 +39,12 @@
 .d8p-handburger.mat-icon-button {
   position: absolute !important;
   z-index: 2;
-  top: 0.8rem;
-  left: 1rem;
-  background: linear-gradient(0deg, #323232 0%, #848484 100%);
-  border-radius: 10px;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(180deg, #858585 0%, #303030 100%);
+  border-radius: 8px;
+  width: 45px;
+  height: 51px;
   @media screen and (min-width: 768px) {
     left: 18%;
   }
@@ -86,8 +88,17 @@
 .max-width-75 {
   max-width: 75%;
 }
+.max-width-70{
+  max-width: 70%;
+}
+.max-width-65{
+  max-width: 65%;
+}
 .max-width-60 {
   max-width: 60%;
+}
+.max-width-55{
+  max-width: 55%;
 }
 .max-width-50 {
   max-width: 50%;
@@ -256,11 +267,13 @@
 .titlebg {
   background: linear-gradient(0deg, #323232 0%, #848484 100%);
   color: $white;
-  height: 35px;
+  height: 25.40px;
   text-align: center;
   font: normal $s-16 $ff-base;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  font-size: smaller;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 1px solid #8D8D8D;
 }
 
 .subtitlebg {
@@ -307,7 +320,15 @@
   border: 2px solid $line-green;
 }
 .border-right-white {
-  border-right: 1px solid $white;
+  // max-width: 130px;
+  padding: 1rem;
+  // color: white;
+  border-width: 0.5px;
+  border-style: solid;
+  border-image: 
+   linear-gradient(
+     180deg, 
+    rgba(105,206,209,74) 0%, rgba(255,255,255,100) 50%, rgba(66,129,130,74) 100%)1 100%;
 }
 .border-bottom-white {
   border-bottom: 1px solid $white;
@@ -320,6 +341,9 @@
 }
 .border-top-grey {
   border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+.border-top-white{
+  border-top: 1px solid #ffffff;
 }
 
 //padding
@@ -785,19 +809,29 @@ select.arrowstyle-white:focus {
   display: flex;
 }
 .headergoldbox {
-  background: url(assets/icons-img/gold-view-bg.png) no-repeat;
-  background-size: contain;
-  background-position-x: center;
+  // background: url(assets/icons-img/coin-headergold@3x.png) no-repeat;
+ // background-size: contain;
+  // background-position-x: center;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(180deg, #69CED1 0%, #428182 100%);
+  border-radius: 8px;
+  width: 80px;
+  height: 51px;
   font-size: $s-11;
   border-radius: $s-10;
   max-width: 130px;
   min-height: 38px;
   background-size: 95%;
   margin-top: $s-12;
+  right: 1.5rem;
+
   .gram-txt {
     max-width: 130px;
-    padding: 0 1.5rem;
+    padding: 0 1.65rem;
     text-align: center;
+    background: url(assets/icons-img/coin-headergold.png) no-repeat;
+    background-size: contain;
   }
 }
 .summary-currency-view {
@@ -957,15 +991,36 @@ select.arrowstyle-white:focus {
 //dashboard menu
 .quicklinkbg {
   background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
-  height: 130px;
+  height: 153px;
+  margin-top: 0.35rem;
   @media screen and (min-width: 768px) {
     min-height: 260px;
   }
+}
+// KINAH
+//transfer menu
+.transferbg{
+  height: 281px;
+}
+//payment menu
+.paymentbg{
+  height: 153px; 
 }
 //QR menu
 .qrbg {
   background: linear-gradient(0deg, #000000 0%, #2d2d2d 100%);
   height: 400px;
+}
+
+// KINAH
+//components with same height
+.fifthbg{
+  height: 126px; 
+}
+
+//comp with 8grid
+.recipbg{
+  height: 205px;
 }
 
 //transaction view
@@ -1083,18 +1138,31 @@ select.arrowstyle-white:focus {
   padding-bottom: 0.5rem;
 }
 .mat-tab-label {
-  background: linear-gradient(0deg, #000000 0%, #323232 100%);
+  background: linear-gradient(180deg, #858585 0%, #303030 100%);
   color: $white;
   font-weight: normal;
   &:first-child {
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 8px;
+    height: 27px;
+  }
+  &:nth-child(2){
+    color: #fff;
+    height: 27px;
   }
   &:last-child {
-    border-bottom-right-radius: 15px;
+    border-bottom-right-radius: 8px;
+    height: 27px;
   }
 }
 .mat-tab-label.mat-tab-label-active {
-  background: linear-gradient(0deg, #d7d8d8 0%, #ffffff 100%);
-  color: #267c7d;
+  background: linear-gradient(0deg, #D2D4D4 0%, #ffffff 100%);
+  color: #54A5A6;
   font-weight: bold;
+}
+
+.userdp{
+  width: 4rem;
+  height: 4rem;
+  border: 5px solid #fff;
+  border-radius: 50%;
 }

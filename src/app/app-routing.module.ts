@@ -24,7 +24,10 @@ import {
   BuynearCartDetailsComponent,
   SignupComponent,
   SignupDetailsComponent,
-  UpdateUsernamePwdComponent
+  UpdateUsernamePwdComponent,
+  UpdateProfileComponent,
+  CimbBankloadComponent,
+  IdVerificationComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -119,6 +122,18 @@ export const routes: Routes = [
  {
    path: 'update-username-pwd', component: UpdateUsernamePwdComponent,
     canActivate: [AuthenticationGuard]
+ },
+ {
+   path:'update-profile', component: UpdateProfileComponent,
+   canActivate: [AuthenticationGuard]
+ },
+ {
+    path:'cimb-bankload', component:  CimbBankloadComponent,
+   canActivate: [AuthenticationGuard]
+ },
+ {
+    path:'id-verification', component:  IdVerificationComponent,
+   canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }
 ];

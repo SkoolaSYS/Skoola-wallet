@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-transaction-details',
@@ -10,12 +11,21 @@ export class TransactionDetailsComponent implements OnInit {
   form: any;
   currentUser: any;
   receiver: any;
+  senderImg: string = "";
+  receiverImg: string = "";
+
   constructor(private services: Services, private router: Router) { }
   async ngOnInit(): Promise<void> {
     this.currentUser = await this.services.currentUser;
-    this.form = this.services.forms.transferForm || {};
+    this.form = this.services.forms.transferForm || {}; // FIXME: Form is reset when page is reloaded.
     this.receiver = this.form.selectedMember;
+
+    if (this.currentUser.images)
+      this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
+    if (this.receiver.images)
+      this.receiverImg = Utility.rebaseImageUrl(this.receiver.images[0].thumbnailUrl);
   }
+  
   async otpSubmit(otp: string) {
    await this.services.paymentTransfer({
     toMemberId: this.form.toMemberId,
