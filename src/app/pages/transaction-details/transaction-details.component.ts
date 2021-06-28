@@ -20,9 +20,9 @@ export class TransactionDetailsComponent implements OnInit {
     this.form = this.services.forms.transferForm || {}; // FIXME: Form is reset when page is reloaded.
     this.receiver = this.form.selectedMember;
 
-    if (this.currentUser.images)
+    if (this.currentUser.images && this.currentUser.images.length != 3)
       this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
-    if (this.receiver.images)
+    if (this.receiver.images && this.receiver.images.length != 3)
       this.receiverImg = Utility.rebaseImageUrl(this.receiver.images[0].thumbnailUrl);
   }
   

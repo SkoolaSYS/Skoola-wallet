@@ -25,6 +25,7 @@ export class Services {
     private $forceChangePassword: boolean;
     public opsTagging: string;
     private $allowWithdrawal: boolean;
+    private $isIdVerified: boolean;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -65,6 +66,9 @@ export class Services {
     public get allowWithdrawal(): boolean { return this.$allowWithdrawal; }
     public set allowWithdrawal(value: boolean) { this.$allowWithdrawal = value; }
 
+    public get isIdVerified(): boolean { return this.$isIdVerified; }
+    public set isIdVerified(value: boolean) { this.$isIdVerified = value; }
+
     storeSession({accessToken}: {
         accessToken?: string;
     }): void {
@@ -96,6 +100,10 @@ export class Services {
             this.authToken = authorizationData;
             this.forceChangePassword = data.forceChangePassword;
             this.allowWithdrawal = data.allowWithdrawal;
+            this.isIdVerified = data.isIdVerified;
+
+            console.log(username);
+            
         },
         (err) => {
             console.log(err);
@@ -253,5 +261,22 @@ export class Services {
             console.log('uploadFile() Error...');
             console.log(err);
         }));;
-    }    
+    }
+
+    public uploadVerificationData(data: FormData) {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/uploadVerificationData', data , headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log('uploadVerificationData() Error...');
+            console.log(err);
+        }));;
+    }
 }
