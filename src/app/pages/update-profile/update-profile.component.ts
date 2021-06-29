@@ -19,7 +19,11 @@ export class UpdateProfileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
 
-    if (currentUser.images) {
+    // TODO: Pre-fill user profile fields with data from cbs here.
+    if (currentUser.email)
+      this.updateForm.email = currentUser.email;
+
+    if (currentUser.images && currentUser.images.length != 3) {
       this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
     }
   }
@@ -66,9 +70,13 @@ export class UpdateProfileComponent implements OnInit {
     if (this.file)
       formData.append("file", this.file);
     
-    await this.services.updateProfileWithImage(formData).toPromise();
-
-    this.ngPopups.alert('Your profile has been sucessfully updated!');
-    this.router.navigate(['dashboard']);
+    await this.services.updateProfileWithImage(formData).toPromise()
+    .then(() => {
+      this.ngPopups.alert('Your profile has been sucessfully updated!');
+      this.router.navigate(['dashboard']);
+    })
+    .catch((err) => {
+      this.ngPopups.alert('There was an error in your submission!');
+    });
   }
 }
