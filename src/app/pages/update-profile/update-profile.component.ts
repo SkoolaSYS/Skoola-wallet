@@ -57,6 +57,18 @@ export class UpdateProfileComponent implements OnInit {
         "internalName": "address",
         "value": this.updateForm.address
       });
+
+    if (this.updateForm.postalCode)
+      customValues.push({
+        "internalName": "postalCode",
+        "value": this.updateForm.postalCode
+      });
+
+    if (this.updateForm.city)
+      customValues.push({
+        "internalName": "city",
+        "value": this.updateForm.city
+      });
       
     if (customValues.length != 0)  
       data.customValues = customValues;
