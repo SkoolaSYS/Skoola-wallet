@@ -85,12 +85,12 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Eg: 1234567890" type="number" name="recipient-accountno" />
+                              <input class="d8p-input-normal" placeholder="Eg: 1234567890" type="number" name="recipient-accountno" [(ngModel)]="transferForm.toAccountNo" />
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <select class="d8p-select arrowstyle" name="recipient-members" [(ngModel)]="transferForm.toMemberId" (change)="memberChange()" required>
+                              <select class="d8p-select arrowstyle" name="recipient-members" [(ngModel)]="transferForm.toMemberId" (change)="memberChange()" style="display:none;">
                                 <option>choose favorite</option>
                                 <!-- <option>Amar</option> -->
                                 <!-- <option>Rosli</option> -->
@@ -157,7 +157,7 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <div class="button-container text-center">
-                                <button class="d8p-btn-default" routerLink="/transfer-details" [disabled]="form.invalid">
+                                <button class="d8p-btn-default" (click)="getReceiverDetails();" [disabled]="form.invalid">
                                     Confirm
                                     <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                 </button>

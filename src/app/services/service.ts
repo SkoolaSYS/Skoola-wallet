@@ -26,6 +26,7 @@ export class Services {
     public opsTagging: string;
     private $allowWithdrawal: boolean;
     private $isIdVerified: boolean;
+    public  receiver: Promise<any>;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -279,4 +280,25 @@ export class Services {
             console.log(err);
         }));;
     }
+
+    public getMemberByAccountNumber(accountNo: String) {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/members/accNumber/'+accountNo, headerOptions).pipe(tap (data => {
+            // console.log(data);
+            this.receiver = of(data).toPromise();
+        },
+        (err) => {
+            console.log('uploadVerificationData() Error...');
+            console.log(err);
+        }));;
+
+
+    }
+
 }

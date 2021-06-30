@@ -18,7 +18,8 @@ export class TransactionDetailsComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.currentUser = await this.services.currentUser;
     this.form = this.services.forms.transferForm || {}; // FIXME: Form is reset when page is reloaded.
-    this.receiver = this.form.selectedMember;
+    //this.receiver = this.form.selectedMember;
+    this.receiver = await this.services.receiver;
 
     if (this.currentUser.images && this.currentUser.images.length != 3)
       this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
@@ -28,8 +29,8 @@ export class TransactionDetailsComponent implements OnInit {
   
   async otpSubmit(otp: string) {
    await this.services.paymentTransfer({
-    toMemberId: this.form.toMemberId,
-    toMemberPrincipal: this.form.toMemberPrincipal,
+    toMemberId: this.receiver.id,           // this.form.toMemberId,
+    toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
     amount: this.form.amount,
     transactionPassword: otp,
     description: this.form.description,
