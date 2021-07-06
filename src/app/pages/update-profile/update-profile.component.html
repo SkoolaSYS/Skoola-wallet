@@ -12,10 +12,7 @@
       <mat-sidenav-container>
         <mat-sidenav #sidenav mode="over" position="end">
           <mat-nav-list>
-            <div class="mt-4" mat-list-item routerLink="/update-profile"><small><img class="m-2 max-width-20" src="assets/icons-img/user-dp.png" /></small>Update Profile</div>
-            <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
-            <div class="mt-4" mat-list-item routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" /></small>Government ID</div>
-            <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
+            <app-matsidenav></app-matsidenav>
           </mat-nav-list>
         </mat-sidenav>
         <!-- Nav block - end -->
@@ -72,7 +69,6 @@
                              
                             <!-- FORM -->
                               <form #form="ngForm">
-
                                   <div class="form-group">
                                       <label class="userEmail">Email:</label>
                                       <input 
@@ -84,7 +80,6 @@
                                       [(ngModel)]="updateForm.email"
                                       name="userEmail" 
                                       #userEmail="ngModel">
-                                    
                                   </div>
                                   <div class="form-group">
                                       <label class="phoneNo">Phone No.:</label>

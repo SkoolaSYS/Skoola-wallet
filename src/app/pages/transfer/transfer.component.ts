@@ -11,14 +11,29 @@ export class TransferComponent implements OnInit {
   public membersList = [];
   // member: Member;
   public transferForm: any = {};
+  public imageSrc: any = "assets/icons-img/user-dp.png";
+  public isNotIdVerified: boolean = false;
 
-  constructor(private service: Services, private router: Router, private ngPopups: NgPopupsService) { }
+  constructor(
+    private service: Services, 
+    private router: Router, 
+    private ngPopups: NgPopupsService, 
+    private services:Services) { }
   ngOnInit(): void {
+    
     this.service.forms.transferForm = this.transferForm;
     this.service.opsTagging = 'transfer';
     this.service.getMemberList().subscribe((res: any) => {
       // console.log(res);
       this.membersList = res.elements;
+    },
+    (err) => {
+      console.log(err);
+    });
+
+    this.services.getProfileData().subscribe(async (res: any) => {
+      const currentUser: any = await this.services.currentUser;
+      this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
     },
     (err) => {
       console.log(err);
@@ -39,6 +54,11 @@ export class TransferComponent implements OnInit {
   //   }
   // }
 
+  logout(): void {
+    this.services.logout();
+    this.router.navigate(['login']);
+  }
+
   async getReceiverDetails(): Promise<void> {
     await this.service.getMemberByAccountNumber(this.transferForm.toAccountNo).toPromise()
     .then(() => {
@@ -47,5 +67,9 @@ export class TransferComponent implements OnInit {
     .catch((err) => {
       this.ngPopups.alert('There was an error in your submission!');
     });
+  }
+
+  isUserIdNotVerified(user: any) : boolean {
+    return user.idVerifiedStatus === 'Unverified';
   }
 }

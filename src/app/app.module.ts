@@ -66,7 +66,8 @@ import {
   BuynearTopViewComponent,
   OtpbankComponent,
   CimbbankDetailsComponent,
-  CimbbankTransactionComponent
+  CimbbankTransactionComponent,
+  MatsidenavComponent
 
 } from './components';
 
@@ -144,10 +145,12 @@ export class SafeUrlPipe implements PipeTransform {
     OtpbankComponent,
     CimbbankDetailsComponent,
     CimbbankTransactionComponent,
+    MatsidenavComponent,
 
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
+  
     
    
   ],

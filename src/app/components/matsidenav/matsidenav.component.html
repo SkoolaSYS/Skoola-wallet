@@ -1,0 +1,7 @@
+
+        <div class="mt-4" mat-list-item routerLink="/update-profile"><small><img class="m-2 max-width-20" [src]="imageSrc" style="height: 4rem;width: 4rem;" /></small>Update Profile</div>
+        <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
+        <div class="mt-4" mat-list-item *ngIf="isNotIdVerified" routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" /></small>Government ID</div>
+        <div class="mt-2" mat-list-item (click)="logout()"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
+    
+
