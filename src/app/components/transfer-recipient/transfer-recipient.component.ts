@@ -9,6 +9,7 @@ export class TransferRecipientComponent implements OnInit {
   @Input() receiver: string;
   @Input() amount: number;
   @Input() image: string;
+  @Input() date: string;
   ngOnInit(): void {
   }
 

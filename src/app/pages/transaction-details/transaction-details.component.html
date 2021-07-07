@@ -1,7 +1,8 @@
 <app-transaction-view 
-  [sender]="currentUser?.name" [amount]="form?.amount" [image]="senderImg ? senderImg : 'assets/icons-img/user-dp.png'">
+  [sender]="currentUser?.name" [amount]="form?.amount" [image]="senderImg ? senderImg : 'assets/icons-img/user-dp.png'"
+  [transactionFee]="transactionFee" [goldAmount]="goldAmount">
 </app-transaction-view>
 <app-transfer-recipient 
-  [receiver]="receiver?.name" [amount]="form?.amount" [image]="receiverImg ? receiverImg : 'assets/icons-img/user-dp.png'">
+  [receiver]="receiver?.name" [amount]="form?.amount" [image]="receiverImg ? receiverImg : 'assets/icons-img/user-dp.png'" [date]="effectiveDate">
 </app-transfer-recipient>
 <app-otpcard (otpSubmit)="otpSubmit($event)"></app-otpcard>

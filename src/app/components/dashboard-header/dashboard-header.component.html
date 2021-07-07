@@ -61,10 +61,10 @@
               <span class="mr-2"
                 ><img src="assets/icons-img/icon-debitsmall3.png"
               /></span>
-              RM 100.05
+              RM {{ transactionAmount | number: '1.2-2' }}
             </div>
             <div class="summary-gold-view">
-              0.1001g Gold
+              {{ goldAmount | number: '.4-4' }}g Gold
               <span class="ml-2"
                 ><img src="assets/icons-img/icon-creditsmall1.png"
               /></span>

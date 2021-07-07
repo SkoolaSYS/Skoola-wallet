@@ -1,5 +1,14 @@
 import { environment } from "./environments/environment";
 
+export enum TRANSACTION_TYPE {
+  Transfer = 5,
+  BankLoad = 6,
+  BuyGold = 3,
+  SellGold = 4,
+  Withdraw = 8,
+  QrPayment = 15
+}
+
 export class Utility {
 
   /*
