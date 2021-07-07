@@ -1,0 +1,60 @@
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+// import { fadeInAnimation } from '../../animation-effect/index';
+import { Services } from 'src/app/services/service';
+import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
+
+
+
+@Component({
+  selector: 'app-matsidenav',
+  templateUrl: './matsidenav.component.html',
+})
+export class MatsidenavComponent implements OnInit {
+  // Image & IDVerification
+  public imageSrc: any = "assets/icons-img/user-dp.png";
+  public isNotIdVerified: boolean = false;
+
+  @ViewChild('sidenav') public sidenav:MatSidenav;
+ 
+
+  constructor(
+    private services: Services,
+    private router: Router) { }
+
+  ngOnInit(): void {
+    // Kalau ID sudah verified, function ni akan "disabled". refer line 16 stated false
+    this.services.getProfileData().subscribe(async (res: any) => {
+      const currentUser: any = await this.services.currentUser;
+      this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+    },
+    (err) => {
+      console.log(err);
+    });
+
+  }
+
+ 
+
+  // ini utk log out dari pwa
+  logout(): void {
+    this.services.logout();
+    this.router.navigate(['login']);
+  }
+
+  async doRoute(): Promise<void> {
+    const currentUser: any = await this.services.currentUser;
+
+    // Only merchants are allowed to make withdrawal.
+    if (currentUser.allowWithdrawal)
+      this.router.navigate(['withdraw']);
+  }
+
+  // kalau user belum verified
+  isUserIdNotVerified(user: any) : boolean {
+    return user.idVerifiedStatus === 'Unverified';
+  }
+
+
+
+}
