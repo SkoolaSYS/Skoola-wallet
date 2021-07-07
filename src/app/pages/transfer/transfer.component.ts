@@ -31,13 +31,13 @@ export class TransferComponent implements OnInit {
   }
 
   // Commented out temporarily. (rwa)
-  // memberChange(): void {
-  //   const selected = this.membersList.find(member => member.id === this.transferForm.toMemberId);
-  //   if (selected) {
-  //     this.transferForm.toMemberPrincipal = selected.name;
-  //     this.transferForm.selectedMember = selected;
-  //   }
-  // }
+  memberChange(): void {
+    const selected = this.membersList.find(member => member.id === this.transferForm.toMemberId);
+    if (selected) {
+      this.transferForm.toMemberPrincipal = selected.name;
+      this.transferForm.selectedMember = selected;
+    }
+  }
 
   async getReceiverDetails(): Promise<void> {
     await this.service.getMemberByAccountNumber(this.transferForm.toAccountNo).toPromise()

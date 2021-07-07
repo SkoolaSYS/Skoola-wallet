@@ -1,4 +1,9 @@
-export default class QrScanner {
+//import QrScanner from "qr-scanner.js";
+//QrScanner.WORKER_PATH = 'worker.js';
+
+//alert("Launching camera...");
+
+class QrScanner {
     /* async */
     static hasCamera() {
         if (!navigator.mediaDevices) return Promise.resolve(false);
@@ -8,7 +13,7 @@ export default class QrScanner {
         return navigator.mediaDevices.enumerateDevices()
             .then(devices => devices.some(device => device.kind === 'videoinput'))
             .catch(() => false);
-    }
+    }   
 
     constructor(
         video,
@@ -78,7 +83,8 @@ export default class QrScanner {
         const imageCapture = new ImageCapture(track);
         return imageCapture.getPhotoCapabilities()
             .then((result) => {
-                return result.fillLightMode.includes('flash');
+                if (result.fillLightMode)
+                    return result.fillLightMode.includes('flash');
             })
             .catch((error) => {
                 console.warn(error);
@@ -103,6 +109,13 @@ export default class QrScanner {
     /* async */
     turnFlashOn() {
       return this._setFlash(true);
+    }
+
+    showScanRegion() {
+        //const input = e.target;
+        const label = document.getElementById('scan-region');
+        label.parentNode.insertBefore(scanner.$canvas, label.nextSibling);
+        scanner.$canvas.style.display = 'block';
     }
 
     destroy() {
@@ -138,6 +151,7 @@ export default class QrScanner {
         }
 
         let facingMode = this._preferredFacingMode;
+        
         return this._getCameraStream(facingMode, true)
             .catch(() => {
                 // We (probably) don't have a camera of the requested facing mode
@@ -151,6 +165,8 @@ export default class QrScanner {
                 this.$video.srcObject = stream;
                 this.$video.play();
                 this._setVideoMirror(facingMode);
+
+                this.showScanRegion();
             })
             .catch(e => {
                 this._active = false;
@@ -187,6 +203,8 @@ export default class QrScanner {
                      alsoTryWithoutScanRegion=false) {
         const gotExternalWorker = qrEngine instanceof Worker;
 
+        //console.log("Inside scanImage...");
+                        
         let promise = Promise.all([
             qrEngine || QrScanner.createQrEngine(),
             QrScanner._loadImage(imageOrFileOrUrl),
@@ -480,4 +498,95 @@ export default class QrScanner {
 }
 QrScanner.DEFAULT_CANVAS_SIZE = 400;
 QrScanner.NO_QR_CODE_FOUND = 'No QR code found';
-QrScanner.WORKER_PATH = 'qr-scanner-worker.min.js';
+//QrScanner.WORKER_PATH = './assets/qr-scanner-worker.min.js';
+
+//QrScanner.WORKER_PATH = 'worker.js';
+
+const video = document.getElementById('qr-video');
+const camHasCamera = document.getElementById('cam-has-camera');
+const camHasFlash = document.getElementById('cam-has-flash');
+const flashToggle = document.getElementById('flash-toggle');
+const flashState = document.getElementById('flash-state');
+const camQrResult = document.getElementById('cam-qr-result');
+const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+const fileSelector = document.getElementById('file-selector');
+const fileQrResult = document.getElementById('file-qr-result');
+
+function setResult(label, result) {
+    console.log("=================================================> " + result);
+
+    label.textContent = result;
+    // camQrResultTimestamp.textContent = new Date().toString();
+    label.style.color = 'teal';
+    clearTimeout(label.highlightTimeout);
+    label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+
+    window.location.href = result;
+}
+
+// ####### Web Cam Scanning #######
+
+QrScanner.hasCamera().then(hasCamera => camHasCamera.textContent = hasCamera);
+
+const scanner = new QrScanner(video, result => setResult(camQrResult, result), error => {
+    camQrResult.textContent = error;
+    camQrResult.style.color = 'inherit';
+
+    //console.log(error);
+});
+scanner.start().then(() => {
+    scanner.hasFlash().then(hasFlash => {
+        camHasFlash.textContent = hasFlash;
+        if (hasFlash) {
+            flashToggle.style.display = 'inline-block';
+            flashToggle.addEventListener('click', () => {
+                scanner.toggleFlash().then(() => flashState.textContent = scanner.isFlashOn() ? 'on' : 'off');
+            });
+        }
+    });
+});
+
+// document.getElementById('show-scan-region').onchange();
+
+// for debugging
+window.scanner = scanner;
+
+// document.getElementById('show-scan-region').addEventListener('change', (e) => {
+//     const input = e.target;
+//     const label = input.parentNode;
+//     label.parentNode.insertBefore(scanner.$canvas, label.nextSibling);
+//     scanner.$canvas.style.display = input.checked ? 'block' : 'none';
+// });
+
+// document.getElementById('img-show-scan-region').addEventListener('click', (e) => {
+//     console.log("img-show-scan-region triggered." + e.target);
+
+//     const input = e.target;
+//     const label = input.parentNode;
+//     label.parentNode.insertBefore(scanner.$canvas, label.nextSibling);
+//     scanner.$canvas.style.display = 'block';
+// });
+
+// document.getElementById('inversion-mode-select').addEventListener('change', event => {
+//     scanner.setInversionMode(event.target.value);
+// });
+
+// document.getElementById('start-button').addEventListener('click', () => {
+//     scanner.start();
+// });
+
+// document.getElementById('stop-button').addEventListener('click', () => {
+//     scanner.stop();
+// });
+
+// ####### File Scanning #######
+
+// fileSelector.addEventListener('change', event => {
+//     const file = fileSelector.files[0];
+//     if (!file) {
+//         return;
+//     }
+//     QrScanner.scanImage(file)
+//         .then(result => setResult(fileQrResult, result))
+//         .catch(e => setResult(fileQrResult, e || 'No QR code found.'));
+// });
