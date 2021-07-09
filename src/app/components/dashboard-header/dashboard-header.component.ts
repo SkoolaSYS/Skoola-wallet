@@ -12,7 +12,9 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   userName: any;
   cardNumber: any;
   transactionAmount: any;
-  goldAmount: any;
+  goldAmount: any;    // per transaction gold amount
+  goldWhole: any;;    // accumulated gold amount
+  goldFraction: any;  // accumulated gold amount
   
   constructor(private service: Services) { }
 
@@ -27,6 +29,10 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     this.service.getAccountBalance().subscribe((res: any) => {
       this.currentBalance = res[0].status.availableBalance;
       this.currencyType = res[0].account.type.currency.symbol;
+
+      const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(4).toString().split(".");
+      this.goldWhole = sumGoldParts[0];
+      this.goldFraction = sumGoldParts[1];
     },
     (err) => {
       console.log(err);
@@ -51,7 +57,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       // console.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
       this.cardNumber = accnum[0].value ? accnum[0].value : ''
-   },
+    },
     (err) => {
       console.log(err);
       this.service.logout();
