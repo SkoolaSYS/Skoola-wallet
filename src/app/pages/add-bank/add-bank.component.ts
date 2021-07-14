@@ -25,7 +25,7 @@ export class AddBankComponent implements OnInit {
     //console.log("click confirm");
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){
       await this.services.sendAddBank({
-      bank: bankFormName,
+      bankId: bankFormName,
       bankAccName: bankFormAccName,
       bankAccNumber: bankFormAccNumber
     }).toPromise(); 
