@@ -47,7 +47,8 @@ import {
   UpdateUsernamePwdComponent,
   UpdateProfileComponent,
   CimbBankloadComponent,
-  IdVerificationComponent
+  IdVerificationComponent,
+  AddBankComponent
 } from './pages';
 
 import {
@@ -126,6 +127,7 @@ export class SafeUrlPipe implements PipeTransform {
     UpdateProfileComponent,
     CimbBankloadComponent,
     IdVerificationComponent,
+    AddBankComponent,
 
     // components
     DashboardHeaderComponent,

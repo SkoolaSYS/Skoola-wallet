@@ -1,0 +1,133 @@
+<div>
+    <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Nav block - start -->
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav>
+          <mat-nav-list>
+            <app-matsidenav></app-matsidenav>
+          </mat-nav-list>
+        </mat-sidenav>
+        <!-- Nav block - end -->
+        <mat-sidenav-content fxFlexFill>
+          <div class="container-fluid p-0">
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12 col-xl-9">
+                <div class="dashboard-header-box">
+                  <app-dashboard-header></app-dashboard-header>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12 col-xl-9"> 
+                <div class="dashboard-content-box pb-5">
+                  <!-- Quick links -->
+                  <div class="container-fluid quicklinkbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              ADD BANK
+                            </div>
+                          </div>
+                          <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                            <div class="col-3 flex-align-center flex-column border-right-white">
+                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-withdraw2.png" /></div>
+                            </div>
+                            <div class="col-9 pl-3 color-white font-size-15">
+                                Add Bank Account Details for Withdrawal.
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Bank Account Details -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                                Bank Account Details
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                                <div class="d8p-h6">Bank Country</div>
+                                <select class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Country" [(ngModel)]="bankFormCountry"  required >
+                                  <option value="MY" >Malaysia</option>
+                                </select>
+                                <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4"> 
+                            <div class="col-10">
+                                <div class="d8p-h6">Bank Name</div>
+                                <select class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Name" [(ngModel)]="bankFormName" required>
+                                  <option value="null" disabled>Select Bank</option>
+                                  <option *ngFor="let bank of banks" [value]="bank.id" >
+                                    {{bank.name}}
+                                  </option>
+                                </select>
+                                <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                                <div class="d8p-h6">Bank Account Name</div>
+                                <input class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Name" [(ngModel)]="bankFormAccName" required/>
+                                <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                                <div class="d8p-h6">Bank Account Number</div>
+                                <input class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Number" [(ngModel)]="bankFormAccNumber" required/>
+                                <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Confirmation -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Confirmation
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10">
+                              <div class="button-container text-center">
+                                <button class="d8p-btn-default" (click)="doAddBank(bankFormName,bankFormAccName,bankFormAccNumber)">
+                                    Confirm
+                                    <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
+                                </button>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>    
+                  
+                  
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+</div>
