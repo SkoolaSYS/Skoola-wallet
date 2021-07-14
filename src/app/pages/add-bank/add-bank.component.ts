@@ -12,6 +12,8 @@ export class AddBankComponent implements OnInit {
   banks:any = [];
   bankFormCountry = "MY";
   bankFormName = null;
+  bankFormAccName;
+  bankFormAccNumber;
   constructor(private services:Services, private ngPopups: NgPopupsService, private router:Router) { }
 
   ngOnInit(): void {
