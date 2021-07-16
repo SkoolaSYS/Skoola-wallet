@@ -29,6 +29,7 @@ export class Services {
     public  receiver: Promise<any>;
     public  transactionData: any = {};
     public  bankData:any={};
+    public bankDataMember:any={};
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -349,6 +350,41 @@ export class Services {
         },
         (err) => {
             console.log('getBankData() Error...');
+            console.log(err);
+        }));;
+    }
+
+    public getBankDataMember(){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('rest/accounts/getBankMember', headerOptions).pipe(tap (data => {
+            this.bankDataMember = data;
+        },
+        (err) => {
+            console.log('getBankDataMember() Error...');
+            console.log(err);
+        }));;
+    }
+    public sendUpdateBank(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateBank',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('sendUpdateBank() Error...');
             console.log(err);
         }));;
     }

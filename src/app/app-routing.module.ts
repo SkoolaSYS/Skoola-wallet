@@ -28,7 +28,8 @@ import {
   UpdateProfileComponent,
   CimbBankloadComponent,
   IdVerificationComponent,
-  AddBankComponent
+  AddBankComponent,
+  UpdateBankComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -138,6 +139,10 @@ export const routes: Routes = [
  },
  {
   path:'add-bank', component:  AddBankComponent,
+ canActivate: [AuthenticationGuard]
+},
+{
+  path:'update-bank', component:  UpdateBankComponent,
  canActivate: [AuthenticationGuard]
 },
  { path: '**', component: LoginComponent }

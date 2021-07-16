@@ -24,3 +24,4 @@ export * from './update-profile/update-profile.component';
 export * from './cimb-bankload/cimb-bankload.component';
 export * from './id-verification/id-verification.component';
 export * from './add-bank/add-bank.component';
+export * from './update-bank/update-bank.component';

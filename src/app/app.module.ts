@@ -48,7 +48,8 @@ import {
   UpdateProfileComponent,
   CimbBankloadComponent,
   IdVerificationComponent,
-  AddBankComponent
+  AddBankComponent,
+  UpdateBankComponent
 } from './pages';
 
 import {
@@ -73,6 +74,7 @@ import {
 } from './components';
 
 import { Services } from 'src/app/services/service';
+
 
 
 @Pipe({
@@ -128,6 +130,7 @@ export class SafeUrlPipe implements PipeTransform {
     CimbBankloadComponent,
     IdVerificationComponent,
     AddBankComponent,
+    UpdateBankComponent,
 
     // components
     DashboardHeaderComponent,
@@ -151,7 +154,7 @@ export class SafeUrlPipe implements PipeTransform {
 
     // pipes
     SafeHtmlPipe,
-    SafeUrlPipe,
+    SafeUrlPipe
   
     
    

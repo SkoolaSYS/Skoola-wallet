@@ -14,7 +14,7 @@ export class MatsidenavComponent implements OnInit {
   // Image & IDVerification
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
-
+  public bankData: boolean;
   @ViewChild('sidenav') public sidenav:MatSidenav;
  
 
@@ -31,7 +31,18 @@ export class MatsidenavComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-
+    //check if user already register bank or not
+    this.services.getBankDataMember().subscribe((res: any)=>{
+      if (res == null){
+        this.bankData = false;
+      }
+      else{
+      this.bankData = true;
+      }
+    },
+    (err) => {
+      console.log(err);
+    });
   }
 
  

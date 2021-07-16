@@ -62,6 +62,8 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       console.log(err);
       this.service.logout();
     });
+
+    
   }
   
   ngOnDestroy(): void {
