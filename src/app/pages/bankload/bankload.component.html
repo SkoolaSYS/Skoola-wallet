@@ -63,7 +63,7 @@
                         </div>
                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-10">
-                            <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" />
+                            <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="amount" />
                           </div>
                         </div>
                       </div>
@@ -81,41 +81,39 @@
                           </div>
                         </div>
 
-
                         <!--  BANKS WITH IMAGES: BASIC RADIO BUTTON-->
                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-4 border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="mayBank" value="mayBank" name="bankChannels" (change)="setRouter(1)">
+                              <input type="radio" id="mayBank" value="mayBank" name="bankChannels" (change)="selectBank(1)" checked>
                               <img class="max-width-40" src="assets/icons-img/maybank-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="cimbBank" value="cimbBank" name="bankChannels" (change)="setRouter(2)">
+                              <input type="radio" id="cimbBank" value="cimbBank" name="bankChannels" (change)="selectBank(2)" disabled>
                               <img class="max-width-40" src="assets/icons-img/cimb-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 flex-column">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="rhbBank" value="rhbBank" name="bankChannels">
+                              <input type="radio" id="rhbBank" value="rhbBank" name="bankChannels" (change)="selectBank(3)" disabled>
                               <img class="max-width-40" src="assets/icons-img/rhb-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-top-grey border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="bankRakyat" value="bankRakyat" name="bankChannels">
+                              <input type="radio" id="bankRakyat" value="bankRakyat" name="bankChannels" (change)="selectBank(4)" disabled>
                               <img class="max-width-40" src="assets/icons-img/irakyat-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-top-grey border-right-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="publicBank" value="publicBank" name="bankChannels">
+                              <input type="radio" id="publicBank" value="publicBank" name="bankChannels" (change)="selectBank(5)" disabled>
                               <img class="max-width-40" src="assets/icons-img/publicbank-ios-ltst@3x.png" /></div>
                           </div>
                           <div class="col-4 border-top-grey">
                             <div class="height-60 flex-align-center text-center">
-                              <input type="radio" id="bankMuamalat" value="bankMuamalat" name="bankChannels">
+                              <input type="radio" id="bankMuamalat" value="bankMuamalat" name="bankChannels" (change)="selectBank(6)" disabled>
                               <img class="max-width-40" src="assets/icons-img/agrobank-ios-ltst@3x.png" /></div>
                           </div>
                         </div>
-                        
 
                       </div>
                     </div>
@@ -133,7 +131,7 @@
                         </div>
                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-10">
-                            <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" name="reference number" />
+                            <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" name="reference number" [(ngModel)]="reference"  />
                           </div>
                         </div>
                       </div>
@@ -154,10 +152,15 @@
                         <div class="row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-10">
                             <div class="button-container text-center">
-                              <button class="d8p-btn-default" type="button" (click)="changeRoute()">
+
+                              <form ngNoForm action="{{ botUrl }}" method="POST" (click)="doWithdrawal();">                              
+                                <textarea id="SESSION-ARGS" name="SESSION-ARGS" style="display:none">{{ sessionArgs }}</textarea>
+                                <button type="submit" class="d8p-btn-default">
                                   Confirm
                                   <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
-                              </button>
+                                </button>
+                              </form>
+                              
                           </div>
                           </div>
                         </div>

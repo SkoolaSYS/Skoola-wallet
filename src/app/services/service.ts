@@ -30,6 +30,7 @@ export class Services {
     public  transactionData: any = {};
     public  bankData:any={};
     public bankDataMember:any={};
+    public  userAccount: any;
 
     headerOptions = {
         headers: new HttpHeaders({

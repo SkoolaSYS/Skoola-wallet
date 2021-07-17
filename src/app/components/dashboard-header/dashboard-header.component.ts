@@ -33,6 +33,8 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(4).toString().split(".");
       this.goldWhole = sumGoldParts[0];
       this.goldFraction = sumGoldParts[1];
+
+      this.service.userAccount = res[0].account;
     },
     (err) => {
       console.log(err);
@@ -56,7 +58,9 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       // }
       // console.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
-      this.cardNumber = accnum[0].value ? accnum[0].value : ''
+      
+      if (accnum.length > 0)
+        this.cardNumber = accnum[0].value ? accnum[0].value : ''
     },
     (err) => {
       console.log(err);
