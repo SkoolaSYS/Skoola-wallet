@@ -52,7 +52,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       // console.log(res);
       this.userName = res.name;      
       var accnum = res.customValues.filter(getAccNumber);
-
+      console.log(res);
       // for (var i=0; i < accnum.length; i++){
       //   console.log(accnum[i].value);
       // }

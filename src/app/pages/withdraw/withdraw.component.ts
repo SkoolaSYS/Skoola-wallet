@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BotService } from '../../services/bot.service';
+import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-withdraw',
@@ -11,12 +12,32 @@ export class WithdrawComponent implements OnInit {
   transferDesc: string;
   otp: string;
   botService: BotService;
+  bankData: any;
+  bankFormCountry = "MY";
+  banks:any;
+  bankAccName: string;
+  bankAccNumber: string;
+  bankName: string;
 
-  constructor(botService: BotService) {
+  constructor(botService: BotService , private service:Services) {
     this.botService = botService
   }
 
   ngOnInit(): void {
+    this.service.getBankDataMember().subscribe((res: any)=>{
+      this.bankData = res;
+      this.bankAccName = this.bankData.bankAccName;
+      this.bankAccNumber = this.bankData.bankAccNumber;
+      console.log(this.bankData);
+    },
+    (err) => {
+      console.log(err);
+    });
+    this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
+      this.banks = res;
+      this.bankName =this.banks[this.bankData.bankId - 1].name;
+      console.log(this.banks);
+    });
   }
 
   doWibt(): void {
