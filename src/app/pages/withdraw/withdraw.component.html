@@ -118,7 +118,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" [(ngModel)]="transferDesc" name="reference number" />
+                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" [(ngModel)]="withdrawalDesc" name="reference number" />
                             </div>
                           </div>
                         </div>
@@ -159,7 +159,7 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <div class="button-container text-center">
-                                <button class="d8p-btn-default" (click)="doWibt()">
+                                <button class="d8p-btn-default" (click)="doWibt(transferAmount,withdrawalDesc)">
                                     Confirm
                                     <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                 </button>
@@ -171,8 +171,8 @@
                     </div>
                   </div>    
                   
-                  <div class="container-fluid">
-                    <!-- Authenication Method -->
+                  <!-- <div class="container-fluid">
+                    <!-- Authenication Method 
                     <div class="row no-gutters justify-content-center">
                       <div class="col-9 titlebg">
                         <div>Authenication Method</div>
@@ -200,12 +200,12 @@
                               <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
                             </div>
                             <img class="max-width-100" src="assets/icons-img/icon-face1.png" />
-                          </div> -->
+                          </div> 
                         </div>
                       </div>
                     </div>
 
-                    <!-- OTP -->
+                    <!-- OTP 
                     <div class="row no-gutters justify-content-center">
                       <div class="col-9 titlebg">
                         <div>SMS OTP</div>
@@ -262,7 +262,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   
                 </div>
 
