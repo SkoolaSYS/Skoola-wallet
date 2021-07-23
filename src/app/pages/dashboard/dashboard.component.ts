@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -14,7 +15,6 @@ export class DashboardComponent implements OnInit {
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
 
-
   constructor(private services: Services, private router: Router) {}
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-
+    
 
 
     // TODO: To to decide whether we want to display profile image on side-nav bar.

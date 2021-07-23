@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BotService } from '../../services/bot.service';
+import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-withdraw',
@@ -11,57 +12,76 @@ export class WithdrawComponent implements OnInit {
   transferDesc: string;
   otp: string;
   botService: BotService;
+  bankData: any;
+  bankFormCountry = "MY";
+  banks:any;
+  bankAccName: string;
+  bankAccNumber: string;
+  bankName: string;
 
-  constructor(botService: BotService) {
+  constructor(botService: BotService , private service:Services) {
     this.botService = botService
   }
 
   ngOnInit(): void {
-  }
-
-  doWibt(): void {
-    let $this = this
-    this.botService.sendInitRequest({
-      credentials: {
-        username: '',
-        password: ''
-      }
-    }).subscribe(res => {
-      if (res.status == "success")
-        $this.login()
+    this.service.getBankDataMember().subscribe((res: any)=>{
+      this.bankData = res;
+      this.bankAccName = this.bankData.bankAccName;
+      this.bankAccNumber = this.bankData.bankAccNumber;
+      console.log(this.bankData);
+    },
+    (err) => {
+      console.log(err);
     });
+    this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
+      this.banks = res;
+      this.bankName = this.banks[this.bankData.bankId - 1].name;
+      console.log(this.banks);
+    });
+    
   }
+  
+  doWibt(transferAmount:string,withdrawalDesc:string){
+    console.log(this.service.userAccount);
+    this.service.doWithdrawal({
+      amount: transferAmount,
+      desc: withdrawalDesc,
+      accountId: this.service.userAccount.id
+    }).toPromise();}
+  
+  
 
-  login(): void {
-    let $this = this
-    console.log("Logging in..")
-    this.botService.sendLoginRequest()
-      .subscribe(res => {
-        console.log("Logged in.")
-        console.debug(res)
+//   login(): void {
+//     let $this = this
+//     console.log("Logging in..")
+//     this.botService.sendLoginRequest()
+//       .subscribe(res => {
+//         console.log("Logged in.")
+//         console.debug(res)
 
-        $this.doTransfer()
-      })
+//         $this.doTransfer()
+//       })
+//   }
+
+//   doTransfer(): void {
+//     console.log("Requesting transfer to USER..")
+//     this.botService.sendDoWithdrawRequest({
+//       amount: this.transferAmount,
+//       description: this.transferDesc
+//     }).subscribe(res => {
+//       console.log("Transfer requested successfully. Please enter TAC")
+//     })
+//   }
+
+//   enterTac(): void {
+//     let $this = this
+//     console.log("TAC sent.")
+//     this.botService.sendTacRequest({
+//       tac: $this.otp
+//     }).subscribe(res => {
+//       console.log("WIBT is completed!")
+//     })
+//   }
+
+// }
   }
-
-  doTransfer(): void {
-    console.log("Requesting transfer to USER..")
-    this.botService.sendDoWithdrawRequest({
-      amount: this.transferAmount,
-      description: this.transferDesc
-    }).subscribe(res => {
-      console.log("Transfer requested successfully. Please enter TAC")
-    })
-  }
-
-  enterTac(): void {
-    let $this = this
-    console.log("TAC sent.")
-    this.botService.sendTacRequest({
-      tac: $this.otp
-    }).subscribe(res => {
-      console.log("WIBT is completed!")
-    })
-  }
-
-}

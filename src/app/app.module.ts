@@ -48,7 +48,12 @@ import {
   UpdateProfileComponent,
   CimbBankloadComponent,
   IdVerificationComponent,
+<<<<<<< HEAD
   QrPaymentComponent
+=======
+  AddBankComponent,
+  UpdateBankComponent
+>>>>>>> b5ef24705cfed482b556bb159aeb07a9db97f1aa
 } from './pages';
 
 import {
@@ -72,6 +77,7 @@ import {
 } from './components';
 
 import { Services } from 'src/app/services/service';
+
 
 
 @Pipe({
@@ -126,7 +132,12 @@ export class SafeUrlPipe implements PipeTransform {
     UpdateProfileComponent,
     CimbBankloadComponent,
     IdVerificationComponent,
+<<<<<<< HEAD
     QrPaymentComponent,
+=======
+    AddBankComponent,
+    UpdateBankComponent,
+>>>>>>> b5ef24705cfed482b556bb159aeb07a9db97f1aa
 
     // components
     DashboardHeaderComponent,
@@ -149,7 +160,12 @@ export class SafeUrlPipe implements PipeTransform {
 
     // pipes
     SafeHtmlPipe,
+<<<<<<< HEAD
     SafeUrlPipe,
+=======
+    SafeUrlPipe
+  
+>>>>>>> b5ef24705cfed482b556bb159aeb07a9db97f1aa
     
    
   ],

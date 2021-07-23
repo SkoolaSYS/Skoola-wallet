@@ -78,7 +78,7 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Name</div>
-                                <div class="d8p-h6 text-right color-cyan ">May bank</div>
+                                <div class="d8p-h6 text-right color-cyan ">{{bankName}}</div>
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
@@ -92,14 +92,14 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Account Name</div>
-                                <div class="d8p-h6 text-right color-cyan ">HAZIMAN HASHIM</div>
+                                <div class="d8p-h6 text-right color-cyan ">{{bankAccName}}</div>
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Account Number</div>
-                                <div class="d8p-h6 text-right color-cyan ">151306769312</div>
+                                <div class="d8p-h6 text-right color-cyan ">{{bankAccNumber}}</div>
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
@@ -119,7 +119,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" [(ngModel)]="transferDesc" name="reference number" />
+                              <input class="d8p-input-normal" placeholder="Ex: May transfer" type="text" [(ngModel)]="withdrawalDesc" name="reference number" />
                             </div>
                           </div>
                         </div>
@@ -160,7 +160,7 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <div class="button-container text-center">
-                                <button class="d8p-btn-default" (click)="doWibt()">
+                                <button class="d8p-btn-default" (click)="doWibt(transferAmount,withdrawalDesc)">
                                     Confirm
                                     <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                 </button>
@@ -172,8 +172,8 @@
                     </div>
                   </div>    
                   
-                  <div class="container-fluid">
-                    <!-- Authenication Method -->
+                  <!-- <div class="container-fluid">
+                    <!-- Authenication Method 
                     <div class="row no-gutters justify-content-center">
                       <div class="col-9 titlebg">
                         <div>Authenication Method</div>
@@ -201,12 +201,12 @@
                               <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
                             </div>
                             <img class="max-width-100" src="assets/icons-img/icon-face1.png" />
-                          </div> -->
+                          </div> 
                         </div>
                       </div>
                     </div>
 
-                    <!-- OTP -->
+                    <!-- OTP 
                     <div class="row no-gutters justify-content-center">
                       <div class="col-9 titlebg">
                         <div>SMS OTP</div>
@@ -263,7 +263,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   
                 </div>
 

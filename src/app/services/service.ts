@@ -22,6 +22,7 @@ export class Services {
     private $confirmnewusername: string;    
     private $confirmnewpassword: string;
     public  forms: any = {};
+    public  bankForms: any = {};
     public  currentUser: Promise<any>;
     private storage: Storage = localStorage;
     private ACCESS_TOKEN = 'accessToken';
@@ -30,6 +31,9 @@ export class Services {
     private $allowWithdrawal: boolean;
     public  receiver: Promise<any>;
     public  transactionData: any = {};
+    public  bankData:any={};
+    public bankDataMember:any={};
+    public  userAccount: any;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -312,7 +316,7 @@ export class Services {
             this.receiver = of(data).toPromise();
         },
         (err) => {
-            console.log('uploadVerificationData() Error...');
+            console.log('getMemberByAccountNumber() Error...');
             console.log(err);
         }));;
     }
@@ -334,9 +338,93 @@ export class Services {
             this.transactionData.gold = data.goldAmount;
         },
         (err) => {
-            console.log('uploadVerificationData() Error...');
+            console.log('getWalletPaymentData() Error...');
+            console.log(err);
+        }));;
+    }
+    public sendAddBank(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/addBank',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('sendAddBank() Error...');
+            console.log(err);
+        }));;
+    }
+    public getBankData(bankCountry){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('rest/accounts/banks/'+bankCountry, headerOptions).pipe(tap (data => {
+            this.bankData = data;
+        },
+        (err) => {
+            console.log('getBankData() Error...');
             console.log(err);
         }));;
     }
 
+    public getBankDataMember(){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('rest/accounts/getBankMember', headerOptions).pipe(tap (data => {
+            this.bankDataMember = data;
+        },
+        (err) => {
+            console.log('getBankDataMember() Error...');
+            console.log(err);
+        }));;
+    }
+    public sendUpdateBank(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateBank',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('sendUpdateBank() Error...');
+            console.log(err);
+        }));;
+    }
+    public doWithdrawal(data: any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.post('/rest/payments/confirmWithdrawal', data , headerOptions).pipe(tap (data => {            
+            console.log(data);
+        },
+        (err) => {
+            console.log('MemberPerformPayment() Error : ' + err);
+        }));;
+    }
 }
