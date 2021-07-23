@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -10,6 +10,9 @@ import { NgPopupsService } from 'ng-popups';
 })
 
 export class Services {
+    getElementById() {
+      throw new Error('Method not implemented.');
+    }
     public activetransaction: boolean;
     private $username: string;
     private $password: string;
@@ -25,8 +28,8 @@ export class Services {
     private $forceChangePassword: boolean;
     public opsTagging: string;
     private $allowWithdrawal: boolean;
-    private $isIdVerified: boolean;
     public  receiver: Promise<any>;
+    public  transactionData: any = {};
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -67,9 +70,6 @@ export class Services {
     public get allowWithdrawal(): boolean { return this.$allowWithdrawal; }
     public set allowWithdrawal(value: boolean) { this.$allowWithdrawal = value; }
 
-    public get isIdVerified(): boolean { return this.$isIdVerified; }
-    public set isIdVerified(value: boolean) { this.$isIdVerified = value; }
-
     storeSession({accessToken}: {
         accessToken?: string;
     }): void {
@@ -101,7 +101,6 @@ export class Services {
             this.authToken = authorizationData;
             this.forceChangePassword = data.forceChangePassword;
             this.allowWithdrawal = data.allowWithdrawal;
-            this.isIdVerified = data.isIdVerified;
 
             console.log(username);
             
@@ -210,6 +209,24 @@ export class Services {
             console.log(err);
         }));;
     }
+    public loadById(merchantId:string){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        console.log('merchantId=6');
+        return this.http.get( "/rest/members/"+merchantId, headerOptions).pipe(tap (data => {
+            console.log(data);
+            console.log("id");
+        },
+        (err) => {
+            console.log('loadById() Error...');
+            console.log(err);
+        }));;
+    }
     public paymentTransfer(data: any){
         const headerOptions = {
             headers: new HttpHeaders({
@@ -219,6 +236,7 @@ export class Services {
                 Authorization: this.token
             })
         };
+        console.log (data);
         console.log('paymentTransfer data : ' + data.toMemberId);
         return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions).pipe(tap (data => {            
             console.log(data);
@@ -297,8 +315,28 @@ export class Services {
             console.log('uploadVerificationData() Error...');
             console.log(err);
         }));;
+    }
 
+    public getWalletPaymentData(accNumber: string, transactionTypeId: number): Observable<any> {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            }),
+            params: new HttpParams().set("toMemberAccNumber", accNumber).set("transferTypeId", transactionTypeId.toString())
+        };  
 
+        return this.http.get('/rest/payments/walletPaymentData', headerOptions).pipe(tap (data => {
+            // console.log(data);
+            this.receiver = of(data.toMember).toPromise();
+            this.transactionData.fee = data.transactionFee;
+            this.transactionData.gold = data.goldAmount;
+        },
+        (err) => {
+            console.log('uploadVerificationData() Error...');
+            console.log(err);
+        }));;
     }
 
 }

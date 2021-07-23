@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
+
 
   constructor(private services: Services, private router: Router) {}
 

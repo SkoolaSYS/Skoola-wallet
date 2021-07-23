@@ -52,17 +52,17 @@
                         <div class="container-fluid p-0 menu-grid">
                           <div class="row no-gutters justify-content-center">
                             <div class="col-12 col-xl-9 titlebg">
-                              Merchant's Account
+                              Merchant's Name
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <!-- to do ( show the merchant name )-->
-                              <select class="d8p-select arrowstyle" name="name" [(ngModel)]="transferForm.toMemberId" (change)=memberChange() required>
-                                <option *ngFor="let member of membersList" [ngValue]="member.id">
-                                  {{member.name}}
-                                </option>
-                              </select>
+                              <div class="container-fluid p-0 menu-grid">
+                              <body class="col-10" class="row no-gutters justify-content-center">
+                                <h1 style="color:rgb(1, 1, 2);font-size:30px;font-family:'sans-serif'">{{merchantName}}</h1>
+                               </body>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -70,7 +70,7 @@
                     </div>
                   </div>
                   <!-- Promotion -->
-                  <div class="container-fluid">
+                   <!-- <div class="container-fluid">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
@@ -132,7 +132,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                    <!-- Amount -->
                    <div class="container-fluid">
                     <div class="row no-gutters">
@@ -145,7 +145,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="transferForm.amount" required/>
+                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="amount" required/>
                             </div>
                           </div>
                         </div>
@@ -164,7 +164,7 @@
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
-                              <input class="d8p-input-normal w-100 text-transform-uppercase" type="date" name="transfer date" />
+                              <input class="d8p-input-normal w-100 text-transform-uppercase" readonly type="text" name="effectiveDate" [(ngModel)]="effectiveDate"/>
                             </div>
                           </div>
                         </div>
@@ -185,7 +185,7 @@
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <div class="button-container text-center">
-                                <button class="d8p-btn-default" routerLink="/transfer-details" [disabled]="form.invalid">
+                                <button class="d8p-btn-default" (click)="onSubmit()">
                                     Confirm
                                     <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                 </button>

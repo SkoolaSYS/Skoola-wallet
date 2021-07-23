@@ -33,7 +33,7 @@
   </div>
   <div class="row no-gutters min-height-132">
     <div class="col-1 d-flex justify-content-center align-items-center">
-      <img class="max-width-60 pt-5" src="assets/icons-img/icon-left1.png" style="margin-top: 1.5rem; margin-left: 0.25rem;"/>
+      <!-- <img class="max-width-60 pt-5" src="assets/icons-img/icon-left1.png" style="margin-top: 1.5rem; margin-left: 0.25rem;"/> -->
     </div>
     <div class="col-10">
       <div class="text-center">
@@ -61,10 +61,10 @@
               <span class="mr-2"
                 ><img src="assets/icons-img/icon-debitsmall3.png"
               /></span>
-              RM 100.05
+              RM {{ transactionAmount | number: '1.2-2' }}
             </div>
             <div class="summary-gold-view">
-              0.1001g Gold
+              {{ goldAmount | number: '.4-4' }}g Gold
               <span class="ml-2"
                 ><img src="assets/icons-img/icon-creditsmall1.png"
               /></span>
@@ -75,15 +75,15 @@
       <mat-tab disabled label="Normal" class="min-height-132">
       </mat-tab>
 <!-- qr button -->
-<mat-tab routerLink="/qr-code" label="QR" >
+<mat-tab label="QR">
   <div class="row no-gutters justify-content-center">
     <div class="max-width-30 pt-3" routerLink="/qr-code"><img class="max-width-60" src="assets/icons-img/qrcode1.png" /></div>
   </div>
 </mat-tab>
       </mat-tab-group>
     </div>
-    <div class="col-1 d-flex justify-content-center align-items-center">
+    <!-- <div class="col-1 d-flex justify-content-center align-items-center">
       <img class="max-width-60 pt-5" src="assets/icons-img/icon-right1.png" style="margin-top: 1.5rem; margin-right: 0.25rem;" />
-    </div>
+    </div> -->
   </div>
 </div>
