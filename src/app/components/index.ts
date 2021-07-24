@@ -16,3 +16,4 @@ export * from './buynear-top-view/buynear-top-view.component';
 export * from './otpbank/otpbank.component';
 export * from './cimbbank-details/cimbbank-details.component';
 export * from './cimbbank-transaction/cimbbank-transaction.component';
+export * from './matsidenav/matsidenav.component';

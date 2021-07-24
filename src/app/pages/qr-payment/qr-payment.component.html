@@ -1,209 +1,209 @@
 <div>
-    <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
-    </button>
-    <!-- Nav block - start -->
-      <mat-sidenav-container>
-        <mat-sidenav #sidenav>
-          <mat-nav-list>
-            <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
-            <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
-          </mat-nav-list>
-        </mat-sidenav>
-        <!-- Nav block - end -->
-        <mat-sidenav-content fxFlexFill>
-          <div class="container-fluid p-0">
-            <div class="row no-gutters justify-content-center">
-              <div class="col-12 col-xl-9">
-                <div class="dashboard-header-box">
-                  <app-dashboard-header></app-dashboard-header>
-                </div>
-              </div>
-            </div>
-            <div class="row no-gutters justify-content-center">
-              <div class="col-12 col-xl-9">
-                <div class="dashboard-content-box pb-5">
-                  <!-- Quick links -->
-                  <div class="container-fluid quicklinkbg">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              QR PAYMENT
-                            </div>
-                          </div>
-                          <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
-                            <div class="row no-gutters justify-content-center">
-                            <div class="col-9 pl-3 color-white font-size-15">
-                                Funds residing in my D-8P Account MYR e-Wallet will be transferred to merchant recipient's D-8P Account.
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <form novalidate #form="ngForm">
-                  <!-- Merchant -->
-                  <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              Merchant's Name
-                            </div>
-                          </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
-                            <div class="col-10">
-                              <!-- to do ( show the merchant name )-->
-                              <div class="container-fluid p-0 menu-grid">
-                              <body class="col-10" class="row no-gutters justify-content-center">
-                                <h1 style="color:rgb(1, 1, 2);font-size:30px;font-family:'sans-serif'">{{merchantName}}</h1>
-                               </body>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Promotion -->
-                   <!-- <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="container-fluid">
-                              <div class="row no-gutters justify-content-center">
-                                <div class="col-12 col-xl-9">
-                                  <div class="container-fluid p-0 menu-grid">
-                                    <div class="row no-gutters justify-content-center">
-                                      <div class="col-12 col-xl-9 titlebg">
-                                        Promotion
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row no-gutters justify-content-center mt-3 mb-3">
-                            <div class="col-12 col-xl-9">
-                              <div class="row no-gutters">
-                                <div class="col-9">
-                                  <div class="mt-1 font-size-13 font-arial color-cyan">
-                                    MILO 3in1 18x30
-                                  </div>
-                                </div>
-                                <div class="col-3 d-flex justify-content-end flex-column">
-                                  <div class="text-right">
-                                    </div>
-                                  <div class="mt-1 font-size-13 font-arial text-right">
-                                    RM 11.39 save 3.69
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="max-width-100" src="assets/icons-img/linegrey1.png"
-                              />
-                            </div>
-                          </div>
-                          <div class="row no-gutters justify-content-center mt-3 mb-3">
-                            <div class="col-12 col-xl-9">
-                              <div class="row no-gutters">
-                                <div class="col-9">
-                                  <div class="mt-1 font-size-13 font-arial color-cyan">
-                                    NESCAFE Blend&Brew 
-                                  </div>
-                                </div>
-                                <div class="col-3 d-flex justify-content-end flex-column">
-                                  <div class="text-right">
-                                  </div>
-                                  <div class="mt-1 font-size-13 font-arial text-right">
-                                    RM 9.90 save1.00
-                                  </div>
-                                </div>
-                              </div>
-                              <img class="max-width-100" src="assets/icons-img/linegrey1.png"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-                   <!-- Amount -->
-                   <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              Amount (RM)
-                            </div>
-                          </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
-                            <div class="col-10">
-                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="amount" required/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Effective Date -->
-                  <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              Effective Date
-                            </div>
-                          </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
-                            <div class="col-10">
-                              <input class="d8p-input-normal w-100 text-transform-uppercase" readonly type="text" name="effectiveDate" [(ngModel)]="effectiveDate"/>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Confirmation -->
-                  <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              Confirmation
-                            </div>
-                          </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
-                            <div class="col-10">
-                              <div class="button-container text-center">
-                                <button class="d8p-btn-default" (click)="onSubmit()">
-                                    Confirm
-                                    <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
-                                </button>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </form>
-                  
-                </div>
-
+  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+  </button>
+  <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
+          <div class="mt-2" mat-list-item routerLink="/login"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box">
+                <app-dashboard-header></app-dashboard-header>
               </div>
             </div>
           </div>
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-content-box pb-5">
+                <!-- Quick links -->
+                <div class="container-fluid quicklinkbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            QR PAYMENT
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                          <div class="row no-gutters justify-content-center">
+                          <div class="col-9 pl-3 color-white font-size-15">
+                              Funds residing in my D-8P Account MYR e-Wallet will be transferred to merchant recipient's D-8P Account.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <form novalidate #form="ngForm">
+                <!-- Merchant -->
+                <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            Merchant's Name
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="col-10">
+                            <!-- to do ( show the merchant name )-->
+                            <div class="container-fluid p-0 menu-grid">
+                            <body class="col-10" class="row no-gutters justify-content-center">
+                              <h1 style="color:rgb(1, 1, 2);font-size:30px;font-family:'sans-serif'">{{merchantName}}</h1>
+                             </body>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Promotion -->
+                 <!-- <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="container-fluid">
+                            <div class="row no-gutters justify-content-center">
+                              <div class="col-12 col-xl-9">
+                                <div class="container-fluid p-0 menu-grid">
+                                  <div class="row no-gutters justify-content-center">
+                                    <div class="col-12 col-xl-9 titlebg">
+                                      Promotion
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-3 mb-3">
+                          <div class="col-12 col-xl-9">
+                            <div class="row no-gutters">
+                              <div class="col-9">
+                                <div class="mt-1 font-size-13 font-arial color-cyan">
+                                  MILO 3in1 18x30
+                                </div>
+                              </div>
+                              <div class="col-3 d-flex justify-content-end flex-column">
+                                <div class="text-right">
+                                  </div>
+                                <div class="mt-1 font-size-13 font-arial text-right">
+                                  RM 11.39 save 3.69
+                                </div>
+                              </div>
+                            </div>
+                            <img class="max-width-100" src="assets/icons-img/linegrey1.png"
+                            />
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-3 mb-3">
+                          <div class="col-12 col-xl-9">
+                            <div class="row no-gutters">
+                              <div class="col-9">
+                                <div class="mt-1 font-size-13 font-arial color-cyan">
+                                  NESCAFE Blend&Brew 
+                                </div>
+                              </div>
+                              <div class="col-3 d-flex justify-content-end flex-column">
+                                <div class="text-right">
+                                </div>
+                                <div class="mt-1 font-size-13 font-arial text-right">
+                                  RM 9.90 save1.00
+                                </div>
+                              </div>
+                            </div>
+                            <img class="max-width-100" src="assets/icons-img/linegrey1.png"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                 <!-- Amount -->
+                 <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            Amount (RM)
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="col-10">
+                            <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="amount" required/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Effective Date -->
+                <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            Effective Date
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="col-10">
+                            <input class="d8p-input-normal w-100 text-transform-uppercase" readonly type="text" name="effectiveDate" [(ngModel)]="effectiveDate"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-        </mat-sidenav-content>
-      </mat-sidenav-container>
+                <!-- Confirmation -->
+                <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            Confirmation
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="col-10">
+                            <div class="button-container text-center">
+                              <button class="d8p-btn-default" (click)="onSubmit()">
+                                  Confirm
+                                  <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
+                              </button>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

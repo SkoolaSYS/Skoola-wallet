@@ -48,12 +48,10 @@ import {
   UpdateProfileComponent,
   CimbBankloadComponent,
   IdVerificationComponent,
-<<<<<<< HEAD
-  QrPaymentComponent
-=======
+  QrPaymentComponent,
   AddBankComponent,
-  UpdateBankComponent
->>>>>>> b5ef24705cfed482b556bb159aeb07a9db97f1aa
+  UpdateBankComponent,
+
 } from './pages';
 
 import {
@@ -72,7 +70,8 @@ import {
   BuynearTopViewComponent,
   OtpbankComponent,
   CimbbankDetailsComponent,
-  CimbbankTransactionComponent
+  CimbbankTransactionComponent,
+  MatsidenavComponent,
 
 } from './components';
 
@@ -132,13 +131,10 @@ export class SafeUrlPipe implements PipeTransform {
     UpdateProfileComponent,
     CimbBankloadComponent,
     IdVerificationComponent,
-<<<<<<< HEAD
     QrPaymentComponent,
-=======
     AddBankComponent,
     UpdateBankComponent,
->>>>>>> b5ef24705cfed482b556bb159aeb07a9db97f1aa
-
+  
     // components
     DashboardHeaderComponent,
     TransactionViewComponent,
@@ -157,15 +153,15 @@ export class SafeUrlPipe implements PipeTransform {
     OtpbankComponent,
     CimbbankDetailsComponent,
     CimbbankTransactionComponent,
+    MatsidenavComponent,
 
     // pipes
     SafeHtmlPipe,
-<<<<<<< HEAD
+
     SafeUrlPipe,
-=======
+
     SafeUrlPipe
-  
->>>>>>> b5ef24705cfed482b556bb159aeb07a9db97f1aa
+
     
    
   ],
