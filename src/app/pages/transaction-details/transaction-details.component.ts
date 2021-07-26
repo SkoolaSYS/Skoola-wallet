@@ -13,18 +13,33 @@ export class TransactionDetailsComponent implements OnInit {
   receiver: any;
   senderImg: string = "";
   receiverImg: string = "";
+  effectiveDate: string = "";
+  transactionFee: any;
+  goldAmount: any;
 
   constructor(private services: Services, private router: Router) { }
   async ngOnInit(): Promise<void> {
     this.currentUser = await this.services.currentUser;
-    this.form = this.services.forms.transferForm || {}; // FIXME: Form is reset when page is reloaded.
+    this.form = this.services.forms.transferForm || {}; // FIXME: Form is reset when page is reloaded, unless we persists data.
     //this.receiver = this.form.selectedMember;
     this.receiver = await this.services.receiver;
 
-    if (this.currentUser.images && this.currentUser.images.length != 3)
-      this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
-    if (this.receiver.images && this.receiver.images.length != 3)
-      this.receiverImg = Utility.rebaseImageUrl(this.receiver.images[0].thumbnailUrl);
+    try {
+      if (this.currentUser.images && this.currentUser.images.length != 3)
+        this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
+      if (this.receiver.images && this.receiver.images.length != 3)
+        this.receiverImg = Utility.rebaseImageUrl(this.receiver.images[0].thumbnailUrl);
+    }
+    catch {
+      // Reloading? go back to transfer page
+      this.router.navigate(['transfer']);
+    }
+
+    // TODO: Original display format is '24 AUG 2020'
+    this.effectiveDate = this.form.effectiveDate;
+    this.transactionFee = this.services.transactionData.fee;
+    this.goldAmount = this.services.transactionData.gold;  
+    console.log(`Gold: ${this.services.transactionData.gold} --> ${parseFloat(this.services.transactionData.gold).toFixed(4)}`);
   }
   
   async otpSubmit(otp: string) {
@@ -35,7 +50,10 @@ export class TransactionDetailsComponent implements OnInit {
     transactionPassword: otp,
     description: this.form.description,
    }).toPromise();
+
    this.services.activetransaction = true;
+   this.services.transactionData.amount = this.form.amount;
+
    this.router.navigate(['dashboard']);
   }
 }

@@ -39,9 +39,9 @@
           </div>
         </div>
 
-        <div>
-          <div>
-            <div>
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box pb-5">
               <app-qr-view></app-qr-view>
               <!-- Gallery -->
               <div class="container-fluid">
@@ -49,11 +49,21 @@
                   <div class="col-12 col-xl-9">
                     <div class="container-fluid p-0 menu-grid">
                       <div class="row no-gutters justify-content-center">
-                        <div class="col-12 col-xl-9 titlebg">Scan QR for Payment</div>
+                        <div class="col-12 col-xl-9 titlebg">Scan from Gallery</div>
                       </div>
                       <div
                         class="row no-gutters justify-content-center mt-4 mb-4"
                       >
+                        <div class="col-10">
+                          <div class="button-container text-center">
+                            <button
+                              class="d8p-btn-default"
+                              routerLink="/qr-code-shopping"
+                            >
+                              Gallery
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

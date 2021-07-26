@@ -9,6 +9,9 @@ export class TransactionViewComponent implements OnInit {
   @Input() sender: string;
   @Input() amount: string;
   @Input() image: string;
+  @Input() transactionFee: string;
+  @Input() goldAmount: string;
+
   ngOnInit(): void {
   }
 
