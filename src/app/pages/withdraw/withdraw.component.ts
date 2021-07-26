@@ -35,54 +35,53 @@ export class WithdrawComponent implements OnInit {
     });
     this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks = res;
-      this.bankName =this.banks[this.bankData.bankId - 1].name;
+      this.bankName = this.banks[this.bankData.bankId - 1].name;
       console.log(this.banks);
     });
+    
   }
+  
+  doWibt(transferAmount:string,withdrawalDesc:string){
+    console.log(this.service.userAccount);
+    this.service.doWithdrawal({
+      amount: transferAmount,
+      desc: withdrawalDesc,
+      accountId: this.service.userAccount.id
+    }).toPromise();}
+  
+  
 
-  doWibt(): void {
-    let $this = this
-    this.botService.sendInitRequest({
-      credentials: {
-        username: '',
-        password: ''
-      }
-    }).subscribe(res => {
-      if (res.status == "success")
-        $this.login()
-    });
+//   login(): void {
+//     let $this = this
+//     console.log("Logging in..")
+//     this.botService.sendLoginRequest()
+//       .subscribe(res => {
+//         console.log("Logged in.")
+//         console.debug(res)
+
+//         $this.doTransfer()
+//       })
+//   }
+
+//   doTransfer(): void {
+//     console.log("Requesting transfer to USER..")
+//     this.botService.sendDoWithdrawRequest({
+//       amount: this.transferAmount,
+//       description: this.transferDesc
+//     }).subscribe(res => {
+//       console.log("Transfer requested successfully. Please enter TAC")
+//     })
+//   }
+
+//   enterTac(): void {
+//     let $this = this
+//     console.log("TAC sent.")
+//     this.botService.sendTacRequest({
+//       tac: $this.otp
+//     }).subscribe(res => {
+//       console.log("WIBT is completed!")
+//     })
+//   }
+
+// }
   }
-
-  login(): void {
-    let $this = this
-    console.log("Logging in..")
-    this.botService.sendLoginRequest()
-      .subscribe(res => {
-        console.log("Logged in.")
-        console.debug(res)
-
-        $this.doTransfer()
-      })
-  }
-
-  doTransfer(): void {
-    console.log("Requesting transfer to USER..")
-    this.botService.sendDoWithdrawRequest({
-      amount: this.transferAmount,
-      description: this.transferDesc
-    }).subscribe(res => {
-      console.log("Transfer requested successfully. Please enter TAC")
-    })
-  }
-
-  enterTac(): void {
-    let $this = this
-    console.log("TAC sent.")
-    this.botService.sendTacRequest({
-      tac: $this.otp
-    }).subscribe(res => {
-      console.log("WIBT is completed!")
-    })
-  }
-
-}
