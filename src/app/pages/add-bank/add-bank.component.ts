@@ -30,7 +30,13 @@ export class AddBankComponent implements OnInit {
       bankId: bankFormName,
       bankAccName: bankFormAccName,
       bankAccNumber: bankFormAccNumber
-    }).toPromise(); 
+    }).toPromise().then(() => {
+      this.ngPopups.alert('Your bank details has been sucessfully added!');
+      this.router.navigate(['dashboard']);
+    })
+    .catch((err) => {
+      this.ngPopups.alert('There was an error in your submission!');
+    });  
   }}
 }
 

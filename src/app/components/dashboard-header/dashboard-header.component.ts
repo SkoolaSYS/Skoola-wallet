@@ -28,6 +28,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
       this.currentBalance = res[0].status.availableBalance;
+      this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
 
       const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(4).toString().split(".");
@@ -52,7 +53,6 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       // console.log(res);
       this.userName = res.name;      
       var accnum = res.customValues.filter(getAccNumber);
-      console.log(res);
       // for (var i=0; i < accnum.length; i++){
       //   console.log(accnum[i].value);
       // }

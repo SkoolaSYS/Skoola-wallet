@@ -11,6 +11,7 @@ import { NgPopupsService } from 'ng-popups';
 
 export class Services {
     public activetransaction: boolean;
+    public currentBalance;
     private $username: string;
     private $password: string;
     private authToken: string;
@@ -29,8 +30,9 @@ export class Services {
     public  receiver: Promise<any>;
     public  transactionData: any = {};
     public  bankData:any={};
-    public bankDataMember:any={};
+    public memberBankData:any={};
     public  userAccount: any;
+    public transactionFeeAmount;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -355,7 +357,7 @@ export class Services {
         }));;
     }
 
-    public getBankDataMember(){
+    public getMemberBankData(){
         const headerOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -364,8 +366,8 @@ export class Services {
                 Authorization: this.token
             })
         };
-        return this.http.get('rest/accounts/getBankMember', headerOptions).pipe(tap (data => {
-            this.bankDataMember = data;
+        return this.http.get('rest/accounts/getMemberBankData', headerOptions).pipe(tap (data => {
+            this.memberBankData = data;
         },
         (err) => {
             console.log('getBankDataMember() Error...');
@@ -399,10 +401,27 @@ export class Services {
             })
         };
         return this.http.post('/rest/payments/confirmWithdrawal', data , headerOptions).pipe(tap (data => {            
-            console.log(data);
+            //console.log(data);
         },
         (err) => {
             console.log('MemberPerformPayment() Error : ' + err);
+        }));;
+    }
+    public getTransactionFeeAmount(transferTypeId){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transferTypeId, headerOptions).pipe(tap (data => {
+            this.transactionFeeAmount = data;
+        },
+        (err) => {
+            console.log('getTransactionFeeAmount() Error...');
+            console.log(err);
         }));;
     }
 }

@@ -32,7 +32,7 @@ export class MatsidenavComponent implements OnInit {
       console.log(err);
     });
     //check if user already register bank or not
-    this.services.getBankDataMember().subscribe((res: any)=>{
+    this.services.getMemberBankData().subscribe((res: any)=>{
       if (res == null){
         this.bankData = false;
       }

@@ -11,21 +11,28 @@ export class UpdateBankComponent implements OnInit {
   banks:any = [];
   bankData:any = [];
   bankFormCountry = "MY";
-  bankFormName = null;
+  bankFormName;
   bankFormAccName;
   bankFormAccNumber;
+  bankObject;
+  i: Number;
   constructor(private services:Services, private ngPopups: NgPopupsService, private router:Router) { }
 
   ngOnInit(): void {
-    this.services.getBankDataMember().subscribe((res: any) => {
+    
+    this.services.getMemberBankData().subscribe((res: any) => {
       this.bankData = res;
-      this.bankFormName = this.bankData.bankId
       this.bankFormAccName = this.bankData.bankAccName
       this.bankFormAccNumber= this.bankData.bankAccNumber
       //console.log(res);
   });
     this.services.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks = res;
+      this.bankObject = this.banks.find(bank=>bank.name === this.bankData.bankName);
+      if (this.bankObject != null){
+          this.bankFormName = this.bankObject.id
+      }
+      //console.log(res);
   });
 
 }
@@ -36,7 +43,13 @@ export class UpdateBankComponent implements OnInit {
       bankId: bankFormName,
       bankAccName: bankFormAccName,
       bankAccNumber: bankFormAccNumber
-    }).toPromise(); 
+    }).toPromise().then(() => {
+      this.ngPopups.alert('Your bank details has been sucessfully updated!');
+      this.router.navigate(['dashboard']);
+    })
+    .catch((err) => {
+      this.ngPopups.alert('There was an error in your submission!');
+    });  
   }}
 }
 
