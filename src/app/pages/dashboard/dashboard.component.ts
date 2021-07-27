@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
     this.services.getProfileData().subscribe(async (res: any) => {
       const currentUser: any = await this.services.currentUser;
-      console.log(currentUser);
+      //console.log(currentUser);
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
     },
     (err) => {

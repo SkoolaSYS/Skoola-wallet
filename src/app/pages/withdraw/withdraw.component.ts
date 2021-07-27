@@ -9,18 +9,15 @@ import { TRANSACTION_TYPE } from 'src/utils';
   templateUrl: './withdraw.component.html'
 })
 export class WithdrawComponent implements OnInit {
-  transferDate: string;
-  transferAmount: number;
-  transferDesc: string;
+  withdrawDate: string;
+  withdrawAmount: number;
   bankData: any;
-  bankFormCountry = "MY";
-  banks:any;
   bankAccName: string;
   bankAccNumber: string;
   bankName: string;
   transactionFeeAmount:number;
-  transferAmountWithCharge:number;
-  withdrawalDesc;
+  withdrawAmountWithCharge:number;
+  withdrawalDesc: string;
 
   constructor(private service:Services, private router: Router, private ngPopups: NgPopupsService) {
   }
@@ -36,16 +33,20 @@ export class WithdrawComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-    
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    // TODO: Currently we're making effective date only accept current date, hence the input is read-only.
+    this.withdrawDate = (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + today.getFullYear();
   }
   
   doWibt(){
     this.service.getTransactionFeeAmount(TRANSACTION_TYPE.Withdraw).subscribe((res: any) => {
       this.transactionFeeAmount = res;
-      this.transferAmountWithCharge = this.transferAmount + this.transactionFeeAmount;
-      if (this.service.currentBalance >= (this.transferAmountWithCharge)){
+      this.withdrawAmountWithCharge = this.withdrawAmount + this.transactionFeeAmount;
+      if (this.service.currentBalance >= (this.withdrawAmountWithCharge)){
         this.service.doWithdrawal({
-          amount: this.transferAmount,
+          amount: this.withdrawAmount,
           desc: this.withdrawalDesc,
           accountId: this.service.userAccount.id
         }).toPromise().then(() => {
