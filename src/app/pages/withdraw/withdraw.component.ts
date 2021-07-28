@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
-import { TRANSACTION_TYPE } from 'src/utils';
+import { TRANSACTION_TYPE, Utility } from 'src/utils';
+import { utils } from 'protractor';
 
 @Component({
   selector: 'app-withdraw',
@@ -33,14 +34,14 @@ export class WithdrawComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
+    // const today = new Date();
+    // const day = today.getDate();
+    // const month = today.getMonth() + 1;
     // TODO: Currently we're making effective date only accept current date, hence the input is read-only.
-    this.withdrawDate = (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + today.getFullYear();
+    this.withdrawDate = Utility.formatDate(new Date());    // (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + today.getFullYear();
   }
   
-  doWibt(){
+  doWithdrawal(){
     this.service.getTransactionFeeAmount(TRANSACTION_TYPE.Withdraw).subscribe((res: any) => {
       this.transactionFeeAmount = res;
       this.withdrawAmountWithCharge = this.withdrawAmount + this.transactionFeeAmount;
@@ -48,7 +49,8 @@ export class WithdrawComponent implements OnInit {
         this.service.doWithdrawal({
           amount: this.withdrawAmount,
           desc: this.withdrawalDesc,
-          accountId: this.service.userAccount.id
+          accountId: this.service.userAccount.id,
+          transactionTypeId: TRANSACTION_TYPE.Withdraw
         }).toPromise().then(() => {
           this.ngPopups.alert('Your withdraw submission is successful!');
           this.router.navigate(['dashboard']);
@@ -59,43 +61,7 @@ export class WithdrawComponent implements OnInit {
       }else{
         this.ngPopups.alert('Your current balance is not enough!');
       }
-    });
-    
+    });    
   }
-  
-  
 
-//   login(): void {
-//     let $this = this
-//     console.log("Logging in..")
-//     this.botService.sendLoginRequest()
-//       .subscribe(res => {
-//         console.log("Logged in.")
-//         console.debug(res)
-
-//         $this.doTransfer()
-//       })
-//   }
-
-//   doTransfer(): void {
-//     console.log("Requesting transfer to USER..")
-//     this.botService.sendDoWithdrawRequest({
-//       amount: this.transferAmount,
-//       description: this.transferDesc
-//     }).subscribe(res => {
-//       console.log("Transfer requested successfully. Please enter TAC")
-//     })
-//   }
-
-//   enterTac(): void {
-//     let $this = this
-//     console.log("TAC sent.")
-//     this.botService.sendTacRequest({
-//       tac: $this.otp
-//     }).subscribe(res => {
-//       console.log("WIBT is completed!")
-//     })
-//   }
-
-// }
-  }
+}

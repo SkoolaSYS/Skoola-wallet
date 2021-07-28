@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
-import { Utility } from 'src/utils';
+import { TRANSACTION_TYPE, Utility } from 'src/utils';
 
 @Component({
   selector: 'app-transaction-details',
@@ -49,6 +49,7 @@ export class TransactionDetailsComponent implements OnInit {
     amount: this.form.amount,
     transactionPassword: otp,
     description: this.form.description,
+    transactionTypeId: TRANSACTION_TYPE.Transfer
    }).toPromise();
 
    this.services.activetransaction = true;

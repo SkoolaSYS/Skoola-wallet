@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions, Router } from '@angular/router';
-import { TRANSACTION_TYPE } from 'src/utils';
+import { TRANSACTION_TYPE, Utility } from 'src/utils';
 import { Services } from '../../services/service';
 //qr payment danieal
 // to do (auto select merchant account)
@@ -42,11 +42,7 @@ export class QrPaymentComponent implements OnInit {
     this.receiverName= res.name;
     this.merchantName= res.name;
 
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    // TODO: Currently we're making effective date only accept current date, hence the input is read-only.
-    this.effectiveDate = (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + today.getFullYear();
+    this.effectiveDate = Utility.formatDate(new Date());
    },
       (err) => {
         console.log(err);

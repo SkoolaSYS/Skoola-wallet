@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Services } from '../../services/service';
 import { NgPopupsService } from 'ng-popups';
-import { TRANSACTION_TYPE } from 'src/utils';
+import { TRANSACTION_TYPE, Utility } from 'src/utils';
 
 @Component({
   selector: 'app-transfer',
@@ -40,11 +40,7 @@ export class TransferComponent implements OnInit {
       console.log(err);
     });
     
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    // TODO: Currently we're making effective date only accept current date, hence the input is read-only.
-    this.transferForm.effectiveDate = (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + today.getFullYear();
+    this.transferForm.effectiveDate = Utility.formatDate(new Date());
   }
 
   // Commented out temporarily. (rwa)

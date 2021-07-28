@@ -27,4 +27,11 @@ export class Utility {
     
     return newUrl;
   }
+
+  static formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+
+    return (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + date.getFullYear();
+  }
 }
