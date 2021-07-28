@@ -29,7 +29,8 @@ import {
   CimbBankloadComponent,
   IdVerificationComponent,
   AddBankComponent,
-  UpdateBankComponent
+  UpdateBankComponent,
+  QrPaymentComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -145,6 +146,10 @@ export const routes: Routes = [
   path:'update-bank', component:  UpdateBankComponent,
  canActivate: [AuthenticationGuard]
 },
+{
+  path: 'qr-payment', component: QrPaymentComponent,
+   canActivate: [AuthenticationGuard]
+ },
  { path: '**', component: LoginComponent }
 ];
 

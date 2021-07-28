@@ -49,7 +49,9 @@ import {
   CimbBankloadComponent,
   IdVerificationComponent,
   AddBankComponent,
-  UpdateBankComponent
+  UpdateBankComponent,
+  QrPaymentComponent
+
 } from './pages';
 
 import {
@@ -131,6 +133,7 @@ export class SafeUrlPipe implements PipeTransform {
     IdVerificationComponent,
     AddBankComponent,
     UpdateBankComponent,
+    QrPaymentComponent,
 
     // components
     DashboardHeaderComponent,

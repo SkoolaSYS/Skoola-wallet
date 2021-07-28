@@ -212,6 +212,24 @@ export class Services {
             console.log(err);
         }));;
     }
+    public loadById(merchantId:string){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        console.log('merchantId=6');
+        return this.http.get( "/rest/members/"+merchantId, headerOptions).pipe(tap (data => {
+            console.log(data);
+            console.log("id");
+        },
+        (err) => {
+            console.log('loadById() Error...');
+            console.log(err);
+        }));;
+    }
     public paymentTransfer(data: any){
         const headerOptions = {
             headers: new HttpHeaders({
