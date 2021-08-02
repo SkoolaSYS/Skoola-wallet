@@ -47,8 +47,13 @@ export class DashboardComponent implements OnInit {
     const currentUser: any = await this.services.currentUser;
 
     // Only merchants are allowed to make withdrawal.
-    if (currentUser.allowWithdrawal)
+    if (currentUser.allowWithdrawal){
+      if (!currentUser.addBank){
       this.router.navigate(['withdraw']);
+      }else{
+        this.router.navigate(['add-bank']);
+        }
+    }
   }
 
   isUserIdNotVerified(user: any) : boolean {

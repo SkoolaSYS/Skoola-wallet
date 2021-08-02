@@ -19,7 +19,7 @@ export class AddBankComponent implements OnInit {
   ngOnInit(): void {
     this.services.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks = res;
-      console.log(this.banks);
+      //console.log(this.banks);
     });
   }
   
