@@ -17,3 +17,4 @@ export * from './otpbank/otpbank.component';
 export * from './cimbbank-details/cimbbank-details.component';
 export * from './cimbbank-transaction/cimbbank-transaction.component';
 export * from './matsidenav/matsidenav.component';
+export * from './terms-condition/terms-condition.component';

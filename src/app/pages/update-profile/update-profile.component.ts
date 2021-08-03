@@ -22,6 +22,18 @@ export class UpdateProfileComponent implements OnInit {
     // TODO: Pre-fill user profile fields with data from cbs here.
     if (currentUser.email)
       this.updateForm.email = currentUser.email;
+    
+    if (currentUser.phoneNo)
+    this.updateForm.phoneNo= currentUser.phoneNo;
+    
+    if (currentUser.homeAddress)
+    this.updateForm.address = currentUser.homeAddress;
+
+    if (currentUser.postalCode)
+    this.updateForm.postalCode = currentUser.postalCode;
+
+    if (currentUser.city)
+    this.updateForm.city= currentUser.city;
 
     if (currentUser.images && currentUser.images.length != 3) {
       this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
@@ -52,7 +64,7 @@ export class UpdateProfileComponent implements OnInit {
         
     if (this.updateForm.phone)
       customValues.push({
-        "internalName": "phone",
+        "internalName": "mobilephone",
         "value": this.updateForm.phone
       });
 

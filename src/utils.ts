@@ -34,4 +34,12 @@ export class Utility {
 
     return (day < 10 ? "0" : "") + day + "/" + (month < 10 ? "0" : "") + month + "/" + date.getFullYear();
   }
+
+  static validateEmail(email):boolean {
+    if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email)) {
+      return true;
+    }
+    return false;
+  }
+  
 }

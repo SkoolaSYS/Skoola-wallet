@@ -1,4 +1,5 @@
 export * from './login/login.component';
+export * from './signup/signup.component';
 export * from './login-pwd/login-pwd.component';
 export * from './dashboard/dashboard.component';
 export * from './transfer/transfer.component';
@@ -17,7 +18,6 @@ export * from './qr-code-shopping/qr-code-shopping.component';
 export * from './buynear-shopping/buynear-shopping.component';
 export * from './buynear-qr-code/buynear-qr-code.component';
 export * from './buynear-cart-details/buynear-cart-details.component';
-export * from './signup/signup.component';
 export * from './signup-details/signup-details.component';
 export * from './update-username-pwd/update-username-pwd-component';
 export * from './update-profile/update-profile.component';

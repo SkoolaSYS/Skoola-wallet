@@ -19,8 +19,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { NgPopupsModule } from 'ng-popups';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {
   LoginComponent,
@@ -71,7 +73,8 @@ import {
   OtpbankComponent,
   CimbbankDetailsComponent,
   CimbbankTransactionComponent,
-  MatsidenavComponent
+  MatsidenavComponent,
+  TermsConditionComponent
 
 } from './components';
 
@@ -154,11 +157,11 @@ export class SafeUrlPipe implements PipeTransform {
     CimbbankDetailsComponent,
     CimbbankTransactionComponent,
     MatsidenavComponent,
+    TermsConditionComponent,
 
     // pipes
     SafeHtmlPipe,
-    SafeUrlPipe
-  
+    SafeUrlPipe,
     
    
   ],
@@ -174,7 +177,9 @@ export class SafeUrlPipe implements PipeTransform {
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
-    HttpClientModule,    
+    MatRadioModule,
+    NgbModule, 
+    HttpClientModule,  
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
     NgPopupsModule.forRoot(
       // {
@@ -189,6 +194,7 @@ export class SafeUrlPipe implements PipeTransform {
       //   }
       // }
     ),
+    
   ],
   providers: [Services],
   bootstrap: [AppComponent]

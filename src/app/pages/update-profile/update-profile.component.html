@@ -123,19 +123,17 @@
                                  </div>
                                   <div class="form-group">
                                       <label class="city">City:</label>
-                                      <select
+                                      <input
                                       required 
                                       [(ngModel)]="updateForm.city" 
                                       name="city" 
                                       #city="ngModel" 
                                       id="city" 
                                       type="text"
-                                      placeholder="Choose City"
+                                      placeholder="eg: Kota Damansara"
                                       class="form-control">
-                                      <option value="Kajang">Kajang</option>
-                                      <option value="Bangi">Bangi</option>
-                                      <option value="PetalingJaya">Petaling Jaya</option>
-                                      </select>
+                                      <div>Fill in your City</div>
+                                      
                                       <!-- <div class="alert alert-danger" *ngIf="city.touched && !city.valid">Fill in your Postal Code</div> -->
                                  </div>
 

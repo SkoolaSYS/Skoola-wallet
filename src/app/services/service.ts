@@ -442,4 +442,28 @@ export class Services {
             console.log(err);
         }));;
     }
+
+
+    public signupUser(data: any){
+        //const authorizationData = 'Basic ' + btoa('komepsbot:123456');
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: 'Basic a29tZXBzYm90OjEyMzQ1Ng==',
+            })
+        };
+        console.log(data);
+        return this.http.post('/rest/members/signupUser', data , headerOptions).pipe(tap (data => {            
+            console.log(data);
+            
+        },
+        (err) => {
+            console.log('signupUser() Error...');
+            console.log(err);
+
+        }));;
+    }
+
 }
