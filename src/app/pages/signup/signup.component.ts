@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
   stateCity: string;
   parentId: string ;
   errorObj: any;
+  cardSelect: boolean = false;
   errorMessage :any=
    [{field:"email",reason:"Email has been used"}
   ]
@@ -40,7 +41,6 @@ export class SignupComponent implements OnInit {
 
     // Append smId to signup page; /signup?smId=
     this.href = this.router.url;
-    console.log(this.router.url);
     this.parentId = this.router.url.split("?")[1].split("=")[1];
       
   }
@@ -57,10 +57,10 @@ export class SignupComponent implements OnInit {
   selectCard(card){
     if (card == 1){
       document.getElementById("yesWant").style.display = "block";
-      console.log("YesCard");
+      this.cardSelect = true;
     }else{
       document.getElementById("yesWant").style.display = "none";
-      console.log("no card");
+      this.cardSelect = false;
     }
     return;
   }
@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit {
 
         if (customValues.length != 0)  
         data.customValues = customValues;
-      
+        
         if (this.loginUsername!= null && this.fullName != null && this.emailAddress != null && this.nricNumber != null && this.createPassword != null && customValues != null && this.parentId != null ){
           this.errorMessage.push({field:this.loginUsername,reason:"Username has been used"})
           await this.services.signupUser({
@@ -112,8 +112,9 @@ export class SignupComponent implements OnInit {
           name : this.fullName,
           email : this.emailAddress,
           password : this.createPassword,
-          fields: customValues,
+          customValues: customValues,
           superMerchantId: this.parentId,
+          cardRequest: this.cardSelect
         }).toPromise().then(() => {
           this.ngPopups.alert('You have succesfully signup!');
           this.router.navigate(['login']);
