@@ -50,9 +50,10 @@ export class SignupComponent implements OnInit {
     return false;
   }
 
-  //Terms & Condition Agree or Disagree; agree, checkbox remains tick: disagree, checkbox untick
-  
-  
+  //Terms & Condition Agree or Disagree; agree, checkbox remains tick, submit button enabled: disagree, checkbox untick
+  enableSubmit(){
+    document.getElementById("submitAgree").removeAttribute('disabled');
+  }
   // Select Physical Card; If yes, display hidden div incl HomeAddress, PostalCode, City (kinah)
   selectCard(card){
     if (card == 1){

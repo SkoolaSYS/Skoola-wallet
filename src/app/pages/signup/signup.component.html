@@ -106,7 +106,7 @@
                                                         <input 
                                                         class="d8p-input-normal" 
                                                         placeholder="Password" 
-                                                        type="text"
+                                                        type="password"
                                                         pattern="([A-z0-À-ž]){1,13}" 
                                                         minlength="4"
                                                         maxlength="12" 
@@ -125,7 +125,7 @@
                                                         <input 
                                                         class="d8p-input-normal" 
                                                         placeholder="Confirm Password" 
-                                                        type="text"
+                                                        type="password"
                                                         pattern="([A-z0-À-ž]){1,13}"  
                                                         minlength="4"
                                                         maxlength="12" 
@@ -185,28 +185,44 @@
                                                 <app-terms-condition></app-terms-condition>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light" id="agRee" (click)="modal.close('Cross click')">Agree</button>
-                                                  <button type="button" class="btn btn-light" id="disAgree" (click)="checkAgree.click()" (click)="modal.close('Cross click')">Disagree</button>
+                                                    <button 
+                                                    type="button" 
+                                                    class="btn btn-light" 
+                                                    id="agRee" 
+                                                    ngbAutofocus 
+                                                    onclick="document.getElementById('checkAgree').checked = true;"
+                                                    (click)="enableSubmit()"
+                                                    (click)="modal.close('Cross click')" >Yes, I Agree </button>
+                                                  <button 
+                                                  type="button" 
+                                                  class="btn btn-light" 
+                                                  id="disAgree"
+                                                  onclick="document.getElementById('checkAgree').checked = false;document.getElementById('submitAgree').disabled = true;"
+                                                  (click)="modal.close('Cross click')">No, I Disagree</button>
                                                 </div>
                                               </ng-template>
         
                                             <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                <div><input type="checkbox" id="checkAgree" #checkAgree/></div>
+                                                <div>
+                                                    <input 
+                                                    type="checkbox" 
+                                                    id="checkAgree"
+                                                    (click)="openScrollableContent(longContent)"
+                                                    /></div>
                                                 <div class="col-11">
-                                                    <div>I confirm that I have read, consent and agree to D-8P System's 
-                                                    <a href="#" (click)="openScrollableContent(longContent)">User Agreement and as Privacy Agreement</a>, and I am of legal age.</div>
+                                                    <div>I have read and agree to D-8P System's User Agreement and as Privacy Agreement and I am of legal age.</div>
                                                 </div>
                                             </div>
-                                               <div class="row no-gutters justify-content-center mt-4 mb-4">
+                                                 <div class="row no-gutters justify-content-center mt-4 mb-4">
                                                     <div class="col-12">
                                                         <div class="button-container text-center">
-                                                            <button class="d8p-btn-default" (click)="doSignupUser()">
+                                                            <button class="d8p-btn-default" id="submitAgree" (click)="doSignupUser()" disabled>
                                                                 Submit
                                                                 <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> 
                                             </form>
                                             
                                             </div>
