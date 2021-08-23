@@ -115,7 +115,7 @@ class QrScanner {
         //const input = e.target;
         const label = document.getElementById('scan-region');
         label.parentNode.insertBefore(scanner.$canvas, label.nextSibling);
-        scanner.$canvas.style.display = 'block';
+        // scanner.$canvas.style.display = 'block';
     }
 
     destroy() {
@@ -496,7 +496,7 @@ class QrScanner {
         });
     }
 }
-QrScanner.DEFAULT_CANVAS_SIZE = 400;
+QrScanner.DEFAULT_CANVAS_SIZE = 300;
 QrScanner.NO_QR_CODE_FOUND = 'No QR code found';
 //QrScanner.WORKER_PATH = './assets/qr-scanner-worker.min.js';
 

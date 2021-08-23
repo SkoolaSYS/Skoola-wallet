@@ -1,65 +1,13 @@
-<!-- QR Scanner -->
 <div>
-  <div>
-    <div>
-      <div>
-        <!-- dannieal qr scanner --> 
-        <div>
-          <span id="cam-has-camera" style="display: none;"></span>
-          <span id="cam-has-flash" style="display: none;"></span>
-          <video id="qr-video" style="display: none;"></video>
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content= "width=device-width, initial-scale=1.0" />
-              <!-- scanner line --> 
-             <style>
-                .geeks {
-                    width: 400px;
-                    height: 2px;
-                    background: #fff;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                }
-          
-                .geeks::before {
-                    content: "scanning qr";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: green;
-                    animation: animate 15s linear infinite;
-                }
-          
-                @keyframes animate {
-                    0% {
-                        left: 0;
-                    }
-          
-                    50% {
-                        left: 100%;
-                    }
-          
-                    0% {
-                        left: 0;
-                    }
-                }
-            </style>
-        </head>
-          
-        <body>
-            <div class="geeks"></div>
-        </body>
-          <br>
-          <label id="scan-region" style="text-align: center;"></label>
-      </div>
-      <b style="visibility: hidden">Detected QR code: </b>
-      <span id="cam-qr-result" style="visibility: hidden">None</span>
-      <hr>
-     </div>
-    </div>
+  <span id="cam-has-camera" style="display: none;"></span>
+  <span id="cam-has-flash" style="display: none;"></span>
+  <video id="qr-video" style="display: none;"></video>
+
+  <div style="text-align: center;">
+    <label id="scan-region" style="text-align: center;"></label>
   </div>
+
+  <b style="visibility: hidden">Detected QR code: </b>
+  <span id="cam-qr-result" style="visibility: hidden">None</span>  
 </div>
+    
