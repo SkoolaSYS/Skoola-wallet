@@ -55,7 +55,7 @@ export class QrPaymentComponent implements OnInit {
        toMemberId: this.receiverId,        // this.form.toMemberId,
        toMemberPrincipal: this.receiverName,  // this.form.toMemberPrincipal,
        amount: this.amount,
-       trasactionTypeId: TRANSACTION_TYPE.QrPayment
+       transactionTypeId: TRANSACTION_TYPE.QrPayment
       }).toPromise();
    
       this.service.activetransaction = true;
