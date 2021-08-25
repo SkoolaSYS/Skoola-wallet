@@ -31,7 +31,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
 
-      const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(4).toString().split(".");
+      const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(5).toString().split(".");
       this.goldWhole = sumGoldParts[0];
       this.goldFraction = sumGoldParts[1];
 
@@ -44,23 +44,24 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
     this.service.getProfileData().subscribe((res: any) => {
 
-      function getAccNumber(element, index, array) { 
-          console.log(element.internalName);
-          if (element.internalName == 'AccNumber') 
-            return index;
-      }
+      // function getAccNumber(element, index, array) { 
+      //     console.log(element.internalName);
+      //     if (element.internalName == 'AccNumber') 
+      //       return index;
+      // }
 
       // console.log(res);
-      this.userName = res.name;      
-      var accnum = res.customValues.filter(getAccNumber);
+      this.userName = res.name;
+      this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber").value;      
+      //var accnum = res.customValues.filter(getAccNumber);
       // for (var i=0; i < accnum.length; i++){
       //   console.log(accnum[i].value);
       // }
       // console.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
       
-      if (accnum.length > 0)
-        this.cardNumber = accnum[0].value ? accnum[0].value : ''
+      // if (accnum.length > 0)
+      //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
     },
     (err) => {
       console.log(err);

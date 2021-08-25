@@ -15,6 +15,7 @@ export class MatsidenavComponent implements OnInit {
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
   public bankData: boolean;
+  public allowWithdrawal: boolean;
   @ViewChild('sidenav') public sidenav:MatSidenav;
  
 
@@ -26,6 +27,7 @@ export class MatsidenavComponent implements OnInit {
     // Kalau ID sudah verified, function ni akan "disabled". refer line 16 stated false
     this.services.getProfileData().subscribe(async (res: any) => {
       const currentUser: any = await this.services.currentUser;
+      this.allowWithdrawal = currentUser.allowWithdrawal;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
     },
     (err) => {
