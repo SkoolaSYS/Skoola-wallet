@@ -1,0 +1,75 @@
+<div>
+    <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+      <mat-icon>
+        <svg width="25" height="45">
+          <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
+          <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
+          <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
+      </svg>
+      </mat-icon>
+    </button>
+    <!-- Nav block - start -->
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" position="end">
+          <mat-nav-list>
+            <app-matsidenav></app-matsidenav>
+          </mat-nav-list>
+        </mat-sidenav>
+        <!-- Nav block - end -->
+        <mat-sidenav-content fxFlexFill>
+          <div class="container-fluid p-0">
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12 col-xl-9">
+                <div class="dashboard-header-box">
+                  <app-dashboard-header></app-dashboard-header>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12 col-xl-9"> 
+                <div class="dashboard-content-box pb-5">
+                  <!-- Quick links -->
+                  <div class="container-fluid quicklinkbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Request CArd?
+                            </div>
+                          </div>
+                      
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                             
+                            <button type="button" class="d8p-btn-default" id="agRee" (click)="requestCard()">Yes, I would like to request a card. </button>
+                            <button type="button" class="d8p-btn-default" id="disAgree">No, I no want card</button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+         
+
+                  
+
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+</div>

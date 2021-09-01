@@ -33,6 +33,7 @@ export class Services {
     public memberBankData:any={};
     public  userAccount: any;
     public transactionFeeAmount;
+    public ipAddress:any;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -87,6 +88,11 @@ export class Services {
     isLoggedIn(): boolean {
         return !!this.token;
     }
+    async getIpAddress(){
+        await this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
+        this.ipAddress = res.ip;
+        });
+    }
     public login(username: string, password: string): Observable<any> {
         const authorizationData = 'Basic ' + btoa(username + ':' + password);
         const headerOptions = {
@@ -97,15 +103,14 @@ export class Services {
                 Authorization: authorizationData
             })
         };
-        return this.http.get('/rest/members/me', headerOptions).pipe(tap (data => {
+        return this.http.get('/rest/members/me/'+this.ipAddress, headerOptions).pipe(tap (data => {
             // console.log(data);
             this.storeSession({accessToken: authorizationData});
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
             this.forceChangePassword = data.forceChangePassword;
             this.allowWithdrawal = data.allowWithdrawal;
-
-            console.log(username);
+            //console.log(username);
             
         },
         (err) => {
@@ -443,7 +448,6 @@ export class Services {
         }));;
     }
 
-
     public signupUser(data: any){
         //const authorizationData = 'Basic ' + btoa('komepsbot:123456');
         const headerOptions = {
@@ -466,4 +470,22 @@ export class Services {
         }));;
     }
 
+    public requestCard(){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('/rest/members/requestPhysicalCard',headerOptions).pipe(tap (data => {            
+            //console.log(data);
+            
+        },
+        (err) => {
+            console.log('requestCard() Error...');
+            console.log(err);
+
+        }));;
+    }
 }

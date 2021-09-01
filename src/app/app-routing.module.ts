@@ -30,7 +30,8 @@ import {
   IdVerificationComponent,
   AddBankComponent,
   UpdateBankComponent,
-  QrPaymentComponent
+  QrPaymentComponent,
+  CardRequestComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -148,6 +149,10 @@ export const routes: Routes = [
 },
 {
   path: 'qr-payment', component: QrPaymentComponent,
+   canActivate: [AuthenticationGuard]
+ },
+ {
+  path: 'card-request', component: CardRequestComponent,
    canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }

@@ -52,7 +52,8 @@ import {
   IdVerificationComponent,
   AddBankComponent,
   UpdateBankComponent,
-  QrPaymentComponent
+  QrPaymentComponent,
+  CardRequestComponent
 
 } from './pages';
 
@@ -137,6 +138,7 @@ export class SafeUrlPipe implements PipeTransform {
     AddBankComponent,
     UpdateBankComponent,
     QrPaymentComponent,
+    CardRequestComponent,
 
     // components
     DashboardHeaderComponent,
@@ -162,6 +164,7 @@ export class SafeUrlPipe implements PipeTransform {
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
+    CardRequestComponent,
     
    
   ],

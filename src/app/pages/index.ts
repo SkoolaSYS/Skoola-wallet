@@ -26,3 +26,4 @@ export * from './id-verification/id-verification.component';
 export * from './add-bank/add-bank.component';
 export * from './update-bank/update-bank.component';
 export * from './qr-payment/qr-payment.component';
+export * from './card-request/card-request.component';
