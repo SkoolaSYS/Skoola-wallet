@@ -27,9 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   async submit(): Promise<void> {
-    this.services.getIpAddress().then(()=>{
       const res = this.services.login(this.services.username, this.services.password).toPromise()
-    });
     
     if( this.services.forceChangePassword ) {
       this.ngPopups.alert('Credential Update. You need to change your credentials!');

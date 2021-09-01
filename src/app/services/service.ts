@@ -88,11 +88,7 @@ export class Services {
     isLoggedIn(): boolean {
         return !!this.token;
     }
-    async getIpAddress(){
-        await this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
-        this.ipAddress = res.ip;
-        });
-    }
+    
     public login(username: string, password: string): Observable<any> {
         const authorizationData = 'Basic ' + btoa(username + ':' + password);
         const headerOptions = {
@@ -103,7 +99,7 @@ export class Services {
                 Authorization: authorizationData
             })
         };
-        return this.http.get('/rest/members/me/'+this.ipAddress, headerOptions).pipe(tap (data => {
+        return this.http.get('/rest/members/me', headerOptions).pipe(tap (data => {
             // console.log(data);
             this.storeSession({accessToken: authorizationData});
             this.currentUser = of(data).toPromise();
