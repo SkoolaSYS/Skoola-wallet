@@ -27,3 +27,5 @@ export * from './add-bank/add-bank.component';
 export * from './update-bank/update-bank.component';
 export * from './qr-payment/qr-payment.component';
 export * from './card-request/card-request.component';
+export * from './user-agreement-page/user-agreement-page.component';
+export * from './acknowledgement-page/acknowledgement-page.component';

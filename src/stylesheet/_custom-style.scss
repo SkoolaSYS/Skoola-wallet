@@ -20,12 +20,22 @@
   margin: 0;
 }
 .d8p-normal-text {
-  font: normal $s-13 $ff-base;
+  font: normal $s-16 $ff-font;
   color: $darkTextGrey2;
   margin: 0;
 }
+.d8p-radiobttn-text{
+  font: normal $s-14 $ff-font;
+  color: $darkTextGrey2;
+  margin: 0;
+}
+.d8p-tnc-text{
+  font: lighter $s-15 $ff-font;
+  color: $white;
+  margin-top: $s-12;
+}
 .d8p-smaller-text {
-  font: normal $s-11 $ff-base;
+  font: normal $s-11 $ff-font;
   color: $darkTextGrey2;
   margin: 0;
 }
@@ -119,10 +129,16 @@
 .max-width-25-px {
   max-width: 25px;
 }
-.max-width-80 {
+.max-width-40-px{
+  max-width: 40px;
+}
+.max-width-50-px{
+  max-width: 50px;
+}
+.max-width-80-px {
   max-width: 80px;
 }
-.max-width-150 {
+.max-width-150-px {
   max-width: 150px;
 }
 .max-width-200 {
@@ -320,9 +336,7 @@
   border: 2px solid $line-green;
 }
 .border-right-white {
-  // max-width: 130px;
   padding: 1rem;
-  // color: white;
   border-width: 0.5px;
   border-style: solid;
   border-image: 
@@ -361,6 +375,32 @@
     padding-bottom: 2rem !important;
   }
 }
+
+// 
+.containergrid{
+  width: 100%;
+  height: 160%;
+  max-width: 10%;
+  max-height: 300%;
+  z-index: 1000000000000;
+  top: 0;
+  background-color: transparent;
+  position: absolute !important;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.navigrid{
+  width: 23.40px;
+  height: 25.40px;
+  border: 0.5px solid rgb(168,163,163);
+  background-color: transparent;
+}
+
+
+// 
 
 /*component styles*/
 .d8p-select {
@@ -482,22 +522,34 @@ select.arrowstyle-white:focus {
 }
 .d8p-btn-default {
   background: linear-gradient(0deg, #438384 0%, #67cbce 100%);
-  min-height: 60px;
+  // background: url(assets/icons-img/confirm-signup@2x.png) no-repeat 90%;
+  height: 50.8px;
+  width: 190px; 
   color: $white;
-  font: bold $s-20 $ff-base;
+  font: $s-15 $ff-font;
   border-radius: $s-10;
-  border: 0;
+  border: 1px solid $white;
   padding: 0 2rem;
+  margin-top: $s-10; 
   &:disabled{
     background: linear-gradient(0deg, #d7d8d8 0%, #ffffff 100%);
-    min-height: 60px;
+    height: 50.8px;
+    width: 190px; 
     color: $white;
-    font: bold $s-20 $ff-base;
+    font: $s-15 $ff-font;
     border-radius: $s-10;
     border: 0;
     padding: 0 2rem;
   }
 }
+.d8p-btn-default:active{
+  background: $yellow;
+}
+.d8p-btn-default:focus{
+  background: $yellow;
+}
+
+
 .d8p-button {
   border-radius: $s-100;
   font: bold $s-20 $ff-base;
@@ -972,9 +1024,10 @@ select.arrowstyle-white:focus {
 }
 
 .login-bg {
-  background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
+  // background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
+  background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 135vh;
   position: relative;
   .login-container {
     display: flex;
@@ -1006,7 +1059,6 @@ select.arrowstyle-white:focus {
     min-height: 260px;
   }
 }
-// KINAH
 //transfer menu
 .transferbg{
   height: 281px;
@@ -1021,17 +1073,10 @@ select.arrowstyle-white:focus {
   height: 400px;
 }
 
-// KINAH
 //components with same height
 .fifthbg{
   height: 126px; 
 }
-
-//comp with 8grid
-// .recipbg{
-//   height: 126px;
-// }
-
 //transaction view
 .transactionview {
   background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
@@ -1175,3 +1220,255 @@ select.arrowstyle-white:focus {
   border: 5px solid #fff;
   border-radius: 50%;
 }
+
+/*Customize Placeholder*/
+::-webkit-input-placeholder {
+  font-size: 15px;
+  font-family: $ff-font;
+  color:#cac9c9;
+  margin-top: 0.5rem;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+     font-size: 15px;
+     font-family: $ff-font;
+     color:#cac9c9;
+     margin-top: 0.5rem;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+     font-size: 15px;
+     font-family: $ff-font;
+     color:#cac9c9;
+     margin-top: 0.5rem;
+}
+
+:-ms-input-placeholder {
+     font-size: 15px;
+     font-family: $ff-font;
+     color:#cac9c9;
+     margin-top: 0.5rem;
+}
+
+/*Customize Mat-Radio-Button*/
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element { 
+   /*click effect color change*/
+  background-color: rgb(151, 151, 151) !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color:rgb(151, 151, 151) !important;   /*inner circle color change*/
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+ border-color:rgb(151, 151, 151) !important;/*outer ring color change*/
+}
+//
+
+// Banner behind T&C
+.tnc{
+  background: linear-gradient(180deg, #858585 0%, #303030 100%);
+  position: relative;
+  width: 100%;
+  height: 73px;
+  align-items: center;
+}
+// signuppage: logo
+.logo{
+  width:200px;
+  margin-left: 3rem;
+}
+// signuppage: gradient line
+.signupline{
+  margin-top: $s-20;
+  width: 90%;
+}
+
+// signuppage: height for input box
+.forminput{
+  height: 50.8px;
+}
+
+.formPlaceholder{
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+// signuppage: User Agreement text
+.userAgreement{
+  font-style: italic;
+  color:#54A5A6;
+}
+
+// signuppage: custom style checkbox
+.tnc-checkbox{
+  width: $s-16;
+  height: $s-16;
+  background-color: white;
+  border-radius: 25%;
+  vertical-align: text-bottom;
+  border: 1px solid #8D8D8D;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  &:checked{
+    background-color: $cyan;
+    &:checked::before{
+    content: '\2713';
+    display: block;
+    color: $white;
+    position: absolute;
+    margin-top: -6px;
+    }
+  }
+}
+.modal-title{
+  font: $s-22 $ff-font;
+  font-weight: 500;
+  color:#54A5A6;
+  margin: 0;
+  padding-top: 0.50rem;
+}
+
+table, tr, td{
+  border: 1px solid $darkGrey;
+}
+
+.btnTnc{
+  background:$cyan;
+  color: $white;
+  font: $s-16 $ff-font;
+  height: 50.8px;
+  width: 190px; 
+  border-radius: $s-10;
+  border: 1px solid $white;
+  cursor: pointer;
+  margin-top: 75px;
+  transition: all 0.6s ease-out;
+}
+.btnTnc:focus{
+  background-color: $yellow;
+}
+.btnTnc:active{
+  background-color: $yellow;
+  transition: none;
+}
+.btnTnc:hover{
+  background-color: $yellow;
+  color: $white;
+}
+// User Agreement Page
+.userAgreement-bg{
+  background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+}
+.userAgreement-body{
+  background: $white;
+  margin-top: $s-12;
+  height: 800px;
+  overflow: hidden;
+}
+.userAgreement-content{
+  display: flex;
+  flex-direction: column; 
+  font: $s-14 $ff-font;
+  color: $darkTextGrey2;
+  text-align: justify;
+  overflow-y: scroll;
+  height: 500px;
+  margin-top: $s-32;
+}
+.arrows{
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.arrows span{
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-bottom: 2px solid $darkTextGrey2;
+  border-right: 2px solid $darkTextGrey2;
+  transform: rotate(45deg);
+  margin: -8px;
+}
+/* Acknowledgement Page start */
+.container-success{
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 0%;
+} 
+.success-box-title{
+  background-color: #F0F0F0;
+  border-radius: 5px;
+  border: solid 1px black;
+  width: 323px;
+  position: absolute;
+  left: -162px;
+  padding: 10px;
+  padding-bottom: 50px;
+  text-align: left;
+}
+.success-box-body{
+  background-color: #F0F0F0;
+  border: solid 1px black;
+  width: 323px;
+  position: absolute;
+  top: 73px;
+  left: -162px;
+  padding: 10px;
+  text-align: left;
+}
+.success-box-btn{
+  background-color: #F0F0F0;
+  border-radius: 0 0 5px 5px;
+  border: solid 1px black;
+  top: 250px;
+  width: 323px;
+  height: 102px;
+  position: absolute;
+  left: -162px;
+  padding: 10px;
+  text-align: left;
+}
+.success-title{
+  font-size: $s-25;
+  text-align: center;
+}
+.success-body{
+  font-weight: lighter;
+  font-size: $s-14 $ff-font;
+  text-align: center;
+}
+.btnOkay{
+  background:$cyan;
+  color: $white;
+  font: $s-16 $ff-font;
+  height: 50.8px;
+  width: 190px; 
+  border-radius: $s-10;
+  border: 1px solid $white;
+  cursor: pointer;
+  transition: all 0.6s ease-out;
+  position: relative;
+  top: $s-16;
+  left: 55px;
+}
+.btnOkay:focus{
+  background-color: $yellow;
+}
+.btnOkay:hover{
+  background-color: $yellow;
+  color: $white;
+}
+.btnOkay:active{
+  background-color: $yellow;
+  transition: none;
+}
+/* Acknowledgement Page end */

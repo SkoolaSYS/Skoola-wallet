@@ -1,239 +1,196 @@
 <div class="container-fluid common-cls loginpg grey-gradient p-0">
     <div class="row">
         <div class="col-12">
-            <div class="login-bg" style="background-position: center -25vh; min-height: 120vh;">
-                <div class="d8p-main-back-btn" style="top: 0;">
-                    <div class="row no-gutters">
-                        <div class="col-2"></div>
-                        <div class="col-9">
-                          <div class="dashboard-header">
-                            <div class="text-center">
-                              <img
-                                class="w-50 mt-3"
-                                src="assets/icons-img/logod8p2.png"
-                                routerLink="/login"
-                              />
+            <div id="container">
+                <div class="login-bg">
+                    <div class="d8p-main-back-btn">
+                        <div class="row no-gutters">
+                            <div class="col-9">
+                                <div class="dashboard-header">
+                                    <div class="text-center">
+                                        <img class="logo" src="assets/icons-img/logo-title-signup@3x.png"
+                                            routerLink="/login" />
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                    </div>
-                    <img class="max-width-75" src="assets/icons-img/linegrey1.png" />
-                    <div class="row no-gutters justify-content-center w-50 pl-4 pr-4">
-                        <div class="col-12 col-xl-9 titlebg bg-cyangradient">
-                            Signup
-                        </div>
-                    </div>
-                    <div class="container-fluid p-0">
-                        <div class="row no-gutters justify-content-center">
-                            <div class="col-10 col-xl-6">
-                                <div class="d8p-normal-text text-center pt-4 pb-4">Welcome to the D-8P Account. Please fill in the required details to open an account with us.</div>
-                                <div class="container-fluid">
-                                    <div class="row no-gutters justify-content-center">
-                                        <div class="col-12 col-xl-6">
-                                            <div class="container-fluid p-0">
-                                                <form id="formSignup" novalidate>
-                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-11">
-                                                        <input 
-                                                        class="d8p-input-normal" 
-                                                        placeholder="Username" 
-                                                        type="text"
-                                                        pattern="([A-z0-9À-ž]){2,}"
-                                                        id="username" 
-                                                        name="username" 
-                                                        #username="ngModel"
-                                                        minlength="4"
-                                                        maxlength="12"
-                                                        [(ngModel)]="loginUsername"
-                                                        required/>
-                                                        <div class="alert alert-danger" 
-                                                        *ngIf="username.touched && ! username.valid">Username is required.</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-11">
-                                                        <input 
-                                                        class="d8p-input-normal" 
-                                                        placeholder="Full Name" 
-                                                        type="text" 
-                                                        id="fullname"
-                                                        name="fullname"
-                                                        #fullname="ngModel"
-                                                        [(ngModel)] = "fullName"
-                                                        required/>
-                                                        <div class="alert alert-danger" 
-                                                        *ngIf="fullname.touched && ! fullname.valid">Full Name is required.</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-11">
-                                                        <input 
-                                                        class="d8p-input-normal" 
-                                                        placeholder="Email Address" 
-                                                        type="email"
-                                                        #emailAdd="ngModel"
-                                                        id="emailAdd"
-                                                        name="emailAdd" 
-                                                        [(ngModel)] = "emailAddress"
-                                                        required/>
-                                                        <div class="alert alert-danger" 
-                                                        *ngIf="emailAdd.touched && ! emailAdd.valid">Fill in your email address.</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-11">
-                                                        <input 
-                                                        class="d8p-input-normal" 
-                                                        placeholder="NRIC" 
-                                                        type="text" 
-                                                        minlength="12"
-                                                        maxlength="12"
-                                                        #nricNo="ngModel"
-                                                        id="nricNo"
-                                                        name="nricNo" 
-                                                        [(ngModel)] = "nricNumber"
-                                                        required/>
-                                                        <div class="alert alert-danger" 
-                                                        *ngIf="nricNo.touched && ! nricNo.valid">NRIC is required.</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-11">
-                                                        <input 
-                                                        class="d8p-input-normal" 
-                                                        placeholder="Password" 
-                                                        type="password"
-                                                        pattern="([A-z0-À-ž]){1,13}" 
-                                                        minlength="4"
-                                                        maxlength="12" 
-                                                        #createPass="ngModel"
-                                                        id="create-password"
-                                                        name="create-password" 
-                                                        [(ngModel)]="createPassword"
-                                                        required/>
-                                                        <div class="alert alert-danger" 
-                                                        *ngIf="createPass.touched && ! createPass.valid">Password is required.</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-11">
-                                                        <input 
-                                                        class="d8p-input-normal" 
-                                                        placeholder="Confirm Password" 
-                                                        type="password"
-                                                        pattern="([A-z0-À-ž]){1,13}"  
-                                                        minlength="4"
-                                                        maxlength="12" 
-                                                        id="confirm-password"
-                                                        name="confirm-password"
-                                                        [(ngModel)]="confirmPassword"
-                                                        required/>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    Do you want a physical D-8P Card?
-                                                </div>
-                                                <div class="height-60 flex-align-center text-center">
-                                                    <mat-radio-group name= "cardSelect" >
-                                                    <mat-radio-button
-                                                    id="wantCard" 
-                                                    value="wantCard" 
-                                                    name="wantCard"
-                                                    (change)="selectCard(1)"
-                                                    ></mat-radio-button>
-                                                    <label for="wantCard">Yes, I want to have a physical D8-P card.</label> 
-
-                                                    <mat-radio-button
-                                                    type="radio" 
-                                                    id="noWantCard" 
-                                                    value="noWantCard" 
-                                                    name="noWantCard"
-                                                    (change)="selectCard(2)"
-                                                    checked
-                                                    >
-                                                    <label for="noWantCard">No, I don't want to have a physical card.</label> 
-                                                    </mat-radio-button>
-                                                </mat-radio-group>
-                                            </div>
-                                            <div class="yesWant" id="yesWant" style="display: none;">
-                                                <label for="homeAddress">Home Address: </label>
-                                                <input type="text" name="homeAddress" id="homeAddress" #homeAdd="ngModel" [(ngModel)]="homeAddress" required/>
-                                                <div class="alert alert-danger" *ngIf="homeAdd.touched && ! homeAdd.valid">Home Address is required.</div>
-                                                
-                                                <label for="postalCode">Postal Code: </label>
-                                                <input type="text" name="postalCode" id="postalCode" maxlength="5" #postCode="ngModel" [(ngModel)]="postalCode" placeholder="eg: 47810" required/>
-                                                <div class="alert alert-danger" *ngIf="postCode.touched && ! postCode.valid">Postal Code is required.</div>
-
-                                                <label for="stateCity">City: </label>
-                                                <input type="text" name="stateCity" id="stateCity" #city="ngModel" [(ngModel)]="stateCity" placeholder="eg: Kota Damansara" required/>
-                                                <div class="alert alert-danger" *ngIf="city.touched && ! city.valid">City is required.</div>
-                                            </div>
-                                                <!-- Pop Up T&C -->
-                                              <ng-template #longContent let-modal>
-                                                <div class="modal-header">
-                                                  <h4 class="modal-title" name="termsAndCondition">Terms and Condition</h4>
-                                                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                                    <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                <app-terms-condition></app-terms-condition>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button 
-                                                    type="button" 
-                                                    class="btn btn-light" 
-                                                    id="agRee" 
-                                                    ngbAutofocus 
-                                                    onclick="document.getElementById('checkAgree').checked = true;"
-                                                    (click)="enableSubmit()"
-                                                    (click)="modal.close('Cross click')" >Yes, I Agree </button>
-                                                  <button 
-                                                  type="button" 
-                                                  class="btn btn-light" 
-                                                  id="disAgree"
-                                                  onclick="document.getElementById('checkAgree').checked = false;document.getElementById('submitAgree').disabled = true;"
-                                                  (click)="modal.close('Cross click')">No, I Disagree</button>
-                                                </div>
-                                              </ng-template>
-        
-                                            <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                <div>
-                                                    <input 
-                                                    type="checkbox" 
-                                                    id="checkAgree"
-                                                    (click)="openScrollableContent(longContent)"
-                                                    /></div>
-                                                <div class="col-11">
-                                                    <div>I have read and agree to D-8P System's User Agreement and as Privacy Agreement and I am of legal age.</div>
-                                                </div>
-                                            </div>
-                                                 <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                                    <div class="col-12">
-                                                        <div class="button-container text-center">
-                                                            <button class="d8p-btn-default" id="submitAgree" (click)="doSignupUser()" disabled>
-                                                                Submit
-                                                                <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
-                                                            </button>
+                        <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
+                        <div class="container-fluid p-0">
+                            <div class="row no-gutters justify-content-center">
+                                <div class="col-10 col-xl-6">
+                                    <div class="d8p-radiobttn-text text-center mt-2 mb-2">Sign up with us to feel the
+                                        D-8P
+                                        System's<br>'Save in grams' Gold FinTech experience!</div>
+                                    <div class="container-fluid">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="col-12 col-xl-6">
+                                                <div class="container-fluid p-0">
+                                                    <form id="formSignup" novalidate>
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="forminput d8p-input-normal"
+                                                                    placeholder="Username" type="text"
+                                                                    pattern="([A-z0-9À-ž]){2,}" id="username"
+                                                                    name="username" #username="ngModel" minlength="4"
+                                                                    maxlength="12" [(ngModel)]="loginUsername"
+                                                                    required />
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="username.touched && ! username.valid">
+                                                                    Username is required.</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div> 
-                                            </form>
-                                            
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="forminput d8p-input-normal"
+                                                                    placeholder="Full Name" type="text" id="fullname"
+                                                                    name="fullname" #fullname="ngModel"
+                                                                    [(ngModel)]="fullName" required />
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="fullname.touched && ! fullname.valid">Full
+                                                                    Name is required.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="forminput d8p-input-normal"
+                                                                    placeholder="Email Address" type="email"
+                                                                    #emailAdd="ngModel" id="emailAdd" name="emailAdd"
+                                                                    [(ngModel)]="emailAddress" required />
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="emailAdd.touched && ! emailAdd.valid">Fill in
+                                                                    your email address.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="forminput d8p-input-normal"
+                                                                    placeholder="National Identity Card No." type="text"
+                                                                    minlength="12" maxlength="12" #nricNo="ngModel"
+                                                                    id="nricNo" name="nricNo" [(ngModel)]="nricNumber"
+                                                                    required />
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="nricNo.touched && ! nricNo.valid">National
+                                                                    Identity Card No. is required.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="forminput d8p-input-normal"
+                                                                    placeholder="Password" type="password"
+                                                                    pattern="([A-z0-À-ž]){1,13}" minlength="4"
+                                                                    maxlength="12" #createPass="ngModel"
+                                                                    id="create-password" name="create-password"
+                                                                    [(ngModel)]="createPassword" required />
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="createPass.touched && ! createPass.valid">
+                                                                    Password is required.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center mb-2">
+                                                            <div class="col-12">
+                                                                <input class="forminput d8p-input-normal"
+                                                                    placeholder="Confirm Password" type="password"
+                                                                    pattern="([A-z0-À-ž]){1,13}" minlength="4"
+                                                                    maxlength="12" id="confirm-password"
+                                                                    name="confirm-password"
+                                                                    [(ngModel)]="confirmPassword" required />
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <mat-radio-group name="cardSelect">
+                                                                <mat-radio-button class="d8p-radiobttn-text mt-2"
+                                                                    id="wantCard" value="wantCard" name="wantCard"
+                                                                    (change)="selectCard(1)"><span> Yes, I want to have
+                                                                        a physical D8-P card.<br></span>
+                                                                    <label
+                                                                        class="d8p-smaller-text text-justify">(*priced
+                                                                        at RM 6.00 one-time, charged from 20%<br>of my
+                                                                        Gold loyalty giveback until RM 6.00 is
+                                                                        paid).</label>
+                                                                </mat-radio-button>
+                                                                <!-- Address for Yes, want card. -->
+                                                                <div class="yesWant" id="yesWant"
+                                                                    style="display: none;">
+                                                                    <div id="inner-container" class="formPlaceholder">
+                                                                        <div class="inner">
+                                                                            <input class="forminput d8p-input-normal" type="text"
+                                                                                placeholder="Home Address"
+                                                                                name="homeAddress" id="homeAddress"
+                                                                                #homeAdd="ngModel"
+                                                                                [(ngModel)]="homeAddress" required />
+                                                                            <div class="alert alert-danger"
+                                                                                *ngIf="homeAdd.touched && ! homeAdd.valid">
+                                                                                Home Address is required.</div>
+                                                                        </div>
+
+                                                                        <div class="formPlaceholder inner">
+                                                                            <input class="forminput d8p-input-normal"
+                                                                                type="text" name="postalCode"
+                                                                                id="postalCode" maxlength="5"
+                                                                                #postCode="ngModel"
+                                                                                [(ngModel)]="postalCode"
+                                                                                placeholder="Postal Code" required />
+                                                                            <div class="alert alert-danger"
+                                                                                *ngIf="postCode.touched && ! postCode.valid">
+                                                                                Postal Code is required.</div>
+                                                                        </div>
+
+                                                                        <div class="formPlaceholder">
+                                                                            <input class="forminput d8p-input-normal"
+                                                                                type="text" name="stateCity"
+                                                                                id="stateCity" #city="ngModel"
+                                                                                [(ngModel)]="stateCity"
+                                                                                placeholder="City" required />
+                                                                            <div class="alert alert-danger"
+                                                                                *ngIf="city.touched && ! city.valid">
+                                                                                City is required.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <mat-radio-button class="d8p-radiobttn-text mt-2"
+                                                                    type="radio" id="noWantCard" value="noWantCard"
+                                                                    name="noWantCard" (change)="selectCard(2)" checked>
+                                                                    No, I don't want to have a physical card.
+                                                                </mat-radio-button>
+                                                            </mat-radio-group>
+                                                        </div>
+
+                                                    </form>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="tnc">
+                                <div class="d-flex flex-row justify-content-center align-items-center ml-3">
+                                    <input type="checkbox" id="checkAgree" class="tnc-checkbox ml-2" (click)="agreementCheckbox()"/>
+                                    <div class="d8p-tnc-text ml-2 justify-content-center text-left">I have read the <span
+                                            class="userAgreement">User Agreement</span> and agreed to sign up.</div>
+                                </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center">
+                            <div class="col-12">
+                                <div class="button-container text-center mt-2">
+                                    <button class="d8p-btn-default" id="submitAgree" (click)="doSignupUser()">
+                                        Confirm
+                                        <span class="ml-2"><img class="p-1 max-width-40-px min-height-50"
+                                                src="assets/icons-img/tick-confirm-signup@3x.png" /></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>

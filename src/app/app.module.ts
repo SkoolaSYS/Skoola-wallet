@@ -53,8 +53,9 @@ import {
   AddBankComponent,
   UpdateBankComponent,
   QrPaymentComponent,
-  CardRequestComponent
-
+  CardRequestComponent,
+  UserAgreementPageComponent,
+  AcknowledgementPageComponent
 } from './pages';
 
 import {
@@ -139,6 +140,8 @@ export class SafeUrlPipe implements PipeTransform {
     UpdateBankComponent,
     QrPaymentComponent,
     CardRequestComponent,
+    UserAgreementPageComponent,
+    AcknowledgementPageComponent,
 
     // components
     DashboardHeaderComponent,
@@ -159,12 +162,12 @@ export class SafeUrlPipe implements PipeTransform {
     CimbbankDetailsComponent,
     CimbbankTransactionComponent,
     MatsidenavComponent,
+    CardRequestComponent,
     TermsConditionComponent,
 
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
-    CardRequestComponent,
     
    
   ],

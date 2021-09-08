@@ -31,7 +31,9 @@ import {
   AddBankComponent,
   UpdateBankComponent,
   QrPaymentComponent,
-  CardRequestComponent
+  CardRequestComponent,
+  UserAgreementPageComponent,
+  AcknowledgementPageComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -154,6 +156,14 @@ export const routes: Routes = [
  {
   path: 'card-request', component: CardRequestComponent,
    canActivate: [AuthenticationGuard]
+ },
+ {
+  path:'user-agreement-page', component:  UserAgreementPageComponent ,
+  //  canActivate: [AuthenticationGuard]
+ },
+ {
+  path:'acknowledgement-page', component:  AcknowledgementPageComponent ,
+  //  canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }
 ];

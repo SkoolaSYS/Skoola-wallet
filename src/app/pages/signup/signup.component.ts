@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utility } from 'src/utils';
-
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -26,33 +24,66 @@ export class SignupComponent implements OnInit {
   parentId: string ;
   errorObj: any;
   cardSelect: boolean = false;
+  data:any = [];
+  agree:string;
   errorMessage :any=
-   [{field:"email",reason:"Email has been used"}
-  ]
+   [{field:"email",reason:"Email has been used"}]
   public href: string = "";
-  
-  
   constructor(
     private services:Services,
     private ngPopups: NgPopupsService, 
-    private router:Router, 
-    private modalService: NgbModal) { }
+    private router:Router,
+    private authService:AuthService) { }
+  
   async ngOnInit(): Promise<void>  {
-
     // Append smId to signup page; /signup?smId=
-    this.href = this.router.url;
-    this.parentId = this.router.url.split("?")[1].split("=")[1];
+     this.href = this.router.url;
+     
+     this.parentId = this.router.url.split("?")[1].split("=")[1].split("&")[0];
+     
+     this.agree = this.router.url.split("?")[1].split("=")[2];
+     
+  
+     try{
+      this.loginUsername = this.authService.signupData.username;
+      this.fullName = this.authService.signupData.fullName; 
+      this.emailAddress = this.authService.signupData.emailAddress;
+      this.nricNumber = this.authService.signupData.nricNumber;
+      this.createPassword = this.authService.signupData.createPassword;
+      this.confirmPassword = this.authService.signupData.confirmPassword;
+      this.homeAddress = this.authService.signupData.homeAddress;
+      this.postalCode = this.authService.signupData.postalCode;
+      this.stateCity = this.authService.signupData.stateCity;
       
+     }
+     catch (e) {
+      console.log(e);
+      
+     }
+     finally{}
+     
+    if (this.agree == "1")
+        this.tickCheckbox();
+  
   }
-  // Terms & Condition popup
-  openScrollableContent(longContent) {
-    this.modalService.open(longContent, { scrollable: true });
-    return false;
+  //Terms & Condition Agree or Disagree; agree, checkbox remains tick
+  tickCheckbox(){
+    var agreeCheckbox = <HTMLInputElement> document.getElementById("checkAgree");
+    agreeCheckbox.checked = true;
   }
-
-  //Terms & Condition Agree or Disagree; agree, checkbox remains tick, submit button enabled: disagree, checkbox untick
-  enableSubmit(){
-    document.getElementById("submitAgree").removeAttribute('disabled');
+  //Terms & Condition; navigate to User Agreement page while passing data from Signup page
+  agreementCheckbox(){
+    this.authService.signupData.username = this.loginUsername;
+    this.authService.signupData.fullName = this.fullName;
+    this.authService.signupData.emailAddress = this.emailAddress;
+    this.authService.signupData.nricNumber = this.nricNumber;
+    this.authService.signupData.createPassword = this.createPassword;
+    this.authService.signupData.confirmPassword = this.confirmPassword;
+    this.authService.signupData.homeAddress = this.homeAddress;
+    this.authService.signupData.postalCode = this.postalCode;
+    this.authService.signupData.stateCity = this.stateCity;
+    this.authService.signupData.parentId = this.parentId;
+    this.router.navigate(['user-agreement-page']);
   }
   // Select Physical Card; If yes, display hidden div incl HomeAddress, PostalCode, City (kinah)
   selectCard(card){
@@ -65,7 +96,6 @@ export class SignupComponent implements OnInit {
     }
     return;
   }
-  
   // Insert Sign Up user to back-end (kinah)
   async doSignupUser(){
     let data: any = {};
@@ -118,7 +148,7 @@ export class SignupComponent implements OnInit {
           cardRequest: this.cardSelect
         }).toPromise().then(() => {
           this.ngPopups.alert('You have succesfully signup!');
-          this.router.navigate(['login']);
+          this.router.navigate(['acknowledgement-page']);
         }).catch((err) => {
             this.errorObj = this.errorMessage.find(error=>error.field === err.error.field);
             this.ngPopups.alert(this.errorObj.reason);

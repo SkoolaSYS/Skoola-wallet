@@ -6,6 +6,8 @@ import { ILogin } from 'src/app/interfaces/login';
 })
 
 export class AuthService {
+  public signupData:any = {};
+
   constructor() { }
   logout(): void {
   localStorage.setItem('isLoggedIn', 'false');

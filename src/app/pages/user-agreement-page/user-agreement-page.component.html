@@ -1,0 +1,53 @@
+<div class="container-fluid common-cls loginpg grey-gradient p-0">
+    <div class="row">
+        <div class="col-12">
+            <div id="container">
+                <div class="userAgreement-bg">
+                    <div class="d8p-main-back-btn">
+                        <div class="row no-gutters">
+                            <div class="col-9">
+                                <div class="dashboard-header">
+                                    <div class="text-center">
+                                        <img class="logo" src="assets/icons-img/logo-title-signup@3x.png"
+                                            routerLink="/login" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="userAgreement-body container-fluid p-0">
+                            <div class="row no-gutters justify-content-center">
+                                <div class="col-10 col-xl-6">
+                                    <div class="modal-title text-center mt-2 mb-2">
+                                        User Agreement
+                                    </div>
+                                    <div class="userAgreement-content container-fluid">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="col-12 col-xl-6">
+                                                <div class="userAgreement-tnc container-fluid p-0">
+                                                    <app-terms-condition></app-terms-condition>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="arrows">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div>
+                                        <button 
+                                        type="button" 
+                                        class="btnTnc" 
+                                        id="agRee"
+                                        (click)="toSignup()">
+                                        Yes, I Agree
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
