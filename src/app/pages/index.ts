@@ -31,3 +31,5 @@ export * from './user-agreement-page/user-agreement-page.component';
 export * from './acknowledgement-page/acknowledgement-page.component';
 export * from './add-bank-load/add-bank-load.component';
 export * from './update-bank-load/update-bank-load.component';
+export * from './add-to-homescreen/add-to-homescreen.component';
+export * from './network-participants-list/network-participants-list.component';

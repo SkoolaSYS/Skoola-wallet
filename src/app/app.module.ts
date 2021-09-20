@@ -57,7 +57,9 @@ import {
   UserAgreementPageComponent,
   AcknowledgementPageComponent,
   AddBankLoadComponent,
-  UpdateBankLoadComponent
+  UpdateBankLoadComponent,
+  AddToHomescreenComponent,
+  NetworkParticipantsListComponent
 } from './pages';
 
 import {
@@ -146,7 +148,9 @@ export class SafeUrlPipe implements PipeTransform {
     AcknowledgementPageComponent,
     AddBankLoadComponent,
     UpdateBankLoadComponent,
-
+    AddToHomescreenComponent,
+    NetworkParticipantsListComponent,
+    
     // components
     DashboardHeaderComponent,
     TransactionViewComponent,
@@ -173,6 +177,7 @@ export class SafeUrlPipe implements PipeTransform {
     SafeHtmlPipe,
     SafeUrlPipe,
     UpdateBankLoadComponent,
+    
     
    
   ],

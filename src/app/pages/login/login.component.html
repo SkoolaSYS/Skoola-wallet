@@ -3,80 +3,72 @@
         <div class="col-12">
             <div class="login-bg">
                 <div class="d8p-main-back-btn">
-                    <img class="max-width-40 mb-4" src="assets/icons-img/logod81.png" routerLink="/login" />
-                    <img class="max-width-60" src="assets/icons-img/linegrey1.png" />
-                </div>
-                <div class="login-container max-width-100 overflow-hidden">
-                    <div class="text-center mt-xl-4 mb-4 pt-5">
-                        <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
-                        <div class="d8p-h4 color-cyan">WEALTH. HUMANITY. SECURE</div>
+                    <div class="row no-gutters">
+                        <div class="col-9">
+                            <div class="dashboard-header">
+                                <div class="text-center">
+                                    <img class="logo" src="assets/icons-img/logo-title-signup@3x.png"
+                                        routerLink="/login" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <form (submit)="submit()"> 
+                    <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
+                <div class="login-container max-width-100 overflow-hidden">
+                    <div class="text-center mb-3">
+                        <img class="max-width-60" src="assets/icons-img/d-8logonew-login@2x.png" />
+                    </div>
+                    <form (submit)="submit()">
                         <div class="formfield max-width-100">
                             <div class="input-group mb-3 group-input-border-radius">
-                                <input 
-                                    type="text" 
-                                    class="form-control d8p-input min-height-60" 
-                                    placeholder="Username" 
-                                    pattern="([A-z0-9À-ž]){2,}" 
-                                    maxlength="16" 
-                                    name="username" 
-                                    [(ngModel)]="services.username"
-                                    aria-label="Recipient's username" 
-                                    aria-describedby="basic-addon2"
-                                />
-                                <!-- <div class="input-group-append">
-                                    <span class="input-group-text group-input-icon-field" id="basic-addon2">
-                                        <button class="d8p-transparent-btn " *ngIf="services.username">
-                                            <img class="btnicon" src="assets/icons-img/icon-correct1.png"  />
-                                        </button>
-                                        <button class="d8p-transparent-btn" *ngIf="!services.username">
-                                            <img class="btnicon" src="assets/icons-img/icon-correct2.png"  />
-                                        </button>
-                                    </span>
-                                </div> -->
+                                <input type="text" class="form-control d8p-input-normal min-height-60" placeholder="Username"
+                                    pattern="([A-z0-9À-ž]){2,}" maxlength="16" name="username"
+                                    [(ngModel)]="services.username" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2" />
+
                             </div>
-                                <div class="formfield max-width-100">
-                                    <div class="input-group mb-3 group-input-border-radius">
-                                        <input 
-                                            type="password" 
-                                            class="form-control d8p-input min-height-60" 
-                                            placeholder="Password" 
-                                            pattern="([A-z0-9À-ž]){2,}" 
-                                            maxlength="16" 
-                                            name="pwd" 
-                                            [(ngModel)]="services.password"
-                                            aria-label="Recipient's username" 
-                                            aria-describedby="basic-addon2"
-                                            autocomplete="new-password"
-                                        />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text group-input-icon-field" id="basic-addon2">
-                                                <button class="d8p-transparent-btn" *ngIf="services.password">
-                                                    <img class="btnicon" src="assets/icons-img/icon-login2.png"  />
-                                                </button>
-                                                <button class="d8p-transparent-btn" *ngIf="!services.password">
-                                                    <img class="btnicon" src="assets/icons-img/icon-login1.png"  />
-                                                </button>
-                                            </span>
-                                        </div>
+                            <div class="formfield max-width-100">
+                                <div class="input-group mb-3 group-input-border-radius">
+                                    <input type="password" class="form-control d8p-input-normal min-height-60"
+                                        placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" name="pwd"
+                                        [(ngModel)]="services.password" aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2" autocomplete="new-password" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                            <button class="d8p-transparent-btn" *ngIf="services.password">
+                                                <img class="btnicon" src="assets/icons-img/login-unlock@3x.png" />
+                                            </button>
+                                            <button class="d8p-transparent-btn" *ngIf="!services.password">
+                                                <img class="btnicon" src="assets/icons-img/login-lock@3x.png" />
+                                            </button>
+                                        </span>
                                     </div>
                                 </div>
-                            
+                            </div>
+
                         </div>
-                        <div class="button-container text-center">
-                            <!-- <button onclick="location.href = 'http://localhost:8080/komeps/do/doPublicCreateMember?groupId=6';"class="d8p-btn-default"> -->
+                        <!-- <div class="button-container text-center">
                                 <button routerLink="/signup" class="d8p-btn-default">
                                 Signup
                                 <span class="ml-2"><img class="max-width-25-px" src="assets/icons-img/icon-signup1.png" /></span>
                             </button>
-                        </div> 
+                            
+                        </div>  -->
                     </form>
                 </div>
-                
+                <div class="button-container text-center">
+                    <a class="d8p-btn-grey" routerLink="/network-participants-list">
+                        <div class="--text">Network Participants List</div>
+                        <div class="--icon"><img class="max-width-30-px" src="assets/icons-img/npl-merchant-icon.png" /></div>
+                    </a>
+                </div>
+                <img class="signupline" src="assets/icons-img/line-gradient-login-bottom.png" />
                 <div class="sponsored text-center">
-                    <img class="max-width-40 mr-2 mr-xl-4" src="assets/icons-img/logod8s1.png" />
-                    <img class="max-width-40 ml-2 ml-xl-4" src="assets/icons-img/logokomeps.png" />
+                    <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/d-8pplus-sponsored@3x.png" />
+                    <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/short-line-gradient.png"/>
+                    <img class="max-width-30 mr-2 mr-xl-4 " src="assets/icons-img/komeps-sponsored@3x.png"/>
+                    <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/short-line-gradient.png"/>
+                    <img class="max-width-20 ml-2 ml-xl-4" src="assets/icons-img/d8p-eid@2x.png" />
                 </div>
             </div>
         </div>

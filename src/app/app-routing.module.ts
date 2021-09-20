@@ -35,7 +35,9 @@ import {
   UserAgreementPageComponent,
   AcknowledgementPageComponent,
   AddBankLoadComponent,
-  UpdateBankLoadComponent
+  UpdateBankLoadComponent,
+  AddToHomescreenComponent,
+  NetworkParticipantsListComponent
 } from './pages';
 import { AuthenticationGuard } from './services/authentication.guard';
 
@@ -173,6 +175,14 @@ export const routes: Routes = [
  },
  {
   path:'acknowledgement-page', component:  AcknowledgementPageComponent ,
+  //  canActivate: [AuthenticationGuard]
+ },
+ {
+  path:'add-to-homescreen', component:  AddToHomescreenComponent ,
+  //  canActivate: [AuthenticationGuard]
+ },
+ {
+  path:'network-participants-list', component:  NetworkParticipantsListComponent ,
   //  canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }

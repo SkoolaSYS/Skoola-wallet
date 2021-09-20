@@ -147,7 +147,6 @@ export class SignupComponent implements OnInit {
           superMerchantId: this.parentId,
           cardRequest: this.cardSelect
         }).toPromise().then(() => {
-          this.ngPopups.alert('You have succesfully signup!');
           this.router.navigate(['acknowledgement-page']);
         }).catch((err) => {
             this.errorObj = this.errorMessage.find(error=>error.field === err.error.field);
