@@ -45,7 +45,6 @@ export class DashboardComponent implements OnInit {
 
   async doRoute(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
-
     // Only merchants are allowed to make withdrawal.
     if (currentUser.allowWithdrawal){
       if (!currentUser.addBank){
@@ -54,6 +53,17 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['add-bank']);
         }
     }
+  }
+  async doBankLoad(): Promise<void> {
+    const currentUser: any = await this.services.currentUser;
+    console.log(currentUser)
+    // Only merchants are allowed to make withdrawal.
+      if (currentUser.bankLoad){
+        this.router.navigate(['bankload']);
+      }else{
+        this.router.navigate(['add-bank-load']);
+        }
+    
   }
 
   isUserIdNotVerified(user: any) : boolean {

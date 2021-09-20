@@ -358,6 +358,42 @@ export class Services {
             console.log(err);
         }));;
     }
+    public sendAddBankLoad(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/addBankLoad',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('sendAddBank() Error...');
+            console.log(err);
+        }));;
+    }
+    public sendUpdateBankLoad(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateBankLoad',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('sendAddBank() Error...');
+            console.log(err);
+        }));;
+    }
     public getBankData(bankCountry){
         const headerOptions = {
             headers: new HttpHeaders({
@@ -386,6 +422,23 @@ export class Services {
             })
         };
         return this.http.get('rest/accounts/getMemberBankData', headerOptions).pipe(tap (data => {
+            this.memberBankData = data;
+        },
+        (err) => {
+            console.log('getBankDataMember() Error...');
+            console.log(err);
+        }));;
+    }
+    public getMemberBankLoadData(){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('rest/accounts/getMemberBankLoadData', headerOptions).pipe(tap (data => {
             this.memberBankData = data;
         },
         (err) => {

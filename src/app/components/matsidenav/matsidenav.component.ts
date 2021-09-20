@@ -16,6 +16,7 @@ export class MatsidenavComponent implements OnInit {
   public isNotIdVerified: boolean = false;
   public bankData: boolean;
   public allowWithdrawal: boolean;
+  public bankLoadData: boolean;
   @ViewChild('sidenav') public sidenav:MatSidenav;
  
 
@@ -29,6 +30,8 @@ export class MatsidenavComponent implements OnInit {
       const currentUser: any = await this.services.currentUser;
       this.allowWithdrawal = currentUser.allowWithdrawal;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+      this.bankLoadData = currentUser.bankLoad;
+
     },
     (err) => {
       console.log(err);
@@ -45,6 +48,7 @@ export class MatsidenavComponent implements OnInit {
     (err) => {
       console.log(err);
     });
+    
   }
 
  
