@@ -23,6 +23,8 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { NgPopupsModule } from 'ng-popups';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ImageUploadModule } from 'ng2-imageupload';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 import {
   LoginComponent,
@@ -194,7 +196,9 @@ export class SafeUrlPipe implements PipeTransform {
     MatButtonModule,
     MatTabsModule,
     MatRadioModule,
-    NgbModule, 
+    NgbModule,
+    ImageUploadModule,
+    Ng2ImgMaxModule, 
     HttpClientModule,  
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
     NgPopupsModule.forRoot(

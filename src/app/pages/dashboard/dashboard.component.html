@@ -8,7 +8,7 @@
       </svg>
       </mat-icon>
   </button>
-  <!-- Nav block - start -->
+ 
     <mat-sidenav-container>
       <mat-sidenav #sidenav mode="over" position="end">
         <mat-nav-list>
@@ -17,9 +17,9 @@
             
         </mat-nav-list>
       </mat-sidenav> 
-   
-      <!-- Nav block - end -->
-      <mat-sidenav-content fxFlexFill>
+      
+      <!-- <app-matsidenav></app-matsidenav> -->
+      
         <div class="container-fluid p-0">
           <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9">
@@ -45,7 +45,7 @@
                       </div>
                       
                       <div class="quicklinkParent">
-                        <div class="quicklinkChild">
+                        <div class="quicklinkChild border-right-white">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
                           <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-55" src="assets/icons-img/quicklinks-transfer@3x.png"/></div>
                         </div>
@@ -53,12 +53,12 @@
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
                           <div class="height-60 text-center" routerLink="/"><img class="max-width-60" src="assets/icons-img/quicklinks-paybill@3x.png"/></div>
                         </div>
-                        <div class="quicklinkChild">
+                        <div class="quicklinkChild border-right-white">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
                           <div class="height-60 text-center" routerLink="/bankload"><img class="max-width-55" src="assets/icons-img/quicklinks-bankload@3x.png"/></div>
                         </div>
                         
-                        <div class="quicklinkChild border-right-white">
+                        <div class="quicklinkChild">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
                           <div class="height-60 text-center" routerLink="/buy-gold"><img class="max-width-60" src="assets/icons-img/quicklinks-buygold@3x.png"/></div>
                         </div>
@@ -86,13 +86,18 @@
                               <div class="height-60 text-center" (click)="doBankLoad()"><img class="max-width-55"
                                   src="assets/icons-img/bankload-colored@3x.png" /></div>
                             </div>
-                            <div></div>
+                            <div style="height: 100px; margin-bottom: 5px;">
+                              <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
+                              </div>
+                              <div class="height-60 text-center" (click)="doRoute()"><img class="max-width-55"
+                                  src="assets/icons-img/withdraw-ios-ltst@2x.png" /></div>
+                            </div>
                           </div>
                           <div class="transferChild border-right-black">
                             <div style="height: 100px; margin-bottom: 5px;">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
-                              <div class="height-60 text-center" routerLink="/bankload"><img class="max-width-55"
+                              <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-55"
                                   src="assets/icons-img/transfer-colored@2x.png" /></div>
                             </div>
                             <div style="height: 100px;">
@@ -235,7 +240,6 @@
             </div>
           </div>
         </div>
+</mat-sidenav-container>
 
-      </mat-sidenav-content>
-    </mat-sidenav-container>
 </div>

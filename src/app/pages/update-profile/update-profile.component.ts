@@ -3,6 +3,7 @@ import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Utility } from 'src/utils';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 
 @Component({
   selector: 'app-update-profile',
@@ -13,8 +14,9 @@ export class UpdateProfileComponent implements OnInit {
   public updateForm: any = {};
   private file: File = null;
   public imageSrc: any = "assets/icons-img/user-dp.png";
+  
 
-  constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService) { }
+  constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService, private ng2ImgMax: Ng2ImgMaxService) { }
 
   async ngOnInit(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
@@ -39,6 +41,8 @@ export class UpdateProfileComponent implements OnInit {
       this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
     }
   }
+
+  uploadedImage: File;
   
   onSelectedFile(event){
     const self = this;
@@ -51,6 +55,15 @@ export class UpdateProfileComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]);
       this.file = event.target.files[0];
+      this.ng2ImgMax.resizeImage(this.file, 100, 100).subscribe(
+        result => {
+          this.uploadedImage =new File([result], result.name);
+          this.file=this.uploadedImage;
+        },
+        error => {
+          console.log('Oh no!', error);
+        }
+      );
     }
   }
 
@@ -64,7 +77,7 @@ export class UpdateProfileComponent implements OnInit {
         
     if (this.updateForm.phone)
       customValues.push({
-        "internalName": "mobilephone",
+        "internalName": "mobilePhone",
         "value": this.updateForm.phone
       });
 

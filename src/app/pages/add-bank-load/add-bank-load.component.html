@@ -4,7 +4,7 @@
     </button>
     <!-- Nav block - start -->
       <mat-sidenav-container>
-        <mat-sidenav #sidenav>
+        <mat-sidenav #sidenav mode="over" position="end">
           <mat-nav-list>
             <app-matsidenav></app-matsidenav>
           </mat-nav-list>
@@ -35,7 +35,7 @@
                           </div>
                           <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
                             <div class="col-3 flex-align-center flex-column border-right-white">
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/quicklinks-bankload-ios@2x.png" /></div>
+                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/quicklinks-bankload@3x.png" /></div>
                             </div>
                             <div class="col-9 pl-3 color-white font-size-15">
                                 Add Bank Account Details for Bank Load.
@@ -55,19 +55,19 @@
                                 Bank Account Details
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Country</div>
-                                <select class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Country" [(ngModel)]="bankFormCountry"  required >
+                                <select class="forminput d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Country" [(ngModel)]="bankFormCountry"  required >
                                   <option value="MY" >Malaysia</option>
                                 </select>
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4"> 
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4"> 
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Name</div>
-                                <select class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Name" [(ngModel)]="bankFormName" required>
+                                <select class="forminput d8p-input-normal w-100" placeholder="" type="text" name="Bank-Name" [(ngModel)]="bankFormName" required>
                                   <option value="null" disabled>Select Bank</option>
                                   <option *ngFor="let bank of banks" [value]="bank.id" >
                                     {{bank.name}}
@@ -76,17 +76,17 @@
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Account Name</div>
-                                <input class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Name" [(ngModel)]="bankFormAccName" required/>
+                                <input class="forminput d8p-input-normal" placeholder="" type="text" name="Bank-Account-Name" [(ngModel)]="bankFormAccName" required/>
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                                 <div class="d8p-h6">Bank Account Number</div>
-                                <input class="d8p-input-normal w-100" placeholder="" type="text" name="Bank-Account-Number" [(ngModel)]="bankFormAccNumber" required/>
+                                <input class="forminput d8p-input-normal" placeholder="" type="text" name="Bank-Account-Number" [(ngModel)]="bankFormAccNumber" required/>
                                 <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
                             </div>
                           </div>
@@ -105,7 +105,7 @@
                               Confirmation
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <!-- <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10">
                               <div class="button-container text-center">
                                 <button class="d8p-btn-default" (click)="doAddBank(bankFormName,bankFormAccName,bankFormAccNumber)">
@@ -114,6 +114,17 @@
                                 </button>
                             </div>
                           </div>
+                          </div> -->
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12">
+                              <div class="button-container text-center mt-2">
+                                <a class="d8p-btn-default mt-3 margin-left-73" (click)="doAddBank(bankFormName,bankFormAccName,bankFormAccNumber)">
+                                  <div class="--text">Confirm</div>
+                                  <div class="--icon"><img class="p-1 max-width-30-px"
+                                      src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                                </a>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
