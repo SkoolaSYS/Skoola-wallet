@@ -341,7 +341,7 @@
 }
 .border-right-white {
   border-width: 0.5px;
-  border-style: solid;
+  border-right: 1px solid;
   border-image: 
    linear-gradient(
      180deg, 
@@ -383,6 +383,9 @@
 }
 .margin-left-56{
   margin-left: 3.5rem;
+}
+.margin-left-73{
+  margin-left: 4.95rem;
 }
 //padding
 .padding-25 {
@@ -1145,6 +1148,9 @@ select.arrowstyle-white:focus {
 }
 
 //material design - override
+mat-sidenav{
+  width: 100% !important;
+}
 .mat-sidenav-container {
   height: 100vh !important;
 }
@@ -1793,3 +1799,11 @@ table, tr, td{
   position: relative;
   display: inline-block;
 }
+/* Network Participants List End */
+/* Transfer Start */
+.briefDescription{
+  font: normal $s-14 $ff-font;
+  color: $white;
+  margin-top: $s-12;
+}
+/* Transfer End */
