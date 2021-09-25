@@ -39,6 +39,10 @@ import {
   AddToHomescreenComponent,
   NetworkParticipantsListComponent
 } from './pages';
+import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
+import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
+import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
+import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
 import { AuthenticationGuard } from './services/authentication.guard';
 
 export const routes: Routes = [
@@ -65,8 +69,24 @@ export const routes: Routes = [
     path: 'transfer-details', component: TransactionDetailsComponent,
    canActivate: [AuthenticationGuard]
   },
+  // {
+  //   path: 'bankload', component: BankloadComponent,
+  //  canActivate: [AuthenticationGuard]
+  // },
   {
-    path: 'bankload', component: BankloadComponent,
+    path: 'bankload', component: BankloadAmountComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'bankload-username', component: BankloadUsernameComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'bankload-password', component: BankloadPasswordComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'bankload-confirm', component: BankloadConfirmComponent,
    canActivate: [AuthenticationGuard]
   },
   {

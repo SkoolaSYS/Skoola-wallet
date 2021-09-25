@@ -25,7 +25,7 @@ export class UpdateBankLoadComponent implements OnInit {
       this.bankFormAccName = this.bankData.bankAccName
       this.bankFormAccNumber= this.bankData.bankAccNumber
       //console.log(res);
-  });
+    });
     await this.services.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks[0] = res[0]
       this.banks[1] = res[1]
@@ -35,9 +35,9 @@ export class UpdateBankLoadComponent implements OnInit {
           this.bankFormName = this.bankObject.id
       }
       //console.log(res);
-  });
+    });
   
-}
+  }
   async doUpdateBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
     //console.log("click confirm");
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){

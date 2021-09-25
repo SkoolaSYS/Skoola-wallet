@@ -57,12 +57,12 @@ export class DashboardComponent implements OnInit {
   async doBankLoad(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
     console.log(currentUser)
-    // Only merchants are allowed to make withdrawal.
-      if (currentUser.bankLoad){
-        this.router.navigate(['bankload']);
-      }else{
-        this.router.navigate(['add-bank-load']);
-        }
+
+    if (currentUser.bankLoad){
+      this.router.navigate(['bankload']);
+    }else{
+      this.router.navigate(['add-bank-load'], { queryParams: { bankLoad: true } });
+    }
     
   }
 

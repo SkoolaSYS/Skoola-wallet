@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
 
@@ -13,7 +13,9 @@ export class AddBankLoadComponent implements OnInit {
   bankFormName = null;
   bankFormAccName;
   bankFormAccNumber;
-  constructor(private services:Services, private ngPopups: NgPopupsService, private router:Router) { }
+  fromBankLoad: boolean;
+
+  constructor(private services:Services, private ngPopups: NgPopupsService, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.services.getBankData(this.bankFormCountry).subscribe((res: any) => {
@@ -25,6 +27,11 @@ export class AddBankLoadComponent implements OnInit {
     for (let i = 0; i < this.banks.length; i++) {
         console.log(i);
     }
+
+    this.route.queryParamMap.subscribe((params) => {
+      if (params.has("bankLoad"))
+        this.fromBankLoad = params.get("bankLoad") == 'true';
+    });   
   }
   
   async doAddBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
@@ -36,7 +43,11 @@ export class AddBankLoadComponent implements OnInit {
       bankAccNumber: bankFormAccNumber
     }).toPromise().then(() => {
       this.ngPopups.alert('Your bank load details has been sucessfully added!');
-      this.router.navigate(['dashboard']);
+
+      if (this.fromBankLoad)
+        this.router.navigate(['bankload']);
+      else
+        this.router.navigate(['dashboard']);
     })
     .catch((err) => {
       this.ngPopups.alert('There was an error in your submission!');

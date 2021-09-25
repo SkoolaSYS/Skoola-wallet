@@ -1,0 +1,109 @@
+<div>
+  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+    <mat-icon>
+      <svg width="25" height="45">
+        <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
+        <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
+        <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
+    </svg>
+    </mat-icon>
+  </button>
+  <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <app-matsidenav></app-matsidenav>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box">
+                <app-dashboard-header></app-dashboard-header>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9"> 
+              <div class="dashboard-content-box pb-5">
+                <!-- Quick links -->
+                <div class="container-fluid quicklinkbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            BANK LOAD
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                          <div class="col-3 flex-align-center flex-column border-right-white">
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-bankload2.png" /></div>
+                          </div>
+                          <div class="col-9 pl-3 color-white font-size-15">
+                              Funds residing in my internet banking account will be used to load my D-8P Acc. MYR e-Wallet.
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Username -->
+                <form (submit)="submit()">
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Username
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10" style="text-align: center;">
+                              <input class="d8p-input-normal" placeholder="" type="text" name="username" [(ngModel)]="username" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Confirmation -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Next Step
+                            </div>
+
+                            <br><br>
+
+                            <div class="button-container text-center">                              
+                              <!-- <textarea id="SESSION-ARGS" name="SESSION-ARGS" style="display:none">{{ sessionArgs }}</textarea> -->
+                              <button class="d8p-btn-default">
+                                Continue
+                                <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
+                              </button>                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

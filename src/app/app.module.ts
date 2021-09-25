@@ -86,6 +86,10 @@ import {
 } from './components';
 
 import { Services } from 'src/app/services/service';
+import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
+import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
+import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
+import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
 
 
 
@@ -179,6 +183,10 @@ export class SafeUrlPipe implements PipeTransform {
     SafeUrlPipe,
     UpdateBankLoadComponent,
     
+    BankloadAmountComponent,
+    BankloadUsernameComponent,
+    BankloadPasswordComponent,
+    BankloadConfirmComponent,
     
    
   ],
