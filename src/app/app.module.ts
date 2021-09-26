@@ -24,6 +24,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { NgPopupsModule } from 'ng-popups';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import {
   LoginComponent,
@@ -90,8 +91,7 @@ import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount
 import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
-
-
+import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -187,8 +187,7 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadUsernameComponent,
     BankloadPasswordComponent,
     BankloadConfirmComponent,
-    
-   
+    BankloadHelperComponent,
   ],
   imports: [
     BrowserModule,
@@ -220,7 +219,7 @@ export class SafeUrlPipe implements PipeTransform {
       //   }
       // }
     ),
-    
+    NgxSpinnerModule 
   ],
   providers: [Services],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Botv2Service } from 'src/app/services/botv2.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-bankload-username',
@@ -11,10 +12,10 @@ import { Botv2Service } from 'src/app/services/botv2.service';
 export class BankloadUsernameComponent implements OnInit {
   username: string;
 
-  constructor(private botService: Botv2Service, private router: Router, private ngPopups: NgPopupsService) { }
+  constructor(private botService: Botv2Service, private router: Router, 
+              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async submit() {
     this.botService.form.username = this.username;
@@ -22,26 +23,43 @@ export class BankloadUsernameComponent implements OnInit {
     try {
       let res: any
       
+      this.spinner.show();
+
       res = await this.botService.doInitialize();
       console.log(res);
       this.botService.workerId = res["worker-id"];
-      // this.botService.httpHeaders = this.botService.httpHeaders.set("Worker-Id", res["worker-id"]);
       
+      // Check if native helper app is already installed and running
+      res = await this.botService.doHealthCheck();
+      console.log(res);      
+      const proxyReady = res["proxy"]["connected"] == true && res["proxy"]["ready"] == true;
+      
+      // TODO: Remove false condition
+      if (false && !proxyReady) {
+        this.spinner.hide();
+        this.botService.doQuit();
+
+        this.router.navigate(["bankload-helper"]);
+        return false;
+      }   
+
       res = await this.botService.doLoginStep1();
-      console.log(res);
+      // console.log(res);
 
       this.botService.form.secretPhrase = res["result"]["secretPhrase"];
       this.botService.form.secureImage = res["result"]["secureImage"];
 
+      this.spinner.hide();
       this.router.navigate(['bankload-password']);
     } catch (e) {
+      this.spinner.hide();
       console.log(e);    
-      this.ngPopups.alert("There was an error processing your request. Please try again.")
-      this.router.navigate(['dashboard']);
       
-      // quit the driver
+      this.ngPopups.alert("There was an error processing your request. Please try again.")
+      
+      // Quit the driver
       this.botService.doQuit();
+      this.router.navigate(['dashboard']);
     }
   }
-
 }

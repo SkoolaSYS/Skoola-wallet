@@ -41,6 +41,7 @@ import {
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
+import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
 import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
 import { AuthenticationGuard } from './services/authentication.guard';
@@ -87,6 +88,10 @@ export const routes: Routes = [
   },
   {
     path: 'bankload-confirm', component: BankloadConfirmComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'bankload-helper', component: BankloadHelperComponent,
    canActivate: [AuthenticationGuard]
   },
   {

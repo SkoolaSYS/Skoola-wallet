@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { assert } from 'console';
 import { Botv2Service } from 'src/app/services/botv2.service';
 import { Services } from 'src/app/services/service';
 

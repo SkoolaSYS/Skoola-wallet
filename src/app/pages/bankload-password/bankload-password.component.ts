@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Botv2Service } from 'src/app/services/botv2.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-bankload-password',
@@ -14,7 +15,8 @@ export class BankloadPasswordComponent implements OnInit {
   password: string;
   ack: boolean;
 
-  constructor(private botService: Botv2Service, private router: Router, private ngPopups: NgPopupsService) { }
+  constructor(private botService: Botv2Service, private router: Router, 
+              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.ack = false;
@@ -37,26 +39,30 @@ export class BankloadPasswordComponent implements OnInit {
     let res: any;    
 
     try {
+      this.spinner.show();
+
       res = await this.botService.doLoginStep2()
-      console.log(res);
+      // console.log(res);
   
       this.botService.loggedIn = true;
 
       res = await this.botService.doGotoXferPage();
-      console.log(res);
+      // console.log(res);
   
       res = await this.botService.doFillXferForm();
-      console.log(res);
-      
+      // console.log(res);
+
+      this.spinner.hide();      
       this.router.navigate(['bankload-confirm']);
     } catch (e) {
-      console.log(e);      
-      this.ngPopups.alert("There was an error processing your request. Please try again.")
-      this.router.navigate(['dashboard']);
+      this.spinner.hide();
+      console.log(e);     
+       
+      this.ngPopups.alert("There was an error processing your request. Please try again.")       
       
-      // quit the driver
-      await this.botService.doLogout();
+      // Quit the driver
+      await this.botService.doLogout();      
+      this.router.navigate(['dashboard']);
    }
-
   }  
 }
