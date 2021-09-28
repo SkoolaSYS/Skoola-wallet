@@ -25,9 +25,13 @@ export class BankloadUsernameComponent implements OnInit {
       
       this.spinner.show();
 
+      if (sessionStorage.getItem("worker_id") != null)
+        await this.botService.doQuit();
+
       res = await this.botService.doInitialize();
       console.log(res);
       this.botService.workerId = res["worker-id"];
+      sessionStorage.setItem("worker_id", res["worker-id"])
       
       // Check if native helper app is already installed and running
       res = await this.botService.doHealthCheck();
@@ -36,8 +40,8 @@ export class BankloadUsernameComponent implements OnInit {
       
       // TODO: Remove false condition
       if (false && !proxyReady) {
+        await this.botService.doQuit();
         this.spinner.hide();
-        this.botService.doQuit();
 
         this.router.navigate(["bankload-helper"]);
         return false;
@@ -58,7 +62,7 @@ export class BankloadUsernameComponent implements OnInit {
       this.ngPopups.alert("There was an error processing your request. Please try again.")
       
       // Quit the driver
-      this.botService.doQuit();
+      await this.botService.doQuit();
       this.router.navigate(['dashboard']);
     }
   }

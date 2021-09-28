@@ -51,6 +51,8 @@ export class BankloadPasswordComponent implements OnInit {
   
       res = await this.botService.doFillXferForm();
       // console.log(res);
+      if (res["result"]["errored"] == true)
+        throw new Error("User already logged in");
 
       this.spinner.hide();      
       this.router.navigate(['bankload-confirm']);

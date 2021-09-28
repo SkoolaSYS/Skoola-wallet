@@ -14,17 +14,20 @@ export class Botv2Service {
   public fromBank: string;
   public fromAccount: string;
 
+  private BOT_URL = "http://localhost:8000";
+  // private BOT_URL = "http://komepsdev.ddns.net:8000";
+
   constructor(private services: Services, private httpClient: HttpClient) {}
 
   doInitialize() {
-    return this.httpClient.post("http://localhost:8000/drivers/initialize", 
+    return this.httpClient.post(this.BOT_URL + "/drivers/initialize", 
       { driver: "selenium" }, { headers: { "Content-Type": "application/json" } }
     ).toPromise();
 
   }
 
   doHealthCheck() {
-    return this.httpClient.post("http://localhost:8000/drivers/health", 
+    return this.httpClient.post(this.BOT_URL + "/drivers/health", 
       {}, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();
   }
@@ -38,7 +41,7 @@ export class Botv2Service {
       }
     }
 
-    return this.httpClient.post("http://localhost:8000/flows/execute", 
+    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();
 
@@ -53,7 +56,7 @@ export class Botv2Service {
       }
     }
 
-    return this.httpClient.post("http://localhost:8000/flows/execute", 
+    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();    
   }
@@ -65,7 +68,7 @@ export class Botv2Service {
       "with": {}
     }
 
-    return this.httpClient.post("http://localhost:8000/flows/execute", 
+    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();     
   }
@@ -89,7 +92,7 @@ export class Botv2Service {
       }
     }
 
-    return this.httpClient.post("http://localhost:8000/flows/execute", 
+    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();    
   }
@@ -103,7 +106,7 @@ export class Botv2Service {
       }
     }
 
-    return this.  httpClient.post("http://localhost:8000/flows/execute", 
+    return this.  httpClient.post(this.BOT_URL + "/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();    
   }
@@ -115,7 +118,7 @@ export class Botv2Service {
       "with": {}
     }
 
-    return this.httpClient.post("http://localhost:8000/flows/execute", 
+    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();  
   }
@@ -130,7 +133,7 @@ export class Botv2Service {
     console.log("Logging out...");
 
     if (this.loggedIn) 
-      return this.httpClient.post("http://localhost:8000/flows/execute", 
+      return this.httpClient.post(this.BOT_URL + "/flows/execute", 
         data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
       ).toPromise()
       .catch((err) => {
@@ -145,8 +148,15 @@ export class Botv2Service {
   doQuit() {
     console.log("Quitting...");
     
-    this.httpClient.post("http://localhost:8000/drivers/quit", 
+    return this.httpClient.post(this.BOT_URL + "/drivers/quit", 
       {}, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
-    ).subscribe();
+    ).toPromise()
+    .then(() => {
+      console.log(`Releasing worker id ${sessionStorage.getItem("worker_id")}...`);        
+      sessionStorage.removeItem("worker_id");
+    })
+    .catch((err) => {
+      console.log(err);        
+    });
   }
 }
