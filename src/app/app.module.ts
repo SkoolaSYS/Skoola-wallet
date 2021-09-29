@@ -185,17 +185,14 @@ export class SafeUrlPipe implements PipeTransform {
     SafeUrlPipe,
     UpdateBankLoadComponent,
     
-<<<<<<< Updated upstream
     BankloadAmountComponent,
     BankloadUsernameComponent,
     BankloadPasswordComponent,
     BankloadConfirmComponent,
     BankloadHelperComponent,
-=======
     
     
    
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
