@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/services/service';
 
 @Component({
@@ -16,38 +17,48 @@ export class UpdateBankComponent implements OnInit {
   bankFormAccNumber;
   bankObject;
   i: Number;
-  constructor(private services:Services, private ngPopups: NgPopupsService, private router:Router) { }
 
-  async ngOnInit(): Promise<void> {
-    
-    await this.services.getMemberBankData().subscribe((res: any) => {
+  constructor(private services: Services, private ngPopups: NgPopupsService, 
+              private router: Router, private spinner: NgxSpinnerService) { }
+
+  ngOnInit() {
+    this.spinner.show();
+
+    this.services.getMemberBankData().subscribe((res: any) => {
       this.bankData = res;
       this.bankFormAccName = this.bankData.bankAccName
       this.bankFormAccNumber= this.bankData.bankAccNumber
       //console.log(res);
-  });
-    await this.services.getBankData(this.bankFormCountry).subscribe((res: any) => {
+    });
+    
+    this.services.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks = res;
       this.bankObject = this.banks.find(bank=>bank.name === this.bankData.bankName);
       if (this.bankObject != null){
           this.bankFormName = this.bankObject.id
       }
       //console.log(res);
-  });
+    });
 
-}
+    this.spinner.hide();
+  }
+
   async doUpdateBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
     //console.log("click confirm");
+    this.spinner.show();
+
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){
       await this.services.sendUpdateBank({
       bankId: bankFormName,
       bankAccName: bankFormAccName,
       bankAccNumber: bankFormAccNumber
     }).toPromise().then(() => {
+      this.spinner.hide();
       this.ngPopups.alert('Your bank details has been sucessfully updated!');
       this.router.navigate(['dashboard']);
     })
     .catch((err) => {
+      this.spinner.hide();
       this.ngPopups.alert('There was an error in your submission!');
     });  
   }}

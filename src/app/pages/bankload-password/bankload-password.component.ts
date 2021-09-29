@@ -19,6 +19,7 @@ export class BankloadPasswordComponent implements OnInit {
               private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.hide();
     this.ack = false;
 
     if (this.botService.form.secretPhrase != undefined)
@@ -63,7 +64,10 @@ export class BankloadPasswordComponent implements OnInit {
       this.ngPopups.alert("There was an error processing your request. Please try again.")       
       
       // Quit the driver
-      await this.botService.doLogout();      
+      this.spinner.show();
+      await this.botService.doLogout();
+      this.spinner.hide();
+      
       this.router.navigate(['dashboard']);
    }
   }  

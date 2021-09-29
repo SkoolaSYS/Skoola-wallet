@@ -15,7 +15,9 @@ export class BankloadUsernameComponent implements OnInit {
   constructor(private botService: Botv2Service, private router: Router, 
               private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.spinner.hide();
+  }
 
   async submit() {
     this.botService.form.username = this.username;

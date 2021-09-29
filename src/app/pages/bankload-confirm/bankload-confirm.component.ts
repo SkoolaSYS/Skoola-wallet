@@ -15,7 +15,9 @@ export class BankloadConfirmComponent implements OnInit {
   constructor(private botService: Botv2Service, private router: Router, 
               private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.spinner.hide();
+  }
 
   async submit() {
     this.botService.form.tac = this.tac;
@@ -44,10 +46,10 @@ export class BankloadConfirmComponent implements OnInit {
       this.ngPopups.alert("There was an error processing your request. Please try again.")
     }
     finally {
-      this.spinner.hide();
-
       // It's all over, so quit the driver
       await this.botService.doLogout();
+      
+      this.spinner.hide();
       this.router.navigate(['dashboard']);
     }
   }
