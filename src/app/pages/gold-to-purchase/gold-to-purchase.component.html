@@ -1,0 +1,178 @@
+<div>
+    <button
+      class="d8p-handburger"
+      mat-icon-button
+      (click)="sidenav.toggle()"
+      fxShow="true"
+      fxHide.gt-sm
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <div class="mt-4" mat-list-item routerLink="/recent-transactions">
+            <small
+              ><img
+                class="m-2 max-width-20"
+                src="assets/icons-img/d8p-inbox.svg" /></small
+            >Recent transaction
+          </div>
+          <div class="mt-2" mat-list-item routerLink="/login">
+            <small
+              ><img
+                class="m-2 max-width-20"
+                src="assets/icons-img/d8p-logout.svg" /></small
+            >Logout
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box">
+                <app-dashboard-header></app-dashboard-header>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-content-box pb-5">
+                  <!-- Quick links -->
+              <div class="container-fluid quicklinkbg sellgoldbg-height">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <!-- Content title row -->
+                      <div class="row no-gutters flex-valign-75">
+                        <div class="col-2 flex-align-center flex-column">
+                          <div class="height-60 text-center">
+                            <img
+                              class="max-width-100"
+                              src="assets/icons-img/gold-coin.png"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-9 pl-3 color-white font-size-15">
+                          <div class="row no-gutters">
+                            <div class="col-7">
+                              <div
+                                class="d8p-normal-text font-size-17 font-arial color-white pt-1"
+                              >
+                                <div>
+                                  <span class="text-shadow font-weight-bold"
+                                    >D-8P</span
+                                  >
+                                  Retail
+                                </div>
+                                <div class="pt-1">Gold Exchange</div>
+                              </div>
+                            </div>
+                            <div class="col-5">
+                              <div class="pergram">
+                                <div class="p-1 border-bottom-white">
+                                  AVG 1 g =
+                                </div>
+                                <div class="p-1"><small> RM 190.00</small></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 flex-align-center flex-column">
+                          <div class="height-60 text-center">
+                            <img
+                              class="max-width-60"
+                              src="assets/icons-img/icon-info2.png"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9 titlebg">Gold To Purchase</div>
+                <div class="height-80 text-center">
+                    <img
+                        class="max-width-100"
+                        src="assets/icons-img/bgGoldToPurchase.png"
+                    />
+                </div>
+            <div class="col-9">
+        <div class="d8p-h6 font-arial">
+              {{goldAmount}} g D-8P GOLD
+            </div>
+            <div class="d8p-h6 font-arial color-cyan">
+              RM {{goldPrice}} | 999.9 | < AVG
+            </div>
+          </div>
+        </div>
+<!-- Reference -->
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col-12">
+      <div class="container-fluid p-0 menu-grid">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9 titlebg">Reference</div>
+        </div>
+        <div
+          class="row no-gutters justify-content-center mt-4 mb-4"
+        >
+          <div class="col-10 col-xl-4">
+            <input
+              class="d8p-input-normal w-100"
+              placeholder="Ex: Monday Listing"
+              type="text"
+              name="reference number"
+              [(ngModel)]="goldReference"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation -->
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col-12">
+      <div class="container-fluid p-0 menu-grid">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9 titlebg">Confirmation</div>
+        </div>
+        <div
+          class="row no-gutters justify-content-center mt-4 mb-4"
+        >
+          <div class="col-10">
+            <div class="button-container text-center">
+              <button
+                class="d8p-btn-default"
+                (click)="btnBuy(goldReference)"
+              >
+                Confirm
+                <span class="ml-2"
+                  ><img
+                    class="p-1 max-width-25-px"
+                    src="assets/icons-img/icon-correct2.png"
+                /></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</mat-sidenav-content>
+</mat-sidenav-container>
+</div>

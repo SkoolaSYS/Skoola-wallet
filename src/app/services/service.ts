@@ -34,6 +34,11 @@ export class Services {
     public  userAccount: any;
     public transactionFeeAmount;
     public ipAddress:any;
+    public sellGold:any;
+    public sellGoldData:any;
+    public buyGold:any;
+    public chosenGold:any;
+    public averageGold:any;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -535,6 +540,142 @@ export class Services {
             console.log('requestCard() Error...');
             console.log(err);
 
+        }));;
+    }
+
+    //calculate-average-gold
+    public calAvgGold(){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/members/calAvgGold',headerOptions).pipe(tap (res => {
+            console.log(res);
+             this.averageGold = res;
+        },
+        (err) => {
+            console.log('calAvgGold() Error...');
+            console.log(err);
+        }));;
+    }
+
+    //sell-gold-components
+    public sellGoldComponent(data:any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            }),
+            params: new HttpParams().set("goldAmount", data.goldAmount).set("goldPrice", data.goldPrice).set("goldReference",data.goldReference)
+        };  
+        return this.http.get('/rest/members/sellGoldComponent',headerOptions).pipe(tap (res => {
+             this.sellGold = res;
+        },
+        (err) => {
+            console.log('sellGoldComponent() Error...');
+            console.log(err);
+        }));;
+    }
+
+    //sell-gold-details 
+    public sellGoldDetails(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            }),
+        };  
+        return this.http.post('rest/members/sellGoldDetails',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('sellGoldDetails() Error...');
+            console.log(err);
+        }));;
+    }
+
+    public getSellGoldData(order){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        return this.http.get('rest/members/getSellGoldData/'+order, headerOptions).pipe(tap (data => {
+            this.sellGoldData = data;
+        },
+        (err) => {
+            console.log('getSellGoldData() Error...');
+            console.log(err);
+        }));;
+    }
+
+        //buy-gold-components
+        public buyGoldComponent(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+                params: new HttpParams().set("goldReference", data.goldReference).set("goldAmount", data.goldAmount).set("goldPrice", data.goldPrice).set("goldId", data.goldId)
+            };  
+            return this.http.get('/rest/members/buyGoldComponent',headerOptions).pipe(tap (res => {
+                 this.buyGold = res;
+            },
+            (err) => {
+                console.log('buyGoldComponent() Error...');
+                console.log(err);
+            }));;
+        }
+
+    //buy-gold-details 
+    public buyGoldDetails(data:any){
+        console.log(data);
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            }),
+        };  
+        return this.http.post('rest/members/buyGoldDetails',data, headerOptions).pipe(tap (data => {
+             //console.log(data);
+        },
+        (err) => {
+            console.log('buyGoldDetails() Error...');
+            console.log(err);
+        }));;
+    }
+
+    public getGoldData(value: String) {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/members/goldData/'+value, headerOptions).pipe(tap (data => {
+            // console.log(data);
+            this.receiver = of(data).toPromise();
+        },
+        (err) => {
+            console.log('getGoldData() Error...');
+            console.log(err);
         }));;
     }
 }

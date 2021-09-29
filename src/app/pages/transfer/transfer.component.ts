@@ -10,6 +10,7 @@ import { TRANSACTION_TYPE, Utility } from 'src/utils';
 })
 export class TransferComponent implements OnInit {
   public membersList = [];
+  buygold: boolean = false;
   // member: Member;
   public transferForm: any = {};
   public imageSrc: any = "assets/icons-img/user-dp.png";

@@ -61,7 +61,8 @@ import {
   AddBankLoadComponent,
   UpdateBankLoadComponent,
   AddToHomescreenComponent,
-  NetworkParticipantsListComponent
+  NetworkParticipantsListComponent,
+  GoldToPurchaseComponent
 } from './pages';
 
 import {
@@ -155,7 +156,8 @@ export class SafeUrlPipe implements PipeTransform {
     UpdateBankLoadComponent,
     AddToHomescreenComponent,
     NetworkParticipantsListComponent,
-    
+    GoldToPurchaseComponent,
+
     // components
     DashboardHeaderComponent,
     TransactionViewComponent,
@@ -183,11 +185,17 @@ export class SafeUrlPipe implements PipeTransform {
     SafeUrlPipe,
     UpdateBankLoadComponent,
     
+<<<<<<< Updated upstream
     BankloadAmountComponent,
     BankloadUsernameComponent,
     BankloadPasswordComponent,
     BankloadConfirmComponent,
     BankloadHelperComponent,
+=======
+    
+    
+   
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

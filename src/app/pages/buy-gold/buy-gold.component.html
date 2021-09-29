@@ -95,7 +95,7 @@
                                 <div class="p-1 border-bottom-white">
                                   AVG 1 g =
                                 </div>
-                                <div class="p-1"><small> RM 190.00</small></div>
+                                <div class="p-1"><small> RM {{goldAverage}}</small></div>
                               </div>
                             </div>
                           </div>
@@ -132,9 +132,12 @@
                                 name="sortby"
                                 required
                                 style="background-color: #eee"
+                                [(ngModel)] = "order"
+                                (change)="sort(order)"
+                                
                               >
-                                <option>Cheapest</option>
-                                <option>Highest</option>
+                                <option value="false">Cheapest</option>
+                                <option value="true">Highest</option>
                               </select>
                             </div>
                           </div>
@@ -154,22 +157,21 @@
                           Listing Filter
                         </div>
                       </div>
-                      <div
-                        class="row no-gutters justify-content-center mt-3 mb-3"
-                      >
+                      <div class="row no-gutters justify-content-center mt-3 mb-3" *ngFor="let gold of data; let i = index" >
                         <div class="col-11 col-xl-9">
                           <div class="row no-gutters">
                             <div class="col-9">
                               <div class="d8p-h6 font-arial">
-                                5.1208 g D-8P GOLD
+                                {{gold[0].goldAmount}} g D-8P GOLD
                               </div>
-                              <div class="d8p-h6 font-arial color-cyan">
-                                RM 949.91 | 999.9 | < AVG
+                              <div class="d8p-h6 font-arial color-cyan" >
+                                RM {{gold[0].goldPrice}} | 999.9 | {{gold[0].sign}} AVG 
                               </div>
                             </div>
                             <div class="col-3 d-flex justify-content-end">
                               <button
-                                class="d8p-btn-default d8p-btn-gray font-size-15"
+                                class="d8p-btn-default d8p-btn-gray font-size-15" 
+                                (click)="clickButton(gold[0].goldId)" 
                               >
                                 Buy
                               </button>
@@ -182,145 +184,6 @@
                         </div>
                       </div>
 
-                      <div
-                        class="row no-gutters justify-content-center mt-3 mb-3"
-                      >
-                        <div class="col-11 col-xl-9">
-                          <div class="row no-gutters">
-                            <div class="col-9">
-                              <div class="d8p-h6 font-arial">
-                                5.1208 g D-8P GOLD
-                              </div>
-                              <div class="d8p-h6 font-arial color-cyan">
-                                RM 949.91 | 999.9 | < AVG
-                              </div>
-                            </div>
-                            <div class="col-3 d-flex justify-content-end">
-                              <button
-                                class="d8p-btn-default d8p-btn-gray font-size-15"
-                              >
-                                Buy
-                              </button>
-                            </div>
-                          </div>
-                          <img
-                            class="max-width-100"
-                            src="assets/icons-img/linegrey1.png"
-                          />
-                        </div>
-                      </div>
-
-                      <div
-                        class="row no-gutters justify-content-center mt-3 mb-3"
-                      >
-                        <div class="col-11 col-xl-9">
-                          <div class="row no-gutters">
-                            <div class="col-9">
-                              <div class="d8p-h6 font-arial">
-                                5.1208 g D-8P GOLD
-                              </div>
-                              <div class="d8p-h6 font-arial color-cyan">
-                                RM 949.91 | 999.9 | < AVG
-                              </div>
-                            </div>
-                            <div class="col-3 d-flex justify-content-end">
-                              <button
-                                class="d8p-btn-default d8p-btn-gray font-size-15"
-                              >
-                                Buy
-                              </button>
-                            </div>
-                          </div>
-                          <img
-                            class="max-width-100"
-                            src="assets/icons-img/linegrey1.png"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Buy Now -->
-              <div class="container-fluid p-0 buygoldbg">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
-                      <div class="row no-gutters justify-content-center">
-                        <div class="col-11 col-xl-9 titlebg">Buy Now</div>
-                      </div>
-                      <div class="row no-gutters justify-content-center">
-                        <div class="col-10 col-xl-9">
-                          <div
-                            class="d8p-h6 pt-4 mt-1 font-arial font-weight-bold font-size-15"
-                          >
-                            5.1208 g D-8P GOLD
-                          </div>
-                          <div
-                            class="d8p-h6 pt-2 font-arial font-weight-bold color-cyan font-size-13"
-                          >
-                            RM 949.91 | 999.9 | < AVG
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Reference -->
-              <div class="container-fluid">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
-                      <div class="row no-gutters justify-content-center">
-                        <div class="col-12 col-xl-9 titlebg">Reference</div>
-                      </div>
-                      <div
-                        class="row no-gutters justify-content-center mt-4 mb-4"
-                      >
-                        <div class="col-10 col-xl-4">
-                          <input
-                            class="d8p-input-normal w-100"
-                            placeholder="Ex: Monday Listing"
-                            type="text"
-                            name="reference number"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Confirmation -->
-              <div class="container-fluid">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
-                      <div class="row no-gutters justify-content-center">
-                        <div class="col-12 col-xl-9 titlebg">Confirmation</div>
-                      </div>
-                      <div
-                        class="row no-gutters justify-content-center mt-4 mb-4"
-                      >
-                        <div class="col-10">
-                          <div class="button-container text-center">
-                            <button
-                              class="d8p-btn-default"
-                              routerLink="/buy-gold-details"
-                            >
-                              Confirm
-                              <span class="ml-2"
-                                ><img
-                                  class="p-1 max-width-25-px"
-                                  src="assets/icons-img/icon-correct2.png"
-                              /></span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

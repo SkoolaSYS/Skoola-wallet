@@ -94,7 +94,7 @@
                                 <div class="p-1 border-bottom-white">
                                   AVG 1 g =
                                 </div>
-                                <div class="p-1"><small> RM 190.00</small></div>
+                                <div class="p-1"><small> RM {{goldAverage}}</small></div>
                               </div>
                             </div>
                           </div>
@@ -132,8 +132,8 @@
                         </div>
                       </div>
                       <div class="row no-gutters justify-content-center">
-                        <div class="col-9 color-cyan font-arial font-size-15">
-                          As of: 24 AUG 2020 08:00:00
+                        <div class="col-9 color-cyan font-arial font-size-15" >
+                            As of: {{ dateGold}}
                         </div>
                       </div>
                       <div
@@ -145,6 +145,7 @@
                             placeholder="Ex: 0.0255"
                             type="text"
                             name="avg-gold"
+                            [(ngModel)] = "average"
                           />
                         </div>
                       </div>
@@ -157,12 +158,15 @@
                             <div
                               class="col-4 flex-align-center min-height-60 border-right-grey"
                             >
-                              AVG Price
+                              <button class="d8p-btn-default"
+                              (click)="totalAvg()">
+                                AVG Price
+                              </button>
                             </div>
                             <div
                               class="col-8 flex-align-center min-height-60 color-cyan"
                             >
-                              RM XXX XX
+                              RM {{totalValue}}
                             </div>
                           </div>
                         </div>
@@ -189,6 +193,8 @@
                             placeholder="Ex: 1.5"
                             type="text"
                             name="amount"
+                            [(ngModel)]="amountGold"
+                            required
                           />
                         </div>
                       </div>
@@ -216,6 +222,8 @@
                             placeholder="Ex: 275.00"
                             type="text"
                             name="selling-price"
+                            [(ngModel)]="priceGold"
+                            required
                           />
                         </div>
                       </div>
@@ -241,6 +249,8 @@
                             placeholder="Ex: Monday Listing"
                             type="text"
                             name="reference number"
+                            [(ngModel)]="referenceGold"
+                            required
                           />
                         </div>
                       </div>
@@ -264,7 +274,7 @@
                           <div class="button-container text-center">
                             <button
                               class="d8p-btn-default"
-                              routerLink="/buy-gold-details"
+                              (click)="dataGold(amountGold,priceGold,referenceGold)"
                             >
                               Confirm
                               <span class="ml-2"
