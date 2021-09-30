@@ -18,7 +18,7 @@ export class UpdateUsernamePwdComponent implements OnInit {
     constructor(public services: Services, private router: Router, private ngPopups: NgPopupsService) { }
 
     ngOnInit(): void {
-
+      //force change username
     }
     async submit() {
       if (this.services.newusername!=this.services.confirmnewusername){
@@ -41,6 +41,7 @@ export class UpdateUsernamePwdComponent implements OnInit {
           "newPassword": this.services.newpassword,
           "newPasswordConfirmation": this.services.newpassword,
           "forceChange":0,
+          "forceChangeUsername":0,
           "newUsername": this.services.newusername
       }).toPromise();{
         this.ngPopups.alert('Your new credential has been sucessfully updated!');

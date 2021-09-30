@@ -25,6 +25,7 @@ export class Services {
     private storage: Storage = localStorage;
     private ACCESS_TOKEN = 'accessToken';
     private $forceChangePassword: boolean;
+    private $forceChangeUsername: boolean;
     public opsTagging: string;
     private $allowWithdrawal: boolean;
     public  receiver: Promise<any>;
@@ -39,6 +40,7 @@ export class Services {
     public buyGold:any;
     public chosenGold:any;
     public averageGold:any;
+
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -76,6 +78,9 @@ export class Services {
     public get forceChangePassword(): boolean { return this.$forceChangePassword; }
     public set forceChangePassword(value: boolean) { this.$forceChangePassword = value; }
 
+    public get forceChangeUsername(): boolean { return this.$forceChangeUsername; }
+    public set forceChangeUsername(value: boolean) { this.$forceChangeUsername = value; }
+
     public get allowWithdrawal(): boolean { return this.$allowWithdrawal; }
     public set allowWithdrawal(value: boolean) { this.$allowWithdrawal = value; }
 
@@ -110,6 +115,7 @@ export class Services {
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
             this.forceChangePassword = data.forceChangePassword;
+            this.forceChangeUsername = data.forceChangeUsername;
             this.allowWithdrawal = data.allowWithdrawal;
             //console.log(username);
             
