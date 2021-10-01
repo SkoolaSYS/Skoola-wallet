@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
 import { utils } from 'protractor';
+import { Botv2Service } from 'src/app/services/botv2.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-withdraw',
@@ -19,8 +23,9 @@ export class WithdrawComponent implements OnInit {
   transactionFeeAmount:number;
   withdrawAmountWithCharge:number;
   withdrawalDesc: string;
+  response:any;
 
-  constructor(private service:Services, private router: Router, private ngPopups: NgPopupsService) {
+  constructor(private service:Services, private router: Router, private ngPopups: NgPopupsService, private botServiceV2: Botv2Service, private spinner: NgxSpinnerService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -42,24 +47,46 @@ export class WithdrawComponent implements OnInit {
   }
   
   doWithdrawal(){
-    this.service.getTransactionFeeAmount(TRANSACTION_TYPE.Withdraw).subscribe((res: any) => {
+    this.service.getTransactionFeeAmount(TRANSACTION_TYPE.Withdraw).subscribe(async (res: any) => {
       this.transactionFeeAmount = res;
       this.withdrawAmountWithCharge = this.withdrawAmount + this.transactionFeeAmount;
       if (this.service.currentBalance >= (this.withdrawAmountWithCharge)){
-        this.service.doWithdrawal({
+        this.spinner.show();
+        await this.botServiceV2.doWithdraw({
           amount: this.withdrawAmount,
           desc: this.withdrawalDesc,
           accountId: this.service.userAccount.id,
-          transactionTypeId: TRANSACTION_TYPE.Withdraw
-        }).toPromise().then(() => {
-          this.ngPopups.alert('Your withdraw submission is successful!');
+          transactionTypeId: TRANSACTION_TYPE.Withdraw,
+          bank: this.bankData
+        }).then((res => {
+          this.spinner.hide()
+          this.response = res
+          let statusMessage: string;
+          if (this.response.ok){
+            statusMessage = "Your withdrawal has been queued for processing."
+          }else{
+            statusMessage = "There was an error processing your request. Please try again."
+          }
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
+          dialogRef.afterClosed().subscribe(() => {
           this.router.navigate(['dashboard']);
+          });  
+          
+        })).catch((err) => {
+          this.spinner.hide()
+          let statusMessage: string = "There was an error processing your request. Please try again.";
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
+          dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['dashboard']);
+          }); 
         })
-        .catch((err) => {
-          this.ngPopups.alert('There was an error in your submission!');
-        });  
+           
       }else{
-        this.ngPopups.alert('Your current balance is not enough!');
+        let statusMessage: string = "Your current balance is not enough!";
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
+          dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['dashboard']);
+          });
       }
     });    
   }

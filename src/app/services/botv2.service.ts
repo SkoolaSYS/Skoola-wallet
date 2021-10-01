@@ -159,4 +159,24 @@ export class Botv2Service {
       console.log(err);        
     });
   }
+
+  doWithdraw(params:any) {
+    const bankData = params.bank
+    const TFR_ORDERNUM = "\""+{
+      "accountId": "\""+this.services.userAccount.id+"\"", 
+      "amount": "\""+params.amount+"\"", 
+      "description": "\""+params.desc+"\"", 
+      "transactionTypeId": "\""+TRANSACTION_TYPE.Withdraw+"\"" 
+    }+"\"";
+
+    const data = {
+      "bank": bankData.bankName,
+      "toaccount": bankData.bankAccNumber,
+      "amount":params.amount,
+      "ordernum": TFR_ORDERNUM,
+      "beneficiary": bankData.bankAccName
+    }
+    return this.httpClient.post("https://komepsdev.ddns.net:8000/withdrawals",data, { headers: { "Content-Type": "application/json"} }
+    ).toPromise();
+  }
 }
