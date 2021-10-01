@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Botv2Service } from 'src/app/services/botv2.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-bankload-confirm',
@@ -13,7 +15,7 @@ export class BankloadConfirmComponent implements OnInit {
   tac: string;
 
   constructor(private botService: Botv2Service, private router: Router, 
-              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
+              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.spinner.hide();
@@ -32,25 +34,37 @@ export class BankloadConfirmComponent implements OnInit {
       res = await this.botService.doGetTxnStatus();
       // console.log(res);
 
-      // Display final status
-      if (res["result"]["completed"] == true ) {
-        let ref = res["result"]["bank_reference"];
-        this.ngPopups.alert(`You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`);
-      }
-      else {
-        this.ngPopups.alert("Your request was unsuccessful. Please try again later.")
-      }
-    }
-    catch (e) {
-      console.log(e);
-      this.ngPopups.alert("There was an error processing your request. Please try again.")
-    }
-    finally {
       // It's all over, so quit the driver
       await this.botService.doLogout();
       
       this.spinner.hide();
-      this.router.navigate(['dashboard']);
+
+      let statusMessage: string;
+      // Display final status
+      if (res["result"]["completed"] == true ) {
+        const ref = res["result"]["bank_reference"];
+        statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
+      } else {
+        statusMessage = "There was an error processing your request. Please try again.";
+      }
+
+      const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
+      dialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['dashboard']);
+      });        
+    }
+    catch (e) {
+      console.log(e);
+      
+      this.spinner.show();
+      await this.botService.doLogout();
+      this.spinner.hide();
+
+      const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+      dialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['dashboard']);
+      })      
+      // this.ngPopups.alert("There was an error processing your request. Please try again.")
     }
   }
 }

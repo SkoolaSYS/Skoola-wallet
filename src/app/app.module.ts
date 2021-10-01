@@ -19,12 +19,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { NgPopupsModule } from 'ng-popups';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 import {
   LoginComponent,
@@ -93,6 +95,7 @@ import { BankloadUsernameComponent } from './pages/bankload-username/bankload-us
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -190,9 +193,8 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadPasswordComponent,
     BankloadConfirmComponent,
     BankloadHelperComponent,
-    
-    
-   
+    AlertDialogComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -224,9 +226,15 @@ export class SafeUrlPipe implements PipeTransform {
       //   }
       // }
     ),
-    NgxSpinnerModule 
+    NgxSpinnerModule,
+    MatDialogModule 
   ],
-  providers: [Services],
-  bootstrap: [AppComponent]
+  providers: [
+    Services, 
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, width: "90%" }}
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [AlertDialogComponent]
 })
 export class AppModule { }

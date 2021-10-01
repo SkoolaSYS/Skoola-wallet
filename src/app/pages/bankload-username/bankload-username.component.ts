@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Botv2Service } from 'src/app/services/botv2.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-bankload-username',
@@ -12,12 +14,12 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class BankloadUsernameComponent implements OnInit {
   username: string;
 
-  constructor(private botService: Botv2Service, private router: Router, 
-              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
+  constructor(private botService: Botv2Service, private router: Router, private ngPopups: NgPopupsService, 
+              private spinner: NgxSpinnerService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.spinner.hide();
-  }
+  } 
 
   async submit() {
     this.botService.form.username = this.username;
@@ -58,14 +60,16 @@ export class BankloadUsernameComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate(['bankload-password']);
     } catch (e) {
-      this.spinner.hide();
       console.log(e);    
-      
-      this.ngPopups.alert("There was an error processing your request. Please try again.")
       
       // Quit the driver
       await this.botService.doQuit();
-      this.router.navigate(['dashboard']);
+      this.spinner.hide();      
+      
+      const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+      dialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['dashboard']);
+      })
     }
   }
 }
