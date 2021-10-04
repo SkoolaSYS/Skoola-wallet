@@ -23,9 +23,12 @@ export class SignupComponent implements OnInit {
   stateCity: string;
   parentId: string ;
   errorObj: any;
-  cardSelect: boolean = false;
+  cardSelect1: boolean;
+  cardSelect2: boolean;
   data:any = [];
   agree:string;
+  yesCard:string;
+  cardSelection:string;
   errorMessage :any=
    [{field:"email",reason:"Email has been used"}]
   public href: string = "";
@@ -38,12 +41,12 @@ export class SignupComponent implements OnInit {
   async ngOnInit(): Promise<void>  {
     // Append smId to signup page; /signup?smId=
      this.href = this.router.url;
-     
+     var test = <HTMLInputElement> document.getElementById("wantCard");
      this.parentId = this.router.url.split("?")[1].split("=")[1].split("&")[0];
      
      this.agree = this.router.url.split("?")[1].split("=")[2];
+
      
-  
      try{
       this.loginUsername = this.authService.signupData.username;
       this.fullName = this.authService.signupData.fullName; 
@@ -54,17 +57,29 @@ export class SignupComponent implements OnInit {
       this.homeAddress = this.authService.signupData.homeAddress;
       this.postalCode = this.authService.signupData.postalCode;
       this.stateCity = this.authService.signupData.stateCity;
-      
+      this.cardSelect1 = this.authService.signupData.cardSelection;
+      if (this.cardSelect1){
+        var btn1 = <HTMLInputElement> document.getElementById("radioBtn1")
+        btn1.checked = true
+        document.getElementById("yesWant").style.display = "block";
+      }else{
+        var btn2 = <HTMLInputElement> document.getElementById("radioBtn2")
+        btn2.checked = true
+      }
      }
      catch (e) {
       console.log(e);
       
      }
      finally{}
-     
+    
     if (this.agree == "1")
         this.tickCheckbox();
-  
+  }
+  //Radio Button remains checked after page load
+  radioButton(){
+    var yesRadio = <HTMLInputElement> document.getElementById("radioBtn1");
+    yesRadio.checked = true;
   }
   //Terms & Condition Agree or Disagree; agree, checkbox remains tick
   tickCheckbox(){
@@ -83,16 +98,21 @@ export class SignupComponent implements OnInit {
     this.authService.signupData.postalCode = this.postalCode;
     this.authService.signupData.stateCity = this.stateCity;
     this.authService.signupData.parentId = this.parentId;
+    var btn1 = <HTMLInputElement> document.getElementById("radioBtn1")
+    this.authService.signupData.cardSelection = btn1.checked;
+    
     this.router.navigate(['user-agreement-page']);
   }
   // Select Physical Card; If yes, display hidden div incl HomeAddress, PostalCode, City (kinah)
   selectCard(card){
     if (card == 1){
       document.getElementById("yesWant").style.display = "block";
-      this.cardSelect = true;
+      this.cardSelect1 = true;
+      this.cardSelect2 = false;
     }else{
       document.getElementById("yesWant").style.display = "none";
-      this.cardSelect = false;
+      this.cardSelect1 = false;
+      this.cardSelect2 = true;
     }
     return;
   }
@@ -145,9 +165,9 @@ export class SignupComponent implements OnInit {
           password : this.createPassword,
           customValues: customValues,
           superMerchantId: this.parentId,
-          cardRequest: this.cardSelect
+          cardRequest: this.cardSelect1
         }).toPromise().then(() => {
-          this.router.navigate(['acknowledgement-page']);
+          this.router.navigate(['../acknowledgement-page']);
         }).catch((err) => {
             this.errorObj = this.errorMessage.find(error=>error.field === err.error.field);
             this.ngPopups.alert(this.errorObj.reason);

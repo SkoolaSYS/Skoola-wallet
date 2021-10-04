@@ -1,13 +1,12 @@
 <div>
-  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-    <mat-icon>
-      <svg width="25" height="45">
-        <path d="M0,3 25,3" stroke="#fff" stroke-width="3" />
-        <path d="M0,12 25,12" stroke="#fff" stroke-width="3" />
-        <path d="M0,21 25,21" stroke="#fff" stroke-width="3" />
-      </svg>
-    </mat-icon>
-  </button>
+  <!-- Handburger Start -->
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+  <!-- Handburger End -->
   <!-- Nav block - start -->
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" position="end">
@@ -20,98 +19,114 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters justify-content-center">
           <div class="col-12 col-xl-9">
-            <div class="dashboard-header-box">
-              <app-dashboard-header></app-dashboard-header>
+            <div class="id-dashboardheader">
+              <!-- Dashboard Header Start -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-8">
+                    <div class="dashboard-header">
+                      <div class="text-left">
+                        <div class="headergoldbox d-flex headerGoldboxPosition">
+                          <div class="white-line"></div>
+                          <div class="gram-txt">
+                            <div class="goldWhole pt-2">{{ goldWhole }}.</div>
+                            <div class="goldFraction">{{ goldFraction }} g</div>
+                          </div>
+                          <div class="half-gold"></div>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png"
+                          routerLink="/dashboard" style="z-index: 2;" />
+                      </div>
+                      <div>
+                        <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png"
+                          routerLink="/recent-transactions" />
+                      </div>
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                  <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                </div>
+                <!-- Dashboard Header End -->
+              </div>
             </div>
           </div>
         </div>
 
         <div class="row no-gutters justify-content-center">
           <div class="col-12 col-xl-9">
-            <div class="dashboard-content-box pb-5">
-              <!-- Quick links -->
-              <div class="container-fluid quicklinkbg">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
-                      <div class="row no-gutters justify-content-center">
-                        <div class="col-12 col-xl-9 titlebg">
-                          GOVERNMENT ID
+            <div class="id-contentbox pb-5">
+              <div class="id-body">
+                <div class="container-fluid p-0 menu-grid">
+                  <div class="modal-title text-center mb-2" style="height: 50px;">
+                    National/Government Id
+                  </div>
+                  <form>
+                    <div class="text-center mt-2 mb-2">
+                      Front view of ID
+                    </div>
+                    <div class="upload-part">
+                      <img [src]="urlFront" id="frontId"
+                        style="height: 65px; width: 97px; position:absolute; left: 70px; margin-top: 20px;">
+                        <!-- <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)" style="position: absolute; left: 175px; margin-top:30px;"> -->
+                      <div class="upload-button">
+                        <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)" />
+                        <label class="snap-btn">Snap Photo</label>
+                      </div>
+                    </div>
+                    <div class="text-center mt-2 mb-2" style="height: 40px;">
+                      Back view of ID
+                    </div>
+                    <div class="upload-part">
+                      <img [src]="urlBack" id="backId"
+                        style="height: 65px; width: 97px; position:absolute; left: 70px; margin-top: 20px;">
+                        <!-- <input type="file" accept="image/*" capture (change)="onSelectedFileB($event)" style="position: absolute; left: 175px; margin-top:30px;"> -->
+                        <div class="upload-button">
+                          <input type="file" accept="image/*" capture (change)="onSelectedFileB($event)" />
+                          <label class="snap-btn">Snap Photo</label>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2 mb-2" style="height: 40px;">
+                      Selfie image with passport format holding ID
+                    </div>
+                    <div class="upload-part">
+                      <img [src]="urlSelfie" id="selfieId"
+                        style="height: 65px; width: 60px; position:absolute; left: 88px; margin-top: 20px;">
+                        <div class="upload-button">
+                          <input type="file" accept="image/*" capture (change)="onSelectedFileSelfie($event)" />
+                          <label class="snap-btn">Snap Photo</label>
+                        </div>
+                    </div>
+                    <div class="tnc">
+                      <div class="d-flex flex-row justify-content-center align-items-center">
+                        <input type="checkbox" id="checkAgree" class="tnc-checkbox ml-2" (click)="enableConfirm()"/>
+                        <div class="d8p-tnc-text ml-2 justify-content-center text-left">
+                          I hereby acknowledge that all data provided<br>above is correct and genuine.
                         </div>
                       </div>
-                      <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
-                        <div class="col-3 flex-align-center flex-column border-right-white mt-2">
-                          <div class="height-60 text-center"><img class="max-width-60"
-                              src="assets/icons-img/id-verify.png" /></div>
-                        </div>
-                        <div class="col-9 pl-3 color-white font-size-15 mt-3">
-                          This process is to verify your account.
-                        </div>
-                      </div>
+                    </div>
+                  </form>
 
+
+                </div>
+                <!-- Confirmation -->
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-12">
+                      <div class="button-container text-center mt-2" style="height: 120px;">
+                        <button class="d8p-btn-default mt-3 margin-left-95" (click)="doRoute()" id="btnConfirm" disabled>
+                          <div class="--text">Confirm</div>
+                          <div class="--icon"><img class="p-1 max-width-30-px"
+                              src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  
+
+
               </div>
-              <div class="container-fluid">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
-                      <div class="row no-gutters justify-content-center">
-
-                        <!-- FORM -->
-                        <form>
-
-                          <div class="form-group">
-                            <label class="idVerify">Government ID:</label>
-                            <input id="idVerify" type="text" placeholder="801202XXXXXX" class="form-control" required
-                              [(ngModel)]="idVerifyNo" name="idVerify" #idVerify="ngModel">
-                            <div class="alert alert-danger" *ngIf="idVerify.touched && ! idVerify.valid">Fill in your
-                              Government ID</div>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="idVerify">Proof of Government ID</label>
-                            <form>
-                              Front view of ID:
-                              <img [src]="urlFront" id="frontId" style="height: 250px; width: 250px;">
-                              <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)"><br>
-                              Back view of ID:
-                              <img [src]="urlBack" id="backId" style="height: 250px; width: 250px;">
-                              <input type="file" accept="image/*" capture (change)="onSelectedFileB($event)"><br>
-                              Selfie image with passport format holding ID:
-                              <img [src]="urlSelfie" id="selfieId" style="height: 250px; width: 250px;">
-                              <input type="file" accept="image/*" capture (change)="onSelectedFileSelfie($event)"><br>
-                            </form>
-                          </div>
-
-                          
-                        </form>
-                        
-
-                      </div>
-                    </div>
-                  </div>
-                    <!-- Confirmation -->
-                    <div class="row no-gutters justify-content-center">
-                      <div class="col-12">
-                        <div class="button-container text-center mt-2">
-                          <a class="d8p-btn-default mt-3 margin-left-56" (click)="doRoute()">
-                            <div class="--text">Confirm</div>
-                            <div class="--icon"><img class="p-1 max-width-30-px" src="assets/icons-img/tick-only-signup@2x.png" /></div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-              </div>
-
-
-
-
-
             </div>
-
           </div>
         </div>
       </div>

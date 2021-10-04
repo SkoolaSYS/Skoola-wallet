@@ -3,89 +3,83 @@
         <div class="col-12">
             <div class="login-bg">
                 <div class="d8p-main-back-btn">
-                    <img class="max-width-40 mb-4" src="assets/icons-img/logod81.png" routerLink="/login" />
-                    <img class="max-width-60" src="assets/icons-img/linegrey1.png" />
-                </div>
-                <div class="login-container max-width-100 overflow-hidden">
-                    <div class="text-center mt-xl-4 mb-4 pt-5">
-                        <img class="mt-lg-5 pt-lg-5" src="assets/icons-img/logod8p2.png" />
-                        <div class="d8p-h4 color-cyan">WEALTH. HUMANITY. SECURE</div>
-                                <input
-                                     type="text" 
-                                     class="form-control d8p-input min-height-60" 
-                                     placeholder="New User name" 
-                                     pattern="([A-z0-9À-ž]){2,}" 
-                                     maxlength="16" 
-                                     name="newusername" 
-                                     [(ngModel)]="services.newusername"
-                                     aria-label="Recipient's newusername" 
-                                     aria-describedby="basic-addon2">
-                                    <div>    
-                                <input
-                                    type="text" 
-                                    class="form-control d8p-input min-height-60" 
-                                    placeholder="Confirm User name" 
-                                    pattern="([A-z0-9À-ž]){2,}" 
-                                    maxlength="16" 
-                                    name="confirmnewusername" 
-                                    [(ngModel)]="services.confirmnewusername"
-                                    aria-label="Recipient's newusername" 
-                                    aria-describedby="basic-addon2">
-                                
-                    </div>
-                    
-                    <form (submit)="submit()">
-                        <div class="formfield max-width-100">
-                            <div class="input-group mb-3 group-input-border-radius">
-                                <input
-                                      type="password" 
-                                      class="form-control d8p-input min-height-60" 
-                                      placeholder="New Password" 
-                                      pattern="([A-z0-9À-ž]){1,}" 
-                                      maxlength="16" 
-                                      name="newpwd" 
-                                      [(ngModel)]="services.newpassword"
-                                      aria-label="Recipient's newpassword" 
-                                      aria-describedby="basic-addon2"
-                                      autocomplete="new-password">
-                                <input 
-                                    type="password" 
-                                    class="form-control d8p-input min-height-60" 
-                                    placeholder="Confirm Password" 
-                                    pattern="([A-z0-9À-ž]){1,}" 
-                                    maxlength="16" 
-                                    name="newpwd" 
-                                    [(ngModel)]="services.confirmnewpassword"
-                                    aria-label="Recipient's newpassword" 
-                                    aria-describedby="basic-addon2"
-                                    autocomplete="new-password"
-                   
-                                />
-                                <div class="input-group-append">
-                                    <span class="input-group-text group-input-icon-field" id="basic-addon2">
-                                        <button class="d8p-transparent-btn" *ngIf="services.newpassword">
-                                            <img class="btnicon" src="assets/icons-img/icon-login2.png"  />
-                                        </button>
-                                        <button class="d8p-transparent-btn" *ngIf="!services.newpassword">
-                                            <img class="btnicon" src="assets/icons-img/icon-login1.png"  />
-                                        </button>
-                                    </span>
+                    <div class="row no-gutters">
+                        <div class="col-9">
+                            <div class="dashboard-header">
+                                <div class="text-center">
+                                    <img class="logo" src="assets/icons-img/logo-title-signup@3x.png"
+                                        routerLink="/login" />
                                 </div>
                             </div>
                         </div>
-                        <div class="button-container text-center">
-                            <button class="d8p-btn-default">
-                                Signup
-                                <span class="ml-2"><img class="max-width-25-px" src="assets/icons-img/icon-signup1.png" /></span>
-                            </button>
+                    </div>
+                    <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
+                    <div class="login-container max-width-100 overflow-hidden">
+                        <div class="text-center mb-3">
+                            <img class="max-width-30" src="assets/icons-img/d-8logonew-login@2x.png" />
                         </div>
-                    </form>
-                </div>
-                <div class="sponsored text-center">
-                    <img class="max-width-40 mr-2 mr-xl-4" src="assets/icons-img/logod8s1.png" />
-                    <img class="max-width-40 ml-2 ml-xl-4" src="assets/icons-img/logokomeps.png" />
+                        <div class="input-group mb-3 group-input-border-radius">
+                            <input type="text" class="form-control d8p-input min-height-60" placeholder="New Username"
+                                pattern="([A-z0-9À-ž]){2,}" minlength="4" maxlength="12" name="newusername" #newusername="ngModel"
+                                [(ngModel)]="services.newusername" aria-label="Recipient's newusername"
+                                aria-describedby="basic-addon2" required>
+                            <!-- <div *ngIf="newusername.touched && ! newusername.valid" class="alert alert-danger">
+                                <div *ngIf="newusername.errors?.required">
+                                    Username is required.
+                                </div>
+                                <div *ngIf="newusername.errors?.minlength">
+                                    Username must be at least 4 characters long.
+                                </div>
+                            </div> -->
+                        </div>
+                            <div class="input-group mb-3 group-input-border-radius">
+                                <input type="text" class="form-control d8p-input min-height-60"
+                                    placeholder="Confirm Username" pattern="([A-z0-9À-ž]){2,}" minlength="4"
+                                    maxlength="12" name="confirmnewusername" #confirmnewusername="ngModel" [(ngModel)]="services.confirmnewusername"
+                                    aria-label="Recipient's newusername" aria-describedby="basic-addon2">
+                                <!-- <div *ngIf="confirmnewusername.touched && ! newusername.valid" class="alert alert-danger">
+                                    Re-keyin your username.
+                                </div> -->
+                            </div>
+                            <form (submit)="submit()">
+                                <div class="formfield max-width-100">
+                                    <div class="input-group mb-3 group-input-border-radius">
+                                        <input type="password" class="form-control d8p-input min-height-60"
+                                            placeholder="New Password" pattern="([A-z0-9À-ž]){1,}" minlength="4" maxlength="12"
+                                            name="newpwd" [(ngModel)]="services.newpassword"
+                                            aria-label="Recipient's newpassword" aria-describedby="basic-addon2"
+                                            autocomplete="new-password">
+                                    </div>
+                                </div>
+                                <div class="formfield max-width-100">
+                                    <div class="input-group mb-3 group-input-border-radius">
+                                        <input type="password" class="form-control d8p-input min-height-60"
+                                            placeholder="Confirm Password" pattern="([A-z0-9À-ž]){1,}" maxlength="16"
+                                            name="newpwd" [(ngModel)]="services.confirmnewpassword"
+                                            aria-label="Recipient's newpassword" aria-describedby="basic-addon2"
+                                            autocomplete="new-password" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                                <button class="d8p-transparent-btn" *ngIf="services.newpassword">
+                                                    <img class="btnicon" src="assets/icons-img/icon-login2.png" />
+                                                </button>
+                                                <button class="d8p-transparent-btn" *ngIf="!services.newpassword">
+                                                    <img class="btnicon" src="assets/icons-img/icon-login1.png" />
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <img class="signupline" src="assets/icons-img/line-gradient-login-bottom.png" />
+                            <div class="sponsored text-center">
+                                <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/d-8pplus-sponsored@3x.png" />
+                                <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/short-line-gradient.png" />
+                                <img class="max-width-30 mr-2 mr-xl-4 " src="assets/icons-img/komeps-sponsored@3x.png" />
+                                <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/short-line-gradient.png" />
+                                <img class="max-width-20 ml-2 ml-xl-4" src="assets/icons-img/d8p-eid@2x.png" />
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>

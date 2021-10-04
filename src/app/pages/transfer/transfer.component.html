@@ -1,5 +1,5 @@
 <div>
-  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+  <!-- <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
     <mat-icon>
       <svg width="25" height="45">
         <path d="M0,3 25,3" stroke="#fff" stroke-width="3" />
@@ -7,7 +7,13 @@
         <path d="M0,21 25,21" stroke="#fff" stroke-width="3" />
       </svg>
     </mat-icon>
-  </button>
+  </button> -->
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+          <span class="bar top"></span>
+          <span class="bar middle"></span>
+          <span class="bar bottom"></span>
+  </label>
   <!-- Nav block - start -->
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" position="end">

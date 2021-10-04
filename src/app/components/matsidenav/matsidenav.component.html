@@ -1,12 +1,28 @@
+<!-- <nav>
+<div class="nav-menu">
+        <input type="checkbox" id="myInput">
+        <label class="handburger" for="myInput">
+                <span class="bar top"></span>
+                <span class="bar middle"></span>
+                <span class="bar bottom"></span>
+        </label>
+        <div id="overlay"></div>
+        
+            <ul> 
+                <li><a routerLink="/update-profile">Update Profile</a></li>
+            </ul>
+        
+</div>
+</nav> -->
 
-        <div class="mt-4" mat-list-item routerLink="/update-profile"><small><img class="m-2 max-width-20" [src]="imageSrc" style="height: 4rem;width: 4rem;" /></small>Update Profile</div>
-        <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
-        <div class="mt-4" mat-list-item *ngIf="isNotIdVerified" routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" /></small>Government ID</div>
-        <div class="mt-4" mat-list-item *ngIf="!bankData && allowWithdrawal" routerLink="/add-bank"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" #add/></small>Add Bank Withdraw</div>
-        <div class="mt-4" mat-list-item *ngIf="bankData && allowWithdrawal" routerLink="/update-bank"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" #update/></small>Update Bank Withdraw</div>
-        <div class="mt-4" mat-list-item *ngIf="!bankLoadData" routerLink="/add-bank-load"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" #add/></small>Add Bank Load</div>
-        <div class="mt-4" mat-list-item *ngIf="bankLoadData" routerLink="/update-bank-load"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" #update/></small>Update Bank Load</div>
-        <div class="mt-4" mat-list-item routerLink="/card-request"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png"/></small>Request D-8P Card</div>
-        <div class="mt-2" mat-list-item (click)="logout()"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
-    
+        <div class="navItem text-center" mat-list-item routerLink="/update-profile">Update Profile</div>    
+        <div class="navItem text-center" mat-list-item *ngIf="isNotIdVerified" routerLink="/id-verification">National/Government ID</div>
+        <div class="navItem text-center" mat-list-item *ngIf="!bankData && allowWithdrawal" routerLink="/add-bank">Add Bank Withdraw</div>
+        <div class="navItem text-center" mat-list-item *ngIf="bankData && allowWithdrawal" routerLink="/update-bank">Update Bank Withdraw</div>
+        <div class="navItem text-center" mat-list-item *ngIf="!bankLoadData" routerLink="/add-bank-load">Add Bank Load</div>
+        <div class="navItem text-center" mat-list-item *ngIf="bankLoadData" routerLink="/update-bank-load">Update Bank Load</div>
+        <div class="navItem text-center" mat-list-item routerLink="/card-request"><small></small>Request D-8P Card</div>
+        <div class="navItem text-center" mat-list-item routerLink="/recent-transactions">Recent Transactions</div>
+        <div class="navItem text-center" mat-list-item (click)="logout()">Logout</div>
+   
 
