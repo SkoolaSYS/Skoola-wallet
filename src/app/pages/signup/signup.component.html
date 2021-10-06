@@ -84,11 +84,13 @@
                                                                     pattern="([A-z0-À-ž]){1,13}" minlength="4"
                                                                     maxlength="12" #createPass="ngModel"
                                                                     id="create-password" name="create-password"
-                                                                    [(ngModel)]="createPassword" required />
+                                                                    [(ngModel)]="createPassword" [type]="hide ? 'password' : 'text'" required />
+                                                                    <i class="bi-eye-slash" id="togglePassword1" (click)="showPassword()"></i>
                                                                 <div class="alert alert-danger"
                                                                     *ngIf="createPass.touched && ! createPass.valid">
                                                                     Password is required.</div>
                                                             </div>
+                                                            
                                                         </div>
 
                                                         <div class="formPlaceholder row no-gutters justify-content-center mb-2">
@@ -98,7 +100,8 @@
                                                                     pattern="([A-z0-À-ž]){1,13}" minlength="4"
                                                                     maxlength="12" id="confirm-password"
                                                                     name="confirm-password"
-                                                                    [(ngModel)]="confirmPassword" required />
+                                                                    [(ngModel)]="confirmPassword" [type]="hideConfirm ? 'password' : 'text'" required />
+                                                                    <i class="bi-eye-slash" id="togglePassword2" (click)="showConfirmPassword()"></i>
                                                             </div>
                                                         </div>
                                                         <div>

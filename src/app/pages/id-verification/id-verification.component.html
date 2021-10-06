@@ -67,8 +67,7 @@
                       Front view of ID
                     </div>
                     <div class="upload-part">
-                      <img [src]="urlFront" id="frontId"
-                        style="height: 65px; width: 97px; position:absolute; left: 70px; margin-top: 20px;">
+                      <img [src]="urlFront" id="frontId" style="height: 65px; width: 97px; position:absolute; left: 70px; margin-top: 20px;">
                         <!-- <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)" style="position: absolute; left: 175px; margin-top:30px;"> -->
                       <div class="upload-button">
                         <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)" />
@@ -134,3 +133,6 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Updating...</p>
+</ngx-spinner>

@@ -26,6 +26,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  showPasswd(){
+    var clickPswd = <HTMLInputElement> document.getElementById("loginPassword");
+    if(clickPswd.type === "password"){
+      clickPswd.type = "text";
+    } else{
+      clickPswd.type = "password";
+    }
+  }
+
   submit() {
     this.services.login(this.services.username, this.services.password)
     .subscribe(() => {

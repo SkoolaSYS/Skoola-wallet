@@ -1,33 +1,33 @@
 <div class="container-fluid">
   <!-- Authenication Method -->
-  <!-- <div class="row no-gutters justify-content-center">
+  <!--<div class="row no-gutters justify-content-center">
     <div class="col-9 titlebg">
       <div>Authenication Method</div>
     </div>
   </div>
-  <div class="row justify-content-center mt-3 pb-4 border-bottom-grey">
+   <div class="row justify-content-center mt-3 pb-4">
     <div class="col-12 col-xl-8">
       <div class="row no-gutters justify-content-center">
-        <div class="col-3 pr-4 flex-align-center flex-column">
+        <div class="col-3 pr-4 flex-align-center flex-column border-right-black">
           <div class="text-right w-100 pb-2">
-            <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
+            <img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
           </div>
-          <img class="max-width-100" src="assets/icons-img/icon-smsotp1.png" />
+          <img class="max-width-100" src="assets/icons-img/securesms-transfer@3x.png" />
         </div>
-        <!-- <div class="col-1"></div>
-        <div class="col-3 pr-3 flex-align-center flex-column border-right-grey">
+        <div class="col-1"></div>
+        <div class="col-3 pr-3 flex-align-center flex-column border-right-black">
           <div class="text-right w-100 pb-2">
-            <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
+            <img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
           </div>
-          <img class="max-width-100" src="assets/icons-img/icon-oobpush1.png" />
+          <img class="max-width-100" src="assets/icons-img/securepush-transfer@3x.png" />
         </div>
         <div class="col-1"></div>
         <div class="col-3 pr-4 flex-align-center flex-column">
           <div class="text-right w-100 pb-2">
-            <img class="max-width-30" src="assets/icons-img/icon-info1.png" />
+            <img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
           </div>
-          <img class="max-width-100" src="assets/icons-img/icon-face1.png" />
-        </div> -- >
+          <img class="max-width-100" src="assets/icons-img/secureface-transfer@3x.png" />
+        </div>
       </div>
     </div>
   </div> -->
@@ -84,27 +84,30 @@
               </small>
             </div> -->
             <!-- Aiman-->
-            <div class="input-group-append input-group-append-otp-card">
-              <span
-                class="input-group-text group-input-icon-field"
-                id="basic-addon2"
-                (click)="otpSubmit.emit(otp)"
-              >
+            <!-- <div class="input-group-append input-group-append-otp-card">
+              <span class="input-group-text group-input-icon-field" id="basic-addon2" (click)="otpSubmit.emit(otp)">
                 <button class="d8p-transparent-btn" *ngIf="otp">
-                  <img
-                    class="btnicon"
-                    src="assets/icons-img/icon-correct1.png"
-                  />
+                  <img class="btnicon" src="assets/icons-img/icon-correct1.png" />
                 </button>
                 <button class="d8p-transparent-btn" *ngIf="!otp">
-                  <img
-                    class="btnicon"
-                    src="assets/icons-img/icon-correct2.png"
-                  />
+                  <img class="btnicon" src="assets/icons-img/icon-correct2.png" />
                 </button>
               </span>
-            </div>
+            </div> -->
           </form>
+          <!-- Confirm Button -->
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="button-container text-center mt-2" style="height: 120px; position: fixed; left: 25%;">
+                <button class="d8p-btn-default mt-3" (click)="otpSubmit.emit(otp)">
+                  <div class="--text">Confirm</div>
+                  <div class="--icon"><img class="p-1 max-width-30-px"
+                      src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

@@ -32,15 +32,6 @@
                                 </div>
                             </div> -->
                         </div>
-                            <div class="input-group mb-3 group-input-border-radius">
-                                <input type="text" class="form-control d8p-input min-height-60"
-                                    placeholder="Confirm Username" pattern="([A-z0-9À-ž]){2,}" minlength="4"
-                                    maxlength="12" name="confirmnewusername" #confirmnewusername="ngModel" [(ngModel)]="services.confirmnewusername"
-                                    aria-label="Recipient's newusername" aria-describedby="basic-addon2">
-                                <!-- <div *ngIf="confirmnewusername.touched && ! newusername.valid" class="alert alert-danger">
-                                    Re-keyin your username.
-                                </div> -->
-                            </div>
                             <form (submit)="submit()">
                                 <div class="formfield max-width-100">
                                     <div class="input-group mb-3 group-input-border-radius">
@@ -48,16 +39,16 @@
                                             placeholder="New Password" pattern="([A-z0-9À-ž]){1,}" minlength="4" maxlength="12"
                                             name="newpwd" [(ngModel)]="services.newpassword"
                                             aria-label="Recipient's newpassword" aria-describedby="basic-addon2"
-                                            autocomplete="new-password">
+                                            autocomplete="new-password" id="updatePassword">
                                     </div>
                                 </div>
                                 <div class="formfield max-width-100">
                                     <div class="input-group mb-3 group-input-border-radius">
                                         <input type="password" class="form-control d8p-input min-height-60"
-                                            placeholder="Confirm Password" pattern="([A-z0-9À-ž]){1,}" maxlength="16"
+                                            placeholder="Confirm New Password" pattern="([A-z0-9À-ž]){1,}" maxlength="16"
                                             name="newpwd" [(ngModel)]="services.confirmnewpassword"
                                             aria-label="Recipient's newpassword" aria-describedby="basic-addon2"
-                                            autocomplete="new-password" />
+                                            autocomplete="new-password" id="updateConfirmPassword"/>
                                         <div class="input-group-append">
                                             <span class="input-group-text group-input-icon-field" id="basic-addon2">
                                                 <button class="d8p-transparent-btn" *ngIf="services.newpassword">
@@ -70,6 +61,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            <input type="checkbox" class="tnc-checkbox" id="showPassword" (click)="showPasswd()">
+                            <span class="d8p-showpasswd-text">Show Password</span>
                             </form>
                             <img class="signupline" src="assets/icons-img/line-gradient-login-bottom.png" />
                             <div class="sponsored text-center">
@@ -83,3 +76,7 @@
                 </div>
             </div>
         </div>
+
+        <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+            <p style="font-size: 20px; color: white">Please wait...</p>
+          </ngx-spinner>

@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignupComponent implements OnInit {
   // Onboarding process (kinah)
+  hide: boolean = true;
+  hideConfirm: boolean=true;
   loginUsername : string;
   fullName : string;
   emailAddress : string;
@@ -75,6 +77,23 @@ export class SignupComponent implements OnInit {
     
     if (this.agree == "1")
         this.tickCheckbox();
+  }
+  // 
+  showPassword(){
+    this.hide = !this.hide;
+    if (!this.hide){
+    document.getElementById("togglePassword1").setAttribute("class","bi-eye");
+  }else{
+    document.getElementById("togglePassword1").setAttribute("class","bi-eye-slash");
+  }
+  }
+  showConfirmPassword(){
+    this.hideConfirm = !this.hideConfirm;
+    if (!this.hideConfirm){
+    document.getElementById("togglePassword2").setAttribute("class","bi-eye");
+  }else{
+    document.getElementById("togglePassword2").setAttribute("class","bi-eye-slash");
+  }
   }
   //Radio Button remains checked after page load
   radioButton(){

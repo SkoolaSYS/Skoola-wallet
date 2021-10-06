@@ -1,11 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { Services } from '../../services/service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NgPopupsModule, NgPopupsService } from 'ng-popups';
+import { NgPopupsService } from 'ng-popups';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'update-username-pwd',
@@ -15,19 +13,32 @@ import { NgPopupsModule, NgPopupsService } from 'ng-popups';
 })
 export class UpdateUsernamePwdComponent implements OnInit {
 
-    constructor(public services: Services, private router: Router, private ngPopups: NgPopupsService) { }
+    constructor(public services: Services, private router: Router, private spinner: NgxSpinnerService, private ngPopups: NgPopupsService) { }
 
     ngOnInit(): void {
+    this.spinner.hide();
       //force change username
+      
+      // if (this.services.forceChangeUsername ==false){
+      // }
+      
+    }
+    showPasswd(){
+      var clickNewPswd = <HTMLInputElement> document.getElementById("updatePassword");
+      if(clickNewPswd.type === "password"){
+        clickNewPswd.type = "text";
+      } else{
+        clickNewPswd.type = "password";
+      }
+      var clickConfirmNewPswd = <HTMLInputElement> document.getElementById("updateConfirmPassword");
+      if(clickConfirmNewPswd.type === "password"){
+        clickConfirmNewPswd.type = "text";
+      } else{
+        clickConfirmNewPswd.type = "password";
+      }
     }
     async submit() {
-      if (this.services.newusername!=this.services.confirmnewusername){
-        // alert('New user name mismatch!. Please retype new user name.');
-        this.ngPopups.alert('User name mismatch. Please re-keyin your new user name!');
-        this.services.newusername='';
-        this.services.confirmnewusername='';
-        return false;
-      }
+     
       if (this.services.newpassword!=this.services.confirmnewpassword){
         // alert('New password mismatch!. Please retype new password.');
         this.ngPopups.alert('Password mismatch. Please re-keyin your new password!');
@@ -35,22 +46,22 @@ export class UpdateUsernamePwdComponent implements OnInit {
         this.services.confirmnewpassword='';
         return false;
       }
-
+      this.spinner.show();
       let response = await this.services.changeMemberProfilePassword({    
           "oldPassword": this.services.password,
           "newPassword": this.services.newpassword,
           "newPasswordConfirmation": this.services.newpassword,
           "forceChange":0,
-          "forceChangeUsername":0,
-          "newUsername": this.services.newusername
+          "newUsername": this.services.newusername,
+          // "forceChangeUsername":0
       }).toPromise();{
+        this.spinner.hide();
         this.ngPopups.alert('Your new credential has been sucessfully updated!');
         const res = await this.services.login(this.services.newusername, this.services.newpassword).toPromise()
         
         if (this.services.isLoggedIn())
         {
           this.services.newusername='';
-          this.services.confirmnewusername='';
           this.services.newpassword='';
           this.services.confirmnewpassword='';
           this.router.navigate(['dashboard']);

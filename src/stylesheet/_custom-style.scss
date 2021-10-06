@@ -29,6 +29,14 @@
   color: $darkTextGrey2;
   margin: 0;
 }
+.d8p-showpasswd-text{
+  font: normal $s-13 $ff-font;
+  color: $darkTextGrey2;
+  margin: 0;
+  position: relative;
+  top: 5px;
+  left: 7px;
+}
 .d8p-tnc-text{
   font: lighter $s-15 $ff-font;
   color: $white;
@@ -38,10 +46,6 @@
   font: normal $s-10 $ff-font;
   color: $darkTextGrey2;
   margin: 0;
-}
-.d8p-xsmaller-text {
-  font: normal $s-10 $ff-base;
-  color: $darkTextGrey2;
 }
 .font-arial {
   font-family: Verdana, Tahoma, sans-serif;
@@ -189,6 +193,10 @@
 .wh-20-20 {
   width: 20px;
   height: 20px;
+}
+.wh-4-12 {
+  width: 4px;
+  height: 12px;
 }
 .flex-align-center {
   display: flex;
@@ -572,6 +580,11 @@ select.arrowstyle-white:focus {
 //   border: 0;
 //   position: relative;
 // }
+form i {
+  position: relative;
+  margin: 0 14px 0 -30px;
+  cursor: pointer;
+}
 .d8p-btn-black {
   background: linear-gradient(0deg, #323232 0%, #848484 100%);
   color: $white;

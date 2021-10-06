@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-id-verification',
@@ -23,9 +24,11 @@ export class IdVerificationComponent implements OnInit {
   goldFraction: any;  // accumulated gold amount
 
 
-  constructor(private service: Services, private router: Router, private ngPopups: NgPopupsService,private ng2ImgMax: Ng2ImgMaxService) { }
+  constructor(private service: Services, private router: Router, private ngPopups: NgPopupsService,private ng2ImgMax: Ng2ImgMaxService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.hide();
+
     this.activetransaction = this.service.activetransaction;
     if (this.activetransaction === true) {
       this.transactionAmount = this.service.transactionData.amount;
@@ -159,14 +162,15 @@ export class IdVerificationComponent implements OnInit {
   async doRoute(): Promise<void> {
     // if (this.idVerifyNo.length === 0 || this.files.length < 3)
     //   return;
+    this.spinner.show();
     let formData: FormData = new FormData();
-
     // formData.append("idNumber", this.idVerifyNo);
     formData.append("files", this.files[0]);
     formData.append("files", this.files[1]);
     formData.append("files", this.files[2]);
     await this.service.uploadVerificationData(formData).toPromise()
     .then(() => {
+      this.spinner.hide();
       this.ngPopups.alert('Your profile has been sucessfully updated!');
       this.router.navigate(['dashboard']);
     })

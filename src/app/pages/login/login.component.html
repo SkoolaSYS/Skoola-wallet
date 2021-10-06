@@ -26,15 +26,17 @@
                                         placeholder="Username" pattern="([A-z0-9À-ž]){2,}" maxlength="16"
                                         name="username" [(ngModel)]="services.username"
                                         aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                        <!-- <i class="bi bi-eye-slash" id="togglePassword"></i> -->
 
                                 </div>
                             </div>
                             <div class="formfield max-width-100">
                                 <div class="input-group mb-3 group-input-border-radius">
-                                    <input type="password" class="form-control d8p-input-normal min-height-60"
+                                    <input type="password" class="form-control d8p-input-normal min-height-60" id="loginPassword"
                                         placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" name="pwd"
                                         [(ngModel)]="services.password" aria-label="Recipient's username"
-                                        aria-describedby="basic-addon2" autocomplete="new-password" />
+                                        aria-describedby="basic-addon2" autocomplete="new-password" /> 
+                                    
                                     <div class="input-group-append">
                                         <span class="input-group-text group-input-icon-field" id="basic-addon2">
                                             <button class="d8p-transparent-btn" *ngIf="services.password">
@@ -47,6 +49,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="checkbox" class="tnc-checkbox" id="showPassword" (click)="showPasswd()">
+                            <span class="d8p-showpasswd-text">Show Password</span>
                         </form>
                     </div>
                     <div class="button-container text-center">
