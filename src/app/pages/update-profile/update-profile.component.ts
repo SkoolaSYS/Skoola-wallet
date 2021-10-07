@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Utility } from 'src/utils';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-update-profile',
@@ -14,28 +15,88 @@ export class UpdateProfileComponent implements OnInit {
   public updateForm: any = {};
   private file: File = null;
   public imageSrc: any = "assets/icons-img/user-dp.png";
+  activetransaction: boolean;
+  currencyType: any;
+  currentBalance: any;
+  userName: any;
+  cardNumber: any;
+  transactionAmount: any;
+  goldAmount: any;    // per transaction gold amount
+  goldWhole: any;;    // accumulated gold amount
+  goldFraction: any;  // accumulated gold amount
   
 
-  constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService, private ng2ImgMax: Ng2ImgMaxService) { }
+  constructor(private service: Services, private router: Router, private ngPopups: NgPopupsService, private ng2ImgMax: Ng2ImgMaxService, private spinner: NgxSpinnerService) { }
 
   async ngOnInit(): Promise<void> {
-    const currentUser: any = await this.services.currentUser;
+    this.spinner.hide();
+    this.activetransaction = this.service.activetransaction;
+    if (this.activetransaction === true) {
+      this.transactionAmount = this.service.transactionData.amount;
+      this.goldAmount = this.service.transactionData.gold;  
+    }
 
+    // this.activetransaction = true;
+    this.service.getAccountBalance().subscribe((res: any) => {
+      //console.log(res)
+      this.currentBalance = res[0].status.availableBalance;
+      this.service.currentBalance = this.currentBalance;
+      this.currencyType = res[0].account.type.currency.symbol;
+
+      const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(5).toString().split(".");
+      this.goldWhole = sumGoldParts[0];
+      this.goldFraction = sumGoldParts[1];
+
+      this.service.userAccount = res[0].account;
+    },
+    (err) => {
+      console.log(err);
+      this.service.logout();
+    });
+
+    this.service.getProfileData().subscribe((res: any) => {
+
+      // function getAccNumber(element, index, array) { 
+      //     console.log(element.internalName);
+      //     if (element.internalName == 'AccNumber') 
+      //       return index;
+      // }
+
+      // console.log(res);
+      this.userName = res.name;
+      this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber").value;      
+      //var accnum = res.customValues.filter(getAccNumber);
+      // for (var i=0; i < accnum.length; i++){
+      //   console.log(accnum[i].value);
+      // }
+      // console.log('accnum : ' + accnum[0].value);
+      // this.cardNumber = res.customValues[3].value;
+      
+      // if (accnum.length > 0)
+      //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
+    },
+    (err) => {
+      console.log(err);
+      this.service.logout();
+    });
+    const currentUser: any = await this.service.currentUser;
+    console.log(currentUser);
+    
     // TODO: Pre-fill user profile fields with data from cbs here.
     if (currentUser.email)
       this.updateForm.email = currentUser.email;
+      
+    if (currentUser.customValues.find(object => object.internalName == "mobilePhone").value)
+    this.updateForm.phone = currentUser.customValues.find(object => object.internalName == "mobilePhone").value; 
     
-    if (currentUser.phoneNo)
-    this.updateForm.phoneNo= currentUser.phoneNo;
-    
-    if (currentUser.homeAddress)
-    this.updateForm.address = currentUser.homeAddress;
+    if ( currentUser.customValues.find(object => object.internalName == "address").value)
+    this.updateForm.address =  currentUser.customValues.find(object => object.internalName == "address").value;
 
-    if (currentUser.postalCode)
-    this.updateForm.postalCode = currentUser.postalCode;
+    if ( currentUser.customValues.find(object => object.internalName == "postalCode").value)
+    this.updateForm.postalCode =  currentUser.customValues.find(object => object.internalName == "postalCode").value;
 
-    if (currentUser.city)
-    this.updateForm.city= currentUser.city;
+    if (currentUser.customValues.find(object => object.internalName == "city").value)
+    this.updateForm.city= currentUser.customValues.find(object => object.internalName == "city").value;
 
     if (currentUser.images && currentUser.images.length != 3) {
       this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
@@ -106,13 +167,15 @@ export class UpdateProfileComponent implements OnInit {
 
     if (this.file)
       formData.append("file", this.file);
-    
-    await this.services.updateProfileWithImage(formData).toPromise()
+    this.spinner.show();
+    await this.service.updateProfileWithImage(formData).toPromise()
     .then(() => {
+      this.spinner.hide();
       this.ngPopups.alert('Your profile has been sucessfully updated!');
       this.router.navigate(['dashboard']);
     })
     .catch((err) => {
+      this.spinner.hide();
       this.ngPopups.alert('There was an error in your submission!');
     });
   }

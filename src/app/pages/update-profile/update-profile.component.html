@@ -1,13 +1,10 @@
 <div>
-  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-    <mat-icon>
-      <svg width="25" height="45">
-        <path d="M0,3 25,3" stroke="#fff" stroke-width="3" />
-        <path d="M0,12 25,12" stroke="#fff" stroke-width="3" />
-        <path d="M0,21 25,21" stroke="#fff" stroke-width="3" />
-      </svg>
-    </mat-icon>
-  </button>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
   <!-- Nav block - start -->
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" position="end">
@@ -20,139 +17,181 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters justify-content-center">
           <div class="col-12 col-xl-9">
-            <div class="dashboard-header-box">
-              <app-dashboard-header></app-dashboard-header>
+            <div class="id-dashboardheader">
+              <!-- Dashboard Header Start -->
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-8">
+                    <div class="dashboard-header">
+                      <div class="text-left">
+                        <div class="headergoldbox d-flex headerGoldboxPosition">
+                          <div class="white-line"></div>
+                          <div class="gram-txt">
+                            <div class="goldWhole pt-2">{{ goldWhole }}.</div>
+                            <div class="goldFraction">{{ goldFraction }} g</div>
+                          </div>
+                          <div class="half-gold"></div>
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png"
+                          routerLink="/dashboard" style="z-index: 2;" />
+                      </div>
+                      <div>
+                        <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png"
+                          routerLink="/recent-transactions" />
+                      </div>
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                  <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                </div>
+                <!-- Dashboard Header End -->
+              </div>
             </div>
           </div>
         </div>
 
         <div class="row no-gutters justify-content-center">
           <div class="col-12 col-xl-9">
-            <div class="dashboard-content-box pb-5">
-              <!-- Quick links -->
-              <div class="container-fluid quicklinkbg">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
-                      <div class="row no-gutters justify-content-center">
-                        <div class="col-12 col-xl-9 titlebg">
-                          USER PROFILE
+              <div class="id-contentbox pb-5">
+                <div class="id-body">
+                  <div class="container-fluid p-0 menu-grid">
+                    <div class="modal-title text-center mb-2" style="height: 50px;">
+                      Update Profile
+                    </div>
+                    <form>
+                      <div class="text-center mt-2 mb-2">
+                        User Profile Image
+                      </div>
+                      <div class="upload-part">
+                        <img class="userdp" [src]="imageSrc" style="height: 65px; width: 60px; position:absolute; left: 88px; margin-top: 20px;">
+                        <div class="upload-button">
+                          <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event)>
+                          <label class="snap-btn">Upload</label>
                         </div>
                       </div>
-                      <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
-                        <div class="col-md-auto text-center">
-
-                          <!-- USER IMAGE -->
-                          <label>
-                            <img class="userdp" [src]="imageSrc" style="height: 4rem;width: 4rem;">
-                            <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event)
-                              #fileInput>
-                            <!-- <button (click)="fileInput.click()">Select File</button> -->
-                          </label>
-                          <br>
-                          <button (click)="fileInput.click()">Select File</button>
-
-                        </div>
-                        <!-- <div class="col-9 pl-3 color-white font-size-15">
-                                Profile: hehehe
-                              </div> -->
+                      <div class="text-center mt-2 mb-2">
+                        Email Address
                       </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container-fluid">
-                <div class="row no-gutters">
-                  <div class="col-12">
-                    <div class="container-fluid p-0 menu-grid">
+                      <div class="upload-part">
+                        <input class="form-control d8p-input-normal min-height-60" id="userEmail" type="text" placeholder="example@example.com" [(ngModel)]="updateForm.email" name="userEmail" #userEmail="ngModel">
+                        <!-- <button class="snap-btn">Change</button> -->
+                      </div>
+                      <div class="text-center mt-2 mb-2">
+                        Residence Address
+                      </div>
+                      <div class="upload-part">
+                        <input  class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.address" name="homeAddress" #homeAddress="ngModel" id="homeAddress">
+                        <span class="focus-border"></span>
+                        <!-- <button class="snap-btn">Change</button> -->
+                      </div>
+                      <div class="text-center mt-2 mb-2">
+                        Postcode
+                      </div>
+                      <div class="upload-part">
+                        <input  class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.postalCode" name="postalCode" #postalCode="ngModel" id="postalCode" placeholder="eg: 47810" type="text">
+                        <!-- <button class="snap-btn">Change</button> -->
+                      </div>
+                      <div class="text-center mt-2 mb-2">
+                        City
+                      </div>
+                      <div class="upload-part">
+                        <input class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.city" name="city" #city="ngModel" id="city" type="text" placeholder="eg: Kota Damansara" >
+                        <!-- <button class="snap-btn">Change</button> -->
+                      </div>
+                      <div class="text-center mt-2 mb-2">
+                        Mobile Phone Number
+                      </div>
+                      <div class="upload-part">
+                        <input class="form-control d8p-input-normal min-height-60" id="phoneNo" type="text" [(ngModel)]="updateForm.phone" name="phoneNo" #phoneNo="ngModel" maxlength="12" placeholder="0123456789">
+                        <!-- <button class="snap-btn">Change</button> -->
+                      </div>
                       <div class="row no-gutters justify-content-center">
-
-                        <!-- FORM -->
-                        <form #form="ngForm">
-                          <div class="form-group">
-                            <label class="userEmail">Email:</label>
-                            <input id="userEmail" type="text" placeholder="example@example.com" class="form-control"
-                              required [(ngModel)]="updateForm.email" name="userEmail" #userEmail="ngModel">
+                        <div class="col-12">
+                          <div class="button-container text-center mt-2" style="height: 120px;">
+                            <a class="d8p-btn-default mt-3 margin-left-95" (click)="onSubmit()">
+                              <div class="--text">Confirm</div>
+                              <div class="--icon"><img class="p-1 max-width-30-px"
+                                  src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                            </a>
                           </div>
-                          <div class="form-group">
-                            <label class="phoneNo">Phone No.:</label>
-                            <input id="phoneNo" type="text" placeholder="01X-1234567" class="form-control" required
-                              [(ngModel)]="updateForm.phone" name="phoneNo" #phoneNo="ngModel">
-                            <div class="alert alert-danger" *ngIf="phoneNo.touched && ! phoneNo.valid">Fill in your
-                              Phone No.</div>
-                          </div>
-                          <div class="form-group">
-                            <label class="homeAddress">Address:</label>
-                            <textarea required [(ngModel)]="updateForm.address" name="homeAddress"
-                              #homeAddress="ngModel" id="homeAddress" cols="30" rows="3"
-                              class="form-control"></textarea>
-                            <div class="alert alert-danger" *ngIf="homeAddress.touched && !homeAddress.valid">Fill in
-                              your Home Address</div>
-                          </div>
-                          <div class="form-group">
-                            <label class="postalCode">Postal Code:</label>
-                            <input required [(ngModel)]="updateForm.postalCode" name="postalCode" #postalCode="ngModel"
-                              id="postalCode" placeholder="eg: 47810" type="text" class="form-control">
-                            <div class="alert alert-danger" *ngIf="postalCode.touched && !postalCode.valid">Fill in your
-                              Postal Code</div>
-                          </div>
-                          <div class="form-group">
-                            <label class="city">City:</label>
-                            <input required [(ngModel)]="updateForm.city" name="city" #city="ngModel" id="city"
-                              type="text" placeholder="eg: Kota Damansara" class="form-control">
-                            <div class="alert alert-danger" *ngIf="city.touched && !city.valid">Fill in your City</div>
-                          </div>
-
-                          <!-- Confirmation -->
-                          <!-- <div class="container-fluid">
-                                   <div class="row no-gutters">
-                                    <div class="col-12">
-                                      <div class="container-fluid p-0 menu-grid">
-                                        <div class="row no-gutters justify-content-center mt-4 mb-4">
-                                              <div class="col-10">
-                                                 <div class="button-container text-center">
-                                                   <button class="d8p-btn-default" (click)="onSubmit()" >
-                                                     Update
-                                                    <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
-                                                     </button>
-                                                  </div>
-                                              </div>
-                                         </div>
-                                     </div>
-                                   </div>
-                                  </div>
-                              </div> -->
-
-                        </form>
-
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row no-gutters justify-content-center">
-                    <div class="col-12">
-                      <div class="button-container text-center mt-2">
-                        <a class="d8p-btn-default mt-3 margin-left-73" (click)="onSubmit()">
-                          <div class="--text">Confirm</div>
-                          <div class="--icon"><img class="p-1 max-width-30-px"
-                              src="assets/icons-img/tick-only-signup@2x.png" /></div>
-                        </a>
-                      </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
 
+<!-- 
+        <div class="container-fluid quicklinkbg">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="container-fluid p-0 menu-grid">
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">
+                    USER PROFILE
+                  </div>
+                </div>
+                <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                  <div class="col-md-auto text-center">
+                    <label>
+                      <img class="userdp" [src]="imageSrc" style="height: 4rem;width: 4rem;">
+                      <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event)
+                        #fileInput>
+                    </label>
+                    <br>
+                    <button (click)="fileInput.click()">Select File</button>
 
+                  </div>
+                </div>
 
-
-
+              </div>
             </div>
-
           </div>
         </div>
-      </div>
-
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="container-fluid p-0 menu-grid">
+                <div class="row no-gutters justify-content-center">
+                  <form #form="ngForm">
+                    <div class="form-group">
+                      <label class="userEmail">Email:</label>
+                      <input id="userEmail" type="text" placeholder="example@example.com" class="form-control" required
+                        [(ngModel)]="updateForm.email" name="userEmail" #userEmail="ngModel">
+                    </div>
+                    <div class="form-group">
+                      <label class="phoneNo">Phone No.:</label>
+                      <input id="phoneNo" type="text" placeholder="01X-1234567" class="form-control" required
+                        [(ngModel)]="updateForm.phone" name="phoneNo" #phoneNo="ngModel">
+                    </div>
+                    <div class="form-group">
+                      <label class="homeAddress">Address:</label>
+                      <textarea required [(ngModel)]="updateForm.address" name="homeAddress" #homeAddress="ngModel"
+                        id="homeAddress" cols="30" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="postalCode">Postal Code:</label>
+                      <input required [(ngModel)]="updateForm.postalCode" name="postalCode" #postalCode="ngModel"
+                        id="postalCode" placeholder="eg: 47810" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label class="city">City:</label>
+                      <input required [(ngModel)]="updateForm.city" name="city" #city="ngModel" id="city" type="text"
+                        placeholder="eg: Kota Damansara" class="form-control">
+                    </div>
+                  </form>
+                 
+                </div>
+              </div>-->
+            
+          </div>
+        </div> 
+        </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Updating...</p>
+</ngx-spinner>

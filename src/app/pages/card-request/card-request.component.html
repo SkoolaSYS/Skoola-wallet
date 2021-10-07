@@ -26,16 +26,44 @@
           <div class="container-fluid p-0">
             <div class="row no-gutters justify-content-center">
               <div class="col-12 col-xl-9">
-                <div class="dashboard-header-box">
-                  <app-dashboard-header></app-dashboard-header>
+                <div class="id-dashboardheader">
+                  <!-- Dashboard Header Start -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-8">
+                        <div class="dashboard-header">
+                          <div class="text-left">
+                            <div class="headergoldbox d-flex headerGoldboxPosition">
+                              <div class="white-line"></div>
+                              <div class="gram-txt">
+                                <div class="goldWhole pt-2">{{ goldWhole }}.</div>
+                                <div class="goldFraction">{{ goldFraction }} g</div>
+                              </div>
+                              <div class="half-gold"></div>
+                            </div>
+                          </div>
+                          <div class="text-center">
+                            <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png"
+                              routerLink="/dashboard" style="z-index: 2;" />
+                          </div>
+                          <div>
+                            <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png"
+                              routerLink="/recent-transactions" />
+                          </div>
+                        </div>
+                        <div class="col-4"></div>
+                      </div>
+                      <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                    </div>
+                    <!-- Dashboard Header End -->
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div class="row no-gutters justify-content-center">
+            <!-- <div class="row no-gutters justify-content-center">
               <div class="col-12 col-xl-9"> 
                 <div class="dashboard-content-box pb-5">
-                  <!-- Quick links -->
                   <div class="container-fluid quicklinkbg">
                     <div class="row no-gutters">
                       <div class="col-12">
@@ -57,7 +85,7 @@
                         <div class="container-fluid p-0 menu-grid">
                           <div class="row no-gutters justify-content-center">
                              
-                            <button type="button" class="btn btn-outline-info" id="agRee">Yes, I would like to request a card. </button>
+                            <button type="button" class="btn btn-outline-info" id="agRee" (click)="requestCard()">Yes, I would like to request a card. </button>
                             <button type="button" class="btn btn-outline-secondary" id="disAgree">No, I no want card</button>
                             
                           </div>
@@ -74,7 +102,67 @@
 
               </div>
             </div>
+          </div> -->
+          <div class="requestCard-body container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="id-contentbox pb-3">
+                <div class="id-body">
+                  <div class="container-fluid p-0 menu-grid">
+                    <div class="modal-title text-center mb-2" style="height: 50px;">
+                      Request Card
+                    </div>
+                    <div class="container-success">
+                      <div class="request-box-body">
+                          <p class="success-body">
+                            Make sure you have updated your profile at "Update Profile"
+                          </p>
+                      </div>
+                      <div class="request-box-btn">
+                        <div class="button-container text-center mt-2">
+                          <button class="d8p-btn-default mt-3 margin-left-56" (click)="requestCard()" id="btnConfirm">
+                            <div class="--text">Request Card</div>
+                            <div class="--icon"><img class="p-1 max-width-30-px"
+                                src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                          </button>
+                        </div>
+                        <div class="button-container text-center mt-2">
+                          <button class="d8p-btn-default mt-3 margin-left-56" routerLink="/dashboard" id="btnConfirm">
+                            <div class="--text">Cancel</div>
+                            <div class="--icon"><img class="p-1 max-width-30-px"
+                                src="assets/icons-img/cancel-only-signup@2x.png" /></div>
+                          </button>
+                        </div>
+                      </div>
+                  </div>
+                    <!-- <div class="upload-part">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12">
+                          <div class="button-container text-center mt-2">
+                            <button class="d8p-btn-default mt-3 margin-left-95" (click)="requestCard()" id="btnConfirm">
+                              <div class="--text">Request Card</div>
+                              <div class="--icon"><img class="p-1 max-width-30-px"
+                                  src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                          <div class="button-container text-center mt-2">
+                            <button class="d8p-btn-default mt-3 margin-left-95" routerLink="/dashboard" id="btnConfirm">
+                              <div class="--text">Cancel</div>
+                              <div class="--icon"><img class="p-1 max-width-30-px"
+                                  src="assets/icons-img/cancel-only-signup@2x.png" /></div>
+                            </button>
+                          </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          </div>
+        </div>
+
 
         </mat-sidenav-content>
       </mat-sidenav-container>

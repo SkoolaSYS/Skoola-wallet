@@ -14,6 +14,7 @@ export class MatsidenavComponent implements OnInit {
   // Image & IDVerification
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
+  public requestCard: boolean;
   public bankData: boolean;
   public allowWithdrawal: boolean;
   public bankLoadData: boolean;
@@ -32,6 +33,9 @@ export class MatsidenavComponent implements OnInit {
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
       this.bankLoadData = currentUser.bankLoad;
 
+      // Request D8P Card visible for non-registered card user.
+      this.requestCard = currentUser.requestCard;
+
     },
     (err) => {
       console.log(err);
@@ -48,6 +52,7 @@ export class MatsidenavComponent implements OnInit {
     (err) => {
       console.log(err);
     });
+    
     
   }
 

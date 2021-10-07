@@ -1890,9 +1890,9 @@ table, tr, td{
   display: block;
   background-color: #fff;
   width: 30px;
-  height: 3px;
+  height: 4px;
   border-radius: 5px;
-  margin: 7px auto;
+  margin: 6px auto;
   transition: background-color 0.4s ease-in, transform 0.4s ease-in,
     width 0.4s ease-in;
 }
@@ -1976,5 +1976,37 @@ input[type="checkbox"]:checked ~ label .middle {
   top: 0;
   opacity: 0;
 }
-
-
+/* ID verification End */
+/* Update Profile Start */
+.updatePlaceholder{
+  border-radius: 10px;
+}
+/* Update Profile End */
+/* Request Card Start */
+.request-box-btn{
+  background-color: #F0F0F0;
+  border-radius: 0 0 5px 5px;
+  border: solid 1px black;
+  top: 125px;
+  width: 323px;
+  height: 171px;
+  position: absolute;
+  left: -162px;
+  padding: 10px;
+  text-align: left;
+}
+.request-box-body{
+  background-color: #F0F0F0;
+  border: solid 1px black;
+  width: 323px;
+  position: absolute;
+  top: 50px;
+  left: -162px;
+  padding: 10px;
+  text-align: left;
+}
+.requestCard-body{
+  background: $white;
+  height: 800px;
+  overflow: hidden;
+}

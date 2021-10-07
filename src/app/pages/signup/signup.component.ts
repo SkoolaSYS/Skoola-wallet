@@ -4,6 +4,7 @@ import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
 import { Utility } from 'src/utils';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-signup',
@@ -38,9 +39,10 @@ export class SignupComponent implements OnInit {
     private services:Services,
     private ngPopups: NgPopupsService, 
     private router:Router,
-    private authService:AuthService) { }
+    private authService:AuthService, private spinner: NgxSpinnerService) { }
   
   async ngOnInit(): Promise<void>  {
+    this.spinner.hide();
     // Append smId to signup page; /signup?smId=
      this.href = this.router.url;
      var test = <HTMLInputElement> document.getElementById("wantCard");
@@ -177,6 +179,7 @@ export class SignupComponent implements OnInit {
         
         if (this.loginUsername!= null && this.fullName != null && this.emailAddress != null && this.nricNumber != null && this.createPassword != null && customValues != null && this.parentId != null ){
           this.errorMessage.push({field:this.loginUsername,reason:"Username has been used"})
+          this.spinner.show();
           await this.services.signupUser({
           username : this.loginUsername,
           name : this.fullName,
@@ -186,6 +189,7 @@ export class SignupComponent implements OnInit {
           superMerchantId: this.parentId,
           cardRequest: this.cardSelect1
         }).toPromise().then(() => {
+          this.spinner.hide();
           this.router.navigate(['../acknowledgement-page']);
         }).catch((err) => {
             this.errorObj = this.errorMessage.find(error=>error.field === err.error.field);
@@ -194,7 +198,9 @@ export class SignupComponent implements OnInit {
           }
       }
     }else{
+      this.spinner.show();
       this.ngPopups.alert("Email invalid");
+      this.spinner.hide();
     }
   }
 }
