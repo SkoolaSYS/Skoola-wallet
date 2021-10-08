@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -14,6 +13,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class DashboardComponent implements OnInit {
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
+  public allowWithdrawal: boolean;
 
   constructor(private services: Services, private router: Router) {}
 
@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
       const currentUser: any = await this.services.currentUser;
       //console.log(currentUser);
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+      this.allowWithdrawal = currentUser.allowWithdrawal;
+
     },
     (err) => {
       console.log(err);

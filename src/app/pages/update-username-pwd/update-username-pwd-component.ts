@@ -41,7 +41,7 @@ export class UpdateUsernamePwdComponent implements OnInit {
      
       if (this.services.newpassword!=this.services.confirmnewpassword){
         // alert('New password mismatch!. Please retype new password.');
-        this.ngPopups.alert('Password mismatch. Please re-keyin your new password!');
+        this.ngPopups.alert('Password mismatch. Please re-keyin your new password!',{theme: 'material', title:'Oops...'});
         this.services.newpassword='';
         this.services.confirmnewpassword='';
         return false;
@@ -56,7 +56,7 @@ export class UpdateUsernamePwdComponent implements OnInit {
           // "forceChangeUsername":0
       }).toPromise();{
         this.spinner.hide();
-        this.ngPopups.alert('Your new credential has been sucessfully updated!');
+        this.ngPopups.alert('Your new credential has been sucessfully updated!',{theme: 'material', title:'Success!'});
         const res = await this.services.login(this.services.newusername, this.services.newpassword).toPromise()
         
         if (this.services.isLoggedIn())

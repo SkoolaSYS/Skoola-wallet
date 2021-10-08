@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgPopup, NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-card-request',
@@ -21,9 +23,11 @@ export class CardRequestComponent implements OnInit {
   constructor(
     private service:Services,
     private ngPopups: NgPopupsService, 
-    private router:Router) { }
+    private router:Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.hide();
     this.activetransaction = this.service.activetransaction;
     if (this.activetransaction === true) {
       this.transactionAmount = this.service.transactionData.amount;
@@ -76,9 +80,34 @@ export class CardRequestComponent implements OnInit {
   }
 
   async requestCard(){
-    await this.service.requestCard().toPromise().then(() => {
-      this.ngPopups.alert('You have succesfully request a D8-p Card!');
-      this.router.navigate(['dashboard']);
-    });
+    const currentUser: any = await this.service.currentUser;
+    try{
+      currentUser.customValues.find(object => object.internalName == "address").value;
+      try{
+        currentUser.customValues.find(object => object.internalName == "postalCode").value;
+        try{
+          currentUser.customValues.find(object => object.internalName == "city").value;
+          this.spinner.show();
+          await this.service.requestCard().toPromise().then(() => {
+            this.spinner.hide();
+            this.ngPopups.alert('You have succesfully request a D8-p Card!',{theme: 'material', title: 'Success!'});
+            this.router.navigate(['dashboard']);
+          });
+        }catch(e){
+        console.log("City")
+        this.ngPopups.alert('Update your City',{theme: 'material', title: 'Oops...'});
+        this.router.navigate(["update-profile"]);
+        }
+       }catch(e){
+        console.log("postalCode")
+        this.ngPopups.alert('Update your Postal Code',{theme: 'material', title: 'Oops...'});
+        this.router.navigate(["update-profile"]);
+       } 
+    }catch(e){
+      console.log("address")
+      this.ngPopups.alert('Update your Residence Address',{theme: 'material', title: 'Oops...'});
+      this.router.navigate(["update-profile"]);
+    }
+    
   }
 }

@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit {
     if (this.agree == "1")
         this.tickCheckbox();
   }
-  // 
+  // Toggle Password Visibility
   showPassword(){
     this.hide = !this.hide;
     if (!this.hide){
@@ -145,7 +145,7 @@ export class SignupComponent implements OnInit {
     if (Utility.validateEmail(this.emailAddress) == true){
 
       if (this.createPassword != this.confirmPassword){
-          this.ngPopups.alert('Password mismatch. Please re-keyin your new password!');
+          this.ngPopups.alert('Password mismatch. Please re-keyin your new password!',{theme:'material',title:'Oops...'});
           this.createPassword='';
           this.confirmPassword='';
       }else{
@@ -193,14 +193,13 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['../acknowledgement-page']);
         }).catch((err) => {
             this.errorObj = this.errorMessage.find(error=>error.field === err.error.field);
-            this.ngPopups.alert(this.errorObj.reason);
+            this.ngPopups.alert(this.errorObj.reason,{theme:'material',title:'Oops...'});
           });
           }
       }
     }else{
       this.spinner.show();
-      this.ngPopups.alert("Email invalid");
-      this.spinner.hide();
+      this.ngPopups.alert("Email invalid",{theme:'material',title:'Oops...'});
     }
   }
 }

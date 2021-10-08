@@ -1,10 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { Services } from '../../services/service';
-import { NgPopupsModule, NgPopupsService } from 'ng-popups';
+import { NgPopupsService } from 'ng-popups';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-login',
@@ -13,10 +12,12 @@ import { NgPopupsModule, NgPopupsService } from 'ng-popups';
   host: { '[@fadeInAnimation]': '' }
 })
 export class LoginComponent implements OnInit {
+  hide: boolean = true;
 
-    constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService) { }
+    constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.hide();
     if (this.services.isLoggedIn())
     {
       this.router.navigate(['dashboard']);
@@ -32,16 +33,27 @@ export class LoginComponent implements OnInit {
       clickPswd.type = "text";
     } else{
       clickPswd.type = "password";
-    }
-  }
+    }}
+
+
+//   showPassword(){
+//     this.hide = !this.hide;
+//     if (!this.hide){
+//     document.getElementById("togglePasswordLogin").setAttribute("class","bi-eye mt-3 mr-3");
+//   }else{
+//     document.getElementById("togglePasswordLogin").setAttribute("class","bi-eye-slash mt-3 mr-3");
+//   }
+// }
 
   submit() {
     this.services.login(this.services.username, this.services.password)
     .subscribe(() => {
+      this.spinner.show();
       if( this.services.forceChangePassword ) {
-        this.ngPopups.alert('Credential Update. You need to change your credentials!');
+        this.ngPopups.alert('Credential Update. You need to change your credentials!',{theme: 'material'});
          this.router.navigate(['update-username-pwd']);
        } else {
+         this.spinner.hide();
          this.router.navigate(['dashboard']);
        }
     });

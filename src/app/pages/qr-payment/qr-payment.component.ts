@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions, Router } from '@angular/router';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
 import { Services } from '../../services/service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 //qr payment danieal
 // to do (auto select merchant account)
 const routerOptions: ExtraOptions = {
@@ -33,8 +35,9 @@ export class QrPaymentComponent implements OnInit {
   effectiveDate:string;
   merchantName:string;
 
-  constructor(private service: Services, private router:Router) { }
+  constructor(private service: Services, private router:Router, private spinner: NgxSpinnerService) { }
   ngOnInit(): void {
+    this.spinner.hide();
     console.log(this.router.url)
     this.service.loadById(this.router.url.split("?")[1].split("=")[1]).subscribe((res: any) => {
     console.log(res);
@@ -50,14 +53,14 @@ export class QrPaymentComponent implements OnInit {
       });
     }
     async onSubmit() {
-      console.log('onsubmit');
+      this.spinner.show();
       await this.service.paymentTransfer({
        toMemberId: this.receiverId,        // this.form.toMemberId,
        toMemberPrincipal: this.receiverName,  // this.form.toMemberPrincipal,
        amount: this.amount,
        transactionTypeId: TRANSACTION_TYPE.QrPayment
       }).toPromise();
-   
+      this.spinner.hide();
       this.service.activetransaction = true;
       this.service.transactionData.amount = this.amount;
    

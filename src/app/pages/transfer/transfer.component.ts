@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Services } from '../../services/service';
 import { NgPopupsService } from 'ng-popups';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-transfer',
@@ -20,9 +22,10 @@ export class TransferComponent implements OnInit {
     private service: Services, 
     private router: Router, 
     private ngPopups: NgPopupsService, 
-    private services:Services) { }
+    private services:Services,
+    private spinner: NgxSpinnerService) { }
   ngOnInit(): void {
-    
+    this.spinner.hide();
     this.service.forms.transferForm = this.transferForm;
     this.service.opsTagging = 'transfer';
     this.service.getMemberList().subscribe((res: any) => {
@@ -59,12 +62,14 @@ export class TransferComponent implements OnInit {
   }
 
   async getReceiverDetails(): Promise<void> {
+    this.spinner.show();
     await this.service.getWalletPaymentData(this.transferForm.toAccountNo, TRANSACTION_TYPE.Transfer).toPromise()
     .then(() => {
+      this.spinner.hide();
       this.router.navigate(['transfer-details']);
     })
     .catch((err) => {
-      this.ngPopups.alert('There was an error in your submission!');
+      this.ngPopups.alert('There was an error in your submission!',{theme:'material',title:'Oops...'});
     });
   }
 

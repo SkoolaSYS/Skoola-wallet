@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-transaction-details',
@@ -17,8 +18,9 @@ export class TransactionDetailsComponent implements OnInit {
   transactionFee: any;
   goldAmount: any;
 
-  constructor(private services: Services, private router: Router) { }
+  constructor(private services: Services, private router: Router, private spinner: NgxSpinnerService) { }
   async ngOnInit(): Promise<void> {
+    this.spinner.hide();
     this.currentUser = await this.services.currentUser;
     this.form = this.services.forms.transferForm || {}; // FIXME: Form is reset when page is reloaded, unless we persists data.
     //this.receiver = this.form.selectedMember;
@@ -43,6 +45,7 @@ export class TransactionDetailsComponent implements OnInit {
   }
   
   async otpSubmit(otp: string) {
+    this.spinner.show();
    await this.services.paymentTransfer({
     toMemberId: this.receiver.id,           // this.form.toMemberId,
     toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
@@ -51,7 +54,7 @@ export class TransactionDetailsComponent implements OnInit {
     description: this.form.description,
     transactionTypeId: TRANSACTION_TYPE.Transfer
    }).toPromise();
-
+   this.spinner.hide();
    this.services.activetransaction = true;
    this.services.transactionData.amount = this.form.amount;
 

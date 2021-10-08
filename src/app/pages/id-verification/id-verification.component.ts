@@ -171,11 +171,11 @@ export class IdVerificationComponent implements OnInit {
     await this.service.uploadVerificationData(formData).toPromise()
     .then(() => {
       this.spinner.hide();
-      this.ngPopups.alert('Your profile has been sucessfully updated!');
+      this.ngPopups.alert('Your profile has been sucessfully updated!',{theme: 'material', title: 'Success!'});
       this.router.navigate(['dashboard']);
     })
     .catch((err) => {
-      this.ngPopups.alert('There was an error in your submission!');
+      this.ngPopups.alert('There was an error in your submission!',{theme: 'material', title: 'Oops...'});
     });    
   }
 

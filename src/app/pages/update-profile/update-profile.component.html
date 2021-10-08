@@ -71,13 +71,13 @@
                           <label class="snap-btn">Upload</label>
                         </div>
                       </div>
-                      <div class="text-center mt-2 mb-2">
+                      <!-- <div class="text-center mt-2 mb-2">
                         Email Address
                       </div>
                       <div class="upload-part">
                         <input class="form-control d8p-input-normal min-height-60" id="userEmail" type="text" placeholder="example@example.com" [(ngModel)]="updateForm.email" name="userEmail" #userEmail="ngModel">
-                        <!-- <button class="snap-btn">Change</button> -->
-                      </div>
+                        <button class="snap-btn">Change</button>
+                      </div> -->
                       <div class="text-center mt-2 mb-2">
                         Residence Address
                       </div>
@@ -90,14 +90,14 @@
                         Postcode
                       </div>
                       <div class="upload-part">
-                        <input  class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.postalCode" name="postalCode" #postalCode="ngModel" id="postalCode" placeholder="eg: 47810" type="text">
+                        <input  class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.postalCode" name="postalCode" #postalCode="ngModel" id="postalCode" placeholder="eg: 47810" maxlength="5" type="text">
                         <!-- <button class="snap-btn">Change</button> -->
                       </div>
                       <div class="text-center mt-2 mb-2">
                         City
                       </div>
                       <div class="upload-part">
-                        <input class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.city" name="city" #city="ngModel" id="city" type="text" placeholder="eg: Kota Damansara" >
+                        <input class="form-control d8p-input-normal min-height-60" [(ngModel)]="updateForm.city" name="city" #city="ngModel" id="city" type="text" placeholder="eg: Kuala Lumpur" >
                         <!-- <button class="snap-btn">Change</button> -->
                       </div>
                       <div class="text-center mt-2 mb-2">

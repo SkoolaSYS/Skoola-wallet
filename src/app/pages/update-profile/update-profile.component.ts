@@ -83,20 +83,33 @@ export class UpdateProfileComponent implements OnInit {
     console.log(currentUser);
     
     // TODO: Pre-fill user profile fields with data from cbs here.
-    if (currentUser.email)
-      this.updateForm.email = currentUser.email;
+    // try{
+    //   this.updateForm.email = currentUser.email;
+    // }catch(e){
+    //   this.updateForm.email = null;
+    // }
       
-    if (currentUser.customValues.find(object => object.internalName == "mobilePhone").value)
-    this.updateForm.phone = currentUser.customValues.find(object => object.internalName == "mobilePhone").value; 
-    
-    if ( currentUser.customValues.find(object => object.internalName == "address").value)
-    this.updateForm.address =  currentUser.customValues.find(object => object.internalName == "address").value;
+    try{
+      this.updateForm.phone = currentUser.customValues.find(object => object.internalName == "mobilePhone").value; 
+    }catch(e){
+      this.updateForm.phone = null;
+    }
 
-    if ( currentUser.customValues.find(object => object.internalName == "postalCode").value)
-    this.updateForm.postalCode =  currentUser.customValues.find(object => object.internalName == "postalCode").value;
-
-    if (currentUser.customValues.find(object => object.internalName == "city").value)
-    this.updateForm.city= currentUser.customValues.find(object => object.internalName == "city").value;
+    try{
+      this.updateForm.address =  currentUser.customValues.find(object => object.internalName == "address").value; 
+    }catch(e){
+      this.updateForm.address = null;
+    }
+    try{
+      this.updateForm.postalCode =  currentUser.customValues.find(object => object.internalName == "postalCode").value;
+    }catch(e){
+      this.updateForm.postalCode = null;
+    }
+    try{
+      this.updateForm.city= currentUser.customValues.find(object => object.internalName == "city").value;
+    }catch(e){
+      this.updateForm.city = null;
+    }
 
     if (currentUser.images && currentUser.images.length != 3) {
       this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
@@ -133,8 +146,8 @@ export class UpdateProfileComponent implements OnInit {
     let data: any = {};
     let customValues: any[] = [];
     
-    if (this.updateForm.email)
-      data.email = this.updateForm.email;
+    // if (this.updateForm.email)
+    //   data.email = this.updateForm.email;
         
     if (this.updateForm.phone)
       customValues.push({
@@ -171,12 +184,12 @@ export class UpdateProfileComponent implements OnInit {
     await this.service.updateProfileWithImage(formData).toPromise()
     .then(() => {
       this.spinner.hide();
-      this.ngPopups.alert('Your profile has been sucessfully updated!');
+      this.ngPopups.alert('Your profile has been sucessfully updated!',{theme: 'material', title: 'Success!'});
       this.router.navigate(['dashboard']);
     })
     .catch((err) => {
       this.spinner.hide();
-      this.ngPopups.alert('There was an error in your submission!');
+      this.ngPopups.alert('There was an error in your submission!',{theme: 'material', title: 'Oops...'});
     });
   }
 }

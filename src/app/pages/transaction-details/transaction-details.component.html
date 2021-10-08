@@ -6,3 +6,6 @@
   [receiver]="receiver?.name" [amount]="form?.amount" [image]="receiverImg ? receiverImg : 'assets/icons-img/user-dp.png'" [date]="effectiveDate">
 </app-transfer-recipient>
 <app-otpcard (otpSubmit)="otpSubmit($event)"></app-otpcard>
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Signing Up...</p>
+</ngx-spinner>

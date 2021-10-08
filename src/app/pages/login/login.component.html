@@ -26,16 +26,14 @@
                                         placeholder="Username" pattern="([A-z0-9À-ž]){2,}" maxlength="16"
                                         name="username" [(ngModel)]="services.username"
                                         aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                                        <!-- <i class="bi bi-eye-slash" id="togglePassword"></i> -->
 
                                 </div>
                             </div>
                             <div class="formfield max-width-100">
                                 <div class="input-group mb-3 group-input-border-radius">
-                                    <input type="password" class="form-control d8p-input-normal min-height-60" id="loginPassword"
-                                        placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" name="pwd"
-                                        [(ngModel)]="services.password" aria-label="Recipient's username"
-                                        aria-describedby="basic-addon2" autocomplete="new-password" /> 
+                                    <input name="pwd" type="password" class="form-control d8p-input-normal min-height-60" id="loginPassword"
+                                        placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" [(ngModel)]="services.password" autocomplete="new-password" [type]="hide ? 'password' : 'text'" /> 
+                                        <!-- <i class="bi-eye-slash mt-3 mr-3" id="togglePasswordLogin" (click)="showPassword()"></i> -->
                                     
                                     <div class="input-group-append">
                                         <span class="input-group-text group-input-icon-field" id="basic-addon2">
@@ -72,3 +70,6 @@
             </div>
         </div>
     </div>
+    <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+        <p style="font-size: 20px; color: white">Signing Up...</p>
+      </ngx-spinner>
