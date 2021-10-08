@@ -29,15 +29,14 @@ export class BankloadConfirmComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doConfirmTxn();
-      // console.log(res);
+      console.log("doConfirmTxn:", res);
+      if (res["ok"] != true)
+        throw new Error();
       
       res = await this.botService.doGetTxnStatus();
-      // console.log(res);
-
-      // It's all over, so quit the driver
-      await this.botService.doLogout();
-      
-      this.spinner.hide();
+      console.log("doGetTxnStatus:", res);
+      if (res["ok"] != true)
+        throw new Error();
 
       let statusMessage: string;
       // Display final status
@@ -47,6 +46,12 @@ export class BankloadConfirmComponent implements OnInit {
       } else {
         statusMessage = "There was an error processing your request. Please try again.";
       }
+
+      // It's all over, so quit the driver
+      res = await this.botService.doLogout();
+      console.log("doLogout:", res);
+      
+      this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
       dialogRef.afterClosed().subscribe(() => {

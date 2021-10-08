@@ -9,7 +9,7 @@ import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dial
 @Component({
   selector: 'app-bankload-password',
   templateUrl: './bankload-password.component.html',
-  styleUrls: ['./bankload-password.component.scss']
+  styleUrls: ['./bankload-password.component.css']
 })
 export class BankloadPasswordComponent implements OnInit {
   secureImage: string;
@@ -45,30 +45,31 @@ export class BankloadPasswordComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doLoginStep2()
-      // console.log(res); 
+      console.log("doLoginStep2:", res); 
+      if (res["ok"] != true || res["result"]["loggedIn"] == false)
+        throw new Error();
+
       this.botService.loggedIn = true;
 
       res = await this.botService.doGotoXferPage();
-      // console.log(res);
-  
+      console.log("doGotoXferPage:", res);
+      if (res["ok"] != true)
+        throw new Error();
+
       res = await this.botService.doFillXferForm();
-      // console.log(res);
+      console.log("doFillXferForm:", res);
+      if (res["ok"] != true)
+        throw new Error();
 
-      // this.spinner.hide(); 
-
-      if (res["result"]["errored"] == true) {
-        throw new Error("User already logged in");
-      }
-      else if (res["result"]["tacRequired"] == true) {
+      if (res["result"]["tacRequired"] == true) {
         this.spinner.hide();
         this.router.navigate(['bankload-confirm']);
       }
       else {  // TODO: Repetitive code! {rwa}
         res = await this.botService.doGetTxnStatus();
-        // console.log(res);
-  
-        await this.botService.doLogout();      
-        this.spinner.hide();
+        console.log("doGetTxnStatus:", res);
+        if (res["ok"] != true)
+          throw new Error();
   
         let statusMessage: string;
         // Display final status
@@ -77,7 +78,12 @@ export class BankloadPasswordComponent implements OnInit {
           statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
         } else {
           statusMessage = "There was an error processing your request. Please try again.";
-        }
+        }   
+
+        res = await this.botService.doLogout(); 
+        console.log("doLogout:", res);
+
+        this.spinner.hide();
   
         const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
         dialogRef.afterClosed().subscribe(() => {

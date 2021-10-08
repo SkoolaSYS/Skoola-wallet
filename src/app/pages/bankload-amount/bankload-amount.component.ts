@@ -9,6 +9,7 @@ import { Services } from 'src/app/services/service';
   styleUrls: ['./bankload-amount.component.scss']
 })
 export class BankloadAmountComponent implements OnInit {
+  
   amount: string;
 
   constructor(private services: Services, private botService: Botv2Service, private router: Router) {}
@@ -22,6 +23,8 @@ export class BankloadAmountComponent implements OnInit {
 
   submit() {
     this.botService.form.amount = this.amount;
+    console.log(this.botService.form.amount);
+    
     this.router.navigate(['bankload-username']);    
   }
 }
@@ -31,7 +34,9 @@ function getBankFlow(bankName: string): string {
   let banks = new Map([
     ["MAYBANK", "maybank"],
     ["CIMB BANK", "cimb"],
-    ["BANK ISLAM", "bimb"]
+    ["BANK ISLAM", "bimb"],
+    ["AGRO BANK", "agro"],
+    ["PUBLIC BANK", "public"]
   ]);
 
   return banks.get(bankName);

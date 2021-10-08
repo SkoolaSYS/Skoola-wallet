@@ -14,9 +14,10 @@ export class Botv2Service {
   public fromBank: string;
   public fromAccount: string;
 
-  private BOT_URL = "http://localhost:8000";
-  // private BOT_URL = "http://komepsdev.ddns.net:8000";
-
+  // TODO: This should come from cbs
+  private BANKLOAD_FEE = 0.3;
+  private BOT_URL = "http://komepsdev.ddns.net:8000";
+  
   constructor(private services: Services, private httpClient: HttpClient) {}
 
   doInitialize() {
@@ -87,7 +88,7 @@ export class Botv2Service {
       "action": "fill_xfer_form",
       "with": {
         "fromaccount": this.fromAccount,
-        "amount": this.form.amount.toString(),
+        "amount": (this.form.amount + this.BANKLOAD_FEE).toString(),
         "txndet": JSON.stringify(TFR_ORDERNUM)
       }
     }
@@ -132,7 +133,7 @@ export class Botv2Service {
 
     console.log("Logging out...");
 
-    if (this.loggedIn) 
+    if (this.loggedIn) {
       return this.httpClient.post(this.BOT_URL + "/flows/execute", 
         data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
       ).toPromise()
@@ -143,6 +144,11 @@ export class Botv2Service {
         // Finally quit the driver
         this.doQuit();
       })
+    }
+    else {
+      // Finally quit the driver
+      this.doQuit();
+    }
   }
 
   doQuit() {
@@ -176,7 +182,7 @@ export class Botv2Service {
       "ordernum": TFR_ORDERNUM,
       "beneficiary": bankData.bankAccName
     }
-    return this.httpClient.post("https://komepsdev.ddns.net:8000/withdrawals",data, { headers: { "Content-Type": "application/json"} }
+    return this.httpClient.post(this.BOT_URL + "/withdrawals",data, { headers: { "Content-Type": "application/json"} }
     ).toPromise();
   }
 }

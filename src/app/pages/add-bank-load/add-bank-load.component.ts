@@ -25,7 +25,9 @@ export class AddBankLoadComponent implements OnInit {
       //this.banks = res;
       this.banks[0] = res[0]
       this.banks[1] = res[1]
-      this.banks[2] = res[6]
+      this.banks[2] = res[4]
+      this.banks[3] = res[5]
+      this.banks[4] = res[6]
     });   
     this.spinner.hide();
 

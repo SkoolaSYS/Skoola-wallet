@@ -33,13 +33,14 @@ export class BankloadUsernameComponent implements OnInit {
         await this.botService.doQuit();
 
       res = await this.botService.doInitialize();
-      console.log(res);
+      // console.log("doInitialize:", res); 
+
       this.botService.workerId = res["worker-id"];
       sessionStorage.setItem("worker_id", res["worker-id"])
       
       // Check if native helper app is already installed and running
       res = await this.botService.doHealthCheck();
-      console.log(res);      
+      // console.log("doHealthCheck:", res);    
       const proxyReady = res["proxy"]["connected"] == true && res["proxy"]["ready"] == true;
       
       // TODO: Remove false condition
@@ -52,7 +53,9 @@ export class BankloadUsernameComponent implements OnInit {
       }   
 
       res = await this.botService.doLoginStep1();
-      // console.log(res);
+      console.log("doLoginStep1:", res); 
+      if (res["ok"] != true)
+        throw new Error();
 
       this.botService.form.secretPhrase = res["result"]["secretPhrase"];
       this.botService.form.secureImage = res["result"]["secureImage"];
