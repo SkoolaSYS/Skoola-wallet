@@ -55,11 +55,10 @@
         <mat-tab disabled label="Normal" class="min-height-132">
         </mat-tab>
         <!-- qr button -->
-        <mat-tab label="QR">
-          <div class="row no-gutters justify-content-center">
-            <div class="max-width-30 pt-3" routerLink="/qr-code"><img class="max-width-60"
-                src="assets/icons-img/qrcode1.png" /></div>
-          </div>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="max-width-30 pt-3" (click)="onClick()" routerLink="/qr-code">QR</span>
+          </ng-template>
         </mat-tab>
       </mat-tab-group>
     </div>
