@@ -47,7 +47,7 @@
                         </div>
                         <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
                           <div class="col-3 flex-align-center flex-column border-right-white">
-                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-bankload2.png" /></div>
+                            <div class="height-60 text-center"><img class="max-width-55" src="assets/icons-img/quicklinks-bankload@3x.png"/></div>
                           </div>
                           <div class="col-9 pl-3 color-white font-size-15">
                               Funds residing in my internet banking account will be used to load my D-8P Acc. MYR e-Wallet.
@@ -68,9 +68,9 @@
                               Amount (RM)
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10" style="text-align: center;">
-                              <input class="d8p-input-normal" placeholder="Ex: 100" type="number" name="amount" [(ngModel)]="amount" />
+                              <input class="forminput d8p-input-normal" placeholder="Eg: RM100" type="number" name="amount" [(ngModel)]="amount" />
                             </div>
                           </div>
                         </div>
@@ -89,13 +89,26 @@
                             
                             <br><br>
                             
-                            <div class="button-container text-center">                              
+                            <!-- <div class="button-container text-center"> -->
                               <!-- <textarea id="SESSION-ARGS" name="SESSION-ARGS" style="display:none">{{ sessionArgs }}</textarea> -->
-                              <button class="d8p-btn-default">
-                                Continue
-                                <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
-                              </button>
-                            </div> 
+                              <!-- <button class="d8p-btn-default"> -->
+                                <!-- Continue -->
+                                <!-- <span class="ml-2"><img class="p-1 max-width-30-px" src="assets/icons-img/tick-only-signup@2x.png" /></span> -->
+                              <!-- </button> -->
+                            <!-- </div>  -->
+
+                            <div class="row no-gutters justify-content-center">
+                              <div class="col-11">
+                                <div class="button-container text-center mt-2">
+                                  <button class="d8p-btn-default mt-3 margin-left-20" >
+                                    <div class="--text">Continue</div>
+                                    <div class="--icon"><img class="p-1 max-width-30-px"
+                                        src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                                    </button>
+                                </div>
+                              </div>
+                            </div>
+                            
                           </div>
                         </div>
                       </div>

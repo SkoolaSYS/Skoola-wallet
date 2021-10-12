@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   public isNotIdVerified: boolean = false;
   public allowWithdrawal: boolean;
 
+  btnAdd: any;
+  app: any;
   constructor(private services: Services, private router: Router) {}
 
   ngOnInit(): void {
@@ -37,9 +39,9 @@ export class DashboardComponent implements OnInit {
     // if (currentUser.images && currentUser.images.length != 3) {
     //   this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
     // }
-
+    
+    
   }
-
   logout(): void {
     this.services.logout();
     this.router.navigate(['login']);

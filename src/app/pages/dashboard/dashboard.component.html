@@ -38,7 +38,7 @@
             <div class="col-12 col-xl-9"> 
               <div class="dashboard-content-box">
                 <!-- Quick links -->
-                <div class="container-fluid quicklinkbg p-0" >
+                <div class="container-fluid min-height-50 quicklinkbg p-0" >
                   <div class="row no-gutters">
                     <div class="col-12">
                       <div class="container-fluid menu-grid">
@@ -52,20 +52,20 @@
                       <div class="quicklinkParent">
                         <div class="quicklinkChild border-right-white">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
-                          <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-55" src="assets/icons-img/quicklinks-transfer@3x.png"/></div>
+                          <div class="height-60 text-center" routerLink="/transfer"><img class="iconImg" src="assets/icons-img/quicklinks-transfer@3x.png"/></div>
                         </div>
                         <div class="quicklinkChild border-right-white">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
-                          <div class="height-60 text-center" routerLink="/"><img class="max-width-60" src="assets/icons-img/quicklinks-paybill@3x.png"/></div>
+                          <div class="height-60 text-center" routerLink="/"><img class="iconImg" src="assets/icons-img/quicklinks-paybill@3x.png"/></div>
                         </div>
                         <div class="quicklinkChild border-right-white">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
-                          <div class="height-60 text-center" (click)="doBankLoad()"><img class="max-width-55" src="assets/icons-img/quicklinks-bankload@3x.png"/></div>
+                          <div class="height-60 text-center" (click)="doBankLoad()"><img class="iconImg" src="assets/icons-img/quicklinks-bankload@3x.png"/></div>
                         </div>
                         
                         <div class="quicklinkChild">
                           <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/quicklinks-info-icon.png"/></div>
-                          <div class="height-60 text-center" routerLink="/buy-gold"><img class="max-width-60" src="assets/icons-img/quicklinks-buygold@3x.png"/></div>
+                          <div class="height-60 text-center" routerLink="/buy-gold"><img class="iconImg" src="assets/icons-img/quicklinks-buygold@3x.png"/></div>
                         </div>
                       </div>
                       
@@ -87,15 +87,15 @@
                             <div style="height: 100px; margin-bottom: 5px;">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
-                              <div class="height-60 text-center" (click)="doBankLoad()"><img class="max-width-55"
+                              <div class="height-60 text-center" (click)="doBankLoad()"><img class="iconImg"
                                   src="assets/icons-img/bankload-colored@3x.png" /></div>
                             </div>
                             <div style="height: 100px; margin-bottom: 5px;">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
-                              <div class="height-60 text-center" *ngIf="allowWithdrawal" (click)="doRoute()"><img class="max-width-65"
+                              <div class="height-60 text-center" *ngIf="allowWithdrawal" (click)="doRoute()"><img class="iconImg"
                                   src="assets/icons-img/withdraw-transfer@2x.png" /></div>
-                              <div class="height-60 text-center" *ngIf="!allowWithdrawal" (click)="doRoute()"><img class="max-width-65"
+                              <div class="height-60 text-center" *ngIf="!allowWithdrawal" (click)="doRoute()"><img class="iconImg"
                                 src="assets/icons-img/withdraw-ios-ltst@2x.png" /></div>
                             </div>
                           </div>
@@ -103,13 +103,13 @@
                             <div style="height: 100px; margin-bottom: 5px;">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
-                              <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-50"
+                              <div class="height-60 text-center" routerLink="/transfer"><img class="iconImg"
                                   src="assets/icons-img/transfer-colored@2x.png" /></div>
                             </div>
                             <div style="height: 100px; margin-bottom: 5px;">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
-                              <div class="height-60 text-center"><img class="max-width-50" src="assets/icons-img/remitgold-colored@2x.png" />
+                              <div class="height-60 text-center"><img class="iconImg" src="assets/icons-img/remitgold-colored@2x.png" />
                               </div>
                             </div>
                           </div>
@@ -118,14 +118,14 @@
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
                               <!-- disabled for 2nd phase (routerLink="/buy-gold") -->
-                              <div class="height-60 text-center" disabled><img class="max-width-55"
+                              <div class="height-60 text-center" disabled><img class="iconImg"
                                   src="assets/icons-img/buygold-colored@2x.png" /></div>
                             </div>
                             <div style="height: 100px;">
                               <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/info-iconlatest-grey.png" />
                               </div>
                               <!-- disabled for 2nd phase (routerLink="/sell-gold") -->
-                              <div class="height-60 text-center" disabled><img class="max-width-55"
+                              <div class="height-60 text-center" disabled><img class="iconImg"
                                   src="assets/icons-img/sellgold-colored@2x.png" /></div>
                             </div>
                           </div>
@@ -148,19 +148,19 @@
                           <div class="paymentParent">
                             <div class="paymentChild border-right-black">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/info-iconlatest-grey.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/salaryfew-colored@2x.png" /></div>
+                              <div class="height-60 text-center"><img class="iconImg" src="assets/icons-img/salaryfew-colored@2x.png" /></div>
                             </div>
                             <div class="paymentChild border-right-black">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/info-iconlatest-grey.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/salarybig-colored@2x.png" /></div>
+                              <div class="height-60 text-center"><img class="iconImg" src="assets/icons-img/salarybig-colored@2x.png" /></div>
                             </div>
                             <div class="paymentChild border-right-black">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/info-iconlatest-grey.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/paybill-colored@2x.png" /></div>
+                              <div class="height-60 text-center"><img class="iconImg" src="assets/icons-img/paybill-colored@2x.png" /></div>
                             </div>
                             <div class="paymentChild">
                               <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/info-iconlatest-grey.png" /></div>
-                              <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/donate-colored@2x.png" /></div>
+                              <div class="height-60 text-center"><img class="iconImg" src="assets/icons-img/donate-colored@2x.png" /></div>
                             </div>
                           </div>
 
