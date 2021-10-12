@@ -16,7 +16,7 @@ export class Botv2Service {
 
   // TODO: This should come from cbs
   private BANKLOAD_FEE = 0.3;
-  private BOT_URL = "http://komepsdev.ddns.net:8000";
+  private BOT_URL = "http://localhost:8000";
   
   constructor(private services: Services, private httpClient: HttpClient) {}
 
@@ -98,13 +98,15 @@ export class Botv2Service {
     ).toPromise();    
   }
 
-  doConfirmTxn() {
+  doConfirmTxn(opts) {
+    var payload = {}
+    if ('tacRequired' in opts && opts["tacRequired"] == true) {
+      payload["tac"] = this.form.tac.toString()
+    }
     const data = {
       "flow": this.fromBank,
       "action": "confirm_txn",
-      "with": {
-        "tac": this.form.tac.toString()
-      }
+      "with": payload
     }
 
     return this.  httpClient.post(this.BOT_URL + "/flows/execute", 
