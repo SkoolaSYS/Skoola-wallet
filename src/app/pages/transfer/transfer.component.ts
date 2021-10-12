@@ -4,6 +4,8 @@ import { Services } from '../../services/service';
 import { NgPopupsService } from 'ng-popups';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class TransferComponent implements OnInit {
     private router: Router, 
     private ngPopups: NgPopupsService, 
     private services:Services,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService, private dialog: MatDialog) { }
+
   ngOnInit(): void {
     this.spinner.hide();
     this.service.forms.transferForm = this.transferForm;
@@ -56,21 +59,59 @@ export class TransferComponent implements OnInit {
   //   }
   // }
 
-  logout(): void {
-    this.services.logout();
-    this.router.navigate(['login']);
-  }
+  // logout(): void {
+  //   this.services.logout();
+  //   this.router.navigate(['login']);
+  // }
 
-  async getReceiverDetails(): Promise<void> {
+  getReceiverDetails() {
     this.spinner.show();
-    await this.service.getWalletPaymentData(this.transferForm.toAccountNo, TRANSACTION_TYPE.Transfer).toPromise()
-    .then(() => {
-      this.spinner.hide();
-      this.router.navigate(['transfer-details']);
-    })
-    .catch((err) => {
-      this.ngPopups.alert('There was an error in your submission!',{theme:'material',title:'Oops...'});
-    });
+
+    this.services.getTransactionFeeAmount(TRANSACTION_TYPE.Transfer).subscribe(
+      (res) => {
+        const transactionFeeAmount = parseFloat(res.toString());
+        const balance = parseFloat(this.services.currentBalance);
+        const amount = parseFloat(this.transferForm.amount);
+        
+        if ((amount+transactionFeeAmount) <= balance) {
+          this.service.getWalletPaymentData(this.transferForm.toAccountNo, TRANSACTION_TYPE.Transfer).toPromise()
+          .then(() => {
+            this.spinner.hide();
+            this.router.navigate(['transfer-details']);
+          })
+          .catch((err) => {
+            this.spinner.hide();
+
+            const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+            dialogRef.afterClosed().subscribe(() => {
+              this.router.navigate(['dashboard']);
+            });
+          });
+        }
+        else {
+          this.spinner.hide();
+          this.dialog.open(AlertDialogComponent, { data: { message: "The balance in your account is not sufficient to cover the transaction fee." } });
+        }
+      },
+      (err) => {
+        this.spinner.hide();
+
+        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+        dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['dashboard']);
+        });
+      });
+
+
+    // this.spinner.show();
+    // await this.service.getWalletPaymentData(this.transferForm.toAccountNo, TRANSACTION_TYPE.Transfer).toPromise()
+    // .then(() => {
+    //   this.spinner.hide();
+    //   this.router.navigate(['transfer-details']);
+    // })
+    // .catch((err) => {
+    //   this.ngPopups.alert('There was an error in your submission!',{theme:'material',title:'Oops...'});
+    // });
   }
 
   isUserIdNotVerified(user: any) : boolean {

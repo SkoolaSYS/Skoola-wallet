@@ -11,38 +11,33 @@ export class Botv2Service {
   public httpHeaders: HttpHeaders;
   public workerId: string;
   public loggedIn: boolean = false;
-  public fromBank: string;
-  public fromAccount: string;
-
-  // TODO: This should come from cbs
-  private BANKLOAD_FEE = 0.3;
-  private BOT_URL = "http://komepsdev.ddns.net:8000";
+  public bankLoad: any = {};
   
   constructor(private services: Services, private httpClient: HttpClient) {}
 
   doInitialize() {
-    return this.httpClient.post(this.BOT_URL + "/drivers/initialize", 
+    return this.httpClient.post("/drivers/initialize", 
       { driver: "selenium" }, { headers: { "Content-Type": "application/json" } }
     ).toPromise();
 
   }
 
   doHealthCheck() {
-    return this.httpClient.post(this.BOT_URL + "/drivers/health", 
+    return this.httpClient.post("/drivers/health", 
       {}, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();
   }
 
   doLoginStep1(){
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "login_step1",
       "with": {
         "username": this.form.username
       }
     }
 
-    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
+    return this.httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();
 
@@ -50,26 +45,26 @@ export class Botv2Service {
 
   doLoginStep2(){
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "login_step2",
       "with": {
         "password": this.form.password
       }
     }
 
-    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
+    return this.httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();    
   }
 
   doGotoXferPage() {
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "goto_xfer_page",
       "with": {}
     }
 
-    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
+    return this.httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();     
   }
@@ -84,51 +79,51 @@ export class Botv2Service {
     };
 
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "fill_xfer_form",
       "with": {
-        "fromaccount": this.fromAccount,
-        "amount": (this.form.amount + this.BANKLOAD_FEE).toString(),
+        "fromaccount": this.bankLoad.fromAccount,
+        "amount": (this.form.amount + this.bankLoad.transactionFee).toString(),
         "txndet": JSON.stringify(TFR_ORDERNUM)
       }
     }
 
-    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
+    return this.httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();    
   }
 
   doConfirmTxn(opts) {
     var payload = {}
-    if ('tacRequired' in opts && opts["tacRequired"] == true) {
+    if ("tacRequired" in opts && opts["tacRequired"] == true) {
       payload["tac"] = this.form.tac.toString()
     }
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "confirm_txn",
       "with": payload
     }
 
-    return this.  httpClient.post(this.BOT_URL + "/flows/execute", 
+    return this.  httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();    
   }
   
   doGetTxnStatus() {
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "get_txn_status",
       "with": {}
     }
 
-    return this.httpClient.post(this.BOT_URL + "/flows/execute", 
+    return this.httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise();  
   }
 
   doLogout() {
     const data = {
-      "flow": this.fromBank,
+      "flow": this.bankLoad.fromBank,
       "action": "logout",
       "with": {}
     }
@@ -136,7 +131,7 @@ export class Botv2Service {
     console.log("Logging out...");
 
     if (this.loggedIn) {
-      return this.httpClient.post(this.BOT_URL + "/flows/execute", 
+      return this.httpClient.post("/flows/execute", 
         data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
       ).toPromise()
       .catch((err) => {
@@ -156,7 +151,7 @@ export class Botv2Service {
   doQuit() {
     console.log("Quitting...");
     
-    return this.httpClient.post(this.BOT_URL + "/drivers/quit", 
+    return this.httpClient.post("/drivers/quit", 
       {}, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
     ).toPromise()
     .then(() => {
@@ -180,11 +175,11 @@ export class Botv2Service {
     const data = {
       "bank": bankData.bankName,
       "toaccount": bankData.bankAccNumber,
-      "amount":params.amount,
+      "amount": params.amount,
       "ordernum": TFR_ORDERNUM,
       "beneficiary": bankData.bankAccName
     }
-    return this.httpClient.post(this.BOT_URL + "/withdrawals",data, { headers: { "Content-Type": "application/json"} }
+    return this.httpClient.post("/withdrawals",data, { headers: { "Content-Type": "application/json"} }
     ).toPromise();
   }
 }

@@ -3,6 +3,8 @@ import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-transaction-details',
@@ -18,7 +20,7 @@ export class TransactionDetailsComponent implements OnInit {
   transactionFee: any;
   goldAmount: any;
 
-  constructor(private services: Services, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(private services: Services, private router: Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
   async ngOnInit(): Promise<void> {
     this.spinner.hide();
     this.currentUser = await this.services.currentUser;
@@ -44,20 +46,36 @@ export class TransactionDetailsComponent implements OnInit {
     // console.log(`Gold: ${this.services.transactionData.gold} --> ${parseFloat(this.services.transactionData.gold).toFixed(4)}`);
   }
   
-  async otpSubmit(otp: string) {
+  otpSubmit(otp: string) {
     this.spinner.show();
-   await this.services.paymentTransfer({
-    toMemberId: this.receiver.id,           // this.form.toMemberId,
-    toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
-    amount: this.form.amount,
-    transactionPassword: otp,
-    description: this.form.description,
-    transactionTypeId: TRANSACTION_TYPE.Transfer
-   }).toPromise();
-   this.spinner.hide();
-   this.services.activetransaction = true;
-   this.services.transactionData.amount = this.form.amount;
 
-   this.router.navigate(['dashboard']);
+    this.services.paymentTransfer({
+      toMemberId: this.receiver.id,           // this.form.toMemberId,
+      toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
+      amount: this.form.amount,
+      transactionPassword: otp,
+      description: this.form.description,
+      transactionTypeId: TRANSACTION_TYPE.Transfer
+    }).subscribe(
+      (res) => {
+        this.spinner.hide();
+
+        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "The fund has been successfully transferred." } });
+        dialogRef.afterClosed().subscribe(() => {
+          this.services.activetransaction = true;
+          this.services.transactionData.amount = this.form.amount;
+      
+          this.router.navigate(['dashboard']);
+        });
+      },
+      (err) => {
+        this.spinner.hide();
+
+        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+        dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['dashboard']);
+        });
+      }
+    )
   }
 }

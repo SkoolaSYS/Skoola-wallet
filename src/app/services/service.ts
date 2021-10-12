@@ -338,7 +338,7 @@ export class Services {
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
                 Authorization: this.token
             }),
-            params: new HttpParams().set("toMemberAccNumber", accNumber).set("transferTypeId", transactionTypeId.toString())
+            params: new HttpParams().set("toMemberAccNumber", accNumber).set("transactionTypeId", transactionTypeId.toString())
         };  
 
         return this.http.get('/rest/payments/walletPaymentData', headerOptions).pipe(tap (data => {
@@ -490,7 +490,7 @@ export class Services {
             console.log('MemberPerformPayment() Error : ' + err);
         }));;
     }
-    public getTransactionFeeAmount(transferTypeId){
+    public getTransactionFeeAmount(transactionTypeId){
         const headerOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -499,7 +499,7 @@ export class Services {
                 Authorization: this.token
             })
         };
-        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transferTypeId, headerOptions).pipe(tap (data => {
+        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transactionTypeId, headerOptions).pipe(tap (data => {
             this.transactionFeeAmount = data;
         },
         (err) => {
@@ -681,6 +681,23 @@ export class Services {
         },
         (err) => {
             console.log('getGoldData() Error...');
+            console.log(err);
+        }));;
+    }
+
+    public getBankLoadData() {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+
+        return this.http.get('/rest/payments/bankLoadData', headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
             console.log(err);
         }));;
     }

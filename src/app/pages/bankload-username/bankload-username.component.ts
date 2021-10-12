@@ -72,7 +72,7 @@ export class BankloadUsernameComponent implements OnInit {
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['dashboard']);
-      })
+      });
     }
   }
 }

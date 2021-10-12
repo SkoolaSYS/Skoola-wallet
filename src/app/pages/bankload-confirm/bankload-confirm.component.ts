@@ -28,7 +28,7 @@ export class BankloadConfirmComponent implements OnInit {
     try {
       this.spinner.show();
 
-      res = await this.botService.doConfirmTxn();
+      res = await this.botService.doConfirmTxn({ "tacRequired": true });
       console.log("doConfirmTxn:", res);
       if (res["ok"] != true)
         throw new Error();
@@ -41,7 +41,7 @@ export class BankloadConfirmComponent implements OnInit {
       let statusMessage: string;
       // Display final status
       if (res["result"]["completed"] == true ) {
-        const ref = res["result"]["bank_reference"];
+        const ref = res["result"]["bankReference"];
         statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
       } else {
         statusMessage = "There was an error processing your request. Please try again.";
@@ -68,7 +68,7 @@ export class BankloadConfirmComponent implements OnInit {
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['dashboard']);
-      })      
+      });      
       // this.ngPopups.alert("There was an error processing your request. Please try again.")
     }
   }

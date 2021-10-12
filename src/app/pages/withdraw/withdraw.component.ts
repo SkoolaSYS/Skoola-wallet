@@ -50,7 +50,7 @@ export class WithdrawComponent implements OnInit {
     this.service.getTransactionFeeAmount(TRANSACTION_TYPE.Withdraw).subscribe(async (res: any) => {
       this.transactionFeeAmount = res;
       this.withdrawAmountWithCharge = this.withdrawAmount + this.transactionFeeAmount;
-      if (this.service.currentBalance >= (this.withdrawAmountWithCharge)){
+      if (this.service.currentBalance >= this.withdrawAmountWithCharge){
         this.spinner.show();
         await this.botServiceV2.doWithdraw({
           amount: this.withdrawAmount,
@@ -69,7 +69,7 @@ export class WithdrawComponent implements OnInit {
           }
           const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
           dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard']);
           });  
           
         })).catch((err) => {
@@ -77,7 +77,7 @@ export class WithdrawComponent implements OnInit {
           let statusMessage: string = "There was an error processing your request. Please try again.";
           const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
           dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard']);
           }); 
         })
            
@@ -85,7 +85,7 @@ export class WithdrawComponent implements OnInit {
         let statusMessage: string = "Your current balance is not enough!";
           const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
           dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['dashboard']);
+            // this.router.navigate(['dashboard']);
           });
       }
     });    

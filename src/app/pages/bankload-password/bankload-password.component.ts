@@ -70,9 +70,11 @@ export class BankloadPasswordComponent implements OnInit {
           let opts = { "tacRequired": false };
           res = await this.botService.doConfirmTxn(opts);
           console.log("doConfirmTxn", res);
+
           if (res["ok"] != true)
             throw new Error();
         }
+        
         res = await this.botService.doGetTxnStatus();
         console.log("doGetTxnStatus:", res);
         if (res["ok"] != true)
@@ -107,7 +109,7 @@ export class BankloadPasswordComponent implements OnInit {
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['dashboard']);
-      })
+      });
    }
   }  
 }

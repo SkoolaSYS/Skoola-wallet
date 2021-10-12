@@ -1,6 +1,9 @@
 import { environment } from "./environments/environment";
 
 export enum TRANSACTION_TYPE {
+  // These values correspond to the 'id' column in 'transaction_fees' table
+  // aka transaction fee id.
+  // TODO: Perhaps this needs to be changed to TRANSACTION_FEE_TYPE?
   Transfer = 5,
   BankLoad = 6,
   BuyGold = 3,

@@ -1,7 +1,23 @@
 {  
     "/rest/": {  
-       "target": "http://komepsdev.ddns.net:8080/komeps",  
+       "target": "http://localhost:8080/komeps",  
+       "changeOrigin": true,
        "secure": false,  
        "logLevel": "debug"  
-    }  
+    },
+    "/drivers/*": {  
+      "target": "http://localhost:8000",  
+      "secure": false,  
+      "logLevel": "debug"  
+   },
+   "/flows/*": {  
+      "target": "http://localhost:8000",  
+      "secure": false,  
+      "logLevel": "debug"  
+   },
+   "/withdrawals": {  
+      "target": "http://localhost:8000",  
+      "secure": false,  
+      "logLevel": "debug"  
+   }        
  }  

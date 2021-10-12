@@ -3,26 +3,30 @@ import { RouterModule, Routes, ExtraOptions, Router } from '@angular/router';
 import { TRANSACTION_TYPE, Utility } from 'src/utils';
 import { Services } from '../../services/service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 
 //qr payment danieal
 // to do (auto select merchant account)
-const routerOptions: ExtraOptions = {
-  scrollPositionRestoration: 'enabled',
-  anchorScrolling: 'enabled',
-  scrollOffset: [0, 64],
-};
-const routes: Routes = [
-  {
-    path: 'content',
-  },
-  {
-    path: '',
-    redirectTo: 'content',
-    pathMatch: 'full'
-  }
- ]
+// const routerOptions: ExtraOptions = {
+//   scrollPositionRestoration: 'enabled',
+//   anchorScrolling: 'enabled',
+//   scrollOffset: [0, 64],
+// };
+
+// const routes: Routes = [
+//   {
+//     path: 'content',
+//   },
+//   {
+//     path: '',
+//     redirectTo: 'content',
+//     pathMatch: 'full'
+//   }
+// ]
+
 @Component({
-  selector: 'app-transfer',
+  selector: 'app-transfer', // FIXME
   templateUrl: './qr-payment.component.html'
 })
 export class QrPaymentComponent implements OnInit {
@@ -35,38 +39,65 @@ export class QrPaymentComponent implements OnInit {
   effectiveDate:string;
   merchantName:string;
 
-  constructor(private service: Services, private router:Router, private spinner: NgxSpinnerService) { }
+  constructor(private services: Services, private router:Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
+  
   ngOnInit(): void {
     this.spinner.hide();
     console.log(this.router.url)
-    this.service.loadById(this.router.url.split("?")[1].split("=")[1]).subscribe((res: any) => {
-    console.log(res);
-    this.receiverId= res.id;
-    this.receiverName= res.name;
-    this.merchantName= res.name;
 
-    this.effectiveDate = Utility.formatDate(new Date());
-   },
-      (err) => {
-        console.log(err);
-        this.service.logout();
-      });
-    }
-    async onSubmit() {
+    this.services.loadById(this.router.url.split("?")[1].split("=")[1]).subscribe((res: any) => {
+      console.log(res);
+      this.receiverId= res.id;
+      this.receiverName= res.name;
+      this.merchantName= res.name;
+
+      this.effectiveDate = Utility.formatDate(new Date());
+    },
+    (err) => {
+      console.log(err);
+      this.services.logout();
+    });
+  }
+
+  async onSubmit() {
+    const balance = parseFloat(this.services.currentBalance);
+    const amount = parseFloat(this.amount);
+
+    if (amount <= balance) {
       this.spinner.show();
-      await this.service.paymentTransfer({
-       toMemberId: this.receiverId,        // this.form.toMemberId,
-       toMemberPrincipal: this.receiverName,  // this.form.toMemberPrincipal,
-       amount: this.amount,
-       transactionTypeId: TRANSACTION_TYPE.QrPayment
-      }).toPromise();
-      this.spinner.hide();
-      this.service.activetransaction = true;
-      this.service.transactionData.amount = this.amount;
-   
-      this.router.navigate(['dashboard']);
-     }
-   }
+
+      this.services.paymentTransfer({
+        toMemberId: this.receiverId,        // this.form.toMemberId,
+        toMemberPrincipal: this.receiverName,  // this.form.toMemberPrincipal,
+        amount: this.amount,
+        transactionTypeId: TRANSACTION_TYPE.QrPayment
+      }).subscribe(
+        (res) => {
+          this.spinner.hide();
+
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "Your payment has been successfully processed." } });
+          dialogRef.afterClosed().subscribe(() => {
+            this.services.activetransaction = true;
+            this.services.transactionData.amount = this.amount;
+
+            this.router.navigate(['dashboard']);
+          });
+        },
+        (err) => {
+          this.spinner.hide();
+
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+          dialogRef.afterClosed().subscribe(() => {
+            this.router.navigate(['dashboard']);
+          });
+        }
+      )
+    }
+    else {
+      this.dialog.open(AlertDialogComponent, { data: { message: "The entered amount exceeds the available balance in your wallet account." } });
+    }
+  }
+}
    
   //   this.service.forms.transferForm = this.transferForm;
   //   this.service.opsTagging = 'transfer';
@@ -83,11 +114,11 @@ export class QrPaymentComponent implements OnInit {
   // }
 
 
-function subscribe(arg0: (res: any) => void, arg1: (err: any) => void): any {
-  throw new Error('Function not implemented.');
-}
+// function subscribe(arg0: (res: any) => void, arg1: (err: any) => void): any {
+//   throw new Error('Function not implemented.');
+// }
 
-function merchantId(merchantId: any) {
-  throw new Error('Function not implemented.');
-}
+// function merchantId(merchantId: any) {
+//   throw new Error('Function not implemented.');
+// }
 
