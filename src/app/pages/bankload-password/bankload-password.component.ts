@@ -66,6 +66,13 @@ export class BankloadPasswordComponent implements OnInit {
         this.router.navigate(['bankload-confirm']);
       }
       else {  // TODO: Repetitive code! {rwa}
+        if (res["result"]["confirmRequired"] == true) {
+          let opts = { "tacRequired": false };
+          res = await this.botService.doConfirmTxn(opts);
+          console.log("doConfirmTxn", res);
+          if (res["ok"] != true)
+            throw new Error();
+        }
         res = await this.botService.doGetTxnStatus();
         console.log("doGetTxnStatus:", res);
         if (res["ok"] != true)
@@ -74,7 +81,7 @@ export class BankloadPasswordComponent implements OnInit {
         let statusMessage: string;
         // Display final status
         if (res["result"]["completed"] == true ) {
-          const ref = res["result"]["bank_reference"];
+          const ref = res["result"]["bankReference"];
           statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
         } else {
           statusMessage = "There was an error processing your request. Please try again.";
