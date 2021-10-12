@@ -16,7 +16,7 @@ export class Botv2Service {
 
   // TODO: This should come from cbs
   private BANKLOAD_FEE = 0.3;
-  private BOT_URL = "http://localhost:8000";
+  private BOT_URL = "http://komepsdev.ddns.net:8000";
   
   constructor(private services: Services, private httpClient: HttpClient) {}
 
