@@ -1,5 +1,5 @@
 <div>
-    <!-- <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+  <!-- <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
       <mat-icon>
         <svg width="25" height="45">
           <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
@@ -8,86 +8,153 @@
       </svg>
       </mat-icon>
     </button> -->
-    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
-    <label class="handburger" for="myInput">
-            <span class="bar top"></span>
-            <span class="bar middle"></span>
-            <span class="bar bottom"></span>
-    </label>
-    <!-- Nav block - start -->
-      <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="over" position="end">
-          <mat-nav-list>
-            <app-matsidenav></app-matsidenav>
-          </mat-nav-list>
-        </mat-sidenav>
-        <!-- Nav block - end -->
-        <mat-sidenav-content fxFlexFill>
-          <div class="container-fluid p-0">
-            <div class="row no-gutters justify-content-center">
-              <div class="col-12 col-xl-9">
-                <div class="dashboard-header-box">
-                  <app-dashboard-header></app-dashboard-header>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+      <mat-nav-list>
+        <app-matsidenav></app-matsidenav>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="id-dashboardheader">
+              <!-- Dashboard Header Start -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="headergoldbox d-flex headerGoldboxPosition">
+                      <div class="white-line"></div>
+                      <div class="gram-txt">
+                        <div class="goldWhole pt-2">{{ goldWhole }}.</div>
+                        <div class="goldFraction">{{ goldFraction }} g</div>
+                      </div>
+                      <div class="half-gold"></div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png"
+                      routerLink="/dashboard" />
+                  </div>
+                  <div class="col-2">
+                    <!-- <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png" routerLink="/recent-transactions" /> -->
+                    <mat-icon class="dashboard-bell" routerLink="/recent-transactions">notifications_none</mat-icon>
+                  </div>
+                </div>
+              </div>
+              <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+              <!-- Dashboard Header End -->
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="id-contentbox pb-5">
+              <div class="id-body">
+                <div class="container-fluid p-0 menu-grid">
+                  <div class="modal-title text-center mb-2" style="height: 50px;">
+                    Recent Transactions
+                  </div>
+                  <div *ngFor="let trxlist of transactionList">
+
+                    <div class="text-center mt-2 mb-2">
+                      {{trxlist.date | date}}
+                    </div>
+
+                    <div class="upload-part">
+                      <div class="row no-gutters">
+                        <div class="col-2 recentIcon">
+                          <img class="iconImg" *ngIf="trxlist.transferType.id==29"
+                            src="assets/icons-img/transfer-colored@2x.png" />
+                          <img class="iconImg" *ngIf="trxlist.transferType.id==14"
+                            src="assets/icons-img/bankload-colored@3x.png" />
+                        </div>
+                        <div class="col-8 recentDesc">
+                          <div class="d8p-normal-text font-weight-bold color-black">{{trxlist.transferType.name}}</div>
+                          <div class="d8p-normal-text overflow-dots"> {{trxlist.transferType.from.currency.name}} {{trxlist.amount | number :'1.2-2'}}</div>
+                          <div class="d8p-normal-text overflow-dots">Ref: {{ trxlist.description }}</div>
+                        </div>
+                        <div class="col-2 recentTime">
+                          <div class="d8p-normal-text">{{trxlist.date |
+                            date:"h:mm a"}}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
                 </div>
               </div>
             </div>
-            
-            <div class="row no-gutters justify-content-center">
-              <div class="col-12 col-xl-9"> 
-                <div class="dashboard-content-box">
-                  <!-- Transfer -->
-                  <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              Recent Transactions
-                            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box">
+              <div class="container-fluid">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">
+                          Recent Transactions
+                        </div>
+                      </div>
+                      <div class="row no-gutters mt-2 mb-4">
+                        <div class="col-12">
+                          <div class="d8p-transaction-list">
+                            <ul *ngFor="let trxlist of transactionList">
+                              <li>
+                                <div class="d8p-h6 font-weight-bold">{{trxlist.date | date}}</div>
+                                <ul class="d8p-txn">
+                                  <li>
+                                    <div class="container-fluid p-0">
+                                      <div class="row no-gutters">
+                                        <div class="col-2">
+                                          <img src='assets/icons-img/dollar-icon-green.svg' />
+                                        </div>
+                                        <div class="col-8">
+                                          <div class="d8p-normal-text font-weight-bold color-black">
+                                            {{trxlist.transferType.name}}</div>
+                                          <div class="d8p-normal-text overflow-dots">
+                                            {{trxlist.transferType.from.currency.name}} {{trxlist.amount | number :
+                                            '1.2-2'}} {{ trxlist.description }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                          <div class="d8p-smaller-text font-weight-bold text-right whitespace-nowrap">
+                                            {{trxlist.date | date:"h:mm a"}}</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+
+                                </ul>
+                              </li>
+                            </ul>
                           </div>
-                          <div class="row no-gutters mt-2 mb-4">
-                            <div class="col-12">
-                                <div class="d8p-transaction-list">
-                                    <ul *ngFor = "let trxlist of transactionList">
-                                        <li>
-                                            <div class="d8p-h6 font-weight-bold">{{trxlist.date | date}}</div>
-                                            <ul class="d8p-txn">
-                                                <li>
-                                                    <div class="container-fluid p-0">
-                                                        <div class="row no-gutters">
-                                                            <div class="col-2">
-                                                                <img src='assets/icons-img/dollar-icon-green.svg' />
-                                                            </div>
-                                                            <div class="col-8">
-                                                                <div class="d8p-normal-text font-weight-bold color-black">{{trxlist.transferType.name}}</div>
-                                                                <div class="d8p-normal-text overflow-dots">{{trxlist.transferType.from.currency.name}} {{trxlist.amount | number : '1.2-2'}} {{ trxlist.description }}</div>
-                                                                <!-- <div class="d8p-normal-text overflow-dots" *ngIf="trxlist.transferType.name == 'Debit to member'">{{trxlist.transferType.from.currency.name}} {{trxlist.amount | number : '1.2-2'}} has been credited into your account : {{ trxlist.description }}</div> -->
-                                                                <!-- <div class="d8p-normal-text overflow-dots" *ngIf="trxlist.transferType.name == 'External trade transfer' || trxlist.transferType.name == 'Trade transfer'">{{trxlist.transferType.from.currency.name}} {{trxlist.amount * -1 | number : '1.2-2'}} has been debited from your account, Trasaction info - {{ trxlist.description }}</div> -->
-                                                            </div>
-                                                            <div class="col-2">
-                                                                <div class="d8p-smaller-text font-weight-bold text-right whitespace-nowrap">{{trxlist.date | date:"h:mm a"}}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>                                        
-                                    </ul>
-                                </div>
-                                
-                            </div>
-                          </div>
+
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
-          </div>
 
-        </mat-sidenav-content>
-      </mat-sidenav-container>
+          </div>
+        </div> -->
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

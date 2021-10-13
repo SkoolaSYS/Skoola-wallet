@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div class="headergoldbox headerGoldboxPosition">
+      <div class="headergoldbox d-flex headerGoldboxPosition">
         <div class="white-line"></div>
         <div class="gram-txt">
           <div class="goldWhole pt-2">{{ goldWhole }}.</div>
@@ -17,18 +17,10 @@
       <!-- <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png" routerLink="/recent-transactions" /> -->
       <mat-icon class="dashboard-bell" routerLink="/recent-transactions">notifications_none</mat-icon>
     </div>
-    <!-- <div class="col-3">
-      <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
-        <label class="handburger" for="myInput">
-                <span class="bar top"></span>
-                <span class="bar middle"></span>
-                <span class="bar bottom"></span>
-        </label>
-    </div> -->
   </div>
 </div>
-<img class="max-width-100" src="assets/icons-img/linegrey1.png" />
-<div class="container min-height-135">
+<img class="max-width-100" src="assets/icons-img/linegrey1.png" style="top: 3px; position: relative;"/>
+<div class="container min-height-135" style="margin-top: -6px;">
   <div class="row flex-align-center">
       <div class="dbCol border-right-db">
         <button class="btn1" id="btn1" (click)="tab1()">MYR</button>
@@ -42,12 +34,12 @@
   </div>
   <div class="main">
     <div id="content1" class="content">
-    <div class="d8p-normal-text text-center mt-3 text-secondary border-right">
+    <div class="d8p-normal-text text-center mt-3 text-secondary">
       D8-P Acc. No.: {{ cardNumber }}
     </div>
     <div class="d8p-h3 text-center mt-4">
       {{ currencyType }}
-      <span class="font-weight-bold border-right">{{ 
+      <span class="font-weight-bold">{{ 
         currentBalance | number: '1.2-2'
       }}</span> 
     </div>
