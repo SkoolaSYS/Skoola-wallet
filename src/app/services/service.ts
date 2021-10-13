@@ -130,7 +130,7 @@ export class Services {
     }
     public logout(): void {
         this.authToken = null;
-        this.storage.clear();
+        localStorage.setItem("accessToken",null);
         this.$username = null;
         this.$password = null;
     }
