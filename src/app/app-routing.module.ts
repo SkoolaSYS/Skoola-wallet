@@ -38,7 +38,8 @@ import {
   UpdateBankLoadComponent,
   AddToHomescreenComponent,
   NetworkParticipantsListComponent,
-  GoldToPurchaseComponent
+  GoldToPurchaseComponent,
+  AccountActivatedComponent,
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
@@ -214,6 +215,10 @@ export const routes: Routes = [
 {
   path: 'gold-to-purchase', component: GoldToPurchaseComponent,
   canActivate: [AuthenticationGuard]
+ },
+{
+  path: 'account-activated', component: AccountActivatedComponent,
+  // canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }
 ];
