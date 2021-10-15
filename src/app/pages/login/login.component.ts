@@ -13,18 +13,33 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LoginComponent implements OnInit {
   hide: boolean = true;
+  getSmid: string;
+  public isNotIdVerified: boolean;
 
     constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.spinner.hide();
+    
+   
     if (this.services.isLoggedIn())
-    {
+    {const currentUser: any = await this.services.currentUser;
+      this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+      console.log(this.isNotIdVerified, "")
+      if (this.isNotIdVerified){
+        this.router.navigate(['id-verification']);
+      }else{
       this.router.navigate(['dashboard']);
+      }
     }
     if (!this.services.username) {
       this.router.navigate(['login']);
     }
+
+    this.getSmid = localStorage.getItem("parent");
+    // console.log(getSmid);
+    
+    
   }
 
   showPasswd(){
@@ -35,6 +50,10 @@ export class LoginComponent implements OnInit {
       clickPswd.type = "password";
     }}
 
+    isUserIdNotVerified(user: any) : boolean {
+      return user.idVerifiedStatus === 'Unverified';
+    }
+  
 
 //   showPassword(){
 //     this.hide = !this.hide;
@@ -47,14 +66,22 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.services.login(this.services.username, this.services.password)
-    .subscribe(() => {
+    .subscribe(async() => {
       this.spinner.show();
       if( this.services.forceChangePassword ) {
         this.ngPopups.alert('Credential Update. You need to change your credentials!',{theme: 'material'});
          this.router.navigate(['update-username-pwd']);
        } else {
-         this.spinner.hide();
+         this.spinner.show();
+         
+         const currentUser: any = await this.services.currentUser;
+         this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+         console.log(this.isNotIdVerified, "")
+         if (this.isNotIdVerified){
+           this.router.navigate(['id-verification']);
+         }else{
          this.router.navigate(['dashboard']);
+         }
        }
     });
   }

@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
       //console.log(currentUser);
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
       this.allowWithdrawal = currentUser.allowWithdrawal;
-
+      localStorage.setItem("parent", currentUser.parentId);
     },
     (err) => {
       console.log(err);

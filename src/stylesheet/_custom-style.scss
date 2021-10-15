@@ -2304,12 +2304,12 @@ input[type="checkbox"]:checked ~ label .middle {
   position: relative;
 }
 #d8p-logo{
-  position: absolute;
+  position: relative;
   z-index:20;
   animation: fading 10s infinite;
 }
-#kopama-logo{
-  position: relative;
+#second-logo{
+  position: absolute;
   z-index: 10;
   animation: moving 10s infinite;
 }
