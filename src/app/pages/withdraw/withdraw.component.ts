@@ -52,15 +52,20 @@ export class WithdrawComponent implements OnInit {
       this.withdrawAmountWithCharge = this.withdrawAmount + this.transactionFeeAmount;
       if (this.service.currentBalance >= this.withdrawAmountWithCharge){
         this.spinner.show();
+
+        const currentUser = await this.service.currentUser;                
         await this.botServiceV2.doWithdraw({
           amount: this.withdrawAmount,
           desc: this.withdrawalDesc,
           accountId: this.service.userAccount.id,
           transactionTypeId: TRANSACTION_TYPE.Withdraw,
-          bank: this.bankData
+          bank: this.bankData,
+          email: currentUser.email,
+          nationalId: currentUser.customValues.find(object => object.internalName == "NRIC").value
         }).then((res => {
-          this.spinner.hide()
-          this.response = res
+          this.spinner.hide();
+          this.response = res;
+
           let statusMessage: string;
           if (this.response.ok){
             statusMessage = "Your withdrawal has been queued for processing."

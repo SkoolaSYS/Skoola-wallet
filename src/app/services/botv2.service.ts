@@ -165,20 +165,32 @@ export class Botv2Service {
 
   doWithdraw(params:any) {
     const bankData = params.bank
-    const TFR_ORDERNUM = "\""+{
-      "accountId": "\""+this.services.userAccount.id+"\"", 
-      "amount": "\""+params.amount+"\"", 
-      "description": "\""+params.desc+"\"", 
-      "transactionTypeId": "\""+TRANSACTION_TYPE.Withdraw+"\"" 
-    }+"\"";
+    
+    const TFR_ORDERNUM = {
+      "accountId": this.services.userAccount.id, 
+      "amount": params.amount, 
+      "description": params.desc, 
+      "transactionTypeId": TRANSACTION_TYPE.Withdraw  
+    };
+
+    // const data = {
+    //   "bank": bankData.bankName,
+    //   "toaccount": bankData.bankAccNumber,
+    //   "amount": params.amount,
+    //   "ordernum": TFR_ORDERNUM,
+    //   "beneficiary": bankData.bankAccName
+    // }
 
     const data = {
-      "bank": bankData.bankName,
-      "toaccount": bankData.bankAccNumber,
-      "amount": params.amount,
-      "ordernum": TFR_ORDERNUM,
-      "beneficiary": bankData.bankAccName
-    }
+      "bank": bankData.id.toString(),
+      "beneficiary": bankData.bankAccName,
+      "beneid": params.nationalId,
+      "email": params.email,
+      "toccount": bankData.bankAccNumber,
+      "amount": params.amount.toString(),
+      "ordernum": JSON.stringify(TFR_ORDERNUM)
+      }
+
     return this.httpClient.post("/withdrawals",data, { headers: { "Content-Type": "application/json"} }
     ).toPromise();
   }
