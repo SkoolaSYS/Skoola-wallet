@@ -40,6 +40,7 @@ import {
   NetworkParticipantsListComponent,
   GoldToPurchaseComponent,
   AccountActivatedComponent,
+  MiniDashboardHeaderComponent
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
@@ -219,6 +220,10 @@ export const routes: Routes = [
 {
   path: 'account-activated', component: AccountActivatedComponent,
   // canActivate: [AuthenticationGuard]
+},
+ {
+  path: 'mini-dashboard-header', component: MiniDashboardHeaderComponent,
+  canActivate: [AuthenticationGuard]
  },
  { path: '**', component: LoginComponent }
 ];

@@ -40,6 +40,8 @@ export class Services {
     public buyGold:any;
     public chosenGold:any;
     public averageGold:any;
+    public counter:number = 0;
+    public memberId:string;
 
 
     headerOptions = {
@@ -117,8 +119,6 @@ export class Services {
             this.forceChangePassword = data.forceChangePassword;
             this.forceChangeUsername = data.forceChangeUsername;
             this.allowWithdrawal = data.allowWithdrawal;
-            //console.log(username);
-            
         },
         (err) => {
             console.log(err);
@@ -130,7 +130,8 @@ export class Services {
     }
     public logout(): void {
         this.authToken = null;
-        localStorage.setItem("accessToken",null);
+        localStorage.removeItem("accessToken");
+        this.counter = 0;
         this.$username = null;
         this.$password = null;
     }
@@ -177,6 +178,7 @@ export class Services {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
                 Authorization: this.token
+                
             })
         };
         return this.http.get('rest/members/me', headerOptions).pipe(tap (data => {

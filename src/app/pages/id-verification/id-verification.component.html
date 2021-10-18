@@ -21,29 +21,8 @@
           <div class="col-12 col-xl-9">
             <div class="id-dashboardheader">
               <!-- Dashboard Header Start -->
-              <div class="container">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="headergoldbox d-flex headerGoldboxPosition">
-                      <div class="white-line"></div>
-                      <div class="gram-txt">
-                        <div class="goldWhole pt-2">{{ goldWhole }}.</div>
-                        <div class="goldFraction">{{ goldFraction }} g</div>
-                      </div>
-                      <div class="half-gold"></div>
-                    </div>
-                  </div>
-                  <div class="col-3">
-                    <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png" routerLink="/dashboard" />
-                  </div>
-                  <div class="col-2">
-                    <!-- <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png" routerLink="/recent-transactions" /> -->
-                    <mat-icon class="dashboard-bell" routerLink="/recent-transactions">notifications_none</mat-icon>
-                  </div>
-                </div>
-              </div>
-             <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
-                <!-- Dashboard Header End -->
+              <app-mini-dashboard-header></app-mini-dashboard-header>
+              <!-- Dashboard Header End -->
             </div>
           </div>
         </div>

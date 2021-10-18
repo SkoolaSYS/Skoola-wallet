@@ -5,9 +5,7 @@ import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-dashboard-header',
-  templateUrl: './dashboard-header.component.html',
-  animations: [fadeInAnimation],
-  host: {'[@fadeInAnimation]':''}
+  templateUrl: './dashboard-header.component.html'
 })
 export class DashboardHeaderComponent implements OnInit, OnDestroy {
   activetransaction: boolean;
@@ -19,16 +17,37 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   goldAmount: any;    // per transaction gold amount
   goldWhole: any;;    // accumulated gold amount
   goldFraction: any;  // accumulated gold amount
-
-  deferredPrompt;
-  e;
-  btnAdd;
-  buttonInstall;
-  
+  counter:number;
+  condition: any;
   constructor(private service: Services,private router:Router) { }
 
-  ngOnInit(): void {
-    
+  async ngOnInit():Promise <void> {
+    //bell notification start
+    const currentUser: any = await this.service.currentUser;
+    if (currentUser.id.toString() in localStorage) {
+      let data = localStorage.getItem(currentUser.id.toString());
+      let obj;
+      try {
+        obj = JSON.parse(data);
+        console.log("counter:", obj.counter);
+
+        // update notification badge
+        this.service.counter = obj.counter;
+      }
+      catch (e) {
+        console.log(e);         
+      }
+
+    }
+    else{
+      this.service.counter = 0;
+    }
+    this.counter = this.service.counter
+    if(this.counter >= 1){
+      this.condition = true;
+    }
+    //bell notification end
+      
     this.activetransaction = this.service.activetransaction;
     if (this.activetransaction === true) {
       this.transactionAmount = this.service.transactionData.amount;
@@ -55,13 +74,6 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
     this.service.getProfileData().subscribe((res: any) => {
 
-      // function getAccNumber(element, index, array) { 
-      //     console.log(element.internalName);
-      //     if (element.internalName == 'AccNumber') 
-      //       return index;
-      // }
-
-      // console.log(res);
       this.userName = res.name;
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;      
       //var accnum = res.customValues.filter(getAccNumber);
@@ -83,6 +95,24 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
     this.service.activetransaction = false;    
+  }
+  async bell(): Promise <void>{
+    if(this.router.url != "/recent-transactions"){
+      this.router.navigate(['recent-transactions']);
+
+      this.service.counter = 0;
+
+      // write to storage
+      const data = {
+        counter: this.service.counter
+      }
+
+      const currentUser: any = await this.service.currentUser;
+      localStorage.setItem(currentUser.id.toString(), JSON.stringify(data));
+    }
+    else{
+      this.router.navigate(['dashboard']);
+    }
   }
 
   tab1(): void{

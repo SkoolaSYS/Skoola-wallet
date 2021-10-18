@@ -20,10 +20,8 @@ export class DashboardComponent implements OnInit {
   constructor(private services: Services, private router: Router) {}
 
   ngOnInit(): void {
-
     this.services.getProfileData().subscribe(async (res: any) => {
       const currentUser: any = await this.services.currentUser;
-      //console.log(currentUser);
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
       this.allowWithdrawal = currentUser.allowWithdrawal;
       localStorage.setItem("parent", currentUser.parentId);
@@ -31,8 +29,6 @@ export class DashboardComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-    
-
 
     // TODO: To to decide whether we want to display profile image on side-nav bar.
     // // If user has only 3 images, it means the user has not uploaded a profile image

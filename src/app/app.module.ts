@@ -66,6 +66,7 @@ import {
   NetworkParticipantsListComponent,
   GoldToPurchaseComponent,
   AccountActivatedComponent,
+  MiniDashboardHeaderComponent
 } from './pages';
 
 import {
@@ -162,6 +163,7 @@ export class SafeUrlPipe implements PipeTransform {
     NetworkParticipantsListComponent,
     GoldToPurchaseComponent,
     AccountActivatedComponent,
+    MiniDashboardHeaderComponent,
 
     // components
     DashboardHeaderComponent,
@@ -196,6 +198,8 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadConfirmComponent,
     BankloadHelperComponent,
     AlertDialogComponent,
+    MiniDashboardHeaderComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,7 @@ export class TransactionDetailsComponent implements OnInit {
   effectiveDate: string = "";
   transactionFee: any;
   goldAmount: any;
+  storedValue: number;
 
   constructor(private services: Services, private router: Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
   async ngOnInit(): Promise<void> {
@@ -48,6 +49,21 @@ export class TransactionDetailsComponent implements OnInit {
   
   otpSubmit(otp: string) {
     this.spinner.show();
+    this.services.paymentTransfer({
+    toMemberId: this.receiver.id,           // this.form.toMemberId,
+    toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
+    amount: this.form.amount,
+    transactionPassword: otp,
+    description: this.form.description,
+    transactionTypeId: TRANSACTION_TYPE.Transfer
+   }).toPromise().then(()=>{
+     
+      // this.services.counter+=1;
+      
+  });
+   this.spinner.hide();
+   this.services.activetransaction = true;
+   this.services.transactionData.amount = this.form.amount;
 
     this.services.paymentTransfer({
       toMemberId: this.receiver.id,           // this.form.toMemberId,
@@ -61,9 +77,21 @@ export class TransactionDetailsComponent implements OnInit {
         this.spinner.hide();
 
         const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "The fund has been successfully transferred." } });
-        dialogRef.afterClosed().subscribe(() => {
+        dialogRef.afterClosed().subscribe(async () => {
           this.services.activetransaction = true;
           this.services.transactionData.amount = this.form.amount;
+
+          // TODO: Should be done in web push handler
+          // update counter
+          this.services.counter = this.services.counter + 1;
+
+          // write to storage
+          const data = {
+            counter: this.services.counter
+          }
+    
+          const currentUser: any = await this.services.currentUser;
+          localStorage.setItem(currentUser.id.toString(), JSON.stringify(data));
       
           this.router.navigate(['dashboard']);
         });
