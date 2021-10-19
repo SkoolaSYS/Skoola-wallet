@@ -98,6 +98,7 @@ import { BankloadPasswordComponent } from './pages/bankload-password/bankload-pa
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
+import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -199,6 +200,7 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadHelperComponent,
     AlertDialogComponent,
     MiniDashboardHeaderComponent,
+    BankloadCaptchaComponent,
 
   ],
   imports: [

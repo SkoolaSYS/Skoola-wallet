@@ -57,6 +57,20 @@ export class Botv2Service {
     ).toPromise();    
   }
 
+  doLoginStep3(){
+    const data = {
+      "flow": this.bankLoad.fromBank,
+      "action": "login_step3",
+      "with": {
+        "captcha": this.form.captchaText
+      }
+    }
+
+    return this.httpClient.post("/flows/execute", 
+      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+    ).toPromise();    
+  }
+
   doGotoXferPage() {
     const data = {
       "flow": this.bankLoad.fromBank,

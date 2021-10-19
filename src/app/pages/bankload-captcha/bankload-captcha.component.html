@@ -56,46 +56,26 @@
                       </div>
                     </div>
                   </div>
-                </div>               
+                </div>
+                <!-- Username -->
                 <form (submit)="submit()">
-                  <!-- Secret -->
                   <div class="container-fluid">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
                           <div class="row no-gutters justify-content-center">
                             <div class="col-12 col-xl-9 titlebg">
-                              Acknowledgement
+                              Captcha
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10" style="text-align: center;">
-                              <!-- "https://c-cl.cdn.smule.com/rs-s89/arr/5e/4c/998dba1f-eb82-413d-8c72-6a8baad4121e.jpg" -->
-                              <img src="{{ secureImage }}" alt="" srcset="">
-                              <br>
-                              <!-- <input class="d8p-input-normal" placeholder="" type="text" name="password" [(ngModel)]="password" /> -->
-                              <p *ngIf="secretPhrase != undefined">{{ secretPhrase }}</p>
-
-                              <input type="checkbox" name="ack" id="ack" [(ngModel)]="ack" (click)="chkChanged()">  I acknowledge this is my Private Image and Private Word.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Password -->
-                  <div class="container-fluid">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                              Password
+                              <img src="{{ captchaImage }}" alt="" srcset="">
                             </div>
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10" style="text-align: center;">
-                              <input class="d8p-input-normal" placeholder="" type="password" name="password" id="password" [(ngModel)]="password" disabled/>
+                              <input class="d8p-input-normal" placeholder="" name="captchaText" [(ngModel)]="captchaText" />
                             </div>
                           </div>
                         </div>
@@ -110,14 +90,14 @@
                           <div class="row no-gutters justify-content-center">
                             <div class="col-12 col-xl-9 titlebg">
                               Next Step
-                            </div> 
+                            </div>
 
                             <br><br>
 
-                            <div class="button-container text-center">                              
+                            <div class="button-container text-center">                             
                               <!-- <textarea id="SESSION-ARGS" name="SESSION-ARGS" style="display:none">{{ sessionArgs }}</textarea> -->
-                              <button class="d8p-btn-default" id="login" disabled>
-                                Login
+                              <button class="d8p-btn-default">
+                                Continue
                                 <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
                               </button>                              
                             </div>

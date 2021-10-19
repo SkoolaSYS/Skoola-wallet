@@ -46,58 +46,67 @@ export class BankloadPasswordComponent implements OnInit {
 
       res = await this.botService.doLoginStep2()
       console.log("doLoginStep2:", res); 
-      if (res["ok"] != true || res["result"]["loggedIn"] == false)
-        throw new Error();
-
-      this.botService.loggedIn = true;
-
-      res = await this.botService.doGotoXferPage();
-      console.log("doGotoXferPage:", res);
-      if (res["ok"] != true)
-        throw new Error();
-
-      res = await this.botService.doFillXferForm();
-      console.log("doFillXferForm:", res);
-      if (res["ok"] != true)
-        throw new Error();
-
-      if (res["result"]["tacRequired"] == true) {
-        this.spinner.hide();
-        this.router.navigate(['bankload-confirm']);
+      if (res["ok"] != true || res["result"]["loggedIn"] == false) {
+        throw new Error();      
       }
-      else {  // TODO: Repetitive code! {rwa}
-        if (res["result"]["confirmRequired"] == true) {
-          let opts = { "tacRequired": false };
-          res = await this.botService.doConfirmTxn(opts);
-          console.log("doConfirmTxn", res);
+      else if (res["result"]["captchaRequired"] == true) {
+        this.spinner.hide();
 
-          if (res["ok"] != true)
-            throw new Error();
-        }
-        
-        res = await this.botService.doGetTxnStatus();
-        console.log("doGetTxnStatus:", res);
+        this.botService.bankLoad.captchaImage = res["result"]["captchaImage"];
+        this.router.navigate(['bankload-captcha']);     
+      }
+      else {
+        // loggedIn must be true
+        this.botService.loggedIn = true;
+
+        res = await this.botService.doGotoXferPage();
+        console.log("doGotoXferPage:", res);
         if (res["ok"] != true)
           throw new Error();
-  
-        let statusMessage: string;
-        // Display final status
-        if (res["result"]["completed"] == true ) {
-          const ref = res["result"]["bankReference"];
-          statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
-        } else {
-          statusMessage = "There was an error processing your request. Please try again.";
-        }   
 
-        res = await this.botService.doLogout(); 
-        console.log("doLogout:", res);
+        res = await this.botService.doFillXferForm();
+        console.log("doFillXferForm:", res);
+        if (res["ok"] != true)
+          throw new Error();
 
-        this.spinner.hide();
-  
-        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
-        dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['dashboard']);
-        });   
+        if (res["result"]["tacRequired"] == true) {
+          this.spinner.hide();
+          this.router.navigate(['bankload-confirm']);
+        }
+        else {  // TODO: Repetitive code! {rwa}
+          if (res["result"]["confirmRequired"] == true) {
+            let opts = { "tacRequired": false };
+            res = await this.botService.doConfirmTxn(opts);
+            console.log("doConfirmTxn", res);
+
+            if (res["ok"] != true)
+              throw new Error();
+          }
+          
+          res = await this.botService.doGetTxnStatus();
+          console.log("doGetTxnStatus:", res);
+          if (res["ok"] != true)
+            throw new Error();
+    
+          let statusMessage: string;
+          // Display final status
+          if (res["result"]["completed"] == true ) {
+            const ref = res["result"]["bankReference"];
+            statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
+          } else {
+            statusMessage = "There was an error processing your request. Please try again.";
+          }   
+
+          res = await this.botService.doLogout(); 
+          console.log("doLogout:", res);
+
+          this.spinner.hide();
+    
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
+          dialogRef.afterClosed().subscribe(() => {
+            this.router.navigate(['dashboard']);
+          });   
+        }
       }         
     } catch (e) {
       console.log(e);

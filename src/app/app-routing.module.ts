@@ -43,6 +43,7 @@ import {
   MiniDashboardHeaderComponent
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
+import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
 import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
@@ -87,6 +88,10 @@ export const routes: Routes = [
   },
   {
     path: 'bankload-password', component: BankloadPasswordComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'bankload-captcha', component: BankloadCaptchaComponent,
    canActivate: [AuthenticationGuard]
   },
   {

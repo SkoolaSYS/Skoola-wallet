@@ -19,7 +19,7 @@ export class BankloadAmountComponent implements OnInit {
 
   ngOnInit(): void {
     this.services.getMemberBankLoadData().subscribe((res: any) => {
-      this.botService.bankLoad.fromBank = getBankFlow(res["bankName"]);
+      this.botService.bankLoad.fromBank = getBankFlow(res["id"].toString());
       this.botService.bankLoad.fromAccount = res["bankAccNumber"];
     });
   }
@@ -70,15 +70,29 @@ export class BankloadAmountComponent implements OnInit {
   }
 }
 
-function getBankFlow(bankName: string): string {
-  // TODO: Match should be done based on bank codes from CBS
+function getBankFlow(bankCode: string): string {
   let banks = new Map([
-    ["MAYBANK", "maybank"],
-    ["CIMB BANK", "cimb"],
-    ["BANK ISLAM", "bimb"],
-    ["AGRO BANK", "agro"],
-    ["PUBLIC BANK", "public"]
+    ["1", "maybank"], 
+    ["2", "cimb"], 
+    ["3", "rhb"], 
+    ["4", "rakyat"], 
+    ["5", "public"], 
+    ["6", "agro"], 
+    ["7", "bimb"], 
+    ["8", "affin"], 
+    ["9", "rajhi"], 
+    ["10", "alliance"], 
+    ["11", "ambank"], 
+    ["12", "muamalat"], 
+    ["13", "bsn"], 
+    ["14", "citi"], 
+    ["15", "hlb"], 
+    ["16", "hsbc"], 
+    ["17", "kfh"], 
+    ["18", "ocbc"], 
+    ["19", "scb"], 
+    ["20", "uob"], 
   ]);
-
-  return banks.get(bankName);
+  
+  return banks.get(bankCode);
 }
