@@ -46,6 +46,7 @@ export class UpdateBankLoadComponent implements OnInit {
       this.banks[3] = res[4]
       this.banks[4] = res[5]
       this.banks[5] = res[6]
+      this.banks[6] = res[9]
       this.bankObject = this.banks.find(bank=>bank.name === this.bankData.bankName);
       if (this.bankObject != null){
           this.bankFormName = this.bankObject.id
@@ -79,25 +80,8 @@ export class UpdateBankLoadComponent implements OnInit {
     });
 
     this.service.getProfileData().subscribe((res: any) => {
-
-      // function getAccNumber(element, index, array) { 
-      //     console.log(element.internalName);
-      //     if (element.internalName == 'AccNumber') 
-      //       return index;
-      // }
-
-      // console.log(res);
       this.userName = res.name;
-      this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber").value;      
-      //var accnum = res.customValues.filter(getAccNumber);
-      // for (var i=0; i < accnum.length; i++){
-      //   console.log(accnum[i].value);
-      // }
-      // console.log('accnum : ' + accnum[0].value);
-      // this.cardNumber = res.customValues[3].value;
-      
-      // if (accnum.length > 0)
-      //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
+      this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;
     },
     (err) => {
       console.log(err);

@@ -77,7 +77,7 @@ export class BankloadPasswordComponent implements OnInit {
           if (res["result"]["confirmRequired"] == true) {
             let opts = { "tacRequired": false };
             res = await this.botService.doConfirmTxn(opts);
-            console.log("doConfirmTxn", res);
+            console.log("doConfirmTxn:", res);
 
             if (res["ok"] != true)
               throw new Error();

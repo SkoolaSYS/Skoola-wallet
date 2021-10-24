@@ -12,19 +12,21 @@ export class Botv2Service {
   public workerId: string;
   public loggedIn: boolean = false;
   public bankLoad: any = {};
-  
+
+  private BOT_AUTH = "Basic Ym90X2F3OTM4MzE6MTIzNDU2";  
+
   constructor(private services: Services, private httpClient: HttpClient) {}
 
   doInitialize() {
     return this.httpClient.post("/drivers/initialize", 
-      { driver: "selenium" }, { headers: { "Content-Type": "application/json" } }
+      { driver: "selenium" }, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH } }
     ).toPromise();
 
   }
 
   doHealthCheck() {
     return this.httpClient.post("/drivers/health", 
-      {}, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      {}, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();
   }
 
@@ -38,7 +40,7 @@ export class Botv2Service {
     }
 
     return this.httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();
 
   }
@@ -53,7 +55,7 @@ export class Botv2Service {
     }
 
     return this.httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();    
   }
 
@@ -67,7 +69,7 @@ export class Botv2Service {
     }
 
     return this.httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();    
   }
 
@@ -79,7 +81,7 @@ export class Botv2Service {
     }
 
     return this.httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();     
   }
 
@@ -103,7 +105,7 @@ export class Botv2Service {
     }
 
     return this.httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();    
   }
 
@@ -119,7 +121,7 @@ export class Botv2Service {
     }
 
     return this.  httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();    
   }
   
@@ -131,7 +133,7 @@ export class Botv2Service {
     }
 
     return this.httpClient.post("/flows/execute", 
-      data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();  
   }
 
@@ -146,7 +148,7 @@ export class Botv2Service {
 
     if (this.loggedIn) {
       return this.httpClient.post("/flows/execute", 
-        data, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+        data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
       ).toPromise()
       .catch((err) => {
         console.log(err);        
@@ -166,7 +168,7 @@ export class Botv2Service {
     console.log("Quitting...");
     
     return this.httpClient.post("/drivers/quit", 
-      {}, { headers: { "Content-Type": "application/json", "Worker-Id": this.workerId } }
+      {}, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise()
     .then(() => {
       console.log(`Releasing worker id ${sessionStorage.getItem("worker_id")}...`);        
