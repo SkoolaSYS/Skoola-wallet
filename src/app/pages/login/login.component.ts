@@ -13,7 +13,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LoginComponent implements OnInit {
   hide: boolean = true;
-  getSmid: string;
+  getSmid: string = null;
+  spinLogo: boolean;
   public isNotIdVerified: boolean;
 
     constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
@@ -23,9 +24,9 @@ export class LoginComponent implements OnInit {
     
    
     if (this.services.isLoggedIn())
-    {const currentUser: any = await this.services.currentUser;
+    {
+      const currentUser: any = await this.services.currentUser;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
-      console.log(this.isNotIdVerified, "")
       if (this.isNotIdVerified){
         this.router.navigate(['id-verification']);
       }else{
@@ -37,6 +38,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.getSmid = localStorage.getItem("parent");
+    if (this.getSmid == null){
+      this.spinLogo = false;
+    }else{
+      this.spinLogo = true;
+    }
     // console.log(getSmid);
     
     
