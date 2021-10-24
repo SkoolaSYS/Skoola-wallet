@@ -70,7 +70,9 @@ export class QrPaymentComponent implements OnInit {
         toMemberId: this.receiverId,        // this.form.toMemberId,
         toMemberPrincipal: this.receiverName,  // this.form.toMemberPrincipal,
         amount: this.amount,
-        transactionTypeId: TRANSACTION_TYPE.QrPayment
+        transactionTypeId: TRANSACTION_TYPE.QrPayment,
+        //KS Server
+        transferTypeId:32
       }).subscribe(
         (res) => {
           this.spinner.hide();
