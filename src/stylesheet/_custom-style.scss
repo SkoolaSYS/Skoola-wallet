@@ -184,6 +184,10 @@
 .min-height-60 {
   min-height: 60px;
 }
+.min-height-80 {
+  min-height: 80px;
+  padding: 10px 20px 0px 0px;
+}
 .min-height-132 {
   min-height: 132px !important;
 }
@@ -920,6 +924,11 @@ form i {
     margin: 0 auto;
   }
 }
+
+#dashboard-inner{
+  margin-top: -6px;
+}
+
 .dashboard-header {
   display: flex;
   justify-content: space-around;
@@ -1363,8 +1372,7 @@ mat-sidenav{
 .d8p-input-form{
   height: 50.8px;
   width: 317px;
-  position: absolute;
-  left: 30px;
+  position: relative;
   margin-top: 26px;
 }
 .d8p-form{
@@ -1609,7 +1617,7 @@ table, tr, td{
   background: $yellow;
 }
 .d8p-btn-default:disabled{
-  background: linear-gradient(0deg, #323232 0%, #848484 100%);
+  background: linear-gradient(180deg, #cacaca 0%, #848484 100%);
   cursor: default;
 }
 
@@ -2129,7 +2137,7 @@ input[type="checkbox"]:checked ~ label .middle {
   padding-top: 6.1rem;
   background: $white;
   @media screen and (min-width: 768px) {
-    padding-top: 22rem;
+    padding-top: 9rem;
   }
 }
 .id-dashboardheader {
@@ -2139,7 +2147,7 @@ input[type="checkbox"]:checked ~ label .middle {
   max-width: 100%;
 
   @media screen and (min-width: 768px) {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
   }
 }
@@ -2157,6 +2165,19 @@ input[type="checkbox"]:checked ~ label .middle {
   display: inline-block;
   left: 175px;
   margin-top: 30px;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    left: 150px;
+    margin-top: 30px;
+  }
+  @media only screen and (min-width: 1200px) {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 30px;
+  }
 }
 
 .snap-btn{
@@ -2176,11 +2197,63 @@ input[type="checkbox"]:checked ~ label .middle {
   left: 0;
   top: 0;
   opacity: 0;
+  @media screen and (min-width: 768px) {
+    position: relative;
+    left: 45%;
+    top: 0;
+    opacity: 0;
+  }
+}
+.id-photo{
+  height: 65px; 
+  width: 97px; 
+  position:relative; 
+  margin-top: 20px;
+  margin-right: 40%;
+
+  @media screen and (min-width: 768px) {
+  height: 65px; 
+  width: 97px; 
+  position:relative; 
+  margin-top: 20px;
+  margin-right: 20%;
+  }
+}
+.id-selfie{
+  height: 65px; 
+  width: 60px; 
+  position:relative; 
+  margin-top: 20px;
+  margin-right: 38%;
+
+  @media screen and (min-width: 768px) {
+    height: 65px; 
+    width: 60px; 
+    position:relative; 
+    margin-top: 20px;
+    margin-right: 20%;
+  }
 }
 /* ID verification End */
 /* Update Profile Start */
 .updatePlaceholder{
   border-radius: 10px;
+}
+.update-photo{
+  height: 65px; 
+  width: 60px; 
+  position: relative; 
+  left: 88px; 
+  margin-top: 20px;
+  margin-right: 5%;
+  @media screen and (min-width: 768px) {
+    height: 65px; 
+    width: 60px; 
+    position: relative; 
+    left: 40%; 
+    margin-top: 20px;
+    margin-right: 26%;
+  }
 }
 /* Update Profile End */
 /* Request Card Start */
@@ -2324,6 +2397,9 @@ input[type="checkbox"]:checked ~ label .middle {
     height: 70px;
   }
 }
+.iconNA{
+  margin:20px;
+}
 /* dashboard header (Zul) */
 /* Recent Transaction Start */
 .recentIcon{
@@ -2341,30 +2417,47 @@ input[type="checkbox"]:checked ~ label .middle {
 .logoContainer{
   position: relative;
 }
-#d8p-logo{
+.heads{
   position: relative;
-  z-index:20;
-  animation: fading 10s infinite;
+  animation: spin-front 5s infinite;
 }
-#second-logo{
+.tails{
   position: absolute;
+  transform: rotateY(180deg);
+  animation: spin-back 5s infinite;
   z-index: 10;
-  animation: moving 10s infinite;
+  margin-top: 6px;
+  margin-left: 25%;
 }
-@keyframes fading {
-  0% {opacity: 1}
-  25% {opacity: 1}
-  50% {opacity: 0}
-  75% {opacity: 0}
-  100% {opacity: 1}
-}
-@keyframes moving {
-  0% {opacity: 0}
-  25% {opacity: 0}
-  50% {opacity: 1}
-  75% {opacity: 1}
-  100% {opacity: 0}
+.heads, .tails{
+  backface-visibility: hidden;
+  left: 0;
+  top: 0;
 }
 
+@keyframes spin-front {
+  from{
+    transform: rotateY(0deg);
+  }to{
+    transform: rotateY(360deg);
+  }
+}
+@keyframes spin-back{
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(540deg);
+  }
+}
+.jaminstore{
+  position: absolute;
+  transform: rotateY(180deg);
+  animation: spin-back 5s infinite;
+  z-index: 10;
+  margin-top: 6px;
+  margin-left: 20%;
+}
+/* Logo Transition End */
 
 

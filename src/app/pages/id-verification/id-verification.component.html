@@ -39,8 +39,8 @@
                     <div class="text-center mt-2 mb-2">
                       Front view of ID
                     </div>
-                    <div class="upload-part">
-                      <img [src]="urlFront" id="frontId" style="height: 65px; width: 97px; position:absolute; left: 70px; margin-top: 20px;">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
+                      <img [src]="urlFront" id="frontId" class="id-photo">
                         <!-- <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)" style="position: absolute; left: 175px; margin-top:30px;"> -->
                       <div class="upload-button">
                         <input type="file" accept="image/*" capture (change)="onSelectedFileF($event)" />
@@ -50,9 +50,8 @@
                     <div class="text-center mt-2 mb-2" style="height: 40px;">
                       Back view of ID
                     </div>
-                    <div class="upload-part">
-                      <img [src]="urlBack" id="backId"
-                        style="height: 65px; width: 97px; position:absolute; left: 70px; margin-top: 20px;">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
+                      <img [src]="urlBack" id="backId" class="id-photo">
                         <!-- <input type="file" accept="image/*" capture (change)="onSelectedFileB($event)" style="position: absolute; left: 175px; margin-top:30px;"> -->
                         <div class="upload-button">
                           <input type="file" accept="image/*" capture (change)="onSelectedFileB($event)" />
@@ -62,11 +61,10 @@
                     <div class="text-center mt-2 mb-2" style="height: 40px;">
                       Selfie image with passport format holding ID
                     </div>
-                    <div class="upload-part">
-                      <img [src]="urlSelfie" id="selfieId"
-                        style="height: 65px; width: 60px; position:absolute; left: 88px; margin-top: 20px;">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
+                      <img [src]="urlSelfie" id="selfieId" class="id-selfie">
                         <div class="upload-button">
-                          <input type="file" accept="image/*" capture (change)="onSelectedFileSelfie($event)" />
+                          <input type="file" accept="image/*;" capture (change)="onSelectedFileSelfie($event)" />
                           <label class="snap-btn">Snap Photo</label>
                         </div>
                     </div>
@@ -84,15 +82,17 @@
                 </div>
                 <!-- Confirmation -->
                 <div class="row no-gutters justify-content-center">
+                <div class="row no-gutters justify-content-center">
                     <div class="col-12">
                       <div class="button-container text-center mt-2" style="height: 120px;">
-                        <button class="d8p-btn-default mt-3 margin-left-95" (click)="doRoute()" id="btnConfirm" disabled>
+                        <button class="d8p-btn-default mt-3" (click)="doRoute()" id="btnConfirm" disabled>
                           <div class="--text">Confirm</div>
                           <div class="--icon"><img class="p-1 max-width-30-px"
                               src="assets/icons-img/tick-only-signup@2x.png" /></div>
                         </button>
                       </div>
                     </div>
+                  </div>
                   </div>
                   
 

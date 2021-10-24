@@ -38,10 +38,9 @@
                       User Profile Image
                     </div>
                     <div class="upload-part">
-                      <img class="userdp" [src]="imageSrc"
-                        style="height: 65px; width: 60px; position:absolute; left: 88px; margin-top: 20px;">
+                      <img class="userdp update-photo" [src]="imageSrc">
                       <div class="upload-button">
-                        <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event)>
+                        <input type="file" accept="image/*" (change)=onSelectedFile($event)>
                         <label class="snap-btn">Upload</label>
                       </div>
                     </div>
@@ -55,16 +54,15 @@
                     <div class="text-center mt-2 mb-2">
                       Residence Address
                     </div>
-                    <div class="upload-part">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                       <input class="d8p-input-form d8p-input-normal min-height-60" [(ngModel)]="updateForm.address"
                         name="homeAddress" #homeAddress="ngModel" id="homeAddress">
-                      <span class="focus-border"></span>
                       <!-- <button class="snap-btn">Change</button> -->
                     </div>
                     <div class="text-center mt-2 mb-2">
                       Postcode
                     </div>
-                    <div class="upload-part">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                       <input class="d8p-input-form d8p-input-normal min-height-60" [(ngModel)]="updateForm.postalCode"
                         name="postalCode" #postalCode="ngModel" id="postalCode" placeholder="eg: 47810" maxlength="5"
                         type="text">
@@ -73,7 +71,7 @@
                     <div class="text-center mt-2 mb-2">
                       City
                     </div>
-                    <div class="upload-part">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                       <input class="d8p-input-form d8p-input-normal min-height-60" [(ngModel)]="updateForm.city" name="city"
                         #city="ngModel" id="city" type="text" placeholder="eg: Kuala Lumpur">
                       <!-- <button class="snap-btn">Change</button> -->
@@ -81,16 +79,17 @@
                     <div class="text-center mt-2 mb-2">
                       Mobile Phone Number
                     </div>
-                    <div class="upload-part">
+                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                       <input class="d8p-input-form d8p-input-normal min-height-60" id="phoneNo" type="text"
                         [(ngModel)]="updateForm.phone" name="phoneNo" #phoneNo="ngModel" maxlength="12"
                         placeholder="0123456789">
                       <!-- <button class="snap-btn">Change</button> -->
                     </div>
                     <div class="row no-gutters justify-content-center">
+                    <div class="row no-gutters justify-content-center">
                       <div class="col-12">
                         <div class="button-container text-center mt-2" style="height: 120px;">
-                          <a class="d8p-btn-default mt-3 margin-left-95" (click)="onSubmit()">
+                          <a class="d8p-btn-default mt-3" (click)="onSubmit()">
                             <div class="--text">Confirm</div>
                             <div class="--icon"><img class="p-1 max-width-30-px"
                                 src="assets/icons-img/tick-only-signup@2x.png" /></div>
@@ -98,73 +97,11 @@
                         </div>
                       </div>
                     </div>
+                  </div>
                   </form>
                 </div>
               </div>
             </div>
-
-            <!-- 
-        <div class="container-fluid quicklinkbg">
-          <div class="row no-gutters">
-            <div class="col-12">
-              <div class="container-fluid p-0 menu-grid">
-                <div class="row no-gutters justify-content-center">
-                  <div class="col-12 col-xl-9 titlebg">
-                    USER PROFILE
-                  </div>
-                </div>
-                <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
-                  <div class="col-md-auto text-center">
-                    <label>
-                      <img class="userdp" [src]="imageSrc" style="height: 4rem;width: 4rem;">
-                      <input type="file" style="display: none;" accept="image/*" (change)=onSelectedFile($event)
-                        #fileInput>
-                    </label>
-                    <br>
-                    <button (click)="fileInput.click()">Select File</button>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container-fluid">
-          <div class="row no-gutters">
-            <div class="col-12">
-              <div class="container-fluid p-0 menu-grid">
-                <div class="row no-gutters justify-content-center">
-                  <form #form="ngForm">
-                    <div class="form-group">
-                      <label class="userEmail">Email:</label>
-                      <input id="userEmail" type="text" placeholder="example@example.com" class="form-control" required
-                        [(ngModel)]="updateForm.email" name="userEmail" #userEmail="ngModel">
-                    </div>
-                    <div class="form-group">
-                      <label class="phoneNo">Phone No.:</label>
-                      <input id="phoneNo" type="text" placeholder="01X-1234567" class="form-control" required
-                        [(ngModel)]="updateForm.phone" name="phoneNo" #phoneNo="ngModel">
-                    </div>
-                    <div class="form-group">
-                      <label class="homeAddress">Address:</label>
-                      <textarea required [(ngModel)]="updateForm.address" name="homeAddress" #homeAddress="ngModel"
-                        id="homeAddress" cols="30" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label class="postalCode">Postal Code:</label>
-                      <input required [(ngModel)]="updateForm.postalCode" name="postalCode" #postalCode="ngModel"
-                        id="postalCode" placeholder="eg: 47810" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label class="city">City:</label>
-                      <input required [(ngModel)]="updateForm.city" name="city" #city="ngModel" id="city" type="text"
-                        placeholder="eg: Kota Damansara" class="form-control">
-                    </div>
-                  </form>
-                 
-                </div>
-              </div>-->
 
           </div>
         </div>

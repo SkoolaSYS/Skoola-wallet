@@ -40,7 +40,7 @@
                 <div class="text-center mt-2 mb-2">
                   Country
                 </div>
-                <div class="upload-part">
+                <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                   <select class="d8p-input-form d8p-input-normal" placeholder="" type="text" name="Bank-Account-Country" [(ngModel)]="bankFormCountry"  required >
                     <option value="MY" >Malaysia</option>
                   </select>
@@ -48,7 +48,7 @@
                 <div class="text-center mt-2 mb-2">
                   Bank Name
                 </div>
-                <div class="upload-part">
+                <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                   <select class="d8p-input-form d8p-input-normal" placeholder="" type="text" name="Bank-Name" [(ngModel)]="bankFormName" required>
                     <option value="null" disabled>Select Bank</option>
                     <option *ngFor="let bank of banks" [value]="bank.id" >
@@ -59,13 +59,13 @@
                 <div class="text-center mt-2 mb-2">
                   Bank Account Name
                 </div>
-                <div class="upload-part">
+                <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                   <input class="d8p-input-form d8p-input-normal" placeholder="Bank Account Name" type="text" name="Bank-Account-Name" [(ngModel)]="bankFormAccName" required/>
                 </div>
                 <div class="text-center mt-2 mb-2">
                   Bank Account Number
                 </div>
-                <div class="upload-part">                                
+                <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">                                
                   <input class="d8p-input-form d8p-input-normal" placeholder="Bank Account Number" type="text" name="Bank-Account-Number" [(ngModel)]="bankFormAccNumber" required/>
                 </div>
 
