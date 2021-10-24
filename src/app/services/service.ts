@@ -94,9 +94,11 @@ export class Services {
             this.headerOptions.headers = this.headerOptions.headers.set('Authorization', accessToken);
         }
     }
+
     public get token(): string {
         return this.storage.getItem(this.ACCESS_TOKEN);
     }
+    
     isLoggedIn(): boolean {
         return !!this.token;
     }
@@ -121,13 +123,14 @@ export class Services {
             this.allowWithdrawal = data.allowWithdrawal;
         },
         (err) => {
-            console.log(err);
+            // console.log(err);
             this.ngPopups.alert(err.error.errorCode + '!\n ' + err.error.errorDetails);
 			this.username='';
 			this.password='';
 			this.router.navigate(['login']);
         }));
     }
+
     public logout(): void {
         this.authToken = null;
         localStorage.removeItem("accessToken");
@@ -135,6 +138,7 @@ export class Services {
         this.$username = null;
         this.$password = null;
     }
+
     public getAccountBalance(){
         const headerOptions = {
             headers: new HttpHeaders({
