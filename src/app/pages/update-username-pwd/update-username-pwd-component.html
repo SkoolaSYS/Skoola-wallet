@@ -20,7 +20,7 @@
                         </div>
                         <div class="input-group mb-3 group-input-border-radius">
                             <input type="text" class="form-control d8p-input min-height-60" placeholder="New Username"
-                                pattern="([A-z0-9À-ž]){2,}" minlength="4" maxlength="12" name="newusername" #newusername="ngModel"
+                                pattern="([A-z0-9À-ž]){1,}" minlength="4" maxlength="12" name="newusername" #newusername="ngModel"
                                 [(ngModel)]="services.newusername" aria-label="Recipient's newusername"
                                 aria-describedby="basic-addon2" required>
                             <!-- <div *ngIf="newusername.touched && ! newusername.valid" class="alert alert-danger">

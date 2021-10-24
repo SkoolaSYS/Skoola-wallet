@@ -49,19 +49,7 @@ export class TransactionDetailsComponent implements OnInit {
   
   otpSubmit(otp: string) {
     this.spinner.show();
-    this.services.paymentTransfer({
-    toMemberId: this.receiver.id,           // this.form.toMemberId,
-    toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
-    amount: this.form.amount,
-    transactionPassword: otp,
-    description: this.form.description,
-    transactionTypeId: TRANSACTION_TYPE.Transfer
-   }).toPromise().then(()=>{
-     
-      // this.services.counter+=1;
-      
-  });
-   this.spinner.hide();
+    
    this.services.activetransaction = true;
    this.services.transactionData.amount = this.form.amount;
 
