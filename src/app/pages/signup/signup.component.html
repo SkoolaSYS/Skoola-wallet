@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div id="container">
-                <div class="login-bg">
+                <div class="signup-bg">
                     <div class="d8p-main-back-btn">
                         <div class="row no-gutters">
                             <div class="col-9">
@@ -104,65 +104,7 @@
                                                                     <i class="bi-eye-slash" id="togglePassword2" (click)="showConfirmPassword()"></i>
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            <!-- <mat-radio-group name="cardSelect">
-                                                                <mat-radio-button class="d8p-radiobttn-text mt-2"
-                                                                    id="wantCard" value="wantCard" name="cardRequest" 
-                                                                        (change)="selectCard(1)" ><span> Yes, I want to have
-                                                                            a physical D8-P card.<br></span>
-                                                                    <label
-                                                                        class="d8p-smaller-text text-justify">(*priced
-                                                                        at RM 6.00 one-time, charged from 20%<br>of my
-                                                                        Gold loyalty giveback until RM 6.00 is
-                                                                        paid).</label>
-                                                                </mat-radio-button>
-                                                               // Address for Yes, want card.
-                                                                <div class="yesWant" id="yesWant"
-                                                                    style="display: none;">
-                                                                    <div id="inner-container" class="formPlaceholder">
-                                                                        <div class="inner">
-                                                                            <input class="d8p-form d8p-input-normal" type="text"
-                                                                                placeholder="Home Address"
-                                                                                name="homeAddress" id="homeAddress"
-                                                                                #homeAdd="ngModel"
-                                                                                [(ngModel)]="homeAddress" required />
-                                                                            <div class="alert alert-danger"
-                                                                                *ngIf="homeAdd.touched && ! homeAdd.valid">
-                                                                                Home Address is required.</div>
-                                                                        </div>
-
-                                                                        <div class="formPlaceholder inner">
-                                                                            <input class="d8p-form d8p-input-normal"
-                                                                                type="text" name="postalCode"
-                                                                                id="postalCode" maxlength="5"
-                                                                                #postCode="ngModel"
-                                                                                [(ngModel)]="postalCode"
-                                                                                placeholder="Postal Code" required />
-                                                                            <div class="alert alert-danger"
-                                                                                *ngIf="postCode.touched && ! postCode.valid">
-                                                                                Postal Code is required.</div>
-                                                                        </div>
-
-                                                                        <div class="formPlaceholder">
-                                                                            <input class="d8p-form d8p-input-normal"
-                                                                                type="text" name="stateCity"
-                                                                                id="stateCity" #city="ngModel"
-                                                                                [(ngModel)]="stateCity"
-                                                                                placeholder="City" required />
-                                                                            <div class="alert alert-danger"
-                                                                                *ngIf="city.touched && ! city.valid">
-                                                                                City is required.</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <mat-radio-button class="d8p-radiobttn-text mt-2"
-                                                                    type="radio" id="noWantCard" value="noWantCard"
-                                                                    name="cardRequest" (change)="selectCard(2)" >
-                                                                    No, I don't want to have a physical card.
-                                                                </mat-radio-button>
-                                                            </mat-radio-group> -->
-                                                        </div>
+                                                       
                                                         <label for="radioBtn1" class="radioContainer">
                                                             <input type="radio" name="radio" id="radioBtn1" class="radioBtnInput" (change)="selectCard(1)"/>
                                                             <div class="radioCustom"></div>

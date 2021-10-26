@@ -16,7 +16,7 @@
                     <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
                     <div class="login-container max-width-100 overflow-hidden">
                         <div class="logoContainer" *ngIf="spinLogo">
-                            <!-- <img class="tails max-width-50" *ngIf="getSmid=='150'" src="assets/logo-img/kopama1.png" /> -->
+                            <img class="tails max-width-50" *ngIf="getSmid=='23'" src="assets/logo-img/kopama1.png" />
                             <img class="tails jaminstore max-width-60" *ngIf="getSmid=='16'" src="assets/logo-img/jaminstore1.png" />
                             <!-- <img class="tails max-width-60" *ngIf="getSmid=='153'" src="assets/logo-img/kebunkita1.png" />  -->
                             <!-- <img class="tails max-width-60" *ngIf="getSmid=='154'" src="assets/logo-img/gmi1.png" /> -->
@@ -29,7 +29,7 @@
                         <form (submit)="submit()">
                             <div class="formfield max-width-100">
                                 <div class="input-group mb-3 group-input-border-radius">
-                                    <input type="text" class="form-control d8p-input-normal min-height-60"
+                                    <input type="text" class="form-control d8p-input-normal min-height-55"
                                         placeholder="Username" pattern="([A-z0-9À-ž]){2,}" maxlength="16"
                                         name="username" [(ngModel)]="services.username"
                                         aria-label="Recipient's username" aria-describedby="basic-addon2" />
@@ -37,8 +37,8 @@
                                 </div>
                             </div>
                             <div class="formfield max-width-100">
-                                <div class="input-group mb-3 group-input-border-radius">
-                                    <input name="pwd" type="password" class="form-control d8p-input-normal min-height-60" id="loginPassword"
+                                <div class="input-group mt-4 mb-3 group-input-border-radius">
+                                    <input name="pwd" type="password" class="form-control d8p-input-normal min-height-55" id="loginPassword"
                                         placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" [(ngModel)]="services.password" autocomplete="new-password" [type]="hide ? 'password' : 'text'" /> 
                                         <!-- <i class="bi-eye-slash mt-3 mr-3" id="togglePasswordLogin" (click)="showPassword()"></i> -->
                                     
@@ -59,10 +59,10 @@
                         </form>
                     </div>
                     <div class="button-container text-center">
-                        <a class="d8p-btn-grey" routerLink="/network-participants-list">
+                        <a class="d8p-btn-grey-vt" routerLink="/network-participants-list">
                             <div class="--text">Network Participants List</div>
-                            <div class="--icon"><img class="max-width-30-px"
-                                    src="assets/icons-img/npl-merchant-icon.png" /></div>
+                            <div class="--icon"><img class="npl-icon max-width-30-px"
+                                    src="assets/icons-img/npl-merchant-icon@3x.png" /></div>
                         </a>
                     </div>
                     <img class="signupline" src="assets/icons-img/line-gradient-login-bottom.png" />

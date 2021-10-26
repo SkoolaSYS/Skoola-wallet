@@ -181,6 +181,9 @@
 .min-height-50 {
   min-height: 50px !important;
 }
+.min-height-55 {
+  min-height: 55px !important;
+}
 .min-height-60 {
   min-height: 60px;
 }
@@ -363,6 +366,9 @@
 .border-right-white {
   border-width: 0.5px;
   border-right: 1px solid;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
   border-image: 
    linear-gradient(
      180deg, 
@@ -371,6 +377,9 @@
 .border-right-black {
   border-width: 0.5px;
   border-right: 1px solid;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
   border-image: linear-gradient(
      180deg, rgba(250,250,250,1) 0%, rgba(87,87,87,1) 50%, rgba(250,250,250,1) 100%)1 100%;
 }
@@ -1069,11 +1078,12 @@ form i {
   // background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
   background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
   background-size: cover;
-  min-height: 135vh;
+  min-height: 110vh;
   position: relative;
+  background-position: bottom;
   .login-container {
     display: flex;
-    min-height: 555px;
+    height: 503px;
     flex-direction: column;
     justify-content: center;
     align-items: normal;
@@ -1091,6 +1101,14 @@ form i {
       }
     }
   }
+}
+.signup-bg {
+  // background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
+  background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
+  background-size: cover;
+  min-height: 145vh;
+  position: relative;
+  background-position: bottom;
 }
 //dashboard menu
 .quicklinkbg {
@@ -1621,14 +1639,14 @@ table, tr, td{
   cursor: default;
 }
 
-.d8p-btn-grey{
+.d8p-btn-grey-vo{
   position: relative;
   height: 50.8px;
   width: 260px ;
   text-decoration: none;
   overflow: hidden;
   background: linear-gradient(0deg, #323232 0%, #848484 100%);
-  border: 1px solid white;
+  border: 1px solid $greyish;
   box-shadow: 0 8px 20px -6px rgba(black, .3);
   border-radius: 10px;
   transition: all .1s ease;
@@ -1652,24 +1670,73 @@ table, tr, td{
     white-space: nowrap;
     line-height: 10px;
     height: 60px;
-    padding-top: 24px;
+    padding-top: 21px;
     padding-right: 20px;
-    padding-left: 8px;
+    padding-left: 7px;
     margin-left: 14px;
     border-radius: 0 8px 8px 0;
-    font-size: 16px;
+    font: $s-16 $ff-font;
     font-weight: 500;
     width: 200px;
   }
 }
-.d8p-btn-grey:active{
+.d8p-btn-grey-vo:active{
   background: $yellow;
   transition: none;
 }
-.d8p-btn-grey:focus{
+.d8p-btn-grey-vo:focus{
   background: $yellow;
 }
-.d8p-btn-grey:hover{
+.d8p-btn-grey-vo:hover{
+  background: $yellow;
+}
+.d8p-btn-grey-vt{
+  position: relative;
+  height: 50.8px;
+  width: 305px ;
+  text-decoration: none;
+  overflow: hidden;
+  background: linear-gradient(0deg, #323232 0%, #848484 100%);
+  border: 1px solid $greyish;
+  box-shadow: 0 8px 20px -6px rgba(black, .3);
+  border-radius: 10px;
+  transition: all .1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  .--icon{
+    position: relative;
+    width: 10px;
+    height: 60px;
+    float: right;
+    border-left: 1px solid white;
+    padding-top: 14px;
+    padding-left: 4%;
+    margin-left: 24px;
+  }   
+      
+  .--text{
+    float: left;
+    color: white;
+    white-space: nowrap;
+    line-height: 10px;
+    height: 60px;
+    padding-top: 21px;
+    border-radius: 0 8px 8px 0;
+    font: $s-16 $ff-font;
+    font-weight: 500;
+    width: 190px;
+  }
+}
+.d8p-btn-grey-vt:active{
+  background: $yellow;
+  transition: none;
+}
+.d8p-btn-grey-vt:focus{
+  background: $yellow;
+}
+.d8p-btn-grey-vt:hover{
   background: $yellow;
 }
 /* Custom Button End */
@@ -2031,6 +2098,12 @@ table, tr, td{
   position: relative;
   z-index: 2;
   bottom: 130px;
+  @media screen and (min-width:992px) {
+  position: relative;
+  z-index: 2;
+  bottom: 130px;
+  left: 13%;
+  }
 }
 /* Dashboard End */
 /* Network Participants List Start */
@@ -2050,6 +2123,10 @@ table, tr, td{
   cursor: pointer;
   position: relative;
   display: inline-block;
+}
+.npl-icon{
+  height: 22px;
+  margin: 3px 2px 0 0;
 }
 /* Network Participants List End */
 /* Transfer Start */
@@ -2322,7 +2399,7 @@ input[type="checkbox"]:checked ~ label .middle {
 }
 .content{
   margin-left: 4.25rem;
-  position: absolute;
+  margin-right: 4.25rem;
   padding: 0;
   transform: translateX(150%);
   transition: 2s;
