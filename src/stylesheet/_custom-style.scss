@@ -1106,9 +1106,8 @@ form i {
   // background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
   background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
   background-size: cover;
-  min-height: 145vh;
+  min-height: 135vh;
   position: relative;
-  background-position: bottom;
 }
 //dashboard menu
 .quicklinkbg {
@@ -1683,8 +1682,7 @@ table, tr, td{
 .d8p-btn-grey-vo:active{
   background: $yellow;
   transition: none;
-}
-.d8p-btn-grey-vo:focus{
+}.d8p-btn-grey-vo:focus{
   background: $yellow;
 }
 .d8p-btn-grey-vo:hover{
@@ -2498,15 +2496,7 @@ input[type="checkbox"]:checked ~ label .middle {
   position: relative;
   animation: spin-front 5s infinite;
 }
-.tails{
-  position: absolute;
-  transform: rotateY(180deg);
-  animation: spin-back 5s infinite;
-  z-index: 10;
-  margin-top: 6px;
-  margin-left: 25%;
-}
-.heads, .tails{
+.heads, .kopama, .gmi, .jaminstore{
   backface-visibility: hidden;
   left: 0;
   top: 0;
@@ -2535,6 +2525,22 @@ input[type="checkbox"]:checked ~ label .middle {
   margin-top: 6px;
   margin-left: 20%;
 }
+.gmi{
+  position: absolute;
+  transform: rotateY(180deg);
+  animation: spin-back 5s infinite;
+  z-index: 10;
+  margin-top: 10%;
+  margin-left: 20%;
+}
+.kopama{
+    position: absolute;
+    transform: rotateY(180deg);
+    animation: spin-back 5s infinite;
+    z-index: 10;
+    margin-top: 6px;
+    margin-left: 25%;
+  }
 /* Logo Transition End */
 
 

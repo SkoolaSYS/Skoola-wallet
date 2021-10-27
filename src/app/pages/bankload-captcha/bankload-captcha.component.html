@@ -1,13 +1,4 @@
 <div>
-  <!-- <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-    <mat-icon>
-      <svg width="25" height="45">
-        <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
-        <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
-        <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
-    </svg>
-    </mat-icon>
-  </button> -->
   <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
   <label class="handburger" for="myInput">
           <span class="bar top"></span>
@@ -73,7 +64,7 @@
                               <img src="{{ captchaImage }}" alt="" srcset="">
                             </div>
                           </div>
-                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10" style="text-align: center;">
                               <input class="d8p-input-normal" placeholder="" name="captchaText" [(ngModel)]="captchaText" />
                             </div>
@@ -94,12 +85,16 @@
 
                             <br><br>
 
-                            <div class="button-container text-center">                             
-                              <!-- <textarea id="SESSION-ARGS" name="SESSION-ARGS" style="display:none">{{ sessionArgs }}</textarea> -->
-                              <button class="d8p-btn-default">
-                                Continue
-                                <span class="ml-2"><img class="p-1 max-width-25-px" src="assets/icons-img/icon-correct2.png" /></span>
-                              </button>                              
+                            <div class="row no-gutters justify-content-center">
+                              <div class="col-11">
+                                <div class="button-container text-center mt-2">
+                                  <button class="d8p-btn-default mt-3 margin-left-20" >
+                                    <div class="--text">Continue</div>
+                                    <div class="--icon"><img class="p-1 max-width-30-px"
+                                        src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                                    </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
