@@ -17,16 +17,16 @@ export class LoginComponent implements OnInit {
   spinLogo: boolean;
   public isNotIdVerified: boolean;
 
-    constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
+  constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
   async ngOnInit(): Promise<void> {
     this.spinner.hide();
-    
-   
+      
     if (this.services.isLoggedIn())
     {
       const currentUser: any = await this.services.currentUser;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+      
       if (this.isNotIdVerified){
         this.router.navigate(['id-verification']);
       }else{
@@ -43,33 +43,30 @@ export class LoginComponent implements OnInit {
     }else{
       this.spinLogo = true;
     }
-    // console.log(getSmid);
-    
-    
   }
 
-  showPasswd(){
-    var clickPswd = <HTMLInputElement> document.getElementById("loginPassword");
-    if(clickPswd.type === "password"){
-      clickPswd.type = "text";
-    } else{
-      clickPswd.type = "password";
-    }}
+  togglePassword(){
+    this.hide = !this.hide;
 
-    isUserIdNotVerified(user: any) : boolean {
-      return user.idVerifiedStatus === 'Unverified';
+    if (!this.hide) {
+      document.getElementById("togglePassword").setAttribute("class", "bi-eye");
+    } else {
+      document.getElementById("togglePassword").setAttribute("class", "bi-eye-slash");
     }
+  }
+
+  // showPasswd(){
+  //   var clickPswd = <HTMLInputElement> document.getElementById("loginPassword");
+  //   if(clickPswd.type === "password"){
+  //     clickPswd.type = "text";
+  //   } else{
+  //     clickPswd.type = "password";
+  //   }}
+
+  isUserIdNotVerified(user: any) : boolean {
+    return user.idVerifiedStatus === 'Unverified';
+  }
   
-
-//   showPassword(){
-//     this.hide = !this.hide;
-//     if (!this.hide){
-//     document.getElementById("togglePasswordLogin").setAttribute("class","bi-eye mt-3 mr-3");
-//   }else{
-//     document.getElementById("togglePasswordLogin").setAttribute("class","bi-eye-slash mt-3 mr-3");
-//   }
-// }
-
   submit() {
     this.services.login(this.services.username, this.services.password)
     .subscribe(async() => {

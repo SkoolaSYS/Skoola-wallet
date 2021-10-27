@@ -29,11 +29,13 @@ export class BankloadUsernameComponent implements OnInit {
       
       this.spinner.show();
 
-      if (sessionStorage.getItem("worker_id") != null)
+      if (sessionStorage.getItem("worker_id") != null) {
+        this.botService.workerId = sessionStorage.getItem("worker_id");
         await this.botService.doQuit();
+      } 
 
       res = await this.botService.doInitialize();
-      // console.log("doInitialize:", res); 
+      console.log("doInitialize:", res); 
 
       this.botService.workerId = res["worker-id"];
       sessionStorage.setItem("worker_id", res["worker-id"])

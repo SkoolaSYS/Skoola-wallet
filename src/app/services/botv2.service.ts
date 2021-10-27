@@ -21,7 +21,6 @@ export class Botv2Service {
     return this.httpClient.post("/drivers/initialize", 
       { driver: "selenium" }, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH } }
     ).toPromise();
-
   }
 
   doHealthCheck() {
@@ -42,7 +41,6 @@ export class Botv2Service {
     return this.httpClient.post("/flows/execute", 
       data, { headers: { "Content-Type": "application/json", "Authorization": this.BOT_AUTH, "Worker-Id": this.workerId } }
     ).toPromise();
-
   }
 
   doLoginStep2(){
@@ -165,6 +163,9 @@ export class Botv2Service {
   }
 
   doQuit() {
+    if (this.workerId == undefined)
+      return
+    
     console.log("Quitting...");
     
     return this.httpClient.post("/drivers/quit", 
@@ -175,7 +176,10 @@ export class Botv2Service {
       sessionStorage.removeItem("worker_id");
     })
     .catch((err) => {
-      console.log(err);        
+      console.log(err);
+      
+      if (err.error == "Worker not claimed!")
+        sessionStorage.removeItem("worker_id");
     });
   }
 

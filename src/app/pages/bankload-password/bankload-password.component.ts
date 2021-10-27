@@ -16,6 +16,7 @@ export class BankloadPasswordComponent implements OnInit {
   secretPhrase: string;
   password: string;
   ack: boolean;
+  hide: boolean = true;
 
   constructor(private botService: Botv2Service, private router: Router, 
               private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
@@ -30,11 +31,24 @@ export class BankloadPasswordComponent implements OnInit {
   }
 
   chkChanged() {
-    if (this.ack == true)
-      (<HTMLInputElement>document.getElementById('password')).value = "";  
-
+    if (this.ack == true) {
+      this.password = "";
+      this.hide = false;
+      this.togglePassword(); 
+    }
+    
     (<HTMLInputElement>document.getElementById('password')).disabled = this.ack;
     (<HTMLInputElement>document.getElementById('login')).disabled = this.ack;
+  }
+
+  togglePassword(){
+    this.hide = !this.hide;
+
+    if (!this.hide) {
+      document.getElementById("togglePassword").setAttribute("class", "bi-eye");
+    } else {
+      document.getElementById("togglePassword").setAttribute("class", "bi-eye-slash");
+    }
   }
 
   async submit() {    
@@ -44,8 +58,10 @@ export class BankloadPasswordComponent implements OnInit {
     try {
       this.spinner.show();
 
+      this.botService.loggedIn = false;
       res = await this.botService.doLoginStep2()
       console.log("doLoginStep2:", res); 
+      
       if (res["ok"] != true || res["result"]["loggedIn"] == false) {
         throw new Error();      
       }

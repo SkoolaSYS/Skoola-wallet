@@ -33,15 +33,12 @@
                                         placeholder="Username" pattern="([A-z0-9À-ž]){2,}" maxlength="16"
                                         name="username" [(ngModel)]="services.username"
                                         aria-label="Recipient's username" aria-describedby="basic-addon2" />
-
                                 </div>
-                            </div>
-                            <div class="formfield max-width-100">
                                 <div class="input-group mt-4 mb-3 group-input-border-radius">
                                     <input name="pwd" type="password" class="form-control d8p-input-normal min-height-55" id="loginPassword"
-                                        placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" [(ngModel)]="services.password" autocomplete="new-password" [type]="hide ? 'password' : 'text'" /> 
-                                        <!-- <i class="bi-eye-slash mt-3 mr-3" id="togglePasswordLogin" (click)="showPassword()"></i> -->
-                                    
+                                        placeholder="Password" pattern="([A-z0-9À-ž]){2,}" maxlength="16" [(ngModel)]="services.password" 
+                                        autocomplete="new-password" [type]="hide ? 'password' : 'text'" /> 
+                                        <i style="margin-top: 18px;" class="bi-eye-slash" id="togglePassword" (click)="togglePassword()"></i>
                                     <div class="input-group-append">
                                         <span class="input-group-text group-input-icon-field" id="basic-addon2">
                                             <button class="d8p-transparent-btn" *ngIf="services.password">
@@ -54,8 +51,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="checkbox" class="tnc-checkbox" id="showPassword" (click)="showPasswd()">
-                            <span class="d8p-showpasswd-text">Show Password</span>
+                            <!-- <input type="checkbox" class="tnc-checkbox" id="showPassword" (click)="showPasswd()">
+                            <span class="d8p-showpasswd-text">Show Password</span> -->
                         </form>
                     </div>
                     <div class="button-container text-center">
