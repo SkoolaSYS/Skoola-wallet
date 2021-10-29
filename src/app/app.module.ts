@@ -99,7 +99,6 @@ import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-conf
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Pipe({
   name: 'safeHtml'
@@ -240,7 +239,6 @@ export class SafeUrlPipe implements PipeTransform {
   providers: [
     Services, 
     { provide: MAT_DIALOG_DATA, useValue: [] },
-    {provide:LocationStrategy,useClass:PathLocationStrategy},
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, width: "90%" }}
   ],
   bootstrap: [AppComponent],
