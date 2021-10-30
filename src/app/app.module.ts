@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -239,6 +239,7 @@ export class SafeUrlPipe implements PipeTransform {
   providers: [
     Services, 
     { provide: MAT_DIALOG_DATA, useValue: [] },
+    [{provide: LocationStrategy, useClass: HashLocationStrategy}],
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, width: "90%" }}
   ],
   bootstrap: [AppComponent],
