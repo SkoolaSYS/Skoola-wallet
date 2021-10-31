@@ -127,7 +127,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     btn1.style.color = "#54A5A6"
     btn3.style.background = "linear-gradient(180deg, #858585 0%, #303030 100%)"
     btn3.style.color = "#fff"
-    window.location.href='./dashboard'
+    window.location.href='./#/dashboard'
   }
 
    tab3(): void{
@@ -141,7 +141,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     btn3.style.color = "#54A5A6"
     btn1.style.background = "linear-gradient(180deg, #858585 0%, #303030 100%)"
     btn1.style.color = "#fff"
-    window.location.href='./qr-code'
+    window.location.href='./#/qr-code'
   }
   
 }
