@@ -1,25 +1,53 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Renderer2, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
+import { Html5Qrcode, Html5QrcodeScanner } from 'html5-qrcode';
+import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-qr-view',
   templateUrl: './qr-view.component.html'
 })
-
-export class qrViewComponent implements OnInit {
+export class qrViewComponent implements OnInit{
   @Input() qrview: boolean = false;
-  constructor(private renderer2: Renderer2, @Inject(DOCUMENT) private _document) {
-    this.loadScripts();
+
+  constructor(private router:Router) {
   }
 
   ngOnInit(): void {
-  }
+    let html5QrCode = new Html5Qrcode("reader");
+    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+      html5QrCode.stop()
+      document.location.href = decodedText
+    };
+    const qrCodeErrorCallback = (errorMessage) => {
+    
+    };
+    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback,qrCodeErrorCallback)
+    
+    // this.html5QrcodeScanner = new Html5QrcodeScanner(
+    //   "reader",
+    //   { fps: 10, qrbox: {width: 250, height: 250} },
+    //   /* verbose= */ false);
+    // try{
+    // this.html5QrcodeScanner.render(this.onScanSuccess, this.onScanFailure);
+    // }catch(e){
 
-  loadScripts() {
-    const node = document.createElement('script');
-    node.src = './assets/qr-scanner.js'
-    node.type = 'text/javascript';
-    node.async = false;
-    document.getElementsByTagName('head')[0].appendChild(node);
- }
+    // }
+  }
+  // onScanSuccess(decodedText, decodedResult) {
+  //   // Handle on success condition with the decoded text or result.
+  //   console.log(`Scan result: ${decodedText}`, decodedResult);
+  //   console.log(decodedText)
+  //   document.location.href = decodedText
+  //   //(FIXME) Aiman --> dont use reload if possible
+    
+  // }
+  // onScanFailure(errorMessage){
+  //   this.html5QrcodeScanner.clear
+  // }
+  // ngOnDestroy():void{
+  //   this.html5QrcodeScanner.clear
+  // }
 }

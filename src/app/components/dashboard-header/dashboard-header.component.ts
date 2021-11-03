@@ -69,7 +69,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      //this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
@@ -88,7 +88,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      //this.service.logout();
     });
 
   }

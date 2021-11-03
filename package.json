@@ -27,6 +27,7 @@
     "blueimp-canvas-to-blob": "^3.28.0",
     "bootstrap": "^4.4.1",
     "bootstrap-icons": "^1.5.0",
+    "html5-qrcode": "^2.1.2",
     "jquery": "^3.6.0",
     "ng-popups": "^9.0.0",
     "ng2-img-max": "^2.2.4",
