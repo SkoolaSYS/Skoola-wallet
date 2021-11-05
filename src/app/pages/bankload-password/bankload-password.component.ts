@@ -75,30 +75,26 @@ export class BankloadPasswordComponent implements OnInit {
         // loggedIn must be true
         this.botService.loggedIn = true;
 
-        res = await this.botService.doGotoXferPage();
-        console.log("doGotoXferPage:", res);
-        if (res["ok"] != true)
-          throw new Error();
-
-        res = await this.botService.doFillXferForm();
-        console.log("doFillXferForm:", res);
-        if (res["ok"] != true)
-          throw new Error();
-
+        res = await this.botService.doPerformXfer();
+        console.log("doPerformXfer:", res);        
+        // if (res["ok"] != true)
+        //   throw new Error();
+  
         if (res["result"]["tacRequired"] == true) {
           this.spinner.hide();
           this.router.navigate(['bankload-confirm']);
         }
         else {  // TODO: Repetitive code! {rwa}
-          if (res["result"]["confirmRequired"] == true) {
-            let opts = { "tacRequired": false };
-            res = await this.botService.doConfirmTxn(opts);
-            console.log("doConfirmTxn:", res);
+          // if (res["result"]["confirmRequired"] == true) {
+          //   let opts = { "tacRequired": false };
+          //   res = await this.botService.doConfirmTxn(opts);
+          //   console.log("doConfirmTxn:", res);
 
-            if (res["ok"] != true)
-              throw new Error();
-          }
+          //   if (res["ok"] != true)
+          //     throw new Error();
+          // }
           
+
           res = await this.botService.doGetTxnStatus();
           console.log("doGetTxnStatus:", res);
           if (res["ok"] != true)

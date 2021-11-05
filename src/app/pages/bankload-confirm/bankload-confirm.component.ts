@@ -69,7 +69,6 @@ export class BankloadConfirmComponent implements OnInit {
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['dashboard']);
       });      
-      // this.ngPopups.alert("There was an error processing your request. Please try again.")
     }
   }
 }
