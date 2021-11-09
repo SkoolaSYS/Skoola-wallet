@@ -19,6 +19,7 @@ export class Services {
     private $newpassword: string;
     private $confirmnewusername: string;    
     private $confirmnewpassword: string;
+    public  amountTopup:string
     public  forms: any = {};
     public  bankForms: any = {};
     public  currentUser: Promise<any>;
@@ -700,6 +701,22 @@ export class Services {
         };  
 
         return this.http.get('/rest/payments/bankLoadData', headerOptions).pipe(tap (data => {
+            // console.log(data);
+        },
+        (err) => {
+            console.log(err);
+        }));;
+    }
+    public topupAtMerchant(data:any) {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+
+        return this.http.post('/rest/payments/topupAtMerchant', data,headerOptions).pipe(tap (data => {
             // console.log(data);
         },
         (err) => {

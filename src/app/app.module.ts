@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { QRCodeModule } from 'angular2-qrcode';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -221,6 +221,7 @@ export class SafeUrlPipe implements PipeTransform {
     MatTabsModule,
     MatRadioModule,
     NgbModule,
+    QRCodeModule,
     Ng2ImgMaxModule, 
     HttpClientModule,  
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
