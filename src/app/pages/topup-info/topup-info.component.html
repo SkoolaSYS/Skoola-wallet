@@ -40,12 +40,19 @@
                       </div>
                       <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                         <!-- nama penerima -->
+                        <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
+                          <!-- to do ( show the merchant name )-->
+                           <body class="col-10" style="text-align: center;">
+                            <h1 class="d8p-form d8p-input-normal w-100 text-transform-uppercase" readonly type="text" style="color:rgb(1, 1, 2);font-size:23px;font-family:'sans-serif'">{{merchantName}}</h1>
+                           </body>
+                      </div>
                       </div>
                       <div class="text-center mt-2 mb-2">
                         Amount Topup
                       </div>
                       <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                         <!-- amount topup -->
+                              <input class="d8p-form d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="amount" required/>
                       </div>
                   </div>
                   <!-- Confirmation -->
@@ -53,7 +60,7 @@
                   <div class="row no-gutters justify-content-center">
                       <div class="col-12">
                         <div class="button-container text-center mt-2" style="height: 120px;">
-                          <button class="d8p-btn-default mt-3" id="btnConfirm">
+                          <button class="d8p-btn-default mt-3" id="btnConfirm" (click)="confirm()">
                             <div class="--text">Confirm</div>
                             <div class="--icon"><img class="p-1 max-width-30-px"
                                 src="assets/icons-img/tick-only-signup@2x.png" /></div>
