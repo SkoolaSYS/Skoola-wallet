@@ -40,7 +40,10 @@ import {
   NetworkParticipantsListComponent,
   GoldToPurchaseComponent,
   AccountActivatedComponent,
-  MiniDashboardHeaderComponent
+  MiniDashboardHeaderComponent,
+  TopupAmountComponent,
+  TopupQrComponent,
+  TopupInfoComponent,
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
@@ -164,7 +167,7 @@ export const routes: Routes = [
   },
  {
    path: 'update-username-pwd', component: UpdateUsernamePwdComponent,
-    canActivate: [AuthenticationGuard]
+    // canActivate: [AuthenticationGuard]
  },
  {
    path:'update-profile', component: UpdateProfileComponent,
@@ -226,10 +229,22 @@ export const routes: Routes = [
   path: 'account-activated', component: AccountActivatedComponent,
   // canActivate: [AuthenticationGuard]
 },
- {
+{
   path: 'mini-dashboard-header', component: MiniDashboardHeaderComponent,
   canActivate: [AuthenticationGuard]
- },
+},
+{
+  path: 'topup-amount', component: TopupAmountComponent,
+  canActivate: [AuthenticationGuard]
+},
+{
+  path: 'topup-qr', component: TopupQrComponent,
+  canActivate: [AuthenticationGuard]
+},
+{
+  path: 'topup-info', component: TopupInfoComponent,
+  canActivate: [AuthenticationGuard]
+},
  { path: '**', component: LoginComponent }
 ];
 

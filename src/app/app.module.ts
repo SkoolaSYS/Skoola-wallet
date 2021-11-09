@@ -66,7 +66,10 @@ import {
   NetworkParticipantsListComponent,
   GoldToPurchaseComponent,
   AccountActivatedComponent,
-  MiniDashboardHeaderComponent
+  MiniDashboardHeaderComponent,
+  TopupAmountComponent,
+  TopupInfoComponent,
+  TopupQrComponent
 } from './pages';
 
 import {
@@ -99,7 +102,6 @@ import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-conf
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
-
 @Pipe({
   name: 'safeHtml'
 })
@@ -165,6 +167,9 @@ export class SafeUrlPipe implements PipeTransform {
     GoldToPurchaseComponent,
     AccountActivatedComponent,
     MiniDashboardHeaderComponent,
+    TopupAmountComponent,
+    TopupQrComponent,
+    TopupInfoComponent,
 
     // components
     DashboardHeaderComponent,
@@ -199,7 +204,6 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadConfirmComponent,
     BankloadHelperComponent,
     AlertDialogComponent,
-    MiniDashboardHeaderComponent,
     BankloadCaptchaComponent,
 
   ],

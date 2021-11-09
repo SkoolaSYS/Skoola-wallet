@@ -76,7 +76,7 @@ export class UpdateBankLoadComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      // this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
@@ -85,7 +85,7 @@ export class UpdateBankLoadComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      // this.service.logout();
     });
   }
   async doUpdateBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){

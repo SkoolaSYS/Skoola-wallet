@@ -55,7 +55,7 @@ export class QrPaymentComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.services.logout();
+      // this.services.logout();
     });
   }
 

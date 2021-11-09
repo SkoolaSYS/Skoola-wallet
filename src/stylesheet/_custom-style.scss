@@ -932,6 +932,10 @@ form i {
     width: 100%;
     margin: 0 auto;
   }
+  @media screen and (min-width:992px) {
+    width: 75%;
+    margin: 0 auto;
+  }
 }
 
 #dashboard-inner{
@@ -994,6 +998,13 @@ form i {
 }
 .dashboard-content-box {
   padding-top: 17.5rem;
+  background: $white;
+  @media screen and (min-width: 768px) {
+    padding-top: 22rem;
+  }
+}
+.qr-content-box {
+  padding-top: 7.5rem;
   background: $white;
   @media screen and (min-width: 768px) {
     padding-top: 22rem;
@@ -1075,7 +1086,6 @@ form i {
 }
 
 .login-bg {
-  // background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
   background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
   background-size: cover;
   min-height: 110vh;
@@ -1103,29 +1113,12 @@ form i {
   }
 }
 .signup-bg {
-  // background: url(assets/icons-img/bg-particlewave.png) center -35vh no-repeat;
   background: linear-gradient(180deg, #fff 0%, #D2D4D4 50%, #c4c7c7 100%); ;
   background-size: cover;
   min-height: 135vh;
   position: relative;
 }
-//dashboard menu
-.quicklinkbg {
-  background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
-  height: 153px;
-  margin-top: 0.35rem;
-  @media screen and (min-width: 768px) {
-    min-height: 260px;
-  }
-}
-//transfer menu
-.transferbg{
-  height: 281px;
-}
-//payment menu
-.paymentbg{
-  height: 153px; 
-}
+
 //QR menu
 .qrbg {
   background: linear-gradient(0deg, #000000 0%, #2d2d2d 100%);
@@ -1852,12 +1845,11 @@ table, tr, td{
   }
 }
 .headergoldbox {
-  top: 1.5rem;
-  left: 1.5rem;
+  margin-top: 1.5rem;
   background: linear-gradient(180deg, #69CED1 0%, #428182 100%);
   border-radius: 7px;
   border: 1px solid $white;
-  width: 99px;
+  width: 96px;
   height: 54px;
 }
   @media screen and (min-width: 576px) and (max-width: 769px) {
@@ -1972,7 +1964,6 @@ table, tr, td{
   }
 }
 .d8plogo{
-  // margin: 2.25rem 0 0 0;
   max-width: 112%;
   margin-left: 1.5rem;
   margin-top: 17px;
@@ -1995,12 +1986,13 @@ table, tr, td{
   font-size: 40px;
   width: 52px;
   margin-top: 13px;
-  margin-left: 15px;
+  margin-left: 7px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: transparent;
+  color: black;
   border: none;
   outline: none;
 }
@@ -2071,7 +2063,7 @@ table, tr, td{
   grid-column-gap: 2px;
   grid-row-gap: 2px;
   align-items: center;
-  margin: 14px 1px 0 1px;
+  margin: 5px 1px 0 1px;
 }
 .transferChild{
   height: 220px;
@@ -2102,6 +2094,22 @@ table, tr, td{
   bottom: 130px;
   left: 13%;
   }
+}
+//dashboard menu
+.quicklinkbg {
+  background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
+  height: 153px;
+  @media screen and (min-width: 768px) {
+    min-height: 260px;
+  }
+}
+//transfer menu
+.transferbg{
+  height: 254px;
+}
+//payment menu
+.paymentbg, .advgoldbg, .marketplacebg, .investbg{
+  height: 153px; 
 }
 /* Dashboard End */
 /* Network Participants List Start */
@@ -2135,9 +2143,6 @@ table, tr, td{
 }
 /* Transfer End */
 /* Navigation Handburger Start */
-// input[type="checkbox"] {
-//   display: none;
-// }
 .handburger {
   display: inline-block;
   padding: 9px 10px;
@@ -2146,11 +2151,25 @@ table, tr, td{
   margin: 10px;
   z-index: 9999;
   position: absolute;
-  right: 0rem;
+  right: 0.5rem;
   top: 0.75rem;
   width: 52px;
   height: 53px;
   border-radius: 5px;
+  @media screen and (min-width:992px) {
+    display: inline-block;
+    padding: 9px 10px;
+    background: linear-gradient(180deg, #858585 0%, #303030 100%);
+    cursor: pointer;
+    margin: 10px;
+    z-index: 9999;
+    position: absolute;
+    right: 15%;
+    top: 2.75rem;
+    width: 52px;
+    height: 53px;
+    border-radius: 5px;
+  }
 }
 @media screen and (min-width: 576px) and (max-width: 769px) {
   .handburger{
@@ -2168,6 +2187,7 @@ table, tr, td{
     height: 60px;
   }
 }
+
 
 .bar {
   display: block;
@@ -2214,6 +2234,12 @@ input[type="checkbox"]:checked ~ label .middle {
   @media screen and (min-width: 768px) {
     padding-top: 9rem;
   }
+  @media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    padding-top: 7rem;
+}
 }
 .id-dashboardheader {
   position: fixed;
@@ -2265,6 +2291,9 @@ input[type="checkbox"]:checked ~ label .middle {
   font-size: 13px;
   font-weight: bold;
   cursor: pointer;
+  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) { 
+    margin-left: $s-16;
+  }
 }
 
 .upload-button input[type=file] {
@@ -2396,8 +2425,8 @@ input[type="checkbox"]:checked ~ label .middle {
   color: #fff;
 }
 .content{
-  margin-left: 4.25rem;
-  margin-right: 4.25rem;
+  margin-left: 2.25rem;
+  margin-right: 2.25rem;
   padding: 0;
   transform: translateX(150%);
   transition: 2s;
@@ -2542,5 +2571,29 @@ input[type="checkbox"]:checked ~ label .middle {
     margin-left: 25%;
   }
 /* Logo Transition End */
+.qr-shaded-region{
+  position: absolute;
+  border-color: rgba(0, 0, 0, 0.48);
+  border-style: solid;
+  border-width: 19px 27px;
+}
+#reader{
+ width: 100%;
+ height: 450px;
+ position: relative;
+}
 
-
+// 
+.tp-contentbox {
+  padding-top: 16.1rem;
+  background: $white;
+  @media screen and (min-width: 768px) {
+    padding-top: 9rem;
+  }
+  @media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    padding-top: 7rem;
+}
+}

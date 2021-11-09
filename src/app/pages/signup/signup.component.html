@@ -25,7 +25,7 @@
                                         <div class="row no-gutters justify-content-center">
                                             <div class="col-12 col-xl-6">
                                                 <div class="container-fluid p-0">
-                                                    <form id="formSignup" novalidate autocomplete="off">
+                                                    <form id="formSignup" autocomplete="off">
                                                         <div class="formPlaceholder row no-gutters justify-content-center">
                                                             <div class="col-12">
                                                                 <input class="d8p-form d8p-input-normal"
@@ -33,10 +33,13 @@
                                                                     pattern="([A-z0-9À-ž]){2,}" id="username"
                                                                     name="username" #username="ngModel" minlength="4"
                                                                     maxlength="12" [(ngModel)]="loginUsername"
-                                                                    required />
+                                                                    required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
                                                                     *ngIf="username.touched && ! username.valid">
                                                                     Username is required.</div>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="username.errors?.minlength">
+                                                                    Username must be at least 4 characters long.</div>
                                                             </div>
                                                         </div>
 
@@ -45,7 +48,7 @@
                                                                 <input class="d8p-form d8p-input-normal"
                                                                     placeholder="Full Name" type="text" id="fullname"
                                                                     name="fullname" #fullname="ngModel"
-                                                                    [(ngModel)]="fullName" required />
+                                                                    [(ngModel)]="fullName" required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
                                                                     *ngIf="fullname.touched && ! fullname.valid">Full
                                                                     Name is required.</div>
@@ -57,7 +60,7 @@
                                                                 <input class="d8p-form d8p-input-normal"
                                                                     placeholder="Email Address" type="email"
                                                                     #emailAdd="ngModel" id="emailAdd" name="emailAdd"
-                                                                    [(ngModel)]="emailAddress" required />
+                                                                    [(ngModel)]="emailAddress" required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
                                                                     *ngIf="emailAdd.touched && ! emailAdd.valid">Fill in
                                                                     your email address.</div>
@@ -70,7 +73,7 @@
                                                                     placeholder="National Identity Card No." type="text"
                                                                     minlength="12" maxlength="12" #nricNo="ngModel"
                                                                     id="nricNo" name="nricNo" [(ngModel)]="nricNumber"
-                                                                    required />
+                                                                    required/>
                                                                 <div class="alert alert-danger"
                                                                     *ngIf="nricNo.touched && ! nricNo.valid">National
                                                                     Identity Card No. is required.</div>

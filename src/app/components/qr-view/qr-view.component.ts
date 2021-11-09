@@ -1,6 +1,4 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Renderer2, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
 import { Html5Qrcode, Html5QrcodeScanner } from 'html5-qrcode';
 import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { Router } from '@angular/router';

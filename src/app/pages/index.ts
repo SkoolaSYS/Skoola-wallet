@@ -36,3 +36,6 @@ export * from './network-participants-list/network-participants-list.component';
 export * from './gold-to-purchase/gold-to-purchase.component';
 export * from './account-activated/account-activated.component';
 export * from './mini-dashboard-header/mini-dashboard-header.component';
+export * from './topup-amount/topup-amount.component';
+export * from './topup-qr/topup-qr.component';
+export * from './topup-info/topup-info.component';

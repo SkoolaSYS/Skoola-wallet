@@ -51,7 +51,7 @@ export class UpdateProfileComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      // this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
@@ -61,7 +61,7 @@ export class UpdateProfileComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      // this.service.logout();
     });
     const currentUser: any = await this.service.currentUser;
     console.log(currentUser);

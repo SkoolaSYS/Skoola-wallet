@@ -68,7 +68,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
         },
         (err) => {
           console.log(err);
-          this.service.logout();
+          // this.service.logout();
         });
     
         this.service.getProfileData().subscribe((res: any) => {
@@ -77,7 +77,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
           this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value; 
         },
         (err) => {
-          this.service.logout();
+          // this.service.logout();
           console.log(err);
         });
   }

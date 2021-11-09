@@ -55,7 +55,7 @@ export class AddBankComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      // this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
@@ -81,7 +81,7 @@ export class AddBankComponent implements OnInit {
     },
     (err) => {
       console.log(err);
-      this.service.logout();
+      // this.service.logout();
     });   
   }
   

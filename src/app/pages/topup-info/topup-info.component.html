@@ -1,0 +1,79 @@
+<div>
+    <!-- Handburger Start -->
+    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+    <label class="handburger" for="myInput">
+      <span class="bar top"></span>
+      <span class="bar middle"></span>
+      <span class="bar bottom"></span>
+    </label>
+    <!-- Handburger End -->
+    <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <app-matsidenav></app-matsidenav>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="id-dashboardheader">
+                <!-- Dashboard Header Start -->
+                <app-mini-dashboard-header></app-mini-dashboard-header>
+                <!-- Dashboard Header End -->
+              </div>
+            </div>
+          </div>
+  
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="id-contentbox">
+                <div class="id-body">
+                  <div class="container-fluid p-0 menu-grid">
+                    <div class="modal-title text-center mt-2 mb-2">
+                       Topup by QR Details
+                      </div>
+                      <div class="text-center mt-2 mb-2">
+                        Recipient's Name
+                      </div>
+                      <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
+                        <!-- nama penerima -->
+                      </div>
+                      <div class="text-center mt-2 mb-2">
+                        Amount Topup
+                      </div>
+                      <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
+                        <!-- amount topup -->
+                      </div>
+                  </div>
+                  <!-- Confirmation -->
+                  <div class="row no-gutters justify-content-center">
+                  <div class="row no-gutters justify-content-center">
+                      <div class="col-12">
+                        <div class="button-container text-center mt-2" style="height: 120px;">
+                          <button class="d8p-btn-default mt-3" id="btnConfirm">
+                            <div class="--text">Confirm</div>
+                            <div class="--icon"><img class="p-1 max-width-30-px"
+                                src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    
+  
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Updating...</p>
+  </ngx-spinner>
