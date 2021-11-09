@@ -15,7 +15,6 @@ export class TopupInfoComponent implements OnInit {
   constructor(private services:Services, private router: Router) { }
 
   ngOnInit(): void {
-    ;
     this.amount = this.router.url.split("?")[1].split("=")[2];
     this.services.loadById(this.router.url.split("?")[1].split("=")[1].split("&")[0]).subscribe((res: any) => {
       console.log(res);
@@ -30,9 +29,19 @@ export class TopupInfoComponent implements OnInit {
   }
 
   async confirm():Promise<void>{
-    this.services.topupAtMerchant({
-      amount: this.amount,
-      memberId: this.memberId
-    }).toPromise()
+    //const currentUser: any = await this.services.currentUser;
+    //console.log(currentUser)
+    if(this.services.currentBalance > parseFloat(this.amount)){
+      await this.services.topupAtMerchant({
+        amount: this.amount,
+        memberId: this.memberId
+      }).toPromise().then(() => {
+        this.router.navigate(['dashboard']);
+      }).catch((err) => {
+        console.log(err)
+      });
+    }else{
+      alert("not enough balance")
+    }
   }
 }

@@ -15,7 +15,15 @@ export class TopupAmountComponent implements OnInit {
   }
   confirm(): void{
     console.log(this.amountTopup)
-    this.services.amountTopup = this.amountTopup
-    this.router.navigate(['topup-qr']);
+    try{
+      if (this.amountTopup.length > 0){
+        this.services.amountTopup = this.amountTopup
+        this.router.navigate(['topup-qr']);
+      }else{
+        alert("no value in topup")
+      }
+    }catch{
+      alert("no value in topup")
+    }
   }
 }
