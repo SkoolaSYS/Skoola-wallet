@@ -7,6 +7,7 @@ import { TRANSACTION_TYPE } from 'src/utils';
   providedIn: 'root'
 })
 export class Botv2Service {
+  public isTopup:boolean;
   public form: any = {};
   public httpHeaders: HttpHeaders;
   public workerId: string;
