@@ -13,11 +13,15 @@ import { Services } from 'src/app/services/service';
 })
 export class BankloadAmountComponent implements OnInit {  
   amount: string;
-
+  isTopup:boolean;
+  isMerchant:boolean;
   constructor(private services: Services, private botService: Botv2Service, private router: Router, 
               private spinner: NgxSpinnerService, private dialog: MatDialog) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.isTopup = false
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant
     this.services.getMemberBankLoadData().subscribe((res: any) => {
       this.botService.bankLoad.fromBank = getBankFlow(res["id"].toString());
       this.botService.bankLoad.fromAccount = res["bankAccNumber"];
@@ -26,11 +30,10 @@ export class BankloadAmountComponent implements OnInit {
 
   submit() {
     this.spinner.show();
-
+    this.botService.isTopup = this.isTopup
     this.services.getBankLoadData().subscribe(
       (res) => {
         this.spinner.hide();
-
         this.botService.bankLoad.transactionFee = parseFloat(res["transactionFee"])
         const maxAmount = parseFloat(res["maxAmount"]);
         const maxBalance = parseFloat(res["maxBalance"]);
@@ -67,6 +70,15 @@ export class BankloadAmountComponent implements OnInit {
         });
       }
     )
+  }
+  topup():void{
+    var topupCheckbox = <HTMLInputElement> document.getElementById("topup");
+    if(topupCheckbox.checked)
+      this.isTopup = true;
+    else
+      this.isTopup = false;
+
+    //console.log(this.isTopup);
   }
 }
 

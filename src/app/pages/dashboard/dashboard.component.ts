@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
   public allowWithdrawal: boolean;
-
+  public isMerchant:boolean;
   btnAdd: any;
   app: any;
   constructor(private services: Services, private router: Router) {}
@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
       const currentUser: any = await this.services.currentUser;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
       this.allowWithdrawal = currentUser.allowWithdrawal;
+      this.isMerchant = currentUser.merchant;
       localStorage.setItem("parent", currentUser.parentId);
     },
     (err) => {
