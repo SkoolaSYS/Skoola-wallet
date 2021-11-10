@@ -90,8 +90,8 @@ import {
   CimbbankDetailsComponent,
   CimbbankTransactionComponent,
   MatsidenavComponent,
-  TermsConditionComponent
-
+  TermsConditionComponent,
+  SplitHeaderComponent
 } from './components';
 
 import { Services } from 'src/app/services/service';
@@ -192,6 +192,7 @@ export class SafeUrlPipe implements PipeTransform {
     MatsidenavComponent,
     CardRequestComponent,
     TermsConditionComponent,
+    SplitHeaderComponent,
 
     // pipes
     SafeHtmlPipe,
@@ -205,6 +206,7 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadHelperComponent,
     AlertDialogComponent,
     BankloadCaptchaComponent,
+    SplitHeaderComponent,
 
   ],
   imports: [
