@@ -35,13 +35,17 @@
                     <div class="modal-title text-center mt-2 mb-2">
                         Show QR to Merchant
                       </div>
-                    <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                        
+                      <div class="qr-box row no-gutters justify-content-center mt-4 mb-4">
                         <!-- IMAGE FOR GENERATED QR -->
-                        <qr-code [value]="href"></qr-code>
+                        <qr-code [value]="href" size="250"></qr-code>
                       </div>
                   </div>
                   <!-- Confirmation -->
+                  <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9 titlebg">
+                        Cancellation
+                    </div>
+                  </div>
                   <div class="row no-gutters justify-content-center">
                   <div class="row no-gutters justify-content-center">
                       <div class="col-12">
