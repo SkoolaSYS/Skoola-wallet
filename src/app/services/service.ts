@@ -12,6 +12,7 @@ import { NgPopupsService } from 'ng-popups';
 export class Services {
     public activetransaction: boolean;
     public currentBalance;
+    public topupBalance;
     private $username: string;
     private $password: string;
     private authToken: string;

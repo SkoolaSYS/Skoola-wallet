@@ -63,6 +63,7 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
       this.topupBalance = res[0].status.topupBalance;
+      this.service.topupBalance = this.topupBalance;
       const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(5).toString().split(".");
       this.goldWhole = sumGoldParts[0];
       this.goldFraction = sumGoldParts[1];

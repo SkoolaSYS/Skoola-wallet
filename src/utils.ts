@@ -9,7 +9,8 @@ export enum TRANSACTION_TYPE {
   BuyGold = 3,
   SellGold = 4,
   Withdraw = 8,
-  QrPayment = 15
+  QrPayment = 15,
+  Topup = 17
 }
 
 export class Utility {
