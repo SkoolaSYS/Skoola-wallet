@@ -14,8 +14,6 @@
         <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png" routerLink="/dashboard" />
       </div>
       <div class="col-2">
-        <!-- <img class="dashboard-bell" src="assets/icons-img/notification-off-icon@2x.png" routerLink="/recent-transactions" /> -->
-        <!-- <mat-icon class="dashboard-bell" routerLink="/recent-transactions">notifications_none</mat-icon> -->
         <button class="dashboard-bell" type="button" (click)="bell()">
           <span class="dashboard-bell material-icons" >notifications</span>
           <span class="dashboard-bell-badge" *ngIf="condition">{{counter}}</span>
@@ -41,20 +39,19 @@
       <div class="d8p-normal-text text-center mt-3 text-secondary">
         D8-P Acc. No.: {{ cardNumber }}
       </div>
-      <div style="display: flex; margin: 10px;">
+      <div style="display: flex; margin-left: 20px; position: fixed;">
       <div class="d8p-normal-text text-center mt-3 mr-2 text-secondary">
           Sales
-          <div class="d8p-h3 text-center mt-4">
+          <div class="d8p-h4 text-center">
             {{ currencyType }}
             <span class="font-weight-bold">{{ 
               currentBalance | number: '1.2-2'
             }}</span> 
           </div>
       </div>
-      
-      <div class="d8p-normal-text text-center mt-3 text-secondary">
+      <div class="d8p-normal-text text-center mt-3 ml-2 text-secondary">
           Topup
-          <div class="d8p-h3 text-center mt-4">
+          <div class="d8p-h4 text-center">
             {{ currencyType }}
             <span class="font-weight-bold">{{ 
               topupBalance | number: '1.2-2'

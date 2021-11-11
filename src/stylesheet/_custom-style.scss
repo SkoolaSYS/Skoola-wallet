@@ -16,13 +16,13 @@
   margin: 0;
 }
 .d8p-h4 {
-  font: normal $s-20 $ff-base;
-  color: $darkTextGrey2;
+  font: normal $s-20 $ff-font;
+  color: $darkTextGrey;
   margin: 0;
 }
 .d8p-h6 {
-  font: normal $s-15 $ff-base;
-  color: $darkTextGrey2;
+  font: normal $s-15 $ff-font;
+  color: $darkTextGrey;
   margin: 0;
 }
 .d8p-normal-text {
@@ -190,6 +190,9 @@
 .min-height-80 {
   min-height: 80px;
   padding: 10px 20px 0px 0px;
+}
+.min-height-128 {
+  min-height: 128px !important;
 }
 .min-height-132 {
   min-height: 132px !important;
@@ -1572,7 +1575,6 @@ table, tr, td{
   transition: none;
 }
 /* Acknowledgement Page end */
-
 /* Custom Button Start */
 .d8p-btn-default{
   position: relative;
@@ -2501,6 +2503,23 @@ input[type="checkbox"]:checked ~ label .middle {
     height: 70px;
   }
 }
+.iconImg-transfer{
+  width: 60px;
+  height: 64px;
+  margin-top: -5px;
+}
+@media screen and (min-width: 576px) and (max-width: 769px) {
+  .iconImg-transfer{
+    width: 70px;
+    height: 70px;
+  }
+}
+@media screen and (min-width: 770px) and (max-width: 1400px) {
+  .iconImg-transfer{
+    width: 70px;
+    height: 70px;
+  }
+}
 .iconNA{
   margin:20px;
 }
@@ -2636,3 +2655,49 @@ input[type="checkbox"]:checked ~ label .middle {
   position: relative;
   padding-top: 87px;
 }
+/* Redeem End (zul)*/
+/* Invalid QR Start*/
+.invalid-bg{
+  background: $white;
+  height: 100vh;
+  overflow: hidden;
+}
+.invalid-body{
+  background: $white;
+  height: 100vh;
+  overflow: hidden;
+}
+.invalid-box-title{
+  background-color: #F0F0F0;
+  border-radius: 5px;
+  border: solid 1px black;
+  width: 323px;
+  position: absolute;
+  left: -174px;
+  padding: 10px;
+  padding-bottom: 50px;
+  text-align: left;
+}
+.invalid-box-body{
+  background-color: #F0F0F0;
+  border: solid 1px black;
+  width: 323px;
+  position: absolute;
+  top: 73px;
+  left: -174px;
+  padding: 10px;
+  text-align: left;
+}
+.invalid-box-btn{
+  background-color: #F0F0F0;
+  border-radius: 0 0 5px 5px;
+  border: solid 1px black;
+  top: 133px;
+  width: 323px;
+  height: 102px;
+  position: absolute;
+  left: -174px;
+  padding: 10px;
+  text-align: left;
+}
+/* Invalid QR End*/

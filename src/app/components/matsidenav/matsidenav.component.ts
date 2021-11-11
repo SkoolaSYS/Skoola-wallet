@@ -18,6 +18,7 @@ export class MatsidenavComponent implements OnInit {
   public bankData: boolean;
   public allowWithdrawal: boolean;
   public bankLoadData: boolean;
+  public isMerchant:boolean;
   @ViewChild('sidenav') public sidenav:MatSidenav;
  
 
@@ -30,6 +31,7 @@ export class MatsidenavComponent implements OnInit {
     this.services.getProfileData().subscribe(async (res: any) => {
       const currentUser: any = await this.services.currentUser;
       this.allowWithdrawal = currentUser.allowWithdrawal;
+      this.isMerchant = currentUser.merchant;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
       this.bankLoadData = currentUser.bankLoad;
 

@@ -19,18 +19,16 @@
         <div class="container-fluid p-0">
           <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9">
-              <div class="id-dashboardheader">
-                <!-- Dashboard Header Start -->
+              <div class="dashboard-header-box">
                 <app-dashboard-header></app-dashboard-header>
-                <!-- Dashboard Header End -->
               </div>
             </div>
           </div>
   
           <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9">
-              <div class="tp-contentbox">
-                <div class="id-body">
+              <div class="dashboard-content-box pb-5">
+                <!-- <div class="id-body">
                   <div class="container-fluid p-0 menu-grid">
                     <div class="modal-title text-center mt-2 mb-2">
                        Topup Amount
@@ -39,12 +37,52 @@
                         <input class="d8p-input-form d8p-input-normal min-height-60"
                           name="amountTopup" id="amountTopup" placeholder="eg: 10" [(ngModel)]="amountTopup">
                       </div>
+                  </div>  -->
+                  <div class="container-fluid quicklinkbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              TOPUP
+                            </div>
+                          </div>
+                          <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                            <div class="col-3 flex-align-center flex-column border-right-white mt-3">
+                              <div class="height-60 text-center"><img class="max-width-60"
+                                  src="assets/icons-img/topup1.png" /></div>
+                            </div>
+                            <div class="briefDescription col-9 pl-3">
+                              Topup the amount needed for your D-8P e-wallet.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            Amount (RM)
+                          </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <input class="d8p-form d8p-input-normal min-height-60"
+                              name="amountTopup" id="amountTopup" placeholder="eg: 10" [(ngModel)]="amountTopup">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+              
                   <!-- Confirmation -->
                   <div class="row no-gutters justify-content-center">
                   <div class="row no-gutters justify-content-center">
                       <div class="col-12">
-                        <div class="button-container text-center mt-2" style="height: 120px;">
+                        <div class="button-container text-center mt-2" style="height: 15rem;">
                           <button class="d8p-btn-default mt-3" id="btnConfirm" (click)="confirm()">
                             <div class="--text">Confirm</div>
                             <div class="--icon"><img class="p-1 max-width-30-px"
@@ -57,7 +95,7 @@
                     
   
   
-                </div>
+                <!-- </div> -->
               </div>
             </div>
           </div>

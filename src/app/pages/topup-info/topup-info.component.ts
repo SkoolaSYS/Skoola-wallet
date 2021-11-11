@@ -15,13 +15,15 @@ export class TopupInfoComponent implements OnInit {
   amount:any
   receiverName:any
   merchantName:any
+  isMerchant:boolean;
   memberId
   constructor(private services:Services, private router: Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant
     if (!currentUser.merchant){
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['invalid-qr-link']);
     }
     this.amount = this.router.url.split("?")[1].split("=")[2];
     this.services.loadById(this.router.url.split("?")[1].split("=")[1].split("&")[0]).subscribe((res: any) => {

@@ -53,6 +53,8 @@ export class DashboardComponent implements OnInit {
       }else{
         this.router.navigate(['add-bank']);
         }
+    }else{
+      this.router.navigate(['topup-amount']);
     }
   }
   async doBankLoad(): Promise<void> {

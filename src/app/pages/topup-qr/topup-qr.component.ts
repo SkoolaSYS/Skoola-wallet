@@ -13,7 +13,7 @@ export class TopupQrComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
-    this.href = "https://192.168.101.30:4200/#/topup-info?id="+currentUser.id.toString()+"&amount="+this.services.amountTopup
+    this.href = "https://192.168.101.5:4200/#/topup-info?id="+currentUser.id.toString()+"&amount="+this.services.amountTopup
     
   }
 

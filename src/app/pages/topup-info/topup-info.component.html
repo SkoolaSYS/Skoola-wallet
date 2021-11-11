@@ -19,17 +19,22 @@
         <div class="container-fluid p-0">
           <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9">
-              <div class="id-dashboardheader">
-                <!-- Dashboard Header Start -->
+              <div class="dashboard-header-box" *ngIf="!isMerchant">
                 <app-dashboard-header></app-dashboard-header>
-                <!-- Dashboard Header End -->
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box" *ngIf="isMerchant">
+                <app-split-header></app-split-header>
               </div>
             </div>
           </div>
   
           <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9">
-              <div class="id-contentbox">
+              <div class="tp-contentbox">
                 <div class="id-body">
                   <div class="container-fluid p-0 menu-grid">
                     <div class="modal-title text-center mt-2 mb-2">
@@ -39,20 +44,13 @@
                         Recipient's Name
                       </div>
                       <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                        <!-- nama penerima -->
-                        <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
-                          <!-- to do ( show the merchant name )-->
-                           <body class="col-10" style="text-align: center;">
-                            <h1 class="d8p-form d8p-input-normal w-100 text-transform-uppercase" readonly type="text" style="color:rgb(1, 1, 2);font-size:23px;font-family:'sans-serif'">{{merchantName}}</h1>
-                           </body>
-                      </div>
+                        <input class="d8p-input-form d8p-input-normal" type="text" [(ngModel)]="merchantName" readonly required/>
                       </div>
                       <div class="text-center mt-2 mb-2">
                         Amount Topup
                       </div>
                       <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                        <!-- amount topup -->
-                              <input class="d8p-form d8p-input-normal" placeholder="Ex: 100" type="number" name="transfer-amount" [(ngModel)]="amount" required/>
+                        <input class="d8p-input-form d8p-input-normal" type="number" name="transfer-amount" [(ngModel)]="amount" readonly required/>
                       </div>
                   </div>
                   <!-- Confirmation -->

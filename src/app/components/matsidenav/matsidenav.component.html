@@ -19,11 +19,10 @@
         <div class="navItem text-center" mat-list-item *ngIf="isNotIdVerified" routerLink="/id-verification">National/Government ID</div>
         <div class="navItem text-center" mat-list-item *ngIf="!bankData && allowWithdrawal" routerLink="/add-bank">Add Bank Withdraw</div>
         <div class="navItem text-center" mat-list-item *ngIf="bankData && allowWithdrawal" routerLink="/update-bank">Update Bank Withdraw</div>
-        <div class="navItem text-center" mat-list-item *ngIf="!bankLoadData" routerLink="/add-bank-load">Topup by Bank</div>
-        <div class="navItem text-center" mat-list-item routerLink="/topup-amount">Topup by Merchant</div>
+        <div class="navItem text-center" mat-list-item *ngIf="!bankLoadData" routerLink="/add-bank-load">Add Bank Load</div>
         <div class="navItem text-center" mat-list-item *ngIf="bankLoadData" routerLink="/update-bank-load">Update Bank Load</div>
+        <div class="navItem text-center" mat-list-item *ngIf="!isMerchant" routerLink="/topup-amount">Topup by Merchant</div>
+        <div class="navItem text-center" mat-list-item *ngIf="isMerchant" routerLink="/qr-code">Scan QR Topup</div>
         <div class="navItem text-center" mat-list-item *ngIf="requestCard" routerLink="/card-request"><small></small>Request D-8P Card</div>
         <div class="navItem text-center" mat-list-item routerLink="/recent-transactions">Recent Transactions</div>
         <div class="navItem text-center" mat-list-item (click)="logout()">Logout</div>
-   
-

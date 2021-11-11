@@ -39,3 +39,4 @@ export * from './mini-dashboard-header/mini-dashboard-header.component';
 export * from './topup-amount/topup-amount.component';
 export * from './topup-qr/topup-qr.component';
 export * from './topup-info/topup-info.component';
+export * from './invalid-qr-link/invalid-qr-link.component';

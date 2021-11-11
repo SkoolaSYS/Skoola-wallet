@@ -69,7 +69,8 @@ import {
   MiniDashboardHeaderComponent,
   TopupAmountComponent,
   TopupInfoComponent,
-  TopupQrComponent
+  TopupQrComponent,
+  InvalidQrLinkComponent,
 } from './pages';
 
 import {
@@ -170,6 +171,7 @@ export class SafeUrlPipe implements PipeTransform {
     TopupAmountComponent,
     TopupQrComponent,
     TopupInfoComponent,
+    InvalidQrLinkComponent,
 
     // components
     DashboardHeaderComponent,
@@ -206,7 +208,6 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadHelperComponent,
     AlertDialogComponent,
     BankloadCaptchaComponent,
-    SplitHeaderComponent,
 
   ],
   imports: [

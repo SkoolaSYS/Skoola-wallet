@@ -44,6 +44,7 @@ import {
   TopupAmountComponent,
   TopupQrComponent,
   TopupInfoComponent,
+  InvalidQrLinkComponent,
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
@@ -243,6 +244,10 @@ export const routes: Routes = [
 },
 {
   path: 'topup-info', component: TopupInfoComponent,
+  canActivate: [AuthenticationGuard]
+},
+{
+  path: 'invalid-qr-link', component: InvalidQrLinkComponent,
   canActivate: [AuthenticationGuard]
 },
  { path: '**', component: LoginComponent }

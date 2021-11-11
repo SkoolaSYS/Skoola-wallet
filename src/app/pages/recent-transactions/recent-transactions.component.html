@@ -42,12 +42,16 @@
                     <div class="upload-part">
                       <div class="row no-gutters">
                         <div class="col-2 recentIcon">
-                          <img class="iconImg" *ngIf="trxlist.transferType.id==29"
+                          <img class="iconImg" *ngIf="trxlist.transferType.id=='29'"
                             src="assets/icons-img/transfer-colored@2x.png" />
-                          <img class="iconImg" *ngIf="trxlist.transferType.id==14"
+                          <img class="iconImg" *ngIf="trxlist.transferType.id=='14'"
                             src="assets/icons-img/bankload-colored@3x.png" />
-                          <img class="iconImg" *ngIf="trxlist.transferType.id==32"
+                          <img class="iconImg" *ngIf="trxlist.transferType.id=='32'"
                             src="assets/icons-img/qr-login.png" />
+                          <img class="iconImg" *ngIf="trxlist.transferType.id=='33'"
+                            src="assets/icons-img/topup2.png" />
+                          <img class="iconImg" *ngIf="trxlist.transferType.id=='34'"
+                            src="assets/icons-img/e-wallet-icon.png" />
                         </div>
                         <div class="col-8 recentDesc">
                           <div class="d8p-normal-text font-weight-bold color-black">{{trxlist.transferType.name}}</div>
