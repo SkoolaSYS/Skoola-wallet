@@ -20,6 +20,7 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
   goldFraction: any;  // accumulated gold amount
   counter:number;
   condition: any;
+  topupBalance:any;
   constructor(private service: Services,private router:Router) { }
 
   async ngOnInit():Promise <void> {
@@ -61,7 +62,7 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
-
+      this.topupBalance = res[0].status.topupBalance;
       const sumGoldParts = res[0].gold.sumGoldAmount.toFixed(5).toString().split(".");
       this.goldWhole = sumGoldParts[0];
       this.goldFraction = sumGoldParts[1];
