@@ -192,13 +192,14 @@ export class SignupComponent implements OnInit {
           this.spinner.hide();
           this.router.navigate(['../acknowledgement-page']);
         }).catch((err) => {
+          this.spinner.hide();
             this.errorObj = this.errorMessage.find(error=>error.field === err.error.field);
             this.ngPopups.alert(this.errorObj.reason,{theme:'material',title:'Oops...'});
           });
           }
       }
     }else{
-      this.spinner.show();
+      this.spinner.hide();
       this.ngPopups.alert("Email invalid",{theme:'material',title:'Oops...'});
     }
   }

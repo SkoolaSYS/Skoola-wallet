@@ -159,6 +159,7 @@ export class IdVerificationComponent implements OnInit {
       this.router.navigate(['dashboard']);
     })
     .catch((err) => {
+      this.spinner.hide();
       this.ngPopups.alert('There was an error in your submission!',{theme: 'material', title: 'Oops...'});
     });    
   }

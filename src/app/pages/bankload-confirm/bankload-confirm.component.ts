@@ -44,6 +44,7 @@ export class BankloadConfirmComponent implements OnInit {
         const ref = res["result"]["bankReference"];
         statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
       } else {
+        this.spinner.hide();
         statusMessage = "There was an error processing your request. Please try again.";
       }
 
@@ -61,7 +62,7 @@ export class BankloadConfirmComponent implements OnInit {
     catch (e) {
       console.log(e);
       
-      this.spinner.show();
+      // this.spinner.show();
       await this.botService.doLogout();
       this.spinner.hide();
 
