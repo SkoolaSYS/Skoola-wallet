@@ -5,6 +5,7 @@ import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Botv2Service } from 'src/app/services/botv2.service';
+import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-bankload-captcha',
@@ -14,13 +15,16 @@ import { Botv2Service } from 'src/app/services/botv2.service';
 export class BankloadCaptchaComponent implements OnInit {
   captchaImage: string;
   captchaText: string;
+  isMerchant: boolean;
 
   constructor(private botService: Botv2Service, private router: Router, 
-    private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
+    private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private service:Services, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.spinner.hide();
     this.captchaImage = this.botService.bankLoad.captchaImage;
+    const currentUser: any = await this.service.currentUser;
+    this.isMerchant = currentUser.merchant;
   }
 
   async submit() {    

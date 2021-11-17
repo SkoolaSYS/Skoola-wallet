@@ -19,6 +19,7 @@ export class TransferComponent implements OnInit {
   public transferForm: any = {};
   public imageSrc: any = "assets/icons-img/user-dp.png";
   public isNotIdVerified: boolean = false;
+  isMerchant:boolean;
 
   constructor(
     private service: Services, 
@@ -27,8 +28,10 @@ export class TransferComponent implements OnInit {
     private services:Services,
     private spinner: NgxSpinnerService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
+    async ngOnInit(): Promise<void>  {
     this.spinner.hide();
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant;
     this.service.forms.transferForm = this.transferForm;
     this.service.opsTagging = 'transfer';
     this.service.getMemberList().subscribe((res: any) => {
@@ -42,6 +45,7 @@ export class TransferComponent implements OnInit {
     this.services.getProfileData().subscribe(async (res: any) => {
       const currentUser: any = await this.services.currentUser;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
+    this.isMerchant = currentUser.merchant;
     },
     (err) => {
       console.log(err);

@@ -24,11 +24,15 @@ export class WithdrawComponent implements OnInit {
   withdrawAmountWithCharge:number;
   withdrawalDesc: string;
   response:any;
+  isMerchant: boolean;
 
   constructor(private service:Services, private router: Router, private ngPopups: NgPopupsService, private botServiceV2: Botv2Service, private spinner: NgxSpinnerService, private dialog: MatDialog) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void>{
+    const currentUser: any = await this.service.currentUser;
+    this.isMerchant = currentUser.merchant;
+
     this.service.getMemberBankData().subscribe((res: any)=>{
       this.bankData = res;
       this.bankAccName = this.bankData.bankAccName;

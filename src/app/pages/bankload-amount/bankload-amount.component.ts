@@ -21,7 +21,7 @@ export class BankloadAmountComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.isTopup = false
     const currentUser: any = await this.services.currentUser;
-    this.isMerchant = currentUser.merchant
+    this.isMerchant = currentUser.merchant;
     this.services.getMemberBankLoadData().subscribe((res: any) => {
       this.botService.bankLoad.fromBank = getBankFlow(res["id"].toString());
       this.botService.bankLoad.fromAccount = res["bankAccNumber"];

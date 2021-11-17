@@ -5,6 +5,7 @@ import { Botv2Service } from 'src/app/services/botv2.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
+import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-bankload-confirm',
@@ -13,12 +14,15 @@ import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dial
 })
 export class BankloadConfirmComponent implements OnInit {
   tac: string;
+  isMerchant:boolean;
 
   constructor(private botService: Botv2Service, private router: Router, 
-              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
+              private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog,private services: Services) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.spinner.hide();
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant;
   }
 
   async submit() {

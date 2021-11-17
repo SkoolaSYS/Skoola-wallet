@@ -38,12 +38,14 @@ export class QrPaymentComponent implements OnInit {
   amount: any;
   effectiveDate:string;
   merchantName:string;
+  isMerchant: boolean;
 
   constructor(private services: Services, private router:Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
   
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.spinner.hide();
-    console.log(this.router.url)
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant
 
     this.services.loadById(this.router.url.split("?")[1].split("=")[1]).subscribe((res: any) => {
       console.log(res);
