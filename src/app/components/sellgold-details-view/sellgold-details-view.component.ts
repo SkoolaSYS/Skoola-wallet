@@ -8,12 +8,14 @@ import { Services } from 'src/app/services/service';
 export class SellGoldDetailsViewComponent implements OnInit {
   goldPrice:string;
   goldSplit:string;
+  goldAmount:string;
 
   constructor(private services: Services) { }
 
   ngOnInit(): void {
+    this.goldAmount = this.services.sellGold.goldAmount
     this.goldPrice = this.services.sellGold.goldPrice
-    this.goldSplit = this.services.sellGold.goldSplit
+    this.goldSplit = this.services.sellGold.goldSplit.toFixed(5)
   }
 
 }

@@ -484,7 +484,6 @@
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: $s-10;
   background: linear-gradient(0deg, #d7d8d8 0%, #ffffff 100%);
-  text-align: center;
   padding: 0 1.5rem;
   width: 100%;
   min-height: 50px;
@@ -899,6 +898,11 @@ form i {
   border-radius: 10px;
   font-size: $s-17;
 }
+.btn-avg-gold{
+  font-size: $s-17;
+  border: none;
+  outline: none;
+}
 .greenbg-height-240 {
   min-height: 240px;
   @media screen and (min-width: 768px) {
@@ -917,6 +921,19 @@ form i {
   @media screen and (min-width: 768px) {
     min-height: 300px;
   }
+}
+.buygoldbg-height {
+  background: linear-gradient(0deg, #428185 0%, #67ced1 100%);
+  min-height: 50px;
+  margin-top: 0.35rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.buygold-box{
+  position: absolute;
+  top: 49%;
+  margin-left: 95px;
+  margin-right: 95px;
 }
 .gold-infoicon {
   max-width: 60%;
@@ -1597,7 +1614,6 @@ table, tr, td{
   box-shadow: 0 8px 20px -6px rgba(black, .3);
   border-radius: 10px;
   transition: all .1s ease;
-  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;

@@ -34,8 +34,10 @@
                     Recent Transactions
                   </div>
                   <div *ngFor="let trxlist of transactionList">
-
-                    <div class="text-center mt-2 mb-2">
+                    <div class="text-center mt-2 mb-2" *ngIf="trxlist.transferType.id=='35'">
+                      {{trxlist.processDate | date}}
+                    </div>
+                    <div class="text-center mt-2 mb-2" *ngIf="trxlist.transferType.id!='35'">
                       {{trxlist.date | date}}
                     </div>
 
@@ -59,7 +61,9 @@
                           <div class="d8p-normal-text overflow-dots">Ref: {{ trxlist.description }}</div>
                         </div>
                         <div class="col-2 recentTime">
-                          <div class="d8p-normal-text">{{trxlist.date |
+                          <div class="d8p-normal-text" *ngIf="trxlist.transferType.id=='35'">{{trxlist.processDate |
+                            date:"h:mm a"}}</div>
+                          <div class="d8p-normal-text" *ngIf="trxlist.transferType.id!='35'">{{trxlist.date |
                             date:"h:mm a"}}</div>
                         </div>
                       </div>

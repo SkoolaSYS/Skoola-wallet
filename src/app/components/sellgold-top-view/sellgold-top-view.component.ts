@@ -17,7 +17,7 @@ export class SellgoldTopViewComponent implements OnInit {
   @Input() amount: string;
   ngOnInit(): void {
     this.goldPrice = this.services.sellGold.goldPrice
-    this.goldSplit = this.services.sellGold.goldSplit
+    this.goldSplit = this.services.sellGold.goldSplit.toFixed(5)
     this.feeCharge = this.services.sellGold.feeCharge
     this.goldAmount = this.services.sellGold.goldAmount
   }

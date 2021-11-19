@@ -34,7 +34,7 @@
             <div class="col-12 col-xl-9">
               <div class="dashboard-content-box pb-5">
                   <!-- Quick links -->
-              <div class="container-fluid quicklinkbg sellgoldbg-height">
+              <div class="container-fluid buygoldbg-height">
                 <div class="row no-gutters">
                   <div class="col-12">
                     <div class="container-fluid p-0 menu-grid">
@@ -68,7 +68,7 @@
                                 <div class="p-1 border-bottom-white">
                                   AVG 1 g =
                                 </div>
-                                <div class="p-1"><small> RM 190.00</small></div>
+                                <div class="p-1"><small> RM {{goldAverage}}</small></div>
                               </div>
                             </div>
                           </div>
@@ -88,20 +88,21 @@
           </div>
         <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9 titlebg">Gold To Purchase</div>
-                <div class="height-80 text-center">
+              <div class="height-80 text-center">
                     <img
                         class="max-width-100"
                         src="assets/icons-img/bgGoldToPurchase.png"
                     />
+                
+              <div class="buygold-box">
+                <div class="d8p-h6 font-arial">
+                  {{goldAmount}} g D-8P GOLD
                 </div>
-            <div class="col-9">
-        <div class="d8p-h6 font-arial">
-              {{goldAmount}} g D-8P GOLD
+                <div class="d8p-h6 font-arial color-cyan">
+                  RM {{goldPrice}} | 999.9 | {{sign}} AVG
+                </div>
+              </div>
             </div>
-            <div class="d8p-h6 font-arial color-cyan">
-              RM {{goldPrice}} | 999.9 | < AVG
-            </div>
-          </div>
         </div>
 <!-- Reference -->
 <div class="container-fluid">
@@ -116,7 +117,7 @@
         >
           <div class="col-10 col-xl-4">
             <input
-              class="d8p-input-normal w-100"
+              class="d8p-form d8p-input-normal w-100"
               placeholder="Ex: Monday Listing"
               type="text"
               name="reference number"

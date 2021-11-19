@@ -57,36 +57,9 @@ export class BuygoldComponent implements OnInit {
       }
     });
   
-    // await this.services.calAvgGold().subscribe((res: any) => {
-    //   this.goldAverage = res.goldAverage.toFixed(2).toString().split(".");
-    //   if(this.average > this.goldAverage){
-    //     this.sign = ">";
-    //   }
-    //   else if(this.average < this.goldAverage){
-    //     this.sign = "<";
-    //   }
-    //   else{
-    //     this.sign = "=";
-    //   }
-    //   console.log(this.average);
-    // })
-    //console.log(this.goldAverage);
-    //console.log(this.data[0].average.value);
-    //this.average = Math.round(this.goldPrice/this.goldAmount);
-    // console.log(this.services.calAvgGold);
-    // if(this.average >= this.goldAverage){
-    //   this.sign = ">";
-    // }
-    // else if(this.average <= this.goldAverage){
-    //   this.sign = "<";
-    // }
-    // else{
-    //   this.sign = "=";
-    // }
   }
   clickButton(value: number){
-    //this.chosenGold = this.data.find(x => x.goldId === value);
-    console.log(value);
+    
     this.router.navigate(['gold-to-purchase'], { queryParams: { value: value} });
   }
 
@@ -96,10 +69,22 @@ export class BuygoldComponent implements OnInit {
       console.log(this.sellGoldData);
       this.data= [];
         for(var i = 0; i< this.sellGoldData.amount.length; i++){
+
+          this.average = Math.round(this.sellGoldData.price[i]/this.sellGoldData.amount[i])
+          if(this.average > this.goldAverage){
+            this.sign = ">";
+          }
+          else if(this.average < this.goldAverage){
+            this.sign = "<";
+          }
+          else{
+            this.sign = "=";
+        }
         this.data.push([{
           goldAmount : this.sellGoldData.amount[i],
           goldPrice : this.sellGoldData.price[i],
           goldId : this.sellGoldData.goldID[i],
+          sign : this.sign
         }]);
         }
       });

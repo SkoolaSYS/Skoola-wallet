@@ -20,7 +20,7 @@ export class BuygoldTopViewComponent implements OnInit {
     this.goldPrice = this.services.buyGold.goldPrice;
     this.feeCharge = this.services.buyGold.feeCharge;
     this.goldAmount = this.services.buyGold.goldAmount;
-    this.goldSplit = this.services.buyGold.goldSplit;
+    this.goldSplit = this.services.buyGold.goldSplit.toFixed(5);
   }
 
 }
