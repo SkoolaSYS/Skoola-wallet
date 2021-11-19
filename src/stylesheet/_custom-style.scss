@@ -2026,10 +2026,10 @@ table, tr, td{
 .dashboard-bell-badge {
   font-size: 15px;
   position: absolute;
-  top: 6px;
-  right: -10px;
-  width: 25px;
-  height: 25px;
+  top: 7px;
+  right: 1px;
+  width: 20px;
+  height: 20px;
   background: red;
   color: #ffffff;
   display: flex;
@@ -2534,7 +2534,7 @@ input[type="checkbox"]:checked ~ label .middle {
   margin:20px;
 }
 .opacity-3{
-  opacity: 30%;
+  opacity: 0.3;
 }
 /* dashboard header (Zul) */
 /* Recent Transaction Start */
