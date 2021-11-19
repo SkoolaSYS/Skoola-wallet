@@ -39,36 +39,37 @@
       <div class="d8p-normal-text text-center mt-3 text-secondary">
         D8-P Acc. No.: {{ cardNumber }}
       </div>
-      <div class="ewallet-acc">
-        <div class="split-text-white">
-          <div class="d8p-h6-white">
-            {{ currencyType }}
-            <span class="font-weight-bold">{{
-              totalBalance | number: '1.2-2'
-              }}</span>
-            </div>
-          e-Wallet Acc
-        </div>
-      </div>
-      <div class="split-sale-topup">
-        <div class="split-text-grey">
-          <div class="d8p-h6-black">
+      <!-- <div style="display: flex; margin-left: 20px; position: fixed;">
+        <div class="d8p-normal-text text-center mt-3 mr-2 text-secondary">
+          <div class="d8p-h4 text-center">
             {{ currencyType }}
             <span class="font-weight-bold">{{
               currentBalance | number: '1.2-2'
               }}</span>
           </div>
-          Sales
+          e-Wallet Acc
         </div>
-        <div class="border-right-grey"></div>
-        <div class="split-text-grey">
-          <div class="d8p-h6-black">
+      </div> -->
+      <div style="display: flex; margin-left: 30px; position: fixed;">
+        <div class="d8p-normal-text text-center mt-3 mr-2 text-secondary">
+          Sales
+          <div class="d8p-h4 text-center">
+            {{ currencyType }}
+            <span class="font-weight-bold">{{
+              currentBalance | number: '1.2-2'
+              }}</span>
+          </div>
+          
+        </div>
+        <div class="d8p-normal-text text-center mt-3 ml-2 text-secondary">
+          Topup
+          <div class="d8p-h4 text-center">
             {{ currencyType }}
             <span class="font-weight-bold">{{
               topupBalance | number: '1.2-2'
               }}</span>
           </div>
-          Topup
+          
         </div>
       </div>
       <div class="dashboard-gold-box" *ngIf="activetransaction==true">
