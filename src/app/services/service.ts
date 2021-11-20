@@ -567,7 +567,7 @@ export class Services {
             })
         };  
         return this.http.get('/rest/members/calAvgGold',headerOptions).pipe(tap (res => {
-            console.log(res);
+            //console.log(res);
              this.averageGold = res;
         },
         (err) => {
@@ -598,7 +598,7 @@ export class Services {
 
     //sell-gold-details 
     public sellGoldDetails(data:any){
-        console.log(data);
+       // console.log(data);
         const headerOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -656,7 +656,7 @@ export class Services {
 
     //buy-gold-details 
     public buyGoldDetails(data:any){
-        console.log(data);
+        //console.log(data);
         const headerOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',

@@ -19,44 +19,48 @@ export class BuygoldComponent implements OnInit {
   goldAvg:number;
   sign: any;
   average: number;
-  
+  isMerchant:boolean;
 
   constructor(private services:Services, private ngPopups: NgPopupsService, private router:Router) { 
    
   }
 
   async ngOnInit(): Promise<void> {
-  this.services.calAvgGold().subscribe((res: any) => {
-   this.goldAverage = res.goldAverage.toFixed(2).toString();
-  // this.goldAverage = 100;
-  })
-  this.order = false;
-  this.services.getSellGoldData(false).subscribe((res: any) => {
-    this.sellGoldData = res;
-    console.log(this.sellGoldData);
-   
-    for(var i = 0; i< this.sellGoldData.amount.length; i++){
-      
-      this.average = Math.round(this.sellGoldData.price[i]/this.sellGoldData.amount[i])
-      if(this.average > this.goldAverage){
-        this.sign = ">";
-      }
-      else if(this.average < this.goldAverage){
-        this.sign = "<";
-      }
-      else{
-        this.sign = "=";
-      } 
-      this.data.push([{
-        goldAmount : this.sellGoldData.amount[i],
-        goldPrice : this.sellGoldData.price[i],
-        goldId : this.sellGoldData.goldID[i],
-        sign : this.sign
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant;
+    this.services.calAvgGold().subscribe((res: any) => {
+    this.goldAverage = res.goldAverage.toFixed(2).toString();
+    // this.goldAverage = 100;
+    })
+    this.order = false;
+    this.services.getSellGoldData(false).subscribe((res: any) => {
+      this.sellGoldData = res;
+      try{
+        for(var i = 0; i< this.sellGoldData.amount.length; i++){
+          
+          this.average = Math.round(this.sellGoldData.price[i]/this.sellGoldData.amount[i])
+          if(this.average > this.goldAverage){
+            this.sign = ">";
+          }
+          else if(this.average < this.goldAverage){
+            this.sign = "<";
+          }
+          else{
+            this.sign = "=";
+          } 
+          this.data.push([{
+            goldAmount : this.sellGoldData.amount[i],
+            goldPrice : this.sellGoldData.price[i],
+            goldId : this.sellGoldData.goldID[i],
+            sign : this.sign
+            
+          }])    
+          }
+      }catch(e){
         
-      }])    
-      }
+        }
     });
-  
+    
   }
   clickButton(value: number){
     
@@ -66,7 +70,6 @@ export class BuygoldComponent implements OnInit {
   sort(order: boolean) {
     this.services.getSellGoldData(order).subscribe((res: any) => {
       this.sellGoldData = res;
-      console.log(this.sellGoldData);
       this.data= [];
         for(var i = 0; i< this.sellGoldData.amount.length; i++){
 

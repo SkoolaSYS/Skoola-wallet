@@ -20,10 +20,12 @@ export class SellgoldComponent implements OnInit {
   totalValue: number;
   sumGold: number;
   amountBalance;
+  isMerchant:boolean;
   constructor(private services:Services, private router:Router, private ngPopups: NgPopupsService) { }
 
-  ngOnInit(): void {
-    
+  async ngOnInit(): Promise<void> {
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant;
     this.dateGold = Utility.formatDate(new Date());
     this.services.calAvgGold().subscribe((res: any) => {
       this.goldAverage = res.goldAverage.toFixed(2).toString().split(".");

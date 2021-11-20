@@ -29,7 +29,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       let obj;
       try {
         obj = JSON.parse(data);
-        console.log("counter:", obj.counter);
+        //console.log("counter:", obj.counter);
 
         // update notification badge
         this.service.counter = obj.counter;
@@ -116,7 +116,6 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   }
 
   tab1(): void{
-    console.log(true)
     var content1 = document.getElementById('content1');
     var content3 = document.getElementById('content3');
     var btn1 = document.getElementById('btn1');
