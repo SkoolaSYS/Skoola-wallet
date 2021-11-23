@@ -1,39 +1,37 @@
 <div>
-    <!-- <button
-      class="d8p-handburger"
-      mat-icon-button
-      (click)="sidenav.toggle()"
-      fxShow="true"
-      fxHide.gt-sm
-    >
-      <mat-icon>menu</mat-icon>
-    </button> -->
-    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
-    <label class="handburger" for="myInput">
-            <span class="bar top"></span>
-            <span class="bar middle"></span>
-            <span class="bar bottom"></span>
-    </label>
-    <!-- Nav block - start -->
-    <mat-sidenav-container>
-      <mat-sidenav #sidenav mode="over" position="end">
-        <app-matsidenav></app-matsidenav>
-      </mat-sidenav>
-      <!-- Nav block - end -->
-      <mat-sidenav-content fxFlexFill>
-        <div class="container-fluid p-0">
-          <div class="row no-gutters justify-content-center">
-            <div class="col-12 col-xl-9">
-              <div class="dashboard-header-box">
-                <app-dashboard-header></app-dashboard-header>
-              </div>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+      <app-matsidenav></app-matsidenav>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box" *ngIf="!isMerchant">
+              <app-dashboard-header></app-dashboard-header>
             </div>
           </div>
-  
-          <div class="row no-gutters justify-content-center">
-            <div class="col-12 col-xl-9">
-              <div class="dashboard-content-box pb-5">
-                  <!-- Quick links -->
+        </div>
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box" *ngIf="isMerchant">
+              <app-split-header></app-split-header>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box pb-5">
+              <!-- Quick links -->
               <div class="container-fluid buygoldbg-height">
                 <div class="row no-gutters">
                   <div class="col-12">
