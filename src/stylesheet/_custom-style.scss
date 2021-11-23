@@ -45,6 +45,11 @@
   color: $darkTextGrey2;
   margin: 0;
 }
+.d8p-radiobttn-text-disabled{
+  font: normal $s-13 $ff-font;
+  color: $lightGrey;
+  margin: 0;
+}
 .d8p-showpasswd-text{
   font: normal $s-13 $ff-font;
   color: $darkTextGrey2;
@@ -61,6 +66,11 @@
 .d8p-smaller-text {
   font: normal $s-10 $ff-font;
   color: $darkTextGrey2;
+  margin: 0;
+}
+.d8p-smaller-text-disabled {
+  font: normal $s-10 $ff-font;
+  color: $lightGrey;
   margin: 0;
 }
 .font-arial {
@@ -698,13 +708,6 @@ form i {
   top: 0.7rem
 }
 
-// .input-group{
-//   font-size: 15px;
-//   font-family: $ff-font;
-//   color:#cac9c9;
-//   margin-top: 0.5rem;
-// }
-
 .group-input-border-radius {
   input {
     border-radius: 10px;
@@ -1027,7 +1030,7 @@ form i {
   }
 }
 .dashboard-content-box {
-  padding-top: 17.5rem;
+  padding-top: 17.75rem;
   background: $white;
   @media screen and (min-width: 768px) {
     padding-top: 22rem;
@@ -1340,22 +1343,6 @@ mat-sidenav{
      color:#cac9c9;
      margin-top: 0.5rem;
 }
-
-/*Customize Mat-Radio-Button*/
-// .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element { 
-//    /*click effect color change*/
-//   background-color: rgb(151, 151, 151) !important;
-// }
-
-// .mat-radio-button.mat-accent .mat-radio-inner-circle {
-//   background-color:rgb(151, 151, 151) !important;   /*inner circle color change*/
-// }
-
-// .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-//  border-color:rgb(151, 151, 151) !important;/*outer ring color change*/
-// }
-//
-/*Customize Radio Button Start*/
 .radioContainer{
   display: inline-flex;
   align-items: center;
@@ -1386,6 +1373,15 @@ mat-sidenav{
 }
 .radioBtnInput:checked + .radioCustom::after{
   transform: scale(1);
+}
+.radioCustom-disabled{
+  height: 1.25rem;
+  width: 1.25rem;
+  border: 2px solid $lightGrey;
+  border-radius: 50%;
+  margin-right: $s-15;
+  box-sizing: border-box;
+  padding: 3px;
 }
 //
 
@@ -1605,6 +1601,7 @@ table, tr, td{
 /* Custom Button Start */
 .d8p-btn-default{
   position: relative;
+  display: flex;
   height: 50.8px;
   width: 190px ;
   text-decoration: none;
@@ -1617,7 +1614,6 @@ table, tr, td{
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
   .--icon{
     position: relative;
     width: 40px;
@@ -1910,7 +1906,7 @@ table, tr, td{
   @media screen and (min-width: 770px) and (max-width: 1400px) {
     .gram-txt{
       left: 4.25rem;
-      top: 41px; 
+      top: 40px; 
     }
   }
 
@@ -1953,7 +1949,7 @@ table, tr, td{
   @media screen and (min-width: 770px) and (max-width: 1400px) {
     .white-line{
       width: 140px;
-      top: 70px;
+      top: 62px;
     }
   }
 .goldWhole{
@@ -1962,6 +1958,7 @@ table, tr, td{
   color: $white;
   width: 57px;
   margin-top: -10px;
+  padding-top: 0.5rem;
 }
 @media screen and (min-width: 576px) and (max-width: 769px) {
   .goldWhole{
@@ -1971,6 +1968,12 @@ table, tr, td{
 @media screen and (min-width: 770px) and (max-width: 1400px) {
   .goldWhole{
     font: 1.5rem $ff-font;
+  }
+}
+@media screen and (min-width: 770px) and (max-width: 1400px) {
+  .goldWhole{
+    font: 1.5rem $ff-font;
+    padding-top: 0;
   }
 }
 .goldFraction{
@@ -2024,6 +2027,11 @@ table, tr, td{
   border: none;
   outline: none;
 }
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 2) {  
+  .dashboard-bell{  
+     margin-left: 0;
+   }
+ }
 @media screen and (min-width: 576px) and (max-width: 769px) {
   .dashboard-bell{
     font-size: 58px;
@@ -2052,6 +2060,11 @@ table, tr, td{
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+}
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 2) {  
+ .dashboard-bell-badge{  
+    right: 15px;
+  }
 }
 @media screen and (min-width: 576px) and (max-width: 769px) {
   .dashboard-bell-badge{
