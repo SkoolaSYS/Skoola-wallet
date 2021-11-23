@@ -521,12 +521,11 @@ export class Services {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: 'Basic a29tZXBzYm90OjEyMzQ1Ng==',  // FIXME: Must remove from here urgently!
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
             })
         };
         console.log(data);
-        return this.http.post('/rest/members/signupUser', data , headerOptions).pipe(tap (data => {            
+        return this.http.post('/rest/public/signupUser', data , headerOptions).pipe(tap (data => {            
             console.log(data);
             
         },
@@ -724,4 +723,18 @@ export class Services {
             console.log(err);
         }));;
     }
+
+    public getBotAuthorization(){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+        
+        return this.http.get('/rest/access/bot', headerOptions).toPromise();
+    }
+
 }

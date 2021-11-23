@@ -19,9 +19,11 @@ export class BankloadAmountComponent implements OnInit {
               private spinner: NgxSpinnerService, private dialog: MatDialog) {}
 
   async ngOnInit(): Promise<void> {
+    this.spinner.hide();    
     this.isTopup = false
     const currentUser: any = await this.services.currentUser;
     this.isMerchant = currentUser.merchant;
+    
     this.services.getMemberBankLoadData().subscribe((res: any) => {
       this.botService.bankLoad.fromBank = getBankFlow(res["id"].toString());
       this.botService.bankLoad.fromAccount = res["bankAccNumber"];
@@ -71,6 +73,7 @@ export class BankloadAmountComponent implements OnInit {
       }
     )
   }
+
   topup():void{
     var topupCheckbox = <HTMLInputElement> document.getElementById("topup");
     if(topupCheckbox.checked)

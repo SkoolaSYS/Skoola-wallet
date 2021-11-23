@@ -33,6 +33,14 @@ export class BankloadUsernameComponent implements OnInit {
       
       this.spinner.show();
 
+      // get bot authorization
+      res = await this.services.getBotAuthorization();
+      console.log("getBotAuthorization:", res); 
+      if (res["auth"].length == 0)
+        throw new Error();
+
+      this.botService.botAuth = res["auth"];
+      
       if (sessionStorage.getItem("worker_id") != null) {
         this.botService.workerId = sessionStorage.getItem("worker_id");
         await this.botService.doQuit();
