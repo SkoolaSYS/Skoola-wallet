@@ -18,13 +18,16 @@ export class GoldToPurchaseComponent implements OnInit {
   average: number;
   sign: any;
   amountBalance;
+  public isMerchant:boolean;
 
   constructor(
     private services: Services,
     private router:Router,
     private ngPopups: NgPopupsService) { }
 
-  ngOnInit(): void {
+    async ngOnInit(): Promise<void>  {
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant
     this.services.calAvgGold().subscribe((res: any) => {
     this.goldAverage = res.goldAverage.toFixed(2).toString(); 
      })
