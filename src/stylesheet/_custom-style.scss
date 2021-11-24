@@ -40,6 +40,16 @@
   color: $darkTextGrey2;
   margin: 0;
 }
+.d8p-headergold-text {
+  font: normal $s-18 $ff-font;
+  color: $darkTextGrey2;
+  margin: 0;
+}
+.d8p-headergold-text-bold {
+  font: bold $s-18 $ff-font;
+  color: $darkTextGrey2;
+  margin: 0;
+}
 .d8p-radiobttn-text{
   font: normal $s-13 $ff-font;
   color: $darkTextGrey2;
@@ -934,9 +944,9 @@ form i {
 }
 .buygold-box{
   position: absolute;
-  top: 49%;
-  margin-left: 95px;
-  margin-right: 95px;
+  top: 42%;
+  margin-left: 24%;
+  width: 53%;
 }
 .gold-infoicon {
   max-width: 60%;
@@ -1195,7 +1205,7 @@ form i {
       font-family: Arial, Helvetica, sans-serif;
       font-size: $s-13;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       min-width: 128px;
       margin-right: 0.5rem;

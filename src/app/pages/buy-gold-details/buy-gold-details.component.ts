@@ -32,6 +32,7 @@ senderImg: string = "";
     }
   }
   async otpSubmit(otp: string){
+    // console.log("click icon correct");
       await this.services.buyGoldDetails({
         goldAmount: this.services.buyGold.goldAmount,
         goldPrice: this.services.buyGold.goldPrice,
