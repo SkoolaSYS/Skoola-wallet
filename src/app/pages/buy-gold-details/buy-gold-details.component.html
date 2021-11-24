@@ -1,3 +1,6 @@
-<app-buygold-top-view></app-buygold-top-view>
-<app-buygold-details-view></app-buygold-details-view>
+<app-buygold-top-view
+[sender]="currentUser?.name" [image]="senderImg ? senderImg : 'assets/icons-img/user-dp.png'">
+</app-buygold-top-view>
+<app-buygold-details-view>
+</app-buygold-details-view>
 <app-otpcard (otpSubmit)="otpSubmit($event)"></app-otpcard>

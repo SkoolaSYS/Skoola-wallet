@@ -48,19 +48,15 @@ export class SellgoldComponent implements OnInit {
           //check gold balance
           this.sumGold = parseFloat(res[0].gold.sumGoldAmount.toFixed(5));
           this.amountGold = parseFloat(this.amountGold);
-          if(this.sumGold <= this.amountGold){
-            // console.log(typeof this.amountGold);
-            // console.log(typeof this.sumGold);
+          if(this.sumGold < this.amountGold){
             this.ngPopups.alert('Your gold is not enough!');
           }
           else{
           //check amount balance
           this.amountBalance = parseFloat(this.services.currentBalance);
-            this.priceGold = parseFloat(this.priceGold)
-            if(this.amountBalance <= this.priceGold){
-              this.ngPopups.alert('Your balance is not enough!');
-              // console.log(typeof this.amountBalance);
-              // console.log(typeof this.priceGold);
+            this.priceGold = parseFloat(this.services.sellGold.feeCharge)
+            if(this.amountBalance < this.priceGold){
+              this.ngPopups.alert('The balance in your account is not sufficient to cover the transaction fee!');
             }
             else{
               this.router.navigate(['sell-gold-details']);

@@ -19,6 +19,7 @@ export class GoldToPurchaseComponent implements OnInit {
   sign: any;
   amountBalance;
   public isMerchant:boolean;
+  feeGold;
 
   constructor(
     private services: Services,
@@ -33,7 +34,6 @@ export class GoldToPurchaseComponent implements OnInit {
      })
 
     this.value = this.router.url.split("?")[1].split("=")[1];
-    console.log(this.value);
     this.services.getGoldData(this.value).subscribe((res: any) => {
       this.goldAmount = res.goldAmount;
       this.goldPrice = res.goldPrice;
@@ -54,7 +54,6 @@ export class GoldToPurchaseComponent implements OnInit {
   }
 
 async btnBuy(goldReference:string){
-  console.log(this.goldReference)
       if (this.goldReference != null, this.goldAmount != null, this.goldId != null, this.goldPrice != null){
         await this.services.buyGoldComponent({
           goldReference: goldReference,
@@ -65,13 +64,17 @@ async btnBuy(goldReference:string){
           this.services.getAccountBalance().subscribe((res:any)=>{
             this.amountBalance = parseFloat(this.services.currentBalance);
             this.goldPrice = parseFloat(this.goldPrice)
-            if(this.amountBalance <= this.goldPrice){
-              this.ngPopups.alert('Your balance is not enough!');
-              // console.log(typeof this.amountBalance);
-              // console.log(typeof this.goldPrice);
+            if(this.amountBalance < this.goldPrice){
+              this.ngPopups.alert('Your balance in your account is not enough!');
             }
             else{
-              this.router.navigate(['buy-gold-details']);
+              this.feeGold = parseFloat(this.services.buyGold.feeCharge)
+              if(this.amountBalance < (this.goldPrice + this.feeGold)) {
+                this.ngPopups.alert('The balance in your account is not sufficient to cover the transaction fee!');
+              }
+              else{
+                this.router.navigate(['buy-gold-details']);
+              }
             }
         });       
       })

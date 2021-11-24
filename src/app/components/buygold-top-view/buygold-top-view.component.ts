@@ -15,6 +15,7 @@ export class BuygoldTopViewComponent implements OnInit {
   constructor(private services: Services) { }
   @Input() sender: string;
   @Input() amount: string;
+  @Input() image: string;
   ngOnInit(): void {
 
     this.goldPrice = this.services.buyGold.goldPrice;
