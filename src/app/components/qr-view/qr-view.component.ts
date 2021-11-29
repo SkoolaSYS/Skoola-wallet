@@ -2,6 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Html5Qrcode, Html5QrcodeScanner } from 'html5-qrcode';
 import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Services } from 'src/app/services/service';
+import { Console } from 'node:console';
+import { JsonpClientBackend } from '@angular/common/http';
 @Component({
   selector: 'app-qr-view',
   templateUrl: './qr-view.component.html'
@@ -9,14 +12,17 @@ import { Router } from '@angular/router';
 export class qrViewComponent implements OnInit{
   @Input() qrview: boolean = false;
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private service:Services) {
   }
 
   ngOnInit(): void {
     let html5QrCode = new Html5Qrcode("reader");
     const qrCodeSuccessCallback = (decodedText, decodedResult) => {
       html5QrCode.stop()
-      document.location.href = decodedText
+      const data = JSON.parse(decodedText)
+      const route = data.route 
+      this.service.qrData = data
+      this.router.navigate([route])
     };
     const qrCodeErrorCallback = (errorMessage) => {
     

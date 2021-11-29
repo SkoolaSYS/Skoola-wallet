@@ -25,9 +25,9 @@ export class TopupInfoComponent implements OnInit {
     if (!currentUser.merchant){
       this.router.navigate(['invalid-qr-link']);
     }
-    this.amount = this.router.url.split("?")[1].split("=")[2];
-    this.services.loadById(this.router.url.split("?")[1].split("=")[1].split("&")[0]).subscribe((res: any) => {
-      console.log(res);
+   //this.amount = this.router.url.split("?")[1].split("=")[2];
+    this.amount = this.services.qrData.amount
+    this.services.loadById(this.services.qrData.id).subscribe((res: any) => {
       this.memberId= res.id;
       this.receiverName= res.name;
       this.merchantName= res.name;

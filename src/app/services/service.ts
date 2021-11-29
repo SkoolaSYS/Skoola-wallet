@@ -44,7 +44,7 @@ export class Services {
     public averageGold:any;
     public counter:number = 0;
     public memberId:string;
-
+    public qrData:any;
 
     headerOptions = {
         headers: new HttpHeaders({
