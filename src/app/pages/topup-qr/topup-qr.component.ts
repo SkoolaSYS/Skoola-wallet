@@ -21,7 +21,8 @@ export class TopupQrComponent implements OnInit {
       "id" : currentUser.id.toString(),
       "amount" : this.services.amountTopup
     }
-    this.href = JSON.stringify(data)
+    await this.services.encrypt({text: JSON.stringify(data)}).toPromise()
+    this.href = this.services.qrData.decryptText
   }
 
 }

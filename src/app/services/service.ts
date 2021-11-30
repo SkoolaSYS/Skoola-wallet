@@ -755,4 +755,22 @@ export class Services {
         }));;
     }
 
+    public encrypt(data:any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+
+        return this.http.post('/rest/members/encryptText', data,headerOptions).pipe(tap (data => {
+            //console.log(data);
+            this.qrData = data
+        },
+        (err) => {
+            console.log(err);
+        }));;
+    }
+
 }
