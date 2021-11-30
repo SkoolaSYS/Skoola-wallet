@@ -737,4 +737,22 @@ export class Services {
         return this.http.get('/rest/access/bot', headerOptions).toPromise();
     }
 
+    public decrypt(data:any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+
+        return this.http.post('/rest/members/decryptText', data,headerOptions).pipe(tap (data => {
+            //console.log(data);
+            this.qrData = data
+        },
+        (err) => {
+            console.log(err);
+        }));;
+    }
+
 }

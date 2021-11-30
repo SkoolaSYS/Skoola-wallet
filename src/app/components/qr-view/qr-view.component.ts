@@ -15,14 +15,13 @@ export class qrViewComponent implements OnInit{
   constructor(private router:Router, private service:Services) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     let html5QrCode = new Html5Qrcode("reader");
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    const qrCodeSuccessCallback = async (decodedText, decodedResult):Promise<void> => {
       html5QrCode.stop()
-      const data = JSON.parse(decodedText)
-      const route = data.route 
-      this.service.qrData = data
-      this.router.navigate([route])
+      await this.service.decrypt({text : decodedText}).toPromise()
+      this.service.qrData = JSON.parse(this.service.qrData.decryptText)
+      this.router.navigate([this.service.qrData.route])
     };
     const qrCodeErrorCallback = (errorMessage) => {
     
