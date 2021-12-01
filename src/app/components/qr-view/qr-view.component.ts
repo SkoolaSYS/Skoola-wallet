@@ -19,9 +19,13 @@ export class qrViewComponent implements OnInit{
     let html5QrCode = new Html5Qrcode("reader");
     const qrCodeSuccessCallback = async (decodedText, decodedResult):Promise<void> => {
       html5QrCode.stop()
-      await this.service.decrypt({text : decodedText}).toPromise()
-      this.service.qrData = JSON.parse(this.service.qrData.decryptText)
-      this.router.navigate([this.service.qrData.route])
+      try{
+        await this.service.decrypt({text : decodedText}).toPromise()
+        this.service.qrData = JSON.parse(this.service.qrData.decryptText)
+        this.router.navigate([this.service.qrData.route])
+      }catch{
+        this.router.navigate(['invalid-qr-link']);
+      }
     };
     const qrCodeErrorCallback = (errorMessage) => {
     
