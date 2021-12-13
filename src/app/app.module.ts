@@ -28,6 +28,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
+
 import {
   LoginComponent,
   LoginPwdComponent,
@@ -71,6 +72,9 @@ import {
   TopupInfoComponent,
   TopupQrComponent,
   InvalidQrLinkComponent,
+  RedeemComponent,
+  RedeemDetailsComponent,
+  RedeemInfoComponent,
 } from './pages';
 
 import {
@@ -92,7 +96,9 @@ import {
   CimbbankTransactionComponent,
   MatsidenavComponent,
   TermsConditionComponent,
-  SplitHeaderComponent
+  SplitHeaderComponent,
+  RedeemDetailsViewComponent
+
 } from './components';
 
 import { Services } from 'src/app/services/service';
@@ -172,6 +178,9 @@ export class SafeUrlPipe implements PipeTransform {
     TopupQrComponent,
     TopupInfoComponent,
     InvalidQrLinkComponent,
+    RedeemComponent,
+    RedeemDetailsComponent,
+    RedeemInfoComponent,
 
     // components
     DashboardHeaderComponent,
@@ -195,6 +204,7 @@ export class SafeUrlPipe implements PipeTransform {
     CardRequestComponent,
     TermsConditionComponent,
     SplitHeaderComponent,
+    RedeemDetailsViewComponent,
 
     // pipes
     SafeHtmlPipe,
@@ -208,6 +218,7 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadHelperComponent,
     AlertDialogComponent,
     BankloadCaptchaComponent,
+    RedeemInfoComponent,
 
   ],
   imports: [
@@ -226,7 +237,8 @@ export class SafeUrlPipe implements PipeTransform {
     NgbModule,
     QRCodeModule,
     Ng2ImgMaxModule, 
-    HttpClientModule,  
+    HttpClientModule, 
+    QRCodeModule, 
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
     NgPopupsModule.forRoot(
       // {

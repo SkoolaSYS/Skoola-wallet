@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-invalid-qr-link',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invalid-qr-link.component.scss']
 })
 export class InvalidQrLinkComponent implements OnInit {
-
-  constructor() { }
+redeem;
+topup;
+  constructor(private services:Services) { }
 
   ngOnInit(): void {
+    if(this.services.redeemQr){
+      this.redeem = true;
+      this.topup = false;
+    }else{
+      this.topup = true;
+      this.redeem = false;
+    }
   }
 
   qrcode(): void{

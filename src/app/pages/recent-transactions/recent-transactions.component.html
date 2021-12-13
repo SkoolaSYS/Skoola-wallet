@@ -34,10 +34,10 @@
                     Recent Transactions
                   </div>
                   <div *ngFor="let trxlist of transactionList">
-                    <div class="text-center mt-2 mb-2" *ngIf="trxlist.transferType.id=='35'">
+                    <div class="text-center mt-2 mb-2" *ngIf="trxlist.transferType.id=='35' || trxlist.transferType.id=='39'">
                       {{trxlist.processDate | date}}
                     </div>
-                    <div class="text-center mt-2 mb-2" *ngIf="trxlist.transferType.id!='35'">
+                    <div class="text-center mt-2 mb-2" *ngIf="trxlist.transferType.id!='35' && trxlist.transferType.id!='39'">
                       {{trxlist.date | date}}
                     </div>
 
@@ -58,16 +58,19 @@
                           src="assets/icons-img/sellgold-colored@2x.png"/>
                           <img class="iconImg" *ngIf="trxlist.transferType.id=='36'"
                           src="assets/icons-img/buygold-colored@2x.png" />
+                          <img class="iconImg" *ngIf="trxlist.transferType.id=='39'"
+                          src="assets/icons-img/redeem-colored@2x.png" />
                         </div>
                         <div class="col-8 recentDesc">
                           <div class="d8p-normal-text font-weight-bold color-black">{{trxlist.transferType.name}}</div>
-                          <div class="d8p-normal-text overflow-dots"> {{trxlist.transferType.from.currency.name}} {{trxlist.amount | number :'1.2-2'}}</div>
+                          <div class="d8p-normal-text overflow-dots" *ngIf= "trxlist.transferType.id=='39'">{{trxlist.fee}}</div>
+                          <div class="d8p-normal-text overflow-dots" *ngIf= "trxlist.transferType.id!='39'"> {{trxlist.transferType.from.currency.name}} {{trxlist.amount | number :'1.2-2'}}</div>
                           <div class="d8p-normal-text overflow-dots">Ref: {{ trxlist.description }}</div>
                         </div>
                         <div class="col-2 recentTime">
-                          <div class="d8p-normal-text" *ngIf="trxlist.transferType.id=='35'">{{trxlist.processDate |
+                          <div class="d8p-normal-text" *ngIf="trxlist.transferType.id=='35' || trxlist.transferType.id=='39'">{{trxlist.processDate |
                             date:"h:mm a"}}</div>
-                          <div class="d8p-normal-text" *ngIf="trxlist.transferType.id!='35'">{{trxlist.date |
+                          <div class="d8p-normal-text" *ngIf="trxlist.transferType.id!='35' && trxlist.transferType.id!='39'">{{trxlist.date |
                             date:"h:mm a"}}</div>
                         </div>
                       </div>

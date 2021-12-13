@@ -1,72 +1,91 @@
 <div>
-    <!-- Handburger Start -->
-    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
-    <label class="handburger" for="myInput">
-      <span class="bar top"></span>
-      <span class="bar middle"></span>
-      <span class="bar bottom"></span>
-    </label>
-    <!-- Handburger End -->
-    <!-- Nav block - start -->
-    <mat-sidenav-container>
-      <mat-sidenav #sidenav mode="over" position="end">
-        <mat-nav-list>
-          <app-matsidenav></app-matsidenav>
-        </mat-nav-list>
-      </mat-sidenav>
-      <!-- Nav block - end -->
-      <mat-sidenav-content fxFlexFill>
-        <div class="container-fluid p-0">
-          <div class="row no-gutters justify-content-center">
-            <div class="col-12 col-xl-9">
-              <div class="id-dashboardheader">
-                <!-- Dashboard Header Start -->
-                <app-mini-dashboard-header></app-mini-dashboard-header>
-                <!-- Dashboard Header End -->
-              </div>
+  <!-- Handburger Start -->
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+  <!-- Handburger End -->
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+      <mat-nav-list>
+        <app-matsidenav></app-matsidenav>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="id-dashboardheader">
+              <!-- Dashboard Header Start -->
+              <app-mini-dashboard-header></app-mini-dashboard-header>
+              <!-- Dashboard Header End -->
             </div>
           </div>
-  
-          <div class="row no-gutters justify-content-center">
-            <div class="col-12 col-xl-9">
-              <div class="id-contentbox">
-                <div class="id-body">
-                  <div class="container-fluid p-0 menu-grid">
-                    <div class="modal-title text-center mt-2 mb-2">
-                        Show QR Code
-                      </div>
-                      <div class="qr-box row no-gutters justify-content-center">
-                        <!-- IMAGE FOR GENERATED QR -->
-                        <qr-code [value]="href" size="250"></qr-code>
-                      </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="id-contentbox">
+              <div class="id-body">
+                <div class="container-fluid p-0 menu-grid">
+                  <div class="modal-title text-center mt-2 mb-2">
+                    Show QR Code
                   </div>
-                  <div class="row no-gutters justify-content-center">
-                    <div class="col-12 col-xl-9 titlebg">
-                        Cancellation
-                    </div>
+                  <!-- Topup -->
+                  <div class="qr-box row no-gutters justify-content-center" *ngIf="!redeem">
+                    <!-- IMAGE FOR GENERATED QR -->
+                    <qr-code [value]="href" size="250"></qr-code>
                   </div>
-                  <div class="row no-gutters justify-content-center">
-                  <div class="row no-gutters justify-content-center">
-                      <div class="col-12">
-                        <div class="button-container text-center mt-2" style="height: 15rem;">
-                          <button class="d8p-btn-default mt-3" routerLink="/topup-amount" id="btnConfirm">
-                            <div class="--text">Cancel</div>
-                            <div class="--icon"><img class="p-1 max-width-30-px"
-                                src="assets/icons-img/tick-only-signup@2x.png" /></div>
-                          </button>
-                        </div>
+                  <!-- Redeem -->
+                  <div class="qr-box-redeem row no-gutters justify-content-center" *ngIf="redeem">
+                    <!-- IMAGE FOR GENERATED QR -->
+                    <div class="redeem-title">
+                      REDEEM : {{amountRedeem}} g Gold (999.9)</div>
+                    <qr-code [value]="href" size="250"></qr-code>
+                    <div class="redeem-coin-box row no-gutters justify-content-center">
+                      <div><img class="max-width-50" src="assets/icons-img/gold-coin.png" style="width: 50px;" />
+                        x {{coinRedeem}}</div>
+                      <div class="redeem-description">
+                       <label class="">Redeem Date: </label>{{dateRedeem}} <br>
+                       <label for="">Address Redeem Centre:</label><br>{{centreRedeem}}
                       </div>
                     </div>
-                    </div>
-                    
-  
-  
+                  </div>
+    
+
                 </div>
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">
+                    Cancellation
+                  </div>
+                </div>
+                <div class="row no-gutters justify-content-center">
+                  <div class="row no-gutters justify-content-center">
+                    <div class="col-12">
+                      <div class="button-container text-center mt-2" style="height: 15rem;">
+                        <!-- routerLink="/topup-amount" -->
+                        <button class="d8p-btn-default mt-3" (click)="btnConfirm()" id="btnConfirm">
+                          <div class="--text">Cancel</div>
+                          <div class="--icon"><img class="p-1 max-width-30-px"
+                              src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
               </div>
             </div>
           </div>
         </div>
-  
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

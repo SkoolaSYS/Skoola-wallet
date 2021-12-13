@@ -45,6 +45,10 @@ export class Services {
     public counter:number = 0;
     public memberId:string;
     public qrData:any;
+    public redeemGold: any;
+    public qrgenerate: boolean;
+    public redeemQr: Object;
+    public redeemDetail: any;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -240,10 +244,8 @@ export class Services {
                 Authorization: this.token
             })
         };
-        console.log('merchantId=6');
         return this.http.get( "/rest/members/"+merchantId, headerOptions).pipe(tap (data => {
-            console.log(data);
-            console.log("id");
+         
         },
         (err) => {
             console.log('loadById() Error...');
@@ -773,4 +775,150 @@ export class Services {
         }));;
     }
 
+         //redeem-components
+            public redeemComponent(data:any){
+                const headerOptions = {
+                    headers: new HttpHeaders({
+                        'Content-Type':'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                        Authorization: this.token
+                    }),
+                    params: new HttpParams().set("amountRedeem", data.amountRedeem).set("serviceRedeem", data.serviceRedeem).set("centreRedeem", data.centreRedeem).set("dateRedeem", data.dateRedeem).set("referenceRedeem", data.referenceRedeem)
+                };  
+                return this.http.get('/rest/members/redeemComponent',headerOptions).pipe(tap (res => {
+                     this.redeemGold = res;
+                },
+                (err) => {
+                    console.log('redeemComponent() Error...');
+                    console.log(err);
+                }));;
+            }
+    
+        //redeem-details 
+        public redeemDetails(data:any){
+            console.log(data);
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.post('rest/members/redeemDetails',data, headerOptions).pipe(tap (data => {
+                 //console.log(data);
+            },
+            (err) => {
+                console.log('redeemDetails() Error...');
+                console.log(err);
+            }));;
+        }
+        //generate-qr-redeem
+        public redeemQrCode(){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/redeemQrCode',headerOptions).pipe(tap (res => {
+                 this.redeemQr = res;
+            },
+            (err) => {
+                console.log('redeemQrCode() Error...');
+                console.log(err);
+            }));;
+        }
+        //cancel-redeem
+        public redeemCancel(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };  
+            return this.http.get('/rest/members/redeemCancel/'+data,headerOptions).pipe(tap (res => {
+                 this.redeemQr = res;
+            },
+            (err) => {
+                console.log('redeemCancel() Error...');
+                console.log(err);
+            }));;
+        }
+         //display redeem provider
+         public redeemProvider(){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/redeemProvider',headerOptions).pipe(tap (res => {
+            },
+            (err) => {
+                console.log('redeemProvider() Error...');
+                console.log(err);
+            }));;
+         }
+          //display redeem center
+          public redeemCenter(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/redeemCenter/'+data,headerOptions).pipe(tap (res => {
+                 
+            },
+            (err) => {
+                console.log('redeemCenter() Error...');
+                console.log(err);
+            }));;
+         }
+         //display redeem center
+         public redeemInfo(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/redeemInfo/'+data,headerOptions).pipe(tap (res => {
+                 
+            },
+            (err) => {
+                console.log('redeemInfo() Error...');
+                console.log(err);
+            }));;
+         }
+         //display redeem center
+         public redeemScan(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/redeemScan/'+data,headerOptions).pipe(tap (res => {
+                 
+            },
+            (err) => {
+                console.log('redeemScan() Error...');
+                console.log(err);
+            }));;
+         }
 }

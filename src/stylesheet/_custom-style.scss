@@ -2701,11 +2701,38 @@ input[type="checkbox"]:checked ~ label .middle {
   align-items: stretch;
   width: 70px;
 }
+.form-box-group{
+  margin-bottom: 1rem;
+  margin-top:1rem;
+  width: 85%;
+}
 .qr-box{
   background: #000000d6;
-  height: 465px;
+  height: 420px;
   position: relative;
   padding-top: 87px;
+}
+.qr-box-redeem{
+  background: #000000d6;
+  height: 575px;
+  position: relative;
+  padding-top: 3rem;
+}
+.redeem-coin-box{
+  background: transparent;
+  height: 114px;
+  position: relative;
+  padding-top: 8px;
+  color: #fff;
+}
+.redeem-title{
+  color: white;
+  position: relative;
+  padding-bottom: 5px;
+}
+.redeem-description{
+  padding: 0px 15px;
+
 }
 /* Redeem End (zul)*/
 /* Invalid QR Start*/

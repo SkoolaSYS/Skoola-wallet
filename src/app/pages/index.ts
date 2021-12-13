@@ -40,3 +40,6 @@ export * from './topup-amount/topup-amount.component';
 export * from './topup-qr/topup-qr.component';
 export * from './topup-info/topup-info.component';
 export * from './invalid-qr-link/invalid-qr-link.component';
+export * from './redeem/redeem.component';
+export * from './redeem-details/redeem-details.component';
+export * from './redeem-info/redeem-info.component';

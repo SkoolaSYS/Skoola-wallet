@@ -30,7 +30,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
       let obj;
       try {
         obj = JSON.parse(data);
-        console.log("counter:", obj.counter);
+        // console.log("counter:", obj.counter);
 
         // update notification badge
         this.service.counter = obj.counter;
@@ -67,7 +67,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
           this.service.userAccount = res[0].account;
         },
         (err) => {
-          console.log(err);
+          // console.log(err);
           // this.service.logout();
         });
     
@@ -78,7 +78,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
         },
         (err) => {
           // this.service.logout();
-          console.log(err);
+          // console.log(err);
         });
   }
   async bell(): Promise <void>{

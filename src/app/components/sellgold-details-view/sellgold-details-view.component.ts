@@ -15,7 +15,6 @@ export class SellGoldDetailsViewComponent implements OnInit {
   ngOnInit(): void {
     this.goldAmount = this.services.sellGold.goldAmount
     this.goldPrice = this.services.sellGold.goldPrice
-    this.goldSplit = this.services.sellGold.goldSplit.toFixed(5)
   }
 
 }

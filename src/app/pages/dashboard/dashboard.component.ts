@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   public isNotIdVerified: boolean = false;
   public allowWithdrawal: boolean;
   public isMerchant:boolean;
+  public isRedeem:boolean;
   btnAdd: any;
   app: any;
   constructor(private services: Services, private router: Router) {}
@@ -25,10 +26,11 @@ export class DashboardComponent implements OnInit {
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
       this.allowWithdrawal = currentUser.allowWithdrawal;
       this.isMerchant = currentUser.merchant;
+      this.isRedeem = currentUser.redeem;
       localStorage.setItem("parent", currentUser.parentId);
     },
     (err) => {
-      console.log(err);
+      // console.log(err);
     });
 
     // TODO: To to decide whether we want to display profile image on side-nav bar.
@@ -59,7 +61,7 @@ export class DashboardComponent implements OnInit {
   }
   async doBankLoad(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
-    console.log(currentUser)
+    // console.log(currentUser)
 
     if (currentUser.bankLoad){
       this.router.navigate(['bankload']);
@@ -71,5 +73,15 @@ export class DashboardComponent implements OnInit {
 
   isUserIdNotVerified(user: any) : boolean {
     return user.idVerifiedStatus === 'Unverified';
+  }
+
+  redeem(): void{
+    if(this.isRedeem){
+      this.services.redeemQr= true;
+      this.router.navigate(['topup-qr'])
+    }
+    else{
+      this.router.navigate(['redeem'])
+    }
   }
 }

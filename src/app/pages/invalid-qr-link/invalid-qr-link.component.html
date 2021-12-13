@@ -22,7 +22,10 @@
                                             <h3 class="success-title mt-2">Invalid QR Link</h3>
                                         </div>
                                         <div class="invalid-box-body">
-                                            <p class="success-body">
+                                            <p class="success-body" *ngIf="redeem">
+                                                Scan QR Redeem are only for Account Redeem Center
+                                            </p>
+                                            <p class="success-body" *ngIf="topup">
                                                 QR Topup are only for Merchant
                                             </p>
                                         </div>

@@ -25,5 +25,9 @@ export class TopupAmountComponent implements OnInit {
     }catch{
       alert("no value in topup")
     }
+    this.services.amountTopup = this.amountTopup
+    this.services.qrgenerate = false;
+    this.services.redeemQr = false;
+    this.router.navigate(['topup-qr']);
   }
 }

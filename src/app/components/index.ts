@@ -19,3 +19,4 @@ export * from './cimbbank-transaction/cimbbank-transaction.component';
 export * from './matsidenav/matsidenav.component';
 export * from './terms-condition/terms-condition.component';
 export * from './split-header/split-header.component';
+export * from './redeem-details-view/redeem-details-view.component';
