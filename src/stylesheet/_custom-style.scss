@@ -2729,10 +2729,24 @@ input[type="checkbox"]:checked ~ label .middle {
   color: white;
   position: relative;
   padding-bottom: 5px;
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+    left: 15%;
+  }
 }
 .redeem-description{
   padding: 0px 15px;
-
+}
+.redeem-gold-coin{
+  position: relative;
+  top: -20%;
+  left: 42%;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+  .qr-redeem{
+    position: relative;
+    top: 10%;
+    right: 13%
+  }
 }
 /* Redeem End (zul)*/
 /* Invalid QR Start*/

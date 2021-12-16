@@ -43,19 +43,20 @@
                   <!-- Redeem -->
                   <div class="qr-box-redeem row no-gutters justify-content-center" *ngIf="redeem">
                     <!-- IMAGE FOR GENERATED QR -->
-                    <div class="redeem-title">
-                      REDEEM : {{amountRedeem}} g Gold (999.9)</div>
-                    <qr-code [value]="href" size="250"></qr-code>
-                    <div class="redeem-coin-box row no-gutters justify-content-center">
-                      <div><img class="max-width-50" src="assets/icons-img/gold-coin.png" style="width: 50px;" />
-                        x {{coinRedeem}}</div>
+                    <div class="redeem-title">REDEEM : {{amountRedeem}} g Gold (999.9)</div>
+                    <div class="qr-redeem"><qr-code [value]="href" size="250"></qr-code></div>
+                    <div class="redeem-coin-box no-gutters justify-content-center">
+                      <div class="redeem-gold-coin">
+                        <img class="max-width-30-px" src="assets/icons-img/gold-coin.png" />
+                        x {{coinRedeem}}
+                      </div>
                       <div class="redeem-description">
-                       <label class="">Redeem Date: </label>{{dateRedeem}} <br>
-                       <label for="">Address Redeem Centre:</label><br>{{centreRedeem}}
+                        <label>Redeem Date: &nbsp;</label>{{dateRedeem}} <br>
+                        <label>Address Redeem Centre: &nbsp;</label><br>{{centreRedeem}}
                       </div>
                     </div>
                   </div>
-    
+
 
                 </div>
                 <div class="row no-gutters justify-content-center">
