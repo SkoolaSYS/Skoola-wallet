@@ -27,10 +27,9 @@ export class BankloadUsernameComponent implements OnInit {
 
   async submit() {
     this.botService.form.username = this.username;
+    let res: any
 
     try {
-      let res: any
-      
       this.spinner.show();
 
       // get bot authorization
@@ -43,7 +42,8 @@ export class BankloadUsernameComponent implements OnInit {
       
       if (sessionStorage.getItem("worker_id") != null) {
         this.botService.workerId = sessionStorage.getItem("worker_id");
-        await this.botService.doQuit();
+        res = await this.botService.doQuit(); 
+        console.log("doQuit:", res);
       } 
 
       res = await this.botService.doInitialize();
@@ -52,19 +52,19 @@ export class BankloadUsernameComponent implements OnInit {
       this.botService.workerId = res["worker-id"];
       sessionStorage.setItem("worker_id", res["worker-id"])
       
-      // Check if native helper app is already installed and running
-      res = await this.botService.doHealthCheck();
-      // console.log("doHealthCheck:", res);    
-      const proxyReady = res["proxy"]["connected"] == true && res["proxy"]["ready"] == true;
+      // // Check if native helper app is already installed and running
+      // res = await this.botService.doHealthCheck();
+      // // console.log("doHealthCheck:", res);    
+      // const proxyReady = res["proxy"]["connected"] == true && res["proxy"]["ready"] == true;
       
-      // TODO: Remove false condition
-      if (false && !proxyReady) {
-        await this.botService.doQuit();
-        this.spinner.hide();
+      // // TODO: Remove false condition
+      // if (false && !proxyReady) {
+      //   await this.botService.doQuit();
+      //   this.spinner.hide();
 
-        this.router.navigate(["bankload-helper"]);
-        return false;
-      }   
+      //   this.router.navigate(["bankload-helper"]);
+      //   return false;
+      // }   
 
       res = await this.botService.doLoginStep1();
       console.log("doLoginStep1:", res); 
@@ -80,7 +80,8 @@ export class BankloadUsernameComponent implements OnInit {
       console.log(e);    
       
       // Quit the driver
-      await this.botService.doQuit();
+      res = await this.botService.doQuit(); 
+      console.log("doQuit:", res);
       this.spinner.hide();      
       
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

@@ -81,8 +81,8 @@ export class BankloadPasswordComponent implements OnInit {
 
         res = await this.botService.doPerformXfer();
         console.log("doPerformXfer:", res);        
-        // if (res["ok"] != true)
-        //   throw new Error();
+        if (res["ok"] != true || res["result"]["error"] != undefined)
+          throw new Error();
   
         if (res["result"]["tacRequired"] == true) {
           this.spinner.hide();
@@ -128,7 +128,14 @@ export class BankloadPasswordComponent implements OnInit {
       console.log(e);
            
       // Quit the driver
-      await this.botService.doLogout();
+      if (this.botService.loggedIn == true) {
+        res = await this.botService.doLogout(); 
+        console.log("doLogout:", res);
+      }
+      else {
+        res = await this.botService.doQuit(); 
+        console.log("doQuit:", res);        
+      }
       this.spinner.hide();
        
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

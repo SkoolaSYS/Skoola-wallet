@@ -40,13 +40,27 @@ export class UpdateBankLoadComponent implements OnInit {
     });
 
     this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
-      this.banks[0] = res[0]
-      this.banks[1] = res[1]
-      this.banks[2] = res[3]
-      this.banks[3] = res[4]
-      this.banks[4] = res[5]
-      this.banks[5] = res[6]
-      this.banks[6] = res[9]
+      this.banks[0] = res[0]    // MAYBANK
+      this.banks[1] = res[1]    // CIMB BANK
+      this.banks[2] = res[2]; this.banks[2]["disabled"] = true;     // RHB BANK
+      this.banks[3] = res[3]    // BANK RAKYAT
+      this.banks[4] = res[4]    // PUBLIC BANK
+      this.banks[5] = res[5]    // AGRO BANK
+      this.banks[6] = res[6]    // BANK ISLAM
+      this.banks[7] = res[7]; this.banks[7]["disabled"] = true;     // AFFIN
+      this.banks[8] = res[8]; this.banks[8]["disabled"] = true;     // RAJHI
+      this.banks[9] = res[9]    // ALLIANCE
+      this.banks[10] = res[10]; this.banks[10]["disabled"] = true;  // AMBANK
+      this.banks[11] = res[11]  // MUAMALAT
+      this.banks[12] = res[12]  // BSN
+      this.banks[13] = res[13]; this.banks[13]["disabled"] = true;  // CITIBANK
+      this.banks[14] = res[14]; this.banks[14]["disabled"] = true;  // HLB
+      this.banks[15] = res[15]; this.banks[15]["disabled"] = true;  // HSBC
+      this.banks[16] = res[16]; this.banks[16]["disabled"] = true;  // KFH
+      this.banks[17] = res[17]  // OCBC
+      this.banks[18] = res[18]; this.banks[18]["disabled"] = true;  // SCB
+      this.banks[19] = res[19]; this.banks[19]["disabled"] = true;  // UOB
+
       this.bankObject = this.banks.find(bank=>bank.name === this.bankData.bankName);
       if (this.bankObject != null){
           this.bankFormName = this.bankObject.id

@@ -67,7 +67,8 @@ export class BankloadConfirmComponent implements OnInit {
       console.log(e);
       
       // this.spinner.show();
-      await this.botService.doLogout();
+      res = await this.botService.doLogout(); 
+      console.log("doLogout:", res);
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

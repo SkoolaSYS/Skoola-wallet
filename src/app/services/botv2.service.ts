@@ -231,20 +231,12 @@ export class Botv2Service {
       "transactionTypeId": TRANSACTION_TYPE.Withdraw  
     };
 
-    // const data = {
-    //   "bank": bankData.bankName,
-    //   "toaccount": bankData.bankAccNumber,
-    //   "amount": params.amount,
-    //   "ordernum": TFR_ORDERNUM,
-    //   "beneficiary": bankData.bankAccName
-    // }
-
     const data = {
       "bank": bankData.id.toString(),
       "beneficiary": bankData.bankAccName,
       "beneid": params.nationalId,
       "email": params.email,
-      "toccount": bankData.bankAccNumber,
+      "toaccount": bankData.bankAccNumber,
       "amount": params.amount.toString(),
       "ordernum": JSON.stringify(TFR_ORDERNUM)
       }

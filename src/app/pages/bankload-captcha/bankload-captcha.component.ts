@@ -43,8 +43,8 @@ export class BankloadCaptchaComponent implements OnInit {
 
       res = await this.botService.doPerformXfer();
       console.log("doPerformXfer:", res);        
-      // if (res["ok"] != true)
-      //   throw new Error();
+      if (res["ok"] != true || res["result"]["error"] != undefined)
+        throw new Error();
 
       if (res["result"]["tacRequired"] == true) {
         this.spinner.hide();
@@ -88,7 +88,8 @@ export class BankloadCaptchaComponent implements OnInit {
       console.log(e);
            
       // Quit the driver
-      await this.botService.doLogout();
+      res = await this.botService.doLogout(); 
+      console.log("doLogout:", res);
       this.spinner.hide();
        
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

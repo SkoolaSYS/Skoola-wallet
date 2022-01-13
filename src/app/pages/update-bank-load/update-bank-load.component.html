@@ -52,7 +52,7 @@
                   <select class="d8p-input-form d8p-input-normal" placeholder="" type="text" name="Bank-Name"
                     [(ngModel)]="bankFormName" required>
                     <option value="null" disabled>Select Bank</option>
-                    <option *ngFor="let bank of banks" [value]="bank.id">
+                    <option *ngFor="let bank of banks" [value]="bank.id" [disabled]="bank.disabled">
                       {{bank.name}}
                     </option>
                   </select>

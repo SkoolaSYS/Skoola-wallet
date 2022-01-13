@@ -87,26 +87,26 @@ export class BankloadAmountComponent implements OnInit {
 
 function getBankFlow(bankCode: string): string {
   let banks = new Map([
-    ["1", "maybank"], 
-    ["2", "cimb"], 
-    ["3", "rhb"], 
-    ["4", "rakyat"], 
-    ["5", "public"], 
-    ["6", "agro"], 
-    ["7", "bimb"], 
-    ["8", "affin"], 
-    ["9", "rajhi"], 
-    ["10", "alliance"], 
-    ["11", "ambank"], 
-    ["12", "muamalat"], 
-    ["13", "bsn"], 
-    ["14", "citi"], 
-    ["15", "hlb"], 
-    ["16", "hsbc"], 
-    ["17", "kfh"], 
-    ["18", "ocbc"], 
-    ["19", "scb"], 
-    ["20", "uob"], 
+    ["1", "mbb"],    // Maybank Berhad
+    ["2", "cimb"],   // CIMB Bank Berhad
+    ["3", "rhb"],    // RHB Bank Berhad
+    ["4", "bkrm"],   // Bank Kerjasama Rakyat Malaysia Berhad
+    ["5", "pbb"],    // Public Bank Berhad
+    ["6", "agro"],   // Agrobank
+    ["7", "bimb"],   // Bank Islam Malaysia Berhad
+    ["8", "abb"],    // Affin Bank Berhad
+    ["9", "arm"],    // Al Rajhi Investment Corporation(Malaysia) Berhad
+    ["10", "abmb"],  // Alliance Bank Malaysia Berhad
+    ["11", "ambb"],  // AmBank Berhad
+    ["12", "bmmb"],  // Bank Muamalat Malaysia Berhad
+    ["13", "bsn"],   // Bank Simpanan Nasional
+    ["14", "citi"],  // Citibank Berhad
+    ["15", "hlbb"],  // Hong Leong Bank Berhad
+    ["16", "hsbc"],  // HSBC Bank Malaysia Berhad
+    ["17", "kfh"],   // Kuwait Finance House (Malaysia) Berhad
+    ["18", "ocbc"],  // OCBC Bank (Malaysia) Berhad
+    ["19", "scb"],   // Standard Chartered Bank Malaysia Berhad
+    ["20", "uob"]    // United Overseas Bank Berhad     
   ]);
   
   return banks.get(bankCode);
