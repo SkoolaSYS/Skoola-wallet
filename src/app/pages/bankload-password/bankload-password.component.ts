@@ -84,13 +84,13 @@ export class BankloadPasswordComponent implements OnInit {
         if (res["ok"] != true || res["result"]["error"] != undefined)
           throw new Error();
   
-        if (res["result"]["tacRequired"] == true) {
+        if (res["result"]["otpRequired"] == true) {
           this.spinner.hide();
-          this.router.navigate(['bankload-confirm']);
+          this.router.navigate(['bankload-otp2']);
         }
         else {  // TODO: Repetitive code! {rwa}
           // if (res["result"]["confirmRequired"] == true) {
-          //   let opts = { "tacRequired": false };
+          //   let opts = { "otpRequired": false };
           //   res = await this.botService.doConfirmTxn(opts);
           //   console.log("doConfirmTxn:", res);
 

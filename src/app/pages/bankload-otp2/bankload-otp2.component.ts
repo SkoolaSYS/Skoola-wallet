@@ -8,12 +8,12 @@ import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dial
 import { Services } from 'src/app/services/service';
 
 @Component({
-  selector: 'app-bankload-confirm',
-  templateUrl: './bankload-confirm.component.html',
-  styleUrls: ['./bankload-confirm.component.scss']
+  selector: 'app-bankload-otp2',
+  templateUrl: './bankload-otp2.component.html',
+  styleUrls: ['./bankload-otp2.component.css']
 })
-export class BankloadConfirmComponent implements OnInit {
-  tac: string;
+export class BankloadOtp2Component implements OnInit {
+  otp: string;
   isMerchant:boolean;
 
   constructor(private botService: Botv2Service, private router: Router, 
@@ -26,13 +26,13 @@ export class BankloadConfirmComponent implements OnInit {
   }
 
   async submit() {
-    this.botService.form.tac = this.tac;
+    this.botService.form.otp = this.otp;
     let res: any;   
 
     try {
       this.spinner.show();
 
-      res = await this.botService.doConfirmTxn({ "tacRequired": true });
+      res = await this.botService.doConfirmTxn({ "otpRequired": true });
       console.log("doConfirmTxn:", res);
       if (res["ok"] != true)
         throw new Error();

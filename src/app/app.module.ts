@@ -105,7 +105,8 @@ import { Services } from 'src/app/services/service';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
-import { BankloadConfirmComponent } from './pages/bankload-confirm/bankload-confirm.component';
+import { BankloadOtp1Component } from './pages/bankload-otp1/bankload-otp1.component';
+import { BankloadOtp2Component } from './pages/bankload-otp2/bankload-otp2.component';
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
@@ -214,12 +215,12 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadAmountComponent,
     BankloadUsernameComponent,
     BankloadPasswordComponent,
-    BankloadConfirmComponent,
+    BankloadOtp1Component,
+    BankloadOtp2Component,
     BankloadHelperComponent,
     AlertDialogComponent,
     BankloadCaptchaComponent,
     RedeemInfoComponent,
-
   ],
   imports: [
     BrowserModule,

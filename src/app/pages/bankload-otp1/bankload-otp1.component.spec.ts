@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BankloadConfirmComponent } from './bankload-confirm.component';
+import { BankloadOtp1Component } from './bankload-otp1.component';
 
-describe('BankloadConfirmComponent', () => {
-  let component: BankloadConfirmComponent;
-  let fixture: ComponentFixture<BankloadConfirmComponent>;
+describe('BankloadOtp1Component', () => {
+  let component: BankloadOtp1Component;
+  let fixture: ComponentFixture<BankloadOtp1Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BankloadConfirmComponent ]
+      declarations: [ BankloadOtp1Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BankloadConfirmComponent);
+    fixture = TestBed.createComponent(BankloadOtp1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

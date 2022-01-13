@@ -147,8 +147,8 @@ export class Botv2Service {
 
   doConfirmTxn(opts) {
     var payload = {}
-    if ("tacRequired" in opts && opts["tacRequired"] == true) {
-      payload["tac"] = this.form.tac.toString()
+    if ("otpRequired" in opts && opts["otpRequired"] == true) {
+      payload["otp"] = this.form.otp.toString()
     }
     const data = {
       "flow": this.bankLoad.fromBank,
