@@ -1,0 +1,136 @@
+<div>
+    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+    <label class="handburger" for="myInput">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+    </label>
+    <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <app-matsidenav></app-matsidenav>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box" *ngIf="!isMerchant">
+                <app-dashboard-header></app-dashboard-header>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box" *ngIf="isMerchant">
+                <app-split-header></app-split-header>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-content-box pb-5">
+                <!-- Quick links -->
+                <div class="container-fluid quicklinkbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            PLEDGE
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                          <div class="col-3 flex-align-center flex-column border-right-white mt-3">
+                            <div class="height-60 text-center"><img class="max-width-60"
+                                src="assets/icons-img/icon-pledge2.png" /></div>
+                          </div>
+                          <div class="briefDescription col-9 pl-3"> 
+                            Gold residing in my D-8P Acc. Gold e-Wallet will be pledged to an Ar-Rahnu Islamic Pawnbroker
+                            to acquire financing.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <form novalidate #form="ngForm">
+                  <!-- Pledge List -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Pledge List
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-3 mb-3" 
+                            *ngFor="let gold of data; let i = index">
+                            <div class="col-11 col-xl-9">
+                              <div class="row no-gutters" *ngIf="listUser">
+                                <div class="col-9">
+                                  <div class="d8p-h6 font-arial">
+                                    Provider: {{gold.pledgeProvider}} || Amount: {{gold.pledgeAmount}}g 
+                                  </div>
+                                  <div class="d8p-h6 font-arial">
+                                    Financing: RM{{gold.pledgeFinancing}}
+                                  </div>
+                                  <div class="d8p-h6 font-arial">
+                                    Remaining Days: {{gold.remaining}}
+                                  </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+                                  <button class="d8p-btn-default" (click)="clickButton(gold.pledgeId)">
+                                    <div class="--text">PAY</div>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="row no-gutters" *ngIf="listProvider">
+                                <div class="col-9">
+                                  <div class="d8p-h6 font-arial">
+                                    User: {{gold.pledgeName}} || Financing: RM{{gold.pledgeFinancing}} 
+                                  </div>
+                                  <div class="d8p-h6 font-arial">
+                                    Amount: {{gold.pledgeAmount}}g || Remaining Days: {{gold.remaining}}
+                                  </div>
+                                    
+                                </div>
+                              </div>
+                              <img class="max-width-100" src="assets/icons-img/linegrey1.png" />
+                            </div>
+                          </div>
+                            <div class="btn-payPledge flex-align-center" *ngIf="listUser">
+                                <button class="box-payPledge" routerLink="/pledge">
+                                  <!-- <img class="wh-20-20" src="assets/icons-img/icon-creditsmall3.png"/> -->
+                                  <!-- <i class="plus-pledge bi bi-plus-lg"></i> -->
+                                  <div class="--text" style="color: white;">
+                                    ADD PLEDGE
+                                  </div>
+                                </button>
+                              </div>
+    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+  
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+  <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+  </ngx-spinner>
+
+

@@ -49,6 +49,9 @@ export class Services {
     public qrgenerate: boolean;
     public redeemQr: Object;
     public redeemDetail: any;
+    public pledgeGold: any;
+    public pledgeList: Object;
+    public idPledge: any;
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -885,7 +888,7 @@ export class Services {
                 console.log(err);
             }));;
          }
-         //display redeem center
+         //display redeem info
          public redeemInfo(data:any){
             const headerOptions = {
                 headers: new HttpHeaders({
@@ -903,7 +906,7 @@ export class Services {
                 console.log(err);
             }));;
          }
-         //display redeem center
+         //display redeem scan
          public redeemScan(data:any){
             const headerOptions = {
                 headers: new HttpHeaders({
@@ -921,4 +924,155 @@ export class Services {
                 console.log(err);
             }));;
          }
+         //pledge-components
+         public pledgeComponent(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+                params: new HttpParams().set("pledgeProvider", data.pledgeProvider).set("pledgeAmount", data.pledgeAmount).set("pledgeReference", data.pledgeReference)
+            };  
+            return this.http.get('/rest/members/pledgeComponent',headerOptions).pipe(tap (res => {
+                 this.pledgeGold = res;
+            },
+            (err) => {
+                console.log('pledgeComponent() Error...');
+                console.log(err);
+            }));;
+        }
+        //pledge-details 
+        public pledgeDetails(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.post('rest/members/pledgeDetails',data, headerOptions).pipe(tap (data => {
+                 //console.log(data);
+            },
+            (err) => {
+                console.log('pledgeDetails() Error...');
+                console.log(err);
+            }));;
+        }
+        //display pledge provider
+        public pledgeProvider(data:any){
+            // console.log(data);
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/pledgeProvider/'+data,headerOptions).pipe(tap (res => {
+            },
+            (err) => {
+                console.log('pledgeProvider() Error...');
+                console.log(err);
+            }));;
+            
+         }
+
+         //calculate pledge
+         public calculatePledge(data:any){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('/rest/members/calculatePledge/'+data,headerOptions).pipe(tap (res => {
+                 
+            },
+            (err) => {
+                console.log('calculatePledge() Error...');
+                console.log(err);
+            }));;
+         }
+
+         //get list pledge user
+         public getPledgeList(){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };
+            return this.http.get('rest/members/getPledgeList/', headerOptions).pipe(tap (data => {
+                
+            },
+            (err) => {
+                console.log('getPledgeList() Error...');
+                console.log(err);
+            }));;
+        }
+
+        //get list pledge provider
+        public getPledgeListProvider(){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };
+            return this.http.get('rest/members/getPledgeListProvider/', headerOptions).pipe(tap (data => {
+               
+            },
+            (err) => {
+                console.log('getPledgeListProvider() Error...');
+                console.log(err);
+            }));;
+        }
+        //get pledge id
+        public getPledgeId(value: String) {
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };  
+            return this.http.get('/rest/members/getPledgeId/'+value, headerOptions).pipe(tap (data => {
+                // console.log(data);
+                this.receiver = of(data).toPromise();
+                this.idPledge = value;
+            },
+            (err) => {
+                console.log('getPledgeId() Error...');
+                console.log(err);
+            }));;
+        }
+
+        //pay pledge
+        public payPledge(value:String){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+            return this.http.get('rest/members/payPledge/'+value, headerOptions).pipe(tap (data => {
+                 //console.log(data);
+            },
+            (err) => {
+                console.log('payPledge() Error...');
+                console.log(err);
+            }));;
+        }
 }

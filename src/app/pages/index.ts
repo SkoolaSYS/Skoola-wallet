@@ -43,3 +43,7 @@ export * from './invalid-qr-link/invalid-qr-link.component';
 export * from './redeem/redeem.component';
 export * from './redeem-details/redeem-details.component';
 export * from './redeem-info/redeem-info.component';
+export * from './pledge/pledge.component';
+export * from './pledge-details/pledge-details.component';
+export * from './pledge-list/pledge-list.component';
+export * from './pledge-list-details/pledge-list-details.component';

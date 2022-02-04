@@ -75,6 +75,10 @@ import {
   RedeemComponent,
   RedeemDetailsComponent,
   RedeemInfoComponent,
+  PledgeComponent,
+  PledgeDetailsComponent,
+  PledgeListComponent,
+  PledgeListDetailsComponent,
 } from './pages';
 
 import {
@@ -97,7 +101,9 @@ import {
   MatsidenavComponent,
   TermsConditionComponent,
   SplitHeaderComponent,
-  RedeemDetailsViewComponent
+  RedeemDetailsViewComponent,
+  PledgeDetailsViewComponent,
+  PledgeListDetailsViewComponent,
 
 } from './components';
 
@@ -182,6 +188,10 @@ export class SafeUrlPipe implements PipeTransform {
     RedeemComponent,
     RedeemDetailsComponent,
     RedeemInfoComponent,
+    PledgeComponent,
+    PledgeDetailsComponent,
+    PledgeListComponent,
+    PledgeListDetailsComponent,
 
     // components
     DashboardHeaderComponent,
@@ -206,6 +216,8 @@ export class SafeUrlPipe implements PipeTransform {
     TermsConditionComponent,
     SplitHeaderComponent,
     RedeemDetailsViewComponent,
+    PledgeDetailsViewComponent,
+    PledgeListDetailsViewComponent,
 
     // pipes
     SafeHtmlPipe,

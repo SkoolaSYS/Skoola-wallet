@@ -1,0 +1,5 @@
+<app-pledge-list-details-view
+[sender]="currentUser?.name" [image]="senderImg ? senderImg : 'assets/icons-img/user-dp.png'">
+</app-pledge-list-details-view>
+<app-otpcard (otpSubmit)="otpSubmit($event)"></app-otpcard>
+

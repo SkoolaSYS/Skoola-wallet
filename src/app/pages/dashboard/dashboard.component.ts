@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
+import { NgPopupsService } from 'ng-popups';
 
 
 @Component({
@@ -16,9 +17,12 @@ export class DashboardComponent implements OnInit {
   public allowWithdrawal: boolean;
   public isMerchant:boolean;
   public isRedeem:boolean;
+  public isPledge:boolean;
+  public isPledgeProvider:boolean;
+  public isProvider: boolean;
   btnAdd: any;
   app: any;
-  constructor(private services: Services, private router: Router) {}
+  constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService) {}
 
   ngOnInit(): void {
     this.services.getProfileData().subscribe(async (res: any) => {
@@ -27,7 +31,11 @@ export class DashboardComponent implements OnInit {
       this.allowWithdrawal = currentUser.allowWithdrawal;
       this.isMerchant = currentUser.merchant;
       this.isRedeem = currentUser.redeem;
+      this.isPledge = currentUser.pledge;
+      this.isPledgeProvider = currentUser.pledgeProvider;
+      this.isProvider = currentUser.provider;
       localStorage.setItem("parent", currentUser.parentId);
+
     },
     (err) => {
       // console.log(err);
@@ -82,6 +90,15 @@ export class DashboardComponent implements OnInit {
     }
     else{
       this.router.navigate(['redeem'])
+    }
+  }
+  pledge(): void{
+    if(this.isPledge || this.isPledgeProvider || this.isProvider){
+      // this.services.pledgeList= true;
+      this.router.navigate(['pledge-list'])
+    }
+    else{
+      this.router.navigate(['pledge'])
     }
   }
 }

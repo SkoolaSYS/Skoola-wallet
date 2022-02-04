@@ -40,17 +40,17 @@
                       <div class="container-fluid p-0 menu-grid">
                         <div class="row no-gutters justify-content-center">
                           <div class="col-12 col-xl-9 titlebg">
-                            REDEEM
+                            PLEDGE
                           </div>
                         </div>
                         <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
                           <div class="col-3 flex-align-center flex-column border-right-white mt-3">
                             <div class="height-60 text-center"><img class="max-width-60"
-                                src="assets/icons-img/icon-redeem.png" /></div>
+                                src="assets/icons-img/icon-pledge2.png" /></div>
                           </div>
-                          <div class="briefDescription col-9 pl-3">
-                            Gold residing in my D-8P Acc. Gold e-Wallet will be redeemed as physical Gold coin at a D-8P
-                            Gold Redemption Centre
+                          <div class="briefDescription col-9 pl-3"> 
+                            Gold residing in my D-8P Acc. Gold e-Wallet will be pledged to an Ar-Rahnu Islamic Pawnbroker
+                            to acquire financing.
                           </div>
                         </div>
                       </div>
@@ -65,62 +65,33 @@
                         <div class="container-fluid p-0 menu-grid">
                           <div class="row no-gutters justify-content-center">
                             <div class="col-12 col-xl-9 titlebg">
-                              Gold Amount (Multiple of {{redeemCurrent}})
+                              Gold Amount (Multiple of {{currentGold}} )
                             </div>
                           </div>
                           <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10" style="text-align: center;">
-                              <input class="d8p-form select-redemption" placeholder="Ex: 8.5g" type="number"
-                                name="amount-gold" [(ngModel)]="amountRedeem" required />
+                              <input (change)="balanceProvider()" class="d8p-form select-redemption" placeholder="Ex: 8.5g" type="number"
+                                name="amount-gold" [(ngModel)]="pledgeAmount" required />
                             </div>
-                          </div>
-                          <!-- <input type="number" name="amount-gold" placeholder="0" value="{{this.counterValue}}" [(ngModel)]="amountRedeem"/>
-                          <button (click)="increment()">+</button>
-                          <button (click)="decrement()">-</button> -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Redemption Service Provider-->
-                  <div class="container-fluid fifthbg">
-                    <div class="row no-gutters">
-                      <div class="col-12">
-                        <div class="container-fluid p-0 menu-grid">
-                          <div class="row no-gutters justify-content-center">
-                            <div class="col-12 col-xl-9 titlebg">
-                                Redemption Service Provider
-                            </div>
-                          </div>
-                          <div class="redemption">
-                            <select (change)="redemptionCenter()" class="select-redemption grey-gradient" placeholder="Redemption Service Provider" name="Service" [(ngModel)]="serviceRedeem" required>
-                              <option >Select Service Provider</option>
-                              <!-- <option *ngFor="let bank of banks" [value]="bank.id" >
-                                {{bank.name}}
-                              </option> -->
-                              <option *ngFor="let redeem of redeemProvider" [value]="redeem.id"> {{redeem.name}} </option>
-                            </select>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!-- Redemption Centre-->
-                  <div class="container-fluid fifthbg">
+                  <!-- Provider Pledge -->
+                  <div class="container-fluid">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
                           <div class="row no-gutters justify-content-center">
                             <div class="col-12 col-xl-9 titlebg">
-                                Redemption Centre
+                              Ar-Rahnu Islamic Pawnbroker
                             </div>
                           </div>
-                          <div class="redemption">
-                            <select class="select-redemption grey-gradient" placeholder="" name="Centre" [(ngModel)]="centreRedeem"  required>
-                              <option value="null" disabled>Select Centre</option>
-                              <!-- <option *ngFor="let bank of banks" [value]="bank.id" >
-                                {{bank.name}}
-                              </option> -->
-                              <option *ngFor="let redeem of redeemCenter" [value]="redeem.id"> {{redeem.name}} </option>
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
+                            <select (change)="calculated()" class="select-redemption grey-gradient" placeholder="Redemption Service Provider" name="Service" [(ngModel)]="pledgeProvider" required>
+                              <option value="null" disabled>Select Service Provider</option>
+                              <option *ngFor="let pledge of providerPledge" [value]="pledge.id">{{pledge.name}}</option>
                             </select>
                           </div>
                         </div>
@@ -140,43 +111,68 @@
                           <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                             <div class="col-10" style="text-align: center;">
                               <input class="d8p-form select-redemption " placeholder="Eg: January Transfer" type="text"
-                                name="reference" [(ngModel)]="referenceRedeem" required />
+                                name="reference" [(ngModel)]="pledgeReference" required />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-  
-                  <!-- Redemption Date And Time -->
-                  <div class="container-fluid">
+                  </div> 
+                  <!-- Gold Amount and Eligible Financing-->
+                  <div class="container-fluid financingbg">
                     <div class="row no-gutters">
                       <div class="col-12">
                         <div class="container-fluid p-0 menu-grid">
                           <div class="row no-gutters justify-content-center">
                             <div class="col-12 col-xl-9 titlebg">
-                                Redemption Date
+                                Gold Amount (g) And Eligible Financing
                             </div>
                           </div>
-                          <form class="form-inline flex-align-center">
-                            <div class="form-box-group">
-                              <div class="input-group grey-gradient border-grey" style="border-radius: 10px;">
-                                <input class="form-control grey-gradient" placeholder="Choose Redeem Date"
-                                       name="date" [(ngModel)]="dateRedeem" ngbDatepicker #d="ngbDatepicker">
-                                <div class="input-group-append">
-                                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
-                                    <span class="material-icons">event</span>
-                                  </button>
+                          <div class="financingtext flex-align-center">
+                            Eligible Financing: {{chargePledge}}% x Marhun
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-9 col-xl-4">
+                              <input class="d8p-form d8p-input-normal w-100" placeholder="Ex: 0.0255" type="text"
+                                name="avg-gold" [(ngModel)]="pledgeFinancing" />
+                            </div>
+                            <div class="col-2">
+                              <button class="btn-calculate" (click)="btnCalculate()">
+                                <!-- <span class="material-icons" >calculators</span> -->
+                                <img src="https://img.icons8.com/material/24/000000/calculator--v1.png"/>
+                              </button>
+                            </div>
+                          </div>
+    
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10 col-xl-5">
+                              <div class="avg-box grey-gradient border-grey row">
+                                <div class="col-4 flex-align-center min-height-60 border-right-grey">
+                                    Marhun
+                                </div>
+                                <div class="col-8 flex-align-center min-height-60 color-cyan">
+                                  RM {{marhun}}
                                 </div>
                               </div>
                             </div>
-                          </form>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10 col-xl-5">
+                              <div class="avg-box grey-gradient border-grey row">
+                                <div class="col-4 flex-align-center min-height-60 border-right-grey">
+                                    Financing
+                                </div>
+                                <div class="col-8 flex-align-center min-height-60 color-cyan">
+                                  RM {{financing}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-  
-                  <!-- Confirmation -->
+                 <!-- Confirmation -->
                   <div class="container-fluid">
                     <div class="row no-gutters">
                       <div class="col-12">
@@ -187,14 +183,23 @@
                             </div>
                           
                             <br><br>
+                            <div class="pledge-agreement">
+                                <div class="d-flex flex-row justify-content-center align-items-center ml-3">
+                                    <input type="checkbox" id="checkAgree" class="pledge-checkbox ml-2" id="checkAgree" (click)="agreementCheckbox()"/>
+                                    <div class="pledge-text ml-2 justify-content-center text-left">I confirm that I have read, consent and agree
+                                        to Ar-Rahnu Agrobank's <span class="userAgreement">Pawn Agreement</span> 
+                                        with a 1% Marhun safekeeping fee every month.</div>
+                                </div>
+                            </div>
+                            <br><br>
                             <div class="row no-gutters justify-content-center">
                               <div class="col-12">
                                 <div class="button-container text-center mt-2">
-                                  <a class="d8p-btn-default mt-3" (click)="redeem(amountRedeem,serviceRedeem,centreRedeem,dateRedeem,referenceRedeem)">
+                                  <button class="d8p-btn-default mt-3" (click)="pledge()" id="btnConfirm" disabled>
                                     <div class="--text">Confirm</div>
                                     <div class="--icon"><img class="p-1 max-width-30-px"
                                         src="assets/icons-img/tick-only-signup@2x.png" /></div>
-                                  </a>
+                                    </button>
                                 </div>
                               </div>
                             </div>
@@ -214,3 +219,8 @@
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
+  
+  <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+  </ngx-spinner>
+

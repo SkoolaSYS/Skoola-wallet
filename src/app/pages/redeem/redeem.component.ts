@@ -24,6 +24,8 @@ export class RedeemComponent implements OnInit {
   redeemCenter:any = [];
   redeemCurrent
   totalAmount
+  balanceGoldProvider
+  totalGold
 
   constructor(private services:Services, private router:Router, private ngPopups: NgPopupsService) { }
 
@@ -35,6 +37,7 @@ export class RedeemComponent implements OnInit {
     this.services.redeemProvider().subscribe((res: any) => {
       this.redeemProvider = res.serviceRedeem
       this.redeemCurrent = res.currentRedeem
+      this.balanceGoldProvider = res.balanceGoldProvider
       // console.log(this.redeemCurrent)
     })
     
@@ -64,30 +67,34 @@ export class RedeemComponent implements OnInit {
         //check gold balance
         this.sumGold = parseFloat(res[0].gold.sumGoldAmount.toFixed(5));
         this.amountRedeem = parseFloat(this.amountRedeem);
-        if(this.sumGold < this.amountRedeem){
-          this.ngPopups.alert('Your gold is not enough!');
+        this.balanceGoldProvider = parseFloat(this.balanceGoldProvider);
+        this.totalGold = this.amountRedeem + this.balanceGoldProvider;
+        if(this.sumGold < this.totalGold){
+          this.ngPopups.alert('Your gold is not enough because pledge!');
         }
         else{
-        //check amount balance
-        this.amountBalance = parseFloat(this.services.currentBalance);
-          this.priceGold = parseFloat(this.services.redeemGold.chargeRedeem)
-          if(this.amountBalance < this.priceGold){
-            this.ngPopups.alert('The balance in your account is not sufficient to cover the transaction fee!');
+          if(this.sumGold < this.amountRedeem){
+            this.ngPopups.alert('Your gold is not enough!');
           }
           else{
-            this.currentDate = Utility.formatDate(new Date());
-            var date = new Date();
-            var day = date.getUTCDate();
-            var month = date.getUTCMonth() + 1;
-            var year = date.getUTCFullYear();
-            console.log(month);
-            console.log("chosenDate: "+ dateRedeem.year + dateRedeem.month + dateRedeem.day);
-            console.log("currentDate: " + year + month + day);
-            if((dateRedeem.year < year) || (dateRedeem.month < month) || (dateRedeem.day <= day)){
-              this.ngPopups.alert('Your date must after ' + this.currentDate)
+            //check amount balance
+            this.amountBalance = parseFloat(this.services.currentBalance);
+            this.priceGold = parseFloat(this.services.redeemGold.chargeRedeem)
+            if(this.amountBalance < this.priceGold){
+              this.ngPopups.alert('The balance in your account is not sufficient to cover the transaction fee!');
             }
             else{
-              this.router.navigate(['redeem-details']);
+              this.currentDate = Utility.formatDate(new Date());
+              var date = new Date();
+              var day = date.getUTCDate();
+              var month = date.getUTCMonth() + 1;
+              var year = date.getUTCFullYear();
+              if((dateRedeem.year < year) || (dateRedeem.month < month) || (dateRedeem.day <= day)){
+                this.ngPopups.alert('Your date must after ' + this.currentDate)
+              }
+              else{
+                this.router.navigate(['redeem-details']);
+              }
             }
           }
         }

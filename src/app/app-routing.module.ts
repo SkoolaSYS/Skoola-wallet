@@ -48,6 +48,10 @@ import {
   RedeemComponent,
   RedeemDetailsComponent,
   RedeemInfoComponent,
+  PledgeComponent,
+  PledgeDetailsComponent,
+  PledgeListComponent,
+  PledgeListDetailsComponent,
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
@@ -272,6 +276,22 @@ export const routes: Routes = [
  },
 {
   path: 'invalid-qr-link', component: InvalidQrLinkComponent,
+  canActivate: [AuthenticationGuard]
+},
+{
+  path: 'pledge', component: PledgeComponent,
+  canActivate: [AuthenticationGuard]
+ },
+ {
+  path: 'pledge-details', component: PledgeDetailsComponent,
+ canActivate: [AuthenticationGuard]
+},
+{
+  path: 'pledge-list', component: PledgeListComponent,
+  canActivate: [AuthenticationGuard]
+},
+{
+  path: 'pledge-list-details', component: PledgeListDetailsComponent,
   canActivate: [AuthenticationGuard]
 },
  { path: '**', component: LoginComponent }
