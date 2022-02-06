@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  proxyTarget: "http://localhost:8080/komeps"
+  proxyTarget: "http://localhost:8080/komeps",
+  logging: true
 };
 
 /*

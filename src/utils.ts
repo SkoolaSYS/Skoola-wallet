@@ -45,5 +45,12 @@ export class Utility {
     }
     return false;
   }
-  
+
+  // Set 'override' to true in order to force printing to console (USE WITH CARE!).
+  static log(message: string, override: boolean = false) {
+    if (environment.logging == false && override == false)
+      return;
+
+    console.log(message);
+  }
 }
