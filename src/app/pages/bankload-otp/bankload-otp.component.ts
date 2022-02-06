@@ -8,11 +8,11 @@ import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dial
 import { Services } from 'src/app/services/service';
 
 @Component({
-  selector: 'app-bankload-otp2',
-  templateUrl: './bankload-otp2.component.html',
-  styleUrls: ['./bankload-otp2.component.css']
+  selector: 'app-bankload-otp',
+  templateUrl: './bankload-otp.component.html',
+  styleUrls: ['./bankload-otp.component.css']
 })
-export class BankloadOtp2Component implements OnInit {
+export class BankloadOtpComponent implements OnInit {
   otp: string;
   isMerchant:boolean;
 

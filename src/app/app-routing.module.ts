@@ -55,8 +55,8 @@ import {
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
-import { BankloadOtp1Component } from './pages/bankload-otp1/bankload-otp1.component';
-import { BankloadOtp2Component } from './pages/bankload-otp2/bankload-otp2.component';
+import { BankloadXotpComponent } from './pages/bankload-xotp/bankload-xotp.component';
+import { BankloadOtpComponent } from './pages/bankload-otp/bankload-otp.component';
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
 import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
@@ -107,11 +107,11 @@ export const routes: Routes = [
    canActivate: [AuthenticationGuard]
   },
   {
-    path: 'bankload-otp1', component: BankloadOtp1Component,
+    path: 'bankload-xotp', component: BankloadXotpComponent,
    canActivate: [AuthenticationGuard]
   },
   {
-    path: 'bankload-otp2', component: BankloadOtp2Component,
+    path: 'bankload-otp', component: BankloadOtpComponent,
    canActivate: [AuthenticationGuard]
   },
   {
