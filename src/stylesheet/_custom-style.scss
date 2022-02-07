@@ -2927,9 +2927,9 @@ input[type="checkbox"]:checked ~ label .middle {
   font: lighter $s-15 $ff-font;
   margin-top: $s-12;
 }
-.pledge-checkbox{
-  width: 5rem;
-  height: 2rem;
+.pledge-checkbox{ 
+  width: $s-32;
+  height: $s-16;
   background-color: white;
   border-radius: 25%;
   vertical-align: text-bottom;
@@ -2943,8 +2943,8 @@ input[type="checkbox"]:checked ~ label .middle {
     &:checked::before{
     content: '\2713';
     display: block;
-    margin-top: 2px;
-    margin-left: 5px;
+    position: absolute;
+    margin-top: -6px;
     }
   }
 }
@@ -2958,11 +2958,20 @@ input[type="checkbox"]:checked ~ label .middle {
 .box-payPledge{
   width: 145px;
   height: 40px;
-  // margin-left: 19rem;
   background: linear-gradient(0deg, #438384 0%, #67cbce 100%);
   border: 1px solid white;
   box-shadow: 0 8px 20px -6px rgba(black, .3);
   border-radius: 10px;
+}
+.box-payPledge:active{
+  background: $yellow;
+  transition: none;
+}
+.box-payPledge:focus{
+  background: $yellow;
+}
+.box-payPledge:hover{
+  background: $yellow;
 }
 .plus-pledge{
   color: white;

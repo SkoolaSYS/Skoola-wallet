@@ -5,8 +5,7 @@ import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-pledge',
-  templateUrl: './pledge.component.html',
-  styleUrls: ['./pledge.component.scss']
+  templateUrl: './pledge.component.html'
 })
 export class PledgeComponent implements OnInit {
   public isMerchant:boolean;

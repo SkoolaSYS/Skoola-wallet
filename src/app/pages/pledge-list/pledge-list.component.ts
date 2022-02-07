@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-pledge-list',
-  templateUrl: './pledge-list.component.html',
-  styleUrls: ['./pledge-list.component.scss']
+  templateUrl: './pledge-list.component.html'
 })
 export class PledgeListComponent implements OnInit {
 public isMerchant:boolean;

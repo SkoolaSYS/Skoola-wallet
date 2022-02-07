@@ -46,7 +46,7 @@
                         <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
                           <div class="col-3 flex-align-center flex-column border-right-white mt-3">
                             <div class="height-60 text-center"><img class="max-width-60"
-                                src="assets/icons-img/icon-pledge2.png" /></div>
+                                src="assets/icons-img/pledge@3x.png" /></div>
                           </div>
                           <div class="briefDescription col-9 pl-3"> 
                             Gold residing in my D-8P Acc. Gold e-Wallet will be pledged to an Ar-Rahnu Islamic Pawnbroker
@@ -132,15 +132,16 @@
                             Eligible Financing: {{chargePledge}}% x Marhun
                           </div>
                           <div class="row no-gutters justify-content-center mt-4 mb-4">
-                            <div class="col-9 col-xl-4">
-                              <input class="d8p-form d8p-input-normal w-100" placeholder="Ex: 0.0255" type="text"
-                                name="avg-gold" [(ngModel)]="pledgeFinancing" />
-                            </div>
-                            <div class="col-2">
-                              <button class="btn-calculate" (click)="btnCalculate()">
-                                <!-- <span class="material-icons" >calculators</span> -->
-                                <img src="https://img.icons8.com/material/24/000000/calculator--v1.png"/>
-                              </button>
+                            <div class="col-9 col-xl-4 input-group-append">
+                              <input class="d8p-form d8p-input-normal" placeholder="Ex: 0.0255" type="text" name="avg-gold"
+                                [(ngModel)]="pledgeFinancing" />
+                              <div class="input-group-append" style="position: relative; right: 44px;">
+                                <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                  <button class="d8p-transparent-btn" (click)="btnCalculate()">
+                                    <img class="btnicon" src="https://img.icons8.com/material/24/000000/calculator--v1.png" />
+                                  </button>
+                                </span>
+                              </div>
                             </div>
                           </div>
     
@@ -181,8 +182,6 @@
                             <div class="col-12 col-xl-9 titlebg">
                               Confirmation
                             </div>
-                          
-                            <br><br>
                             <div class="pledge-agreement">
                                 <div class="d-flex flex-row justify-content-center align-items-center ml-3">
                                     <input type="checkbox" id="checkAgree" class="pledge-checkbox ml-2" id="checkAgree" (click)="agreementCheckbox()"/>
@@ -191,7 +190,6 @@
                                         with a 1% Marhun safekeeping fee every month.</div>
                                 </div>
                             </div>
-                            <br><br>
                             <div class="row no-gutters justify-content-center">
                               <div class="col-12">
                                 <div class="button-container text-center mt-2">
@@ -219,8 +217,3 @@
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
-  
-  <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
-    <p style="font-size: 20px; color: white">Please wait...</p>
-  </ngx-spinner>
-
