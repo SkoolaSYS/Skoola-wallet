@@ -2596,7 +2596,7 @@ input[type="checkbox"]:checked ~ label .middle {
   position: relative;
   animation: spin-front 5s infinite;
 }
-.heads, .kopama, .gmi, .jaminstore{
+.heads, .kopama, .gmi, .jaminstore, .komunitiLtl{
   backface-visibility: hidden;
   left: 0;
   top: 0;
@@ -2624,6 +2624,15 @@ input[type="checkbox"]:checked ~ label .middle {
   z-index: 10;
   margin-top: 6px;
   margin-left: 20%;
+}
+.komunitiLtl{
+  position: absolute;
+  transform: rotateY(180deg);
+  animation: spin-back 5s infinite;
+  z-index: 10;
+  margin-top: 6px;
+  margin-left: 25%;
+  height: 160px;
 }
 .gmi{
   position: absolute;

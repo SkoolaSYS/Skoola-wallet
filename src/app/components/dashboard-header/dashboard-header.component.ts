@@ -15,7 +15,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
   cardNumber: any;
   transactionAmount: any;
   goldAmount: any;    // per transaction gold amount
-  goldWhole: any;;    // accumulated gold amount
+  goldWhole: any;    // accumulated gold amount
   goldFraction: any;  // accumulated gold amount
   counter:number;
   condition: any;
