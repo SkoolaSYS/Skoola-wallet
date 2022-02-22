@@ -47,3 +47,5 @@ export * from './pledge/pledge.component';
 export * from './pledge-details/pledge-details.component';
 export * from './pledge-list/pledge-list.component';
 export * from './pledge-list-details/pledge-list-details.component';
+export * from './pledge-list-details/pledge-list-details.component';
+export * from './merchant-cert/merchant-cert.component';

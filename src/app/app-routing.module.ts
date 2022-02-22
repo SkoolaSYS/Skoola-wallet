@@ -52,6 +52,7 @@ import {
   PledgeDetailsComponent,
   PledgeListComponent,
   PledgeListDetailsComponent,
+  MerchantCertComponent,
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
@@ -292,6 +293,10 @@ export const routes: Routes = [
 },
 {
   path: 'pledge-list-details', component: PledgeListDetailsComponent,
+  canActivate: [AuthenticationGuard]
+},
+{
+  path: 'merchant-cert', component: MerchantCertComponent,
   canActivate: [AuthenticationGuard]
 },
  { path: '**', component: LoginComponent }

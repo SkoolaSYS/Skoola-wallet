@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   getSmid: string = null;
   spinLogo: boolean;
   public isNotIdVerified: boolean;
+  public isMerchant: boolean;
 
   constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
 
@@ -26,11 +27,12 @@ export class LoginComponent implements OnInit {
     {
       const currentUser: any = await this.services.currentUser;
       this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
-      
-      if (this.isNotIdVerified){
-        this.router.navigate(['id-verification']);
+      this.isMerchant = currentUser.merchant;
+
+      if(this.isMerchant){
+        this.router.navigate(['merchant-cert']);
       }else{
-      this.router.navigate(['dashboard']);
+        this.router.navigate(['id-verification']);
       }
     }
     if (!this.services.username) {
@@ -79,9 +81,14 @@ export class LoginComponent implements OnInit {
          
          const currentUser: any = await this.services.currentUser;
          this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
-         console.log(this.isNotIdVerified, "")
+         this.isMerchant = currentUser.merchant;
+
          if (this.isNotIdVerified){
+           if (this.isMerchant){
+            this.router.navigate(['merchant-cert']);
+          }else{
            this.router.navigate(['id-verification']);
+          }
          }else{
          this.router.navigate(['dashboard']);
          }
