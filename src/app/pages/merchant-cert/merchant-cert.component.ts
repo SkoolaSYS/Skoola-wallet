@@ -20,6 +20,7 @@ export class MerchantCertComponent implements OnInit {
   goldAmount: any;    // per transaction gold amount
   goldWhole: any;;    // accumulated gold amount
   goldFraction: any;  // accumulated gold amount
+  cert:boolean = false;
 
   constructor(private service: Services, private router: Router, private ngPopups: NgPopupsService,private ng2ImgMax: Ng2ImgMaxService, private spinner: NgxSpinnerService) { }
 
@@ -89,6 +90,7 @@ export class MerchantCertComponent implements OnInit {
         result => {
           this.uploadedImage =new File([result], result.name);
           this.files[0]=this.uploadedImage;
+          this.cert = true;
         },
         error => {
           console.log('Oh no!', error);
@@ -149,7 +151,7 @@ export class MerchantCertComponent implements OnInit {
     formData.append("files", this.files[0]);
     formData.append("files", this.files[1]);
     formData.append("files", this.files[2]);
-    await this.service.uploadVerificationData(formData).toPromise()
+    await this.service.uploadMerchantVerificationData(formData, this.cert).toPromise()
     .then(() => {
       this.spinner.hide();
       this.ngPopups.alert('Your profile has been sucessfully updated!',{theme: 'material', title: 'Success!'});

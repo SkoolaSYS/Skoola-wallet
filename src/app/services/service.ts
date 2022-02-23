@@ -1075,4 +1075,21 @@ export class Services {
                 console.log(err);
             }));;
         }
+
+        public uploadMerchantVerificationData(data:FormData, cert:boolean){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };  
+            return this.http.post('/rest/members/uploadMerchantVerificationData/'+cert, data , headerOptions).pipe(tap (data => {
+                // console.log(data);
+            },
+            (err) => {
+                console.log('uploadVerificationData() Error...');
+                console.log(err);
+            }));;
+        }
 }
