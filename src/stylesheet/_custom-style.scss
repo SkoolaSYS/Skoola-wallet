@@ -1314,7 +1314,7 @@ mat-sidenav{
 }
 .mat-tab-label.mat-tab-label-active {
   background: linear-gradient(0deg, #D2D4D4 0%, #ffffff 100%);
-  color: #54A5A6;
+  color: #8554a6;
   font-weight: bold;
 }
 
@@ -2285,12 +2285,15 @@ input[type="checkbox"]:checked ~ label .middle {
   @media screen and (min-width: 768px) {
     padding-top: 9rem;
   }
-  @media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
+  @media only screen and (min-device-width: 390px) and (-webkit-min-device-pixel-ratio: 3) { 
+    padding-top: 6.5rem;
+  }
+  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) { 
     padding-top: 7rem;
-}
+  }
+  @media only screen and (min-device-width: 412px) and (max-device-width: 767px) and (-webkit-min-device-pixel-ratio: 3) { 
+    padding-top: 7.1rem;
+  }
 }
 .id-dashboardheader {
   position: fixed;
@@ -2317,6 +2320,13 @@ input[type="checkbox"]:checked ~ label .middle {
   display: inline-block;
   left: 175px;
   margin-top: 30px;
+  @media screen and (min-width: 412px) {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    left: 195px;
+    margin-top: 30px;
+  }
   @media screen and (min-width: 768px) {
     position: absolute;
     overflow: hidden;
