@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-bankload-username',
@@ -31,58 +32,33 @@ export class BankloadUsernameComponent implements OnInit {
 
     try {
       this.spinner.show();
+      await this.botService.login_step_0().subscribe(async (res:any[]) => {
+        var RESULT = res[0];      
+        if (RESULT == "login_step_0_PASSED"){
+          //alert("res_index="+res_index);
+          let res_login_step_1:any = await this.botService.doLoginStep1()
+            let res_index = JSON.parse( JSON.stringify(res_login_step_1) );
+            console.log("doLoginStep1:", res_login_step_1); 
+            if (res_index["0"] != "login_step_1_PASSED")
+              throw new Error();
 
-      // get bot authorization
-      res = await this.services.getBotAuthorization();
-      console.log("getBotAuthorization:", res); 
-      if (res["auth"].length == 0)
-        throw new Error();
-
-      this.botService.botAuth = res["auth"];
-      
-      if (sessionStorage.getItem("worker_id") != null) {
-        this.botService.workerId = sessionStorage.getItem("worker_id");
-        res = await this.botService.doQuit(); 
-        console.log("doQuit:", res);
-      } 
-
-      res = await this.botService.doInitialize();
-      console.log("doInitialize:", res); 
-
-      this.botService.workerId = res["worker-id"];
-      sessionStorage.setItem("worker_id", res["worker-id"])
-      
-      // // Check if native helper app is already installed and running
-      // res = await this.botService.doHealthCheck();
-      // // console.log("doHealthCheck:", res);    
-      // const proxyReady = res["proxy"]["connected"] == true && res["proxy"]["ready"] == true;
-      
-      // // TODO: Remove false condition
-      // if (false && !proxyReady) {
-      //   await this.botService.doQuit();
-      //   this.spinner.hide();
-
-      //   this.router.navigate(["bankload-helper"]);
-      //   return false;
-      // }   
-
-      res = await this.botService.doLoginStep1();
-      console.log("doLoginStep1:", res); 
-      if (res["ok"] != true)
-        throw new Error();
-
-      this.botService.form.secretPhrase = res["result"]["secretPhrase"];
-      this.botService.form.secureImage = res["result"]["secureImage"];
-
-      this.spinner.hide();
-      this.router.navigate(['bankload-password']);
+            this.botService.form.secureImage = res_index["1"];
+            this.botService.form.secretPhrase = res_index["2"];
+            
+            this.spinner.hide();
+            this.router.navigate(['bankload-password']);
+         
+          
+        }else{
+          alert("[login_step_0]RESULT="+RESULT);  
+          alert("[login_step_0]res="+res);  
+        }
+      });         
+        
     } catch (e) {
       console.log(e);    
       
       // Quit the driver
-      res = await this.botService.doQuit(); 
-      console.log("doQuit:", res);
-      this.spinner.hide();      
       
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
       dialogRef.afterClosed().subscribe(() => {

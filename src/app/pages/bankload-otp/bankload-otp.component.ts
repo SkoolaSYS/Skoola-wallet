@@ -32,19 +32,19 @@ export class BankloadOtpComponent implements OnInit {
     try {
       this.spinner.show();
 
-      res = await this.botService.doConfirmTxn({ "otpRequired": true });
+      res = await this.botService.doConfirmTxn();
       console.log("doConfirmTxn:", res);
-      if (res["ok"] != true)
-        throw new Error();
+      // if (res["ok"] != true)
+      //   throw new Error();
       
       res = await this.botService.doGetTxnStatus();
       console.log("doGetTxnStatus:", res);
-      if (res["ok"] != true)
-        throw new Error();
+      // if (res["ok"] != true)
+      //   throw new Error();
 
       let statusMessage: string;
       // Display final status
-      if (res["result"]["completed"] == true ) {
+      if (res["result"]["completed"] == "true" ) {
         const ref = res["result"]["bankReference"];
         statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
       } else {
@@ -53,9 +53,9 @@ export class BankloadOtpComponent implements OnInit {
       }
 
       // It's all over, so quit the driver
-      res = await this.botService.doLogout();
-      console.log("doLogout:", res);
-      
+      //res = await this.botService.doLogout();
+      //console.log("doLogout:", res);
+      res = await this.botService.doQuit();
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
