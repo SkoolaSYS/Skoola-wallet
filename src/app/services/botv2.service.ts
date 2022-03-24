@@ -113,7 +113,9 @@ export class Botv2Service {
       "amount": this.form.amount, 
       "description": "D8P", 
       "transactionTypeId": TRANSACTION_TYPE.BankLoad,
-      "transferTypeId": transferType
+      "transferTypeId": transferType,
+      "bank":this.bankLoad.fromBank,
+      "fromaccount":this.bankLoad.fromAccount
     };
     //console.log(transferType)
     const data = {
