@@ -120,7 +120,7 @@ export class Botv2Service {
       "flow": this.bankLoad.fromBank,
       "action": "perform_xfer",
       "fromaccount": this.bankLoad.fromAccount,
-      "amount": this.form.amount + this.bankLoad.transactionFee.toString(),
+      "amount": (this.form.amount + this.bankLoad.transactionFee).toString(),
       "TFR_ORDERNUM": TFR_ORDERNUM,
       "Authorization":this.AUTHORIZATION
     }
