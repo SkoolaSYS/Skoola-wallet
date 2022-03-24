@@ -345,10 +345,9 @@
 .titlebg {
   background: linear-gradient(0deg, #323232 0%, #848484 100%);
   color: $white;
-  height: 25.40px;
+  height: 30px;
   text-align: center;
-  font: normal $s-22 $ff-font;
-  font-size: smaller;
+  font: small $s-28 $ff-font;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border: 1px solid #8D8D8D;
@@ -2997,3 +2996,11 @@ input[type="checkbox"]:checked ~ label .middle {
   padding-left: 40px;
 }
 /* Pledge End*/
+/* Bankload Start*/
+.bank-logo{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: $s-16;
+}
+/* Bankload End*/
