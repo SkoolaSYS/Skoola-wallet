@@ -112,6 +112,23 @@ export class AddBankLoadComponent implements OnInit {
   async doAddBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
     //console.log("click confirm");
     this.spinner.show();
+    var err:boolean = false;
+    var nameLen:Number = bankFormAccName.length; 
+    for(var i = 0; nameLen > i;i++){
+      if(!isNaN(parseInt(bankFormAccName.charAt(i)))){
+        this.ngPopups.alert('Oops, please re-enter your bank account name.')
+        this.spinner.hide();
+        return;
+      }
+    }
+    var numberLen:Number = bankFormAccNumber.length; 
+    for(var i = 0; numberLen > i;i++){
+      if(isNaN(parseInt(bankFormAccNumber.charAt(i)))){
+        this.ngPopups.alert('Oops, please re-enter your bank account number.')
+        this.spinner.hide();
+        return;
+      }
+    }
 
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){
       await this.service.sendAddBankLoad({
