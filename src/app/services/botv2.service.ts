@@ -198,13 +198,13 @@ export class Botv2Service {
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "logout",
-      "with": {}
+      "Authorization":this.AUTHORIZATION
     }
 
     console.log("Logging out...");
 
     if (this.loggedIn) {
-      return this.httpClient.post("/flows/execute", 
+      return this.httpClient.post("/AsfanPay/paynet.do", 
         data, { headers: { "Content-Type": "application/json"} }
       ).toPromise()
       .catch((err) => {
