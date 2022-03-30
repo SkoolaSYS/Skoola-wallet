@@ -6,7 +6,6 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
-import { Botv1Service } from 'src/app/services/botv1.service';
 
 // xOTP = extra OTP
 // This component handles extra OTP after a successful login required by certain banks e.g. RHB.
@@ -20,7 +19,7 @@ export class BankloadXotpComponent implements OnInit {
   otp: string;
   isMerchant:boolean;
 
-  constructor(private botService: Botv1Service, private router: Router, 
+  constructor(private botService: Botv2Service, private router: Router, 
               private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog,private services: Services) { }
 
   async ngOnInit(): Promise<void> {

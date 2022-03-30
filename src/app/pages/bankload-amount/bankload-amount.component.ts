@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
-import { Botv1Service } from 'src/app/services/botv1.service';
 import { Botv2Service } from 'src/app/services/botv2.service';
 import { Services } from 'src/app/services/service';
 
@@ -17,7 +16,7 @@ export class BankloadAmountComponent implements OnInit {
   isTopup:boolean;
   isMerchant:boolean;
   bankImage: any;
-  constructor(private services: Services, private botService: Botv1Service, private router: Router, 
+  constructor(private services: Services, private botService: Botv2Service, private router: Router, 
               private spinner: NgxSpinnerService, private dialog: MatDialog) {}
 
   async ngOnInit(): Promise<void> {
