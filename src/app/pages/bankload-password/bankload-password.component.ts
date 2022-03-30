@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
+import { Botv1Service } from 'src/app/services/botv1.service';
 
 @Component({
   selector: 'app-bankload-password',
@@ -20,7 +21,7 @@ export class BankloadPasswordComponent implements OnInit {
   hide: boolean = true;
   isMerchant:boolean;
 
-  constructor(private botService: Botv2Service, private router: Router, 
+  constructor(private botService: Botv1Service, private router: Router, 
               private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private dialog: MatDialog, private services: Services) { }
 
  async ngOnInit(): Promise<void> {
@@ -66,10 +67,10 @@ export class BankloadPasswordComponent implements OnInit {
       res = await this.botService.doLoginStep2()
       console.log("doLoginStep2:", res); 
       
-      if (res["result"]["loggedIn"] == "false") {
+      if (res["ok"] != true || res["result"]["loggedIn"] == false) {
         throw new Error();      
       }
-      else if (res["result"]["captchaRequired"] == "true") {
+      else if (res["result"]["captchaRequired"] == true) {
         this.spinner.hide();
 
         this.botService.bankLoad.captchaImage = res["result"]["captchaImage"];
@@ -77,32 +78,30 @@ export class BankloadPasswordComponent implements OnInit {
       }
       else {
         // loggedIn must be true
-        console.log('after login step 2')
         this.botService.loggedIn = true;
 
         res = await this.botService.doPerformXfer();
         console.log("doPerformXfer:", res);        
-        // if (res["ok"] != true || res["result"]["error"] != undefined)
-        //   throw new Error();
+        if (res["ok"] != true || res["result"]["error"] != undefined)
+          throw new Error();
   
-        if (res["result"]["xotpRequired"] == "true") {
+        if (res["result"]["xotpRequired"] == true) {
           this.spinner.hide();
           this.router.navigate(['bankload-xotp']);
         }
-        else if (res["result"]["otpRequired"] == "true") {
-          console.log("otpRequired")
+        else if (res["result"]["otpRequired"] == true) {
           this.spinner.hide();
           this.router.navigate(['bankload-otp']);
         }
         else {  // TODO: Repetitive code! {rwa}
           res = await this.botService.doGetTxnStatus();
           console.log("doGetTxnStatus:", res);
-          // if (res["ok"] != true)
-          //   throw new Error();
+          if (res["ok"] != true)
+            throw new Error();
     
           let statusMessage: string;
           // Display final status
-          if (res["result"]["completed"] == "true" ) {
+          if (res["result"]["completed"] == true ) {
             const ref = res["result"]["bankReference"];
             statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
           } else {
