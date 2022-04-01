@@ -79,6 +79,9 @@ export class MatsidenavComponent implements OnInit {
     return user.idVerifiedStatus === 'Unverified';
   }
 
-
+  // link to whatsapp for manual withdraw
+  whatsapp(): void {
+    window.location.href='https://wa.link/audoof'
+  }
 
 }
