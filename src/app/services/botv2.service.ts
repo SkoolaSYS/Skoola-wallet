@@ -239,9 +239,9 @@ export class Botv2Service {
       let res_index = JSON.parse( JSON.stringify(res) );   
       var RESULT = res_index["0"];        
       if (RESULT = "quit_PASSED"){          
-        alert("[quit.js]  RESULT = " + RESULT );
+        Utility.log("[quit.js] RESULT="+RESULT);
       }else if (RESULT = "quit_FAILED"){              
-        alert("[quit.js] RESULT="+ RESULT);     
+        Utility.log("[quit.js] RESULT="+RESULT);
       }  
     });
   }
