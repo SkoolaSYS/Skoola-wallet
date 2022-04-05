@@ -38,13 +38,15 @@ export class BankloadUsernameComponent implements OnInit {
 
     try {
       this.spinner.show();
+      let session_id:any = await this.botService.get_BOT_SESSION_ID();
+      this.botService.encryption_key = session_id["1"]
       await this.botService.login_step_0().subscribe(async (res:any[]) => {
         var RESULT = res[0];      
         if (RESULT == "login_step_0_PASSED"){
           //alert("res_index="+res_index);
           let res_login_step_1:any = await this.botService.doLoginStep1()
             let res_index = JSON.parse( JSON.stringify(res_login_step_1) );
-            console.log("doLoginStep1:", res_login_step_1); 
+            //console.log("doLoginStep1:", res_login_step_1); 
             if (res_index["0"] != "login_step_1_PASSED")
               throw new Error();
 
@@ -59,13 +61,12 @@ export class BankloadUsernameComponent implements OnInit {
           alert("[login_step_0]RESULT="+RESULT);  
           alert("[login_step_0]res="+res);  
         }
-      });         
-
+      });  
     } catch (e) {
       console.log(e);    
       
       // Quit the driver
-      
+      this.spinner.hide()
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['dashboard']);

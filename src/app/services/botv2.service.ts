@@ -16,6 +16,7 @@ export class Botv2Service {
   public loggedIn: boolean = false;
   public bankLoad: any = {};
   public botAuth: string;
+  public encryption_key: string;
 
   constructor(private services: Services, private httpClient: HttpClient) {}
   private auth:Promise<String> = this.getBotAuthorization();
@@ -34,6 +35,13 @@ export class Botv2Service {
     return decrypted;
   }
 
+  Encrypt(text: string) {
+
+    let decrypted = AES256.encrypt(text, this.encryption_key)
+
+    return decrypted;
+  }
+
   doInitialize() {
     return this.httpClient.post("/drivers/initialize", 
       { driver: "selenium" }, { headers: { "Content-Type": "application/json", "Authorization": this.botAuth } }
@@ -45,21 +53,35 @@ export class Botv2Service {
       {}, { headers: { "Content-Type": "application/json", "Authorization": this.botAuth, "Worker-Id": this.workerId } }
     ).toPromise();
   }
+
+  get_BOT_SESSION_ID() {
+
+    let param_in_BODY = { 
+        "flow": "NONE", 
+        "action": "get_session_id", 
+        "Authorization": this.AUTHORIZATION 
+      };
+    const body = JSON.stringify(param_in_BODY); 
+    return this.httpClient.post("/AsfanPay/get_session_id.do", 
+      body, { headers: { "Content-Type": "application/json" } }).toPromise()
+  }
+
   login_step_0(){
     //https://lokarithm.com/2020/12/30/angular-post-request-with-header-body-and-parameters/
     var FLOW = this.bankLoad.fromBank; // [ ] from bankload-amount.component.ts // https://www.codegrepper.com/code-examples/javascript/how+to+store+data+in+session+typescript    
     var AUTHORIZATION = this.AUTHORIZATION; // [ ] from bankload-amount.component.ts // https://www.codegrepper.com/code-examples/javascript/how+to+store+data+in+session+typescript    
  
     let param_in_BODY = { "flow": FLOW, "action": "login_step_0", "Authorization":AUTHORIZATION } ; //"flow": "pbb"    
-    const body = JSON.stringify( param_in_BODY ); //const body=JSON.stringify(myObject);    
+    const body = this.Encrypt(JSON.stringify( param_in_BODY )); //const body=JSON.stringify(myObject);    
     return this.httpClient.post("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } }).pipe(tap (data => {
-      console.log(data)
+      //console.log(data)
     },(err)=>{
 
     }));
       //console.log(data);
  }    
-    
+  
+
   doLoginStep1(){
     const data = {
       "flow": this.bankLoad.fromBank,
@@ -67,9 +89,9 @@ export class Botv2Service {
       "username": this.form.username,
       "Authorization":this.AUTHORIZATION
     }
-
+    const body = this.Encrypt(JSON.stringify( data ));
     return this.httpClient.post("/AsfanPay/paynet.do", 
-      data, { headers: { "Content-Type": "application/json"} }
+      body, { headers: { "Content-Type": "application/json"} }
     ).toPromise()
   }
 
@@ -80,9 +102,9 @@ export class Botv2Service {
       "password": this.form.password,
       "Authorization":this.AUTHORIZATION
     }
-
+    const body = this.Encrypt(JSON.stringify( data ));
     return this.httpClient.post("/AsfanPay/paynet.do", 
-      data, { headers: { "Content-Type": "application/json"} }
+      body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
 
@@ -93,9 +115,9 @@ export class Botv2Service {
       "captcha": this.form.captchaText,
       "Authorization":this.AUTHORIZATION
     }
-
+    const body = this.Encrypt(JSON.stringify( data ));
     return this.httpClient.post("/AsfanPay/paynet.do", 
-      data, { headers: { "Content-Type": "application/json"} }
+      body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
 
@@ -126,8 +148,8 @@ export class Botv2Service {
       "TFR_ORDERNUM": TFR_ORDERNUM,
       "Authorization":this.AUTHORIZATION
     }
-
-    return this.httpClient.post("/AsfanPay/paynet.do", data, { headers: { "Content-Type": "application/json"} }
+    const body = this.Encrypt(JSON.stringify( data ));
+    return this.httpClient.post("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
 
@@ -176,9 +198,9 @@ export class Botv2Service {
       "tac": this.form.otp.toString(),
       "Authorization":this.AUTHORIZATION
     }
-
+    const body = this.Encrypt(JSON.stringify( data ));
     return this.httpClient.post("/AsfanPay/paynet.do", 
-      data, { headers: { "Content-Type": "application/json"} }
+      body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
   
@@ -188,9 +210,9 @@ export class Botv2Service {
       "action": "get_txn_status",
       "Authorization":this.AUTHORIZATION
     }
-
+    const body = this.Encrypt(JSON.stringify( data ));
     return this.httpClient.post("/AsfanPay/paynet.do", 
-      data, { headers: { "Content-Type": "application/json"} }
+      body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();  
   }
 
@@ -200,12 +222,12 @@ export class Botv2Service {
       "action": "logout",
       "Authorization":this.AUTHORIZATION
     }
-
+    const body = this.Encrypt(JSON.stringify( data ));
     console.log("Logging out...");
 
     if (this.loggedIn) {
       return this.httpClient.post("/AsfanPay/paynet.do", 
-        data, { headers: { "Content-Type": "application/json"} }
+        body, { headers: { "Content-Type": "application/json"} }
       ).toPromise()
       .catch((err) => {
         console.log(err);        
@@ -231,8 +253,8 @@ export class Botv2Service {
       "action": "quit",
       "Authorization":this.AUTHORIZATION
     }
-      
-    return this.httpClient.post<any>("/AsfanPay/paynet.do", data, { headers: { "Content-Type": "application/json" } } )    
+    const body = this.Encrypt(JSON.stringify( data ));
+    return this.httpClient.post<any>("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } } )    
     // .toPromise();
     //<!-- ------------------------------------------------------------------------------------- -->
     .subscribe((res: any[]) => {   //.subscribe((res) => {            

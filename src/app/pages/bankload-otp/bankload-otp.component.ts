@@ -33,12 +33,12 @@ export class BankloadOtpComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doConfirmTxn();
-      console.log("doConfirmTxn:", res);
+      //console.log("doConfirmTxn:", res);
       // if (res["ok"] != true)
       //   throw new Error();
       
       res = await this.botService.doGetTxnStatus();
-      console.log("doGetTxnStatus:", res);
+      //console.log("doGetTxnStatus:", res);
       // if (res["ok"] != true)
       //   throw new Error();
 
@@ -68,7 +68,7 @@ export class BankloadOtpComponent implements OnInit {
       
       // this.spinner.show();
       res = await this.botService.doLogout(); 
-      console.log("doLogout:", res);
+      //console.log("doLogout:", res);
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
