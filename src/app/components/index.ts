@@ -14,8 +14,6 @@ export * from './shopping-products/shopping-products.component';
 export * from './qr-view/qr-view.component';
 export * from './buynear-top-view/buynear-top-view.component';
 export * from './otpbank/otpbank.component';
-export * from './cimbbank-details/cimbbank-details.component';
-export * from './cimbbank-transaction/cimbbank-transaction.component';
 export * from './matsidenav/matsidenav.component';
 export * from './terms-condition/terms-condition.component';
 export * from './split-header/split-header.component';

@@ -8,7 +8,6 @@ import {
   DashboardComponent,
   TransferComponent,
   TransactionDetailsComponent,
-  BankloadComponent,
   BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
@@ -26,7 +25,6 @@ import {
   SignupDetailsComponent,
   UpdateUsernamePwdComponent,
   UpdateProfileComponent,
-  CimbBankloadComponent,
   IdVerificationComponent,
   AddBankComponent,
   UpdateBankComponent,
@@ -185,10 +183,6 @@ export const routes: Routes = [
  },
  {
    path:'update-profile', component: UpdateProfileComponent,
-   canActivate: [AuthenticationGuard]
- },
- {
-    path:'cimb-bankload', component:  CimbBankloadComponent,
    canActivate: [AuthenticationGuard]
  },
  {

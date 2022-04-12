@@ -6,7 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-bankload-username',
@@ -44,22 +44,22 @@ export class BankloadUsernameComponent implements OnInit {
         var RESULT = res[0];      
         if (RESULT == "login_step_0_PASSED"){
           //alert("res_index="+res_index);
-          let res_login_step_1:any = await this.botService.doLoginStep1()
-            let res_index = JSON.parse( JSON.stringify(res_login_step_1) );
-            //console.log("doLoginStep1:", res_login_step_1); 
-            if (res_index["0"] != "login_step_1_PASSED")
-              throw new Error();
+          let res_login_step_1:any = await this.botService.doLoginStep1();
+          let res_index = JSON.parse( JSON.stringify(res_login_step_1) );
+          //console.log("doLoginStep1:", res_login_step_1); 
+          if (res_index["0"] != "login_step_1_PASSED")
+            throw new Error();
 
-            this.botService.form.secureImage = res_index["1"];
-            this.botService.form.secretPhrase = res_index["2"];
-      
-            this.spinner.hide();
-            this.router.navigate(['bankload-password']);
+          this.botService.form.secureImage = res_index["1"];
+          this.botService.form.secretPhrase = res_index["2"];
+    
+          this.spinner.hide();
+          this.router.navigate(['bankload-password']);
 
             
         }else{
-          alert("[login_step_0]RESULT="+RESULT);  
-          alert("[login_step_0]res="+res);  
+          Utility.log("[login_step_0]RESULT="+RESULT);  
+          Utility.log("[login_step_0]res="+res);  
         }
       });  
     } catch (e) {

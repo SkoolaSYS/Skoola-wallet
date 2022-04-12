@@ -1,12 +1,13 @@
-
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Services } from './service';
-import { TRANSACTION_TYPE } from 'src/utils';
+import { TRANSACTION_TYPE, Utility } from 'src/utils';
+const AES256  = require('aes-everywhere');
+
 @Injectable({
   providedIn: 'root'
 })
-export class Botv1Service {
+export class Botv2Service {
   public isTopup:boolean;
   public form: any = {};
   public httpHeaders: HttpHeaders;
@@ -14,7 +15,17 @@ export class Botv1Service {
   public loggedIn: boolean = false;
   public bankLoad: any = {};
   public botAuth: string;
-  constructor(private services: Services, private httpClient: HttpClient) { }
+
+  constructor(private services: Services, private httpClient: HttpClient) {}
+
+  encrypt(text: string) {
+    let key = this.workerId.replace(/-/g, "");
+
+    let encrypted = AES256.encrypt(text, key)
+    Utility.log(text + " => " + encrypted);
+    
+    return encrypted;
+  }
 
   doInitialize() {
     return this.httpClient.post("/drivers/initialize", 
@@ -33,7 +44,7 @@ export class Botv1Service {
       "flow": this.bankLoad.fromBank,
       "action": "login_step1",
       "with": {
-        "username": this.form.username
+        "username": this.encrypt(this.form.username)
       }
     }
 
@@ -47,7 +58,7 @@ export class Botv1Service {
       "flow": this.bankLoad.fromBank,
       "action": "login_step2",
       "with": {
-        "password": this.form.password
+        "password": this.encrypt(this.form.password)
       }
     }
 
@@ -61,7 +72,7 @@ export class Botv1Service {
       "flow": this.bankLoad.fromBank,
       "action": "login_step3",
       "with": {
-        "captcha": this.form.captchaText
+        "captcha": this.encrypt(this.form.captchaText)
       }
     }
 
@@ -102,9 +113,9 @@ export class Botv1Service {
       "flow": this.bankLoad.fromBank,
       "action": "perform_xfer",
       "with": {
-        "fromaccount": this.bankLoad.fromAccount,
-        "amount": (this.form.amount + this.bankLoad.transactionFee).toString(),
-        "txndet": JSON.stringify(TFR_ORDERNUM)
+        "fromaccount": this.encrypt(this.bankLoad.fromAccount),
+        "amount": this.encrypt((this.form.amount + this.bankLoad.transactionFee).toString()),
+        "txndet": this.encrypt(JSON.stringify(TFR_ORDERNUM))
       }
     }
 
@@ -128,14 +139,15 @@ export class Botv1Service {
       "transactionTypeId": TRANSACTION_TYPE.BankLoad,
       "transferTypeId": transferType
     };
-    //console.log("@doFillXferForm()\n"+ transferType)
+
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "fill_xfer_form",
       "with": {
-        "fromaccount": this.bankLoad.fromAccount,
-        "amount": (this.form.amount + this.bankLoad.transactionFee).toString(),
-        "txndet": JSON.stringify(TFR_ORDERNUM)
+        "otp": this.encrypt(this.form.otp.toString()),
+        "fromaccount": this.encrypt(this.bankLoad.fromAccount),
+        "amount": this.encrypt((this.form.amount + this.bankLoad.transactionFee).toString()),
+        "txndet": this.encrypt(JSON.stringify(TFR_ORDERNUM))
       }
     }
 
@@ -145,14 +157,17 @@ export class Botv1Service {
   }
 
   doConfirmTxn(opts) {
-    var payload = {}
-    if ("otpRequired" in opts && opts["otpRequired"] == true) {
-      payload["otp"] = this.form.otp.toString()
-    }
+    // var payload = {}
+    // if ("otpRequired" in opts && opts["otpRequired"] == true) {
+    //   payload["otp"] = this.form.otp.toString()
+    // }
+
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "confirm_txn",
-      "with": payload
+      "with": {
+        "otp": this.encrypt(this.form.otp.toString())
+      }
     }
 
     return this.  httpClient.post("/flows/execute", 
