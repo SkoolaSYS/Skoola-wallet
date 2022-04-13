@@ -41,7 +41,7 @@ export class Botv2Service {
         "Authorization": this.botAuth 
       };
     const body = JSON.stringify(param_in_BODY); 
-    return this.httpClient.post("/1Pay/get_session_id.do", 
+    return this.httpClient.post("/AsfanPay/get_session_id.do", 
       body, { headers: { "Content-Type": "application/json" } }).toPromise()
   }
 
@@ -52,7 +52,7 @@ export class Botv2Service {
  
     let param_in_BODY = { "flow": FLOW, "action": "login_step_0", "Authorization":AUTHORIZATION } ; //"flow": "pbb"    
     const body = this.encrypt(JSON.stringify( param_in_BODY )); //const body=JSON.stringify(myObject);    
-    return this.httpClient.post("/1Pay/paynet.do", body, { headers: { "Content-Type": "application/json" } }).pipe(tap (data => {
+    return this.httpClient.post("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } }).pipe(tap (data => {
       //console.log(data)
     },(err)=>{
 
@@ -68,7 +68,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post("/1Pay/paynet.do", 
+    return this.httpClient.post("/AsfanPay/paynet.do", 
       body, { headers: { "Content-Type": "application/json"} }
     ).toPromise()
   }
@@ -81,7 +81,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post("/1Pay/paynet.do", 
+    return this.httpClient.post("/AsfanPay/paynet.do", 
       body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
@@ -94,7 +94,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post("/1Pay/paynet.do", 
+    return this.httpClient.post("/AsfanPay/paynet.do", 
       body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
@@ -127,7 +127,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post("/1Pay/paynet.do", body, { headers: { "Content-Type": "application/json"} }
+    return this.httpClient.post("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
 
@@ -159,7 +159,7 @@ export class Botv2Service {
       }
     }
 
-    return this.httpClient.post("/1Pay/paynet.do", 
+    return this.httpClient.post("/AsfanPay/paynet.do", 
       data, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
@@ -172,7 +172,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post("/1Pay/paynet.do", 
+    return this.httpClient.post("/AsfanPay/paynet.do", 
       body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();    
   }
@@ -184,7 +184,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post("/1Pay/paynet.do", 
+    return this.httpClient.post("/AsfanPay/paynet.do", 
       body, { headers: { "Content-Type": "application/json"} }
     ).toPromise();  
   }
@@ -199,7 +199,7 @@ export class Botv2Service {
     console.log("Logging out...");
 
     if (this.loggedIn) {
-      return this.httpClient.post("/1Pay/paynet.do", 
+      return this.httpClient.post("/AsfanPay/paynet.do", 
         body, { headers: { "Content-Type": "application/json"} }
       ).toPromise()
       .catch((err) => {
@@ -227,7 +227,7 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post<any>("/1Pay/paynet.do", body, { headers: { "Content-Type": "application/json" } } )    
+    return this.httpClient.post<any>("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } } )    
     // .toPromise();
     //<!-- ------------------------------------------------------------------------------------- -->
     .subscribe((res: any[]) => {   //.subscribe((res) => {            
