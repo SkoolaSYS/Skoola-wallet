@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   public isPledge:boolean;
   public isPledgeProvider:boolean;
   public isProvider: boolean;
+  public isRecycle:boolean;
   btnAdd: any;
   app: any;
   constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService) {}
@@ -34,11 +35,12 @@ export class DashboardComponent implements OnInit {
       this.isPledge = currentUser.pledge;
       this.isPledgeProvider = currentUser.pledgeProvider;
       this.isProvider = currentUser.provider;
+      this.isRecycle = currentUser.recycle;
       localStorage.setItem("parent", currentUser.parentId);
 
     },
     (err) => {
-      // console.log(err);
+      // (err);
     });
 
     // TODO: To to decide whether we want to display profile image on side-nav bar.
@@ -69,7 +71,7 @@ export class DashboardComponent implements OnInit {
   }
   async doBankLoad(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
-    // console.log(currentUser)
+    // (currentUser)
 
     if (currentUser.bankLoad){
       this.router.navigate(['bankload']);
@@ -101,4 +103,5 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['pledge'])
     }
   }
+  
 }

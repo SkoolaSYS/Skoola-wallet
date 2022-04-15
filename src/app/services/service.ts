@@ -21,6 +21,7 @@ export class Services {
     private $confirmnewusername: string;    
     private $confirmnewpassword: string;
     public  amountTopup:string
+    public  amountRecycle:string;
     public  forms: any = {};
     public  bankForms: any = {};
     public  currentUser: Promise<any>;
@@ -52,6 +53,7 @@ export class Services {
     public pledgeGold: any;
     public pledgeList: Object;
     public idPledge: any;
+    public recycle:boolean
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -1089,6 +1091,60 @@ export class Services {
             },
             (err) => {
                 console.log('uploadVerificationData() Error...');
+                console.log(err);
+            }));;
+        }
+
+        public merchantProduct(value: String){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };
+            return this.http.get('rest/members/merchantProductsList/'+value, headerOptions).pipe(tap (data => {
+                this.sellGoldData = data;
+            },
+            (err) => {
+                console.log('merchantProduct() Error...');
+                console.log(err);
+            }));;
+        }
+
+        public merchantRecycle(){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };
+            return this.http.get('rest/members/merchantRecycleList', headerOptions).pipe(tap (data => {
+                this.sellGoldData = data;
+            },
+            (err) => {
+                console.log('merchantRecycle() Error...');
+                console.log(err);
+            }));;
+        }
+
+        public recyclePayment(){
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };
+            return this.http.get('rest/members/recyclePayment', headerOptions).pipe(tap (data => {
+                this.sellGoldData = data;
+            },
+            (err) => {
+                console.log('merchantRecycle() Error...');
                 console.log(err);
             }));;
         }

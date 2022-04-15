@@ -1,0 +1,35 @@
+<div>
+    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+    <label class="handburger" for="myInput">
+        <span class="bar top"></span>
+        <span class="bar middle"></span>
+        <span class="bar bottom"></span>
+    </label>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" position="end">
+            <mat-nav-list>
+                <app-matsidenav></app-matsidenav>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <div class="row no-gutters justify-content-center">
+                <div class="col-12 col-xl-9">
+                    <div class="">
+                        <img class="max-width-100" src="assets/products/atv-details-example.jpeg" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center d8p-h3">
+                        {{productName}}
+                    </div>
+                    <div class="d-flex justify-content-center d8p-normal-text">
+                        {{productDesc}}
+                    </div>
+                </div>
+                <footer>
+                    <div class="card-footer">
+                        RM {{productPrice}}
+                    </div>
+                </footer>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

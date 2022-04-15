@@ -47,3 +47,7 @@ export * from './pledge-list/pledge-list.component';
 export * from './pledge-list-details/pledge-list-details.component';
 export * from './pledge-list-details/pledge-list-details.component';
 export * from './merchant-cert/merchant-cert.component';
+export * from './products-card/products-card.component';
+export * from './products-details/products-details.component';
+export * from './recycle-cards/recycle-cards.component';
+export * from './recycle-info/recycle-info.component';

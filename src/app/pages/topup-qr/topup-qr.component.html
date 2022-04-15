@@ -36,9 +36,19 @@
                     Show QR Code
                   </div>
                   <!-- Topup -->
-                  <div class="qr-box row no-gutters justify-content-center" *ngIf="!redeem">
+                  <div class="qr-box row no-gutters justify-content-center" *ngIf="topup">
                     <!-- IMAGE FOR GENERATED QR -->
                     <qr-code [value]="href" size="250"></qr-code>
+                  </div>
+                  <!-- Recycle -->
+                  <div class="qr-box row no-gutters justify-content-center" *ngIf="recycle">
+                    <!-- IMAGE FOR GENERATED QR -->
+                    <div class="qr-redeem"><qr-code [value]="href" size="250"></qr-code></div>
+                    <div class="redeem-coin-box no-gutters justify-content-center">
+                      <div class="redeem-description" style="color:white;">
+                        <label>Total (RM): {{amountRecycle}}</label>
+                      </div>
+                    </div>
                   </div>
                   <!-- Redeem -->
                   <div class="qr-box-redeem row no-gutters justify-content-center" *ngIf="redeem">

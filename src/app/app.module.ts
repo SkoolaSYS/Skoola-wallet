@@ -20,6 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
 
 import { NgPopupsModule } from 'ng-popups';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -78,6 +80,10 @@ import {
   PledgeListComponent,
   PledgeListDetailsComponent,
   MerchantCertComponent,
+  ProductsCardComponent,
+  ProductsDetailsComponent,
+  RecycleCardsComponent,
+  RecycleInfoComponent
 } from './pages';
 
 import {
@@ -188,7 +194,21 @@ export class SafeUrlPipe implements PipeTransform {
     PledgeDetailsComponent,
     PledgeListComponent,
     PledgeListDetailsComponent,
-
+    MerchantCertComponent,
+    ProductsCardComponent,
+    UpdateBankLoadComponent,
+    BankloadAmountComponent,
+    BankloadUsernameComponent,
+    BankloadPasswordComponent,
+    BankloadXotpComponent,
+    BankloadOtpComponent,
+    BankloadHelperComponent,
+    BankloadCaptchaComponent,
+    RedeemInfoComponent,
+    ProductsDetailsComponent,
+    RecycleCardsComponent,
+    RecycleInfoComponent,
+    
     // components
     DashboardHeaderComponent,
     TransactionViewComponent,
@@ -212,22 +232,11 @@ export class SafeUrlPipe implements PipeTransform {
     RedeemDetailsViewComponent,
     PledgeDetailsViewComponent,
     PledgeListDetailsViewComponent,
-    MerchantCertComponent,
+    AlertDialogComponent,
 
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
-    UpdateBankLoadComponent,
-    
-    BankloadAmountComponent,
-    BankloadUsernameComponent,
-    BankloadPasswordComponent,
-    BankloadXotpComponent,
-    BankloadOtpComponent,
-    BankloadHelperComponent,
-    AlertDialogComponent,
-    BankloadCaptchaComponent,
-    RedeemInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -242,6 +251,8 @@ export class SafeUrlPipe implements PipeTransform {
     MatButtonModule,
     MatTabsModule,
     MatRadioModule,
+    MatTooltipModule,
+    MatCardModule,
     NgbModule,
     QRCodeModule,
     Ng2ImgMaxModule, 

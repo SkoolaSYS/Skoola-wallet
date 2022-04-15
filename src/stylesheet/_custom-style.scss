@@ -2612,9 +2612,9 @@ input[type="checkbox"]:checked ~ label .middle {
 }
 .heads{
   position: relative;
-  animation: spin-front 5s infinite;
+  animation: spin-front 7s infinite;
 }
-.heads, .kopama, .gmi, .jaminstore, .komunitiLtl{
+.heads, .kopama, .gmi, .jaminstore, .komunitiLtl, .ohsem-twop{
   backface-visibility: hidden;
   left: 0;
   top: 0;
@@ -2638,7 +2638,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .jaminstore{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 5s infinite;
+  animation: spin-back 7s infinite;
   z-index: 10;
   margin-top: 6px;
   margin-left: 20%;
@@ -2646,7 +2646,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .komunitiLtl{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 5s infinite;
+  animation: spin-back 7s infinite;
   z-index: 10;
   margin-top: 6px;
   margin-left: 25%;
@@ -2655,7 +2655,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .gmi{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 5s infinite;
+  animation: spin-back 7s infinite;
   z-index: 10;
   margin-top: 10%;
   margin-left: 20%;
@@ -2663,11 +2663,21 @@ input[type="checkbox"]:checked ~ label .middle {
 .kopama{
     position: absolute;
     transform: rotateY(180deg);
-    animation: spin-back 5s infinite;
+    animation: spin-back 7s infinite;
     z-index: 10;
     margin-top: 6px;
     margin-left: 25%;
   }
+
+.ohsem-twop{
+  position: absolute;
+  transform: rotateY(180deg);
+  animation: spin-back 7s infinite;
+  z-index: 10;
+  margin-top: 45px;
+  margin-left: 25%;
+  height: 100px;
+}
 /* Logo Transition End */
 .qr-shaded-region{
   position: absolute;
@@ -3013,3 +3023,29 @@ input[type="checkbox"]:checked ~ label .middle {
   margin-top: $s-16;
 }
 /* Bankload End*/
+/* Products, Recycle Start*/
+.inc-button{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: yellow;
+  border-radius: 4px;
+  padding: 8px 5px;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+  content: '\002b';
+}
+.dec-button{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: aliceblue;
+  border-radius: 4px;
+  padding: 8px 5px;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+  content: '\002d';
+}
+

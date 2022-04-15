@@ -1,0 +1,76 @@
+<div>
+    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+    <label class="handburger" for="myInput">
+        <span class="bar top"></span>
+        <span class="bar middle"></span>
+        <span class="bar bottom"></span>
+    </label>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" position="end">
+            <mat-nav-list>
+                <app-matsidenav></app-matsidenav>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <div class="container-fluid p-0">
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9">
+                        <div class="dashboard-header-box">
+                            <app-dashboard-header></app-dashboard-header>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-gutters justify-content-center">
+                <div class="col-12 col-xl-9">
+                    <div class="dashboard-content-box pb-5">
+                        <div class="container-fluid quicklinkbg">
+                            <div class="row no-gutters">
+                                <div class="col-12">
+                                    <div class="container-fluid p-0 menu-grid">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="col-12 col-xl-9 titlebg">
+                                                PAYSERVICE
+                                            </div>
+                                        </div>
+                                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                                            <div class="col-3 flex-align-center flex-column border-right-white mt-3">
+                                                <div class="height-60 text-center"><img class="max-width-60"
+                                                        src="assets/icons-img/payservice-bw.png" /></div>
+                                            </div>
+                                            <div class="briefDescription col-9 pl-3">
+                                                Pay services provided by selected merchants.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid">
+                            <div class="row no-gutters">
+                                <div class="col-12">
+                                    <div class="container-fluid p-0 menu-grid">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="row" >
+                                                <div class="col-6 col-md-3" *ngFor="let product of data; let i = index">
+                                                    <div class="card">
+                                                        <img class="card-image-top" [src]="product[0].productImage" alt="">
+                                                        <div class="card-title">{{product[0].productName}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
