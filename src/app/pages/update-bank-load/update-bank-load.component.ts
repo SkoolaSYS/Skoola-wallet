@@ -36,23 +36,23 @@ export class UpdateBankLoadComponent implements OnInit {
       this.bankData = res;
       this.bankFormAccName = this.bankData.bankAccName
       this.bankFormAccNumber= this.bankData.bankAccNumber
-      //console.log(res);
+      //(res);
     });
 
     this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks[0] = res[0]    // MAYBANK
       this.banks[1] = res[1]    // CIMB BANK
       this.banks[2] = res[2]; this.banks[2]["disabled"] = true;     // RHB BANK
-      this.banks[3] = res[3]    // BANK RAKYAT
+      this.banks[3] = res[3]; this.banks[3]["disabled"] = true;    // BANK RAKYAT
       this.banks[4] = res[4]    // PUBLIC BANK
       this.banks[5] = res[5]    // AGRO BANK
       this.banks[6] = res[6]    // BANK ISLAM
       this.banks[7] = res[7]; this.banks[7]["disabled"] = true;     // AFFIN
       this.banks[8] = res[8]; this.banks[8]["disabled"] = true;     // RAJHI
-      this.banks[9] = res[9]    // ALLIANCE
+      this.banks[9] = res[9]; this.banks[9]["disabled"] = true;    // ALLIANCE
       this.banks[10] = res[10]; this.banks[10]["disabled"] = true;  // AMBANK
-      this.banks[11] = res[11]  // MUAMALAT
-      this.banks[12] = res[12]  // BSN
+      this.banks[11] = res[11]; this.banks[11]["disabled"] = true; // MUAMALAT
+      this.banks[12] = res[12]; this.banks[12]["disabled"] = true;  // BSN
       this.banks[13] = res[13]; this.banks[13]["disabled"] = true;  // CITIBANK
       this.banks[14] = res[14]; this.banks[14]["disabled"] = true;  // HLB
       this.banks[15] = res[15]; this.banks[15]["disabled"] = true;  // HSBC
@@ -65,7 +65,7 @@ export class UpdateBankLoadComponent implements OnInit {
       if (this.bankObject != null){
           this.bankFormName = this.bankObject.id
       }
-      //console.log(res);
+      //(res);
     });
 
     this.spinner.hide();
@@ -77,7 +77,7 @@ export class UpdateBankLoadComponent implements OnInit {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
-      //console.log(res)
+      //(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -89,7 +89,7 @@ export class UpdateBankLoadComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      console.log(err);
+      (err);
       // this.service.logout();
     });
 
@@ -98,12 +98,12 @@ export class UpdateBankLoadComponent implements OnInit {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;
     },
     (err) => {
-      console.log(err);
+      (err);
       // this.service.logout();
     });
   }
   async doUpdateBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
-    //console.log("click confirm");
+    //("click confirm");
     this.spinner.show();
     var err:boolean = false;
     var nameLen:Number = bankFormAccName.length; 

@@ -37,7 +37,7 @@ export class AddBankLoadComponent implements OnInit {
       this.banks[3] = res[3]; this.banks[3]["disabled"] = true;      // BANK RAKYAT
       this.banks[4] = res[4]    // PUBLIC BANK
       this.banks[5] = res[5]    // AGRO BANK
-      this.banks[6] = res[6]; this.banks[6]["disabled"] = true;    // BANK ISLAM
+      this.banks[6] = res[6]    // BANK ISLAM
       this.banks[7] = res[7]; this.banks[7]["disabled"] = true;     // AFFIN
       this.banks[8] = res[8]; this.banks[8]["disabled"] = true;     // RAJHI
       this.banks[9] = res[9]; this.banks[9]["disabled"] = true;      // ALLIANCE
