@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   loginUsername : string;
   fullName : string;
   emailAddress : string;
+  noTelephone : string;
   nricNumber : string;
   createPassword : string;
   confirmPassword : string;
@@ -55,6 +56,7 @@ export class SignupComponent implements OnInit {
       this.loginUsername = this.authService.signupData.username;
       this.fullName = this.authService.signupData.fullName; 
       this.emailAddress = this.authService.signupData.emailAddress;
+      this.noTelephone = this.authService.signupData.noTelephone;
       this.nricNumber = this.authService.signupData.nricNumber;
       this.createPassword = this.authService.signupData.createPassword;
       this.confirmPassword = this.authService.signupData.confirmPassword;
@@ -112,6 +114,7 @@ export class SignupComponent implements OnInit {
     this.authService.signupData.username = this.loginUsername;
     this.authService.signupData.fullName = this.fullName;
     this.authService.signupData.emailAddress = this.emailAddress;
+    this.authService.signupData.noTelephone = this.noTelephone;
     this.authService.signupData.nricNumber = this.nricNumber;
     this.authService.signupData.createPassword = this.createPassword;
     this.authService.signupData.confirmPassword = this.confirmPassword;
@@ -156,6 +159,12 @@ export class SignupComponent implements OnInit {
           "value": this.nricNumber
         });
 
+        if (this.noTelephone)
+        customValues.push({
+          "internalName": "mobilePhone",
+          "value": this.noTelephone
+        });
+
         if (this.homeAddress)
         customValues.push({
           "internalName": "address",
@@ -177,7 +186,7 @@ export class SignupComponent implements OnInit {
         if (customValues.length != 0)  
         data.customValues = customValues;
         
-        if (this.loginUsername!= null && this.fullName != null && this.emailAddress != null && this.nricNumber != null && this.createPassword != null && customValues != null && this.parentId != null ){
+        if (this.loginUsername!= null && this.fullName != null && this.emailAddress != null && this.noTelephone != null && this.nricNumber != null && this.createPassword != null && customValues != null && this.parentId != null ){
           this.errorMessage.push({field:this.loginUsername,reason:"Username has been used"})
           this.spinner.show();
           await this.services.signupUser({
