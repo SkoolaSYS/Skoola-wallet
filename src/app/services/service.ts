@@ -10,9 +10,9 @@ import { NgPopupsService } from 'ng-popups';
 })
 
 export class Services {
-    public activetransaction: boolean;
-    public currentBalance;
-    public topupBalance;
+    public  activetransaction: boolean;
+    public  currentBalance;
+    public  topupBalance;
     private $username: string;
     private $password: string;
     private authToken: string;
@@ -22,6 +22,8 @@ export class Services {
     private $confirmnewpassword: string;
     public  amountTopup:string
     public  amountRecycle:string;
+    public  recycleWeight: string;
+    public  recycleWaste: string;
     public  forms: any = {};
     public  bankForms: any = {};
     public  currentUser: Promise<any>;
@@ -29,31 +31,31 @@ export class Services {
     private ACCESS_TOKEN = 'accessToken';
     private $forceChangePassword: boolean;
     private $forceChangeUsername: boolean;
-    public opsTagging: string;
+    public  opsTagging: string;
     private $allowWithdrawal: boolean;
     public  receiver: Promise<any>;
     public  transactionData: any = {};
     public  bankData:any={};
-    public memberBankData:any={};
+    public  memberBankData:any={};
     public  userAccount: any;
-    public transactionFeeAmount;
-    public ipAddress:any;
-    public sellGold:any;
-    public sellGoldData:any;
-    public buyGold:any;
-    public chosenGold:any;
-    public averageGold:any;
-    public counter:number = 0;
-    public memberId:string;
-    public qrData:any;
-    public redeemGold: any;
-    public qrgenerate: boolean;
-    public redeemQr: Object;
-    public redeemDetail: any;
-    public pledgeGold: any;
-    public pledgeList: Object;
-    public idPledge: any;
-    public recycle:boolean
+    public  transactionFeeAmount;
+    public  ipAddress:any;
+    public  sellGold:any;
+    public  sellGoldData:any;
+    public  buyGold:any;
+    public  chosenGold:any;
+    public  averageGold:any;
+    public  counter:number = 0;
+    public  memberId:string;
+    public  qrData:any;
+    public  redeemGold: any;
+    public  qrgenerate: boolean;
+    public  redeemQr: Object;
+    public  redeemDetail: any;
+    public  pledgeGold: any;
+    public  pledgeList: Object;
+    public  idPledge: any;
+    public  recycle:boolean
 
     headerOptions = {
         headers: new HttpHeaders({
@@ -1131,7 +1133,7 @@ export class Services {
             }));;
         }
 
-        public recyclePayment(){
+        public recyclePayment(data:any){
             const headerOptions = {
                 headers: new HttpHeaders({
                     'Content-Type':  'application/json',
@@ -1140,8 +1142,8 @@ export class Services {
                     Authorization: this.token
                 })
             };
-            return this.http.get('rest/members/recyclePayment', headerOptions).pipe(tap (data => {
-                this.sellGoldData = data;
+            return this.http.post('rest/members/recyclePayment',data, headerOptions).pipe(tap (data => {
+                
             },
             (err) => {
                 console.log('merchantRecycle() Error...');

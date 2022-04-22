@@ -15,17 +15,32 @@ export class RecycleInfoComponent implements OnInit {
   merchantName: any;
   isRecycle: boolean;
   memberId;
-  isMerchant:boolean;
+  isMerchant: boolean;
+  merchant:any;
+  recycleWaste: any;
+  recycleWeight: any;
+  data: any[]=[];
 
   constructor(private services: Services, private route: Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.amount = this.services.qrData.amount
-    console.log(this.services.qrData.id);
+  async ngOnInit(): Promise <void> {
+    const currentUser: any = await this.services.currentUser;
+    this.isMerchant = currentUser.merchant
+    console.log(this.services.qrData, "qrdata");
+    this.amount = this.services.qrData.amount;
+    this.merchant = this.services.qrData.merchantId;
+    this.recycleWaste = this.services.qrData.recycleWaste;
+
+    for(var i = 0; i < this.recycleWaste.length; i++){
+      this.data.push([{
+        recycleWaste: this.services.qrData.recycleWaste[i],
+        recycleWeight: this.services.qrData.recycleWeight[i]
+      }])
+    }
+
     this.services.loadById(this.services.qrData.merchantId).subscribe((res:any)=>{
       this.memberId= res.id;
       this.merchantName = res.name;
-      console.log(this.merchantName, "hehehsh");
       
     },
     (err) => {
@@ -35,26 +50,18 @@ export class RecycleInfoComponent implements OnInit {
   }
 
   async confirm(): Promise<void>{
-    if(this.services.topupBalance>parseFloat(this.amount)){
-      const balance = parseFloat(this.services.topupBalance);
-      const amount = parseFloat(this.amount);
-
-      if(amount <= balance){
+   
         this.spinner.show();
 
-        this.services.paymentTransfer({
-          toMemberId: this.memberId,
-          toMemberPrincipal: this.merchantName,
-          amount: this.amount,
-          transferTypeId: 40,
+        this.services.recyclePayment({
+          memberId: this.memberId,
+          merchant: this.merchant,
+          amount: this.amount
         }).subscribe((res) =>{
           this.spinner.hide();
   
           const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "Your payment has been successfully processed." } });
           dialogRef.afterClosed().subscribe(() => {
-            this.services.activetransaction = true;
-            this.services.transactionData.amount = this.amount;
-
             this.route.navigate(['dashboard']);
           });
         },
@@ -66,10 +73,7 @@ export class RecycleInfoComponent implements OnInit {
             this.route.navigate(['dashboard']);
           });
         })
-      }else {
-        this.dialog.open(AlertDialogComponent, { data: { message: "The entered amount exceeds the available balance in your wallet account." } });
-      }
-    }
+      
   }  
 
 }

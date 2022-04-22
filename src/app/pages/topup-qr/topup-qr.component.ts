@@ -55,19 +55,19 @@ export class TopupQrComponent implements OnInit {
     } else if (this.isRecycle) {
       this.recycle = true;
       
-      console.log(currentUser,"hdgdd")
       this.amountRecycle = this.services.amountRecycle;
       const data = {
         "route": "recycle-info",
         "merchantId": currentUser.id.toString(),
-        "amount": this.services.amountRecycle
+        "amount": this.services.amountRecycle,
+        "recycleWaste": this.services.recycleWaste,
+        "recycleWeight": this.services.recycleWeight
       }
       console.log(data)
       await this.services.encrypt({ text: JSON.stringify(data) }).toPromise()
       this.href = this.services.qrData.decryptText
     }
     else{
-      console.log("def")
       this.topup = true
       const currentUser: any = await this.services.currentUser;
       

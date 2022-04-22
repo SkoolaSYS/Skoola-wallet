@@ -41,10 +41,17 @@
                        Recycle Details
                       </div>
                       <div class="text-center mt-2 mb-2">
-                        Recipient's Name
+                        Merchant's Name
                       </div>
                       <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
                         <input class="d8p-input-form d8p-input-normal" type="text" [(ngModel)]="merchantName" readonly required/>
+                      </div>
+                      <div class="text-center mt-2 mb-4">
+                        Type of Recycle Waste
+                      </div>
+                      <div class="upload-part row no-gutters justify-content-center" *ngFor="let recycle of data; let i = index">
+                        <span>Type of Recycle Waste: {{recycle[0].recycleWaste}}</span>
+                        <span>Recycle Waste Weight(g): {{recycle[0].recycleWeight}}</span>
                       </div>
                       <div class="text-center mt-2 mb-2">
                         Amount Recycle Price

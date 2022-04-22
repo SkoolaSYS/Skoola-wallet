@@ -15,80 +15,97 @@
             <div class="container-fluid p-0">
                 <div class="row no-gutters justify-content-center">
                     <div class="col-12 col-xl-9">
-                        <div class="dashboard-header-box">
+                        <div class="dashboard-header-box" *ngIf="!isMerchant">
                             <app-dashboard-header></app-dashboard-header>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9">
+                        <div class="dashboard-header-box" *ngIf="isMerchant">
+                            <app-split-header></app-split-header>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="row no-gutters justify-content-center">
-                <div class="col-12 col-xl-9">
-                    <div class="dashboard-content-box pb-5">
-                        <div class="container-fluid quicklinkbg">
-                            <div class="row no-gutters">
-                                <div class="col-12">
-                                    <div class="container-fluid p-0 menu-grid">
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="col-12 col-xl-9 titlebg">
-                                                RECYCLE
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9">
+                        <div class="dashboard-content-box pb-5">
+                            <div class="container-fluid quicklinkbg">
+                                <div class="row no-gutters">
+                                    <div class="col-12">
+                                        <div class="container-fluid p-0 menu-grid">
+                                            <div class="row no-gutters justify-content-center">
+                                                <div class="col-12 col-xl-9 titlebg">
+                                                    RECYCLE
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
-                                            <div class="col-3 flex-align-center flex-column border-right-white mt-3">
-                                                <div class="height-60 text-center"><img class="max-width-60"
-                                                        src="assets/icons-img/payservice-bw.png" /></div>
-                                            </div>
-                                            <div class="briefDescription col-9 pl-3">
-                                                Recycle waste based on grams.
+                                            <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                                                <div
+                                                    class="col-3 flex-align-center flex-column border-right-white mt-3">
+                                                    <div class="height-60 text-center"><img class="max-width-80"
+                                                            src="assets/icons-img/recycle-bw.png" /></div>
+                                                </div>
+                                                <div class="briefDescription col-9 pl-3">
+                                                    Recycle waste based on grams.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="container-fluid">
-                            <div class="row no-gutters">
-                                <div class="col-12">
-                                    <div class="container-fluid p-0 menu-grid">
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="row" *ngFor="let recycle of data; let i = index">
-                                                <div class="col-6 col-md-3">
-                                                    <div class="card" style="width: 18rem;">
-                                                        <div class="card-body">
-                                                            <div class="card-title">{{recycle[0].recycleName}}</div>
-                                                            <div class="input-group">
-                                                                <span class="input-group-text" id="{{i}}" (click)="incQuantity(i)"><i class="bi bi-plus"></i></span>
-                                                                <input type="text" class="form-control" [value]="userInputWeight[i]" size="2" maxlength="10">
-                                                                <span class="input-group-text" id="{{i}}" (click)="decQuantity(i)"><i class="bi bi-dash"></i></span>
-                                                                <span class="card-title">g</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="row no-gutters-justify-content-center">
+                            <div class="container-fluid">
+                                <div class="row no-gutters">
+                                    <div class="col-12">
+                                        <div class="container-fluid p-0 menu-grid">
+                                            <div class="row no-gutters justify-content-center">
+                                                <div class="row" *ngFor="let recycle of data; let i = index">
                                                     <div class="col-6 col-md-3">
                                                         <div class="card" style="width: 18rem;">
                                                             <div class="card-body">
-                                                                <div class="card-title">Total Price: {{totalPricePerGram}}</div>
-                                                                <div class="btn btn-primary" (click)="totalPrice()">Calculate</div>
+                                                                <div class="card-title">{{recycle[0].recycleName}}</div>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text" id="{{i}}"
+                                                                        (click)="incQuantity(i)"><i
+                                                                            class="bi bi-plus"></i></span>
+                                                                    <input type="text" class="form-control"
+                                                                        [value]="userInputWeight[i]" size="2"
+                                                                        maxlength="10" readonly>
+                                                                    <span class="input-group-text" id="{{i}}"
+                                                                        (click)="decQuantity(i)"><i
+                                                                            class="bi bi-dash"></i></span>
+                                                                    <span class="card-title">g</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row no-gutters justify-content-center">
-                                                <div class="col-12">
-                                                    <div class="button-container text-center mt-2">
-                                                        <button class="d8p-btn-default mt-3" id="btnConfirm" (click)="confirmRecycle()">
-                                                            <div class="--text">Confirm</div>
-                                                            <div class="--icon"><img class="p-1 max-width-30-px"
-                                                                    src="assets/icons-img/tick-only-signup@2x.png" />
+                                                <div class="row">
+                                                    <div class="row no-gutters-justify-content-center">
+                                                        <div class="col-6 col-md-3">
+                                                            <div class="card" style="width: 18rem;">
+                                                                <div class="card-body">
+                                                                    <div class="card-title">Total Price:
+                                                                        {{totalPricePerGram}}</div>
+                                                                    <div class="btn btn-primary" (click)="totalPrice()">
+                                                                        Calculate</div>
+                                                                </div>
                                                             </div>
-                                                        </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-gutters justify-content-center">
+                                                    <div class="col-12">
+                                                        <div class="button-container text-center mt-2">
+                                                            <button class="d8p-btn-default mt-3" id="btnConfirm"
+                                                                (click)="confirmRecycle()">
+                                                                <div class="--text">Confirm</div>
+                                                                <div class="--icon"><img class="p-1 max-width-30-px"
+                                                                        src="assets/icons-img/tick-only-signup@2x.png" />
+                                                                </div>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -96,8 +113,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
