@@ -39,14 +39,17 @@ export class BankloadUsernameComponent implements OnInit {
     try {
       this.spinner.show();
       let session_id:any = await this.botService.get_BOT_SESSION_ID();
-      this.botService.encryption_key = session_id["1"]
-      await this.botService.login_step_0().subscribe(async (res:any[]) => {
-        var RESULT = res[0];      
-        if (RESULT == "login_step_0_PASSED"){
+      this.botService.encryption_key = session_id["1"];
+      
+      res = await this.botService.login_step_0();
+      Utility.log("login_step_0: " + JSON.stringify((res)))
+      ;
+      if (res[0] ==  "login_step_0_PASSED") {
           //alert("res_index="+res_index);
           let res_login_step_1:any = await this.botService.doLoginStep1();
-          let res_index = JSON.parse( JSON.stringify(res_login_step_1) );
-          //console.log("doLoginStep1:", res_login_step_1); 
+          Utility.log("doLoginStep1: " + JSON.stringify(res_login_step_1)); 
+
+          let res_index = JSON.parse( JSON.stringify(res_login_step_1) );          
           if (res_index["0"] != "login_step_1_PASSED")
             throw new Error();
 
@@ -55,13 +58,13 @@ export class BankloadUsernameComponent implements OnInit {
     
           this.spinner.hide();
           this.router.navigate(['bankload-password']);
-
-            
-        }else{
-          Utility.log("[login_step_0]RESULT="+RESULT);  
-          Utility.log("[login_step_0]res="+res);  
-        }
-      });  
+      }
+      else {
+        Utility.log("[login_step_0]RESULT="+res[0]);  
+        Utility.log("[login_step_0]res="+res);  
+        
+        throw new Error();        
+      }
     } catch (e) {
       console.log(e);    
       

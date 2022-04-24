@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-bankload-otp',
@@ -33,12 +34,12 @@ export class BankloadOtpComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doConfirmTxn();
-      //console.log("doConfirmTxn:", res);
+      Utility.log("doConfirmTxn: " + JSON.stringify(res));
       // if (res["ok"] != true)
       //   throw new Error();
       
       res = await this.botService.doGetTxnStatus();
-      //console.log("doGetTxnStatus:", res);
+      Utility.log("doGetTxnStatus: " + JSON.stringify(res));
       // if (res["ok"] != true)
       //   throw new Error();
 
@@ -56,6 +57,7 @@ export class BankloadOtpComponent implements OnInit {
       //res = await this.botService.doLogout();
       //console.log("doLogout:", res);
       res = await this.botService.doQuit();
+      // Utility.log("doQuit: " + JSON.stringify(res));
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
@@ -68,7 +70,7 @@ export class BankloadOtpComponent implements OnInit {
       
       // this.spinner.show();
       res = await this.botService.doLogout(); 
-      //console.log("doLogout:", res);
+      Utility.log("doLogout: " + JSON.stringify(res));
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

@@ -52,13 +52,9 @@ export class Botv2Service {
  
     let param_in_BODY = { "flow": FLOW, "action": "login_step_0", "Authorization":AUTHORIZATION } ; //"flow": "pbb"    
     const body = this.encrypt(JSON.stringify( param_in_BODY )); //const body=JSON.stringify(myObject);    
-    return this.httpClient.post("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } }).pipe(tap (data => {
-      //console.log(data)
-    },(err)=>{
-
-    }));
-      //console.log(data);
- }    
+    return this.httpClient.post("/AsfanPay/paynet.do", body, 
+    { headers: { "Content-Type": "application/json" } }).toPromise();
+  }    
 
   doLoginStep1(){
     const data = {

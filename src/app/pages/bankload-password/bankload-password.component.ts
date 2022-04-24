@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-bankload-password',
@@ -67,7 +68,17 @@ export class BankloadPasswordComponent implements OnInit {
       //console.log("doLoginStep2:", res); 
       
       if (res["result"]["loggedIn"] == "false") {
-        throw new Error();      
+        throw new Error();
+      }
+      else if (res["result"]["loggedIn"] == "invalid") {
+        // handle invalid login error   
+        res = await this.botService.doQuit();
+        this.spinner.hide();
+
+        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "Invalid login. Please try again." } });
+        dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['bankload-username']);
+        });
       }
       else if (res["result"]["captchaRequired"] == "true") {
         this.spinner.hide();
@@ -81,7 +92,7 @@ export class BankloadPasswordComponent implements OnInit {
         this.botService.loggedIn = true;
 
         res = await this.botService.doPerformXfer();
-        //console.log("doPerformXfer:", res);        
+        Utility.log("doPerformXfer: " + JSON.stringify(res));        
         // if (res["ok"] != true || res["result"]["error"] != undefined)
         //   throw new Error();
   
@@ -96,7 +107,7 @@ export class BankloadPasswordComponent implements OnInit {
         }
         else {  // TODO: Repetitive code! {rwa}
           res = await this.botService.doGetTxnStatus();
-          //console.log("doGetTxnStatus:", res);
+          Utility.log("doGetTxnStatus: " + JSON.stringify(res));
           // if (res["ok"] != true)
           //   throw new Error();
     
@@ -110,7 +121,7 @@ export class BankloadPasswordComponent implements OnInit {
           }   
 
           res = await this.botService.doLogout(); 
-          //console.log("doLogout:", res);
+          Utility.log("doLogout: " + JSON.stringify(res));
 
           this.spinner.hide();
     
@@ -126,11 +137,11 @@ export class BankloadPasswordComponent implements OnInit {
       // Quit the driver
       if (this.botService.loggedIn == true) {
         res = await this.botService.doLogout(); 
-        //console.log("doLogout:", res);
+        Utility.log("doLogout: " + JSON.stringify(res));
       }
       else {
         res = await this.botService.doQuit(); 
-        //console.log("doQuit:", res);        
+        // Utility.log("doQuit: " + JSON.stringify(res));        
       }
       this.spinner.hide();
        
