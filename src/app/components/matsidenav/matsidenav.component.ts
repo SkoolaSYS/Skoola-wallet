@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Utility } from 'src/utils';
 
 
 
@@ -40,7 +41,7 @@ export class MatsidenavComponent implements OnInit {
 
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
     });
     //check if user already register bank or not
     this.services.getMemberBankData().subscribe((res: any)=>{
@@ -52,7 +53,7 @@ export class MatsidenavComponent implements OnInit {
       }
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
     });
     
     

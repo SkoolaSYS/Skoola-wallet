@@ -48,7 +48,6 @@ export class QrPaymentComponent implements OnInit {
     this.isMerchant = currentUser.merchant
     
     this.services.loadById(this.services.qrData.merchantId).subscribe((res: any) => {
-      console.log(res);
       this.receiverId= res.id;
       this.receiverName= res.name;
       this.merchantName= res.name;
@@ -56,7 +55,6 @@ export class QrPaymentComponent implements OnInit {
       this.effectiveDate = Utility.formatDate(new Date());
     },
     (err) => {
-      console.log(err);
       // this.services.logout();
     });
   }

@@ -34,12 +34,12 @@ export class BankloadOtpComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doConfirmTxn();
-      Utility.log("doConfirmTxn: " + JSON.stringify(res));
+      //Utility.log("doConfirmTxn:", res);
       // if (res["ok"] != true)
       //   throw new Error();
       
       res = await this.botService.doGetTxnStatus();
-      Utility.log("doGetTxnStatus: " + JSON.stringify(res));
+      //Utility.log("doGetTxnStatus:", res);
       // if (res["ok"] != true)
       //   throw new Error();
 
@@ -55,7 +55,7 @@ export class BankloadOtpComponent implements OnInit {
 
       // It's all over, so quit the driver
       //res = await this.botService.doLogout();
-      //console.log("doLogout:", res);
+      //Utility.log("doLogout:", res);
       res = await this.botService.doQuit();
       // Utility.log("doQuit: " + JSON.stringify(res));
       this.spinner.hide();
@@ -66,11 +66,11 @@ export class BankloadOtpComponent implements OnInit {
       });        
     }
     catch (e) {
-      console.log(e);
+      Utility.log(e);
       
       // this.spinner.show();
       res = await this.botService.doLogout(); 
-      Utility.log("doLogout: " + JSON.stringify(res));
+      //Utility.log("doLogout:", res);
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

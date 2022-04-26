@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { concatMapTo } from 'rxjs/operators';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-recycle-info',
@@ -26,7 +27,7 @@ export class RecycleInfoComponent implements OnInit {
   async ngOnInit(): Promise <void> {
     const currentUser: any = await this.services.currentUser;
     this.isMerchant = currentUser.merchant
-    console.log(this.services.qrData, "qrdata");
+    Utility.log(this.services.qrData);
     this.amount = this.services.qrData.amount;
     this.merchant = this.services.qrData.merchantId;
     this.recycleWaste = this.services.qrData.recycleWaste;
@@ -44,7 +45,7 @@ export class RecycleInfoComponent implements OnInit {
       
     },
     (err) => {
-      (err);
+      Utility.log(err);
       // this.services.logout();
     });
   }

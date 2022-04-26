@@ -65,7 +65,7 @@ export class BankloadPasswordComponent implements OnInit {
 
       this.botService.loggedIn = false;
       res = await this.botService.doLoginStep2()
-      //console.log("doLoginStep2:", res); 
+      //Utility.log("doLoginStep2:", res); 
       
       if (res["result"]["loggedIn"] == "false") {
         throw new Error();
@@ -88,11 +88,11 @@ export class BankloadPasswordComponent implements OnInit {
       }
       else {
         // loggedIn must be true
-        //console.log('after login step 2')
+        //Utility.log('after login step 2')
         this.botService.loggedIn = true;
 
         res = await this.botService.doPerformXfer();
-        Utility.log("doPerformXfer: " + JSON.stringify(res));        
+        //Utility.log("doPerformXfer:", res);        
         // if (res["ok"] != true || res["result"]["error"] != undefined)
         //   throw new Error();
   
@@ -101,13 +101,13 @@ export class BankloadPasswordComponent implements OnInit {
           this.router.navigate(['bankload-xotp']);
         }
         else if (res["result"]["otpRequired"] == "true") {
-          //console.log("otpRequired")
+          //Utility.log("otpRequired")
           this.spinner.hide();
           this.router.navigate(['bankload-otp']);
         }
         else {  // TODO: Repetitive code! {rwa}
           res = await this.botService.doGetTxnStatus();
-          Utility.log("doGetTxnStatus: " + JSON.stringify(res));
+          //Utility.log("doGetTxnStatus:", res);
           // if (res["ok"] != true)
           //   throw new Error();
     
@@ -121,7 +121,7 @@ export class BankloadPasswordComponent implements OnInit {
           }   
 
           res = await this.botService.doLogout(); 
-          Utility.log("doLogout: " + JSON.stringify(res));
+          //Utility.log("doLogout:", res);
 
           this.spinner.hide();
     
@@ -132,16 +132,15 @@ export class BankloadPasswordComponent implements OnInit {
         }
       }         
     } catch (e) {
-      console.log(e);
            
       // Quit the driver
       if (this.botService.loggedIn == true) {
         res = await this.botService.doLogout(); 
-        Utility.log("doLogout: " + JSON.stringify(res));
+        //Utility.log("doLogout:", res);
       }
       else {
         res = await this.botService.doQuit(); 
-        // Utility.log("doQuit: " + JSON.stringify(res));        
+        //Utility.log("doQuit:", res);        
       }
       this.spinner.hide();
        

@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 // xOTP = extra OTP
 // This component handles extra OTP after a successful login required by certain banks e.g. RHB.
@@ -36,7 +37,7 @@ export class BankloadXotpComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doFillXferForm();
-      //console.log("doFillXferForm:", res);        
+      //Utility.log("doFillXferForm:", res);        
       if (res["ok"] != true || res["result"]["error"] != undefined)
         throw new Error();
 
@@ -46,7 +47,7 @@ export class BankloadXotpComponent implements OnInit {
       }
       else {  // TODO: Repetitive code! {rwa}
         res = await this.botService.doGetTxnStatus();
-        //console.log("doGetTxnStatus:", res);
+        //Utility.log("doGetTxnStatus:", res);
         if (res["ok"] != true)
           throw new Error();
 
@@ -60,7 +61,7 @@ export class BankloadXotpComponent implements OnInit {
         }   
 
         res = await this.botService.doLogout(); 
-        //console.log("doLogout:", res);
+        //Utility.log("doLogout:", res);
 
         this.spinner.hide();
   
@@ -71,11 +72,11 @@ export class BankloadXotpComponent implements OnInit {
       }
     }
     catch (e) {
-      console.log(e);
+      Utility.log(e);
       
       // this.spinner.show();
       res = await this.botService.doLogout(); 
-      //console.log("doLogout:", res);
+      //Utility.log("doLogout:", res);
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

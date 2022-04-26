@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit {
       }
      }
      catch (e) {
-      console.log(e);
+      (e);
       
      }
      finally{}

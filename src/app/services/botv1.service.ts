@@ -108,7 +108,7 @@ export class Botv2Service {
       "transactionTypeId": TRANSACTION_TYPE.BankLoad,
       "transferTypeId": transferType
     };
-    //console.log(transferType)
+    
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "perform_xfer",
@@ -139,7 +139,6 @@ export class Botv2Service {
       "transactionTypeId": TRANSACTION_TYPE.BankLoad,
       "transferTypeId": transferType
     };
-
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "fill_xfer_form",
@@ -194,14 +193,14 @@ export class Botv2Service {
       "with": {}
     }
 
-    console.log("Logging out...");
+    Utility.log("Logging out...");
 
     if (this.loggedIn) {
       return this.httpClient.post("/flows/execute", 
         data, { headers: { "Content-Type": "application/json", "Authorization": this.botAuth, "Worker-Id": this.workerId } }
       ).toPromise()
       .catch((err) => {
-        console.log(err);        
+        Utility.log(err);        
       })
       .finally(() => {
         // Finally quit the driver
@@ -218,17 +217,17 @@ export class Botv2Service {
     if (this.workerId == undefined)
       return
     
-    console.log("Quitting...");
+    Utility.log("Quitting...");
     
     return this.httpClient.post("/drivers/quit", 
       {}, { headers: { "Content-Type": "application/json", "Authorization": this.botAuth, "Worker-Id": this.workerId } }
     ).toPromise()
     .then(() => {
-      console.log(`Releasing worker id ${sessionStorage.getItem("worker_id")}...`);        
+      Utility.log(`Releasing worker id ${sessionStorage.getItem("worker_id")}...`);        
       sessionStorage.removeItem("worker_id");
     })
     .catch((err) => {
-      console.log(err);
+      Utility.log(err);
       
       if (err.error == "Worker not claimed!")
         sessionStorage.removeItem("worker_id");

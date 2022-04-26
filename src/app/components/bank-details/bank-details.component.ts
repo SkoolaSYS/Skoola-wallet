@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Utility } from 'src/utils';
 import { BotService } from '../../services/bot.service';
 
 @Component({
@@ -31,23 +32,23 @@ export class BankDetailsComponent implements OnInit {
 
   login(): void {
     let $this = this
-    console.log("Logging in..")
+    Utility.log("Logging in..")
     this.botService.sendLoginRequest()
       .subscribe(res => {
-        console.log("Logged in.")
-        console.debug(res)
+        Utility.log("Logged in.")
+        // console.debug(res)
 
         $this.doTransfer()
       })
   }
 
   doTransfer(): void {
-    console.log("Requesting transfer to KOMEPS..")
+    Utility.log("Requesting transfer to KOMEPS..")
     this.botService.sendDoTransferRequest({
       amount: "1.00",
       description: "10101"
     }).subscribe(res => {
-      console.log("Transfer requested successfully. Please enter TAC")
+      Utility.log("Transfer requested successfully. Please enter TAC")
     })
   }
 }

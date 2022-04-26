@@ -51,6 +51,6 @@ export class Utility {
     if (environment.logging == false && override == false)
       return;
 
-    console.log(message);
+    (message);
   }
 }

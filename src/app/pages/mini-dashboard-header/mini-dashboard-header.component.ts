@@ -30,13 +30,13 @@ export class MiniDashboardHeaderComponent implements OnInit {
       let obj;
       try {
         obj = JSON.parse(data);
-        // console.log("counter:", obj.counter);
+        // ("counter:", obj.counter);
 
         // update notification badge
         this.service.counter = obj.counter;
       }
       catch (e) {
-        console.log(e);         
+        (e);         
       }
 
     }
@@ -55,7 +55,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
     }
         // this.activetransaction = true;
         this.service.getAccountBalance().subscribe((res: any) => {
-          //console.log(res)
+          //(res)
           this.currentBalance = res[0].status.availableBalance;
           this.service.currentBalance = this.currentBalance;
           this.currencyType = res[0].account.type.currency.symbol;
@@ -67,18 +67,16 @@ export class MiniDashboardHeaderComponent implements OnInit {
           this.service.userAccount = res[0].account;
         },
         (err) => {
-          // console.log(err);
           // this.service.logout();
         });
     
         this.service.getProfileData().subscribe((res: any) => {
-          // console.log(res);
+          // (res);
           this.userName = res.name;
           this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value; 
         },
         (err) => {
           // this.service.logout();
-          // console.log(err);
         });
   }
   async bell(): Promise <void>{

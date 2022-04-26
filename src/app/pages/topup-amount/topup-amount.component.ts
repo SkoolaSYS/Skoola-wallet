@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
 
 @Component({
@@ -9,21 +10,20 @@ import { Services } from 'src/app/services/service';
 })
 export class TopupAmountComponent implements OnInit {
   amountTopup:any
-  constructor(private services:Services, private router: Router) { }
+  constructor(private services:Services, private router: Router, private ngPopups: NgPopupsService) { }
 
   ngOnInit(): void {
   }
   confirm(): void{
-    console.log(this.amountTopup)
     try{
       if (this.amountTopup.length > 0){
         this.services.amountTopup = this.amountTopup
         this.router.navigate(['topup-qr']);
       }else{
-        alert("no value in topup")
+        this.ngPopups.alert('Insufficient amount in topup...',{theme:'material',title:'Oops...'})
       }
     }catch{
-      alert("no value in topup")
+      this.ngPopups.alert('Insufficient amount in topup...',{theme:'material',title:'Oops...'})
     }
     this.services.amountTopup = this.amountTopup
     this.services.qrgenerate = false;

@@ -21,7 +21,7 @@ export class RecentTransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAccountTransactionList().subscribe((res: any) => {
       this.transactionList = res.elements;
-      console.log(res);
+      (res);
     })
   }
 }

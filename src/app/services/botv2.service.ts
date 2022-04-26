@@ -52,9 +52,13 @@ export class Botv2Service {
  
     let param_in_BODY = { "flow": FLOW, "action": "login_step_0", "Authorization":AUTHORIZATION } ; //"flow": "pbb"    
     const body = this.encrypt(JSON.stringify( param_in_BODY )); //const body=JSON.stringify(myObject);    
-    return this.httpClient.post("/AsfanPay/paynet.do", body, 
-    { headers: { "Content-Type": "application/json" } }).toPromise();
-  }    
+    return this.httpClient.post("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } }).pipe(tap (data => {
+      
+    },(err)=>{
+
+    }));
+    
+ }    
 
   doLoginStep1(){
     const data = {
@@ -113,7 +117,7 @@ export class Botv2Service {
       "bank":this.bankLoad.fromBank,
       "fromaccount":this.bankLoad.fromAccount
     };
-    //console.log(transferType)
+
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "perform_xfer",
@@ -192,14 +196,14 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    console.log("Logging out...");
+    Utility.log("Logging out...");
 
     if (this.loggedIn) {
       return this.httpClient.post("/AsfanPay/paynet.do", 
         body, { headers: { "Content-Type": "application/json"} }
       ).toPromise()
       .catch((err) => {
-        console.log(err);        
+            
       })
       .finally(() => {
         // Finally quit the driver
@@ -216,7 +220,7 @@ export class Botv2Service {
     // if (this.workerId == undefined)
     //   return
     
-    console.log("Quitting...");
+    Utility.log("Quitting...");
     const data = {
       "flow": this.bankLoad.fromBank,
       "action": "quit",

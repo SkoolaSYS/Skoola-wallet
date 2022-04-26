@@ -203,7 +203,7 @@ class QrScanner {
                      alsoTryWithoutScanRegion=false) {
         const gotExternalWorker = qrEngine instanceof Worker;
 
-        //console.log("Inside scanImage...");
+        //("Inside scanImage...");
                         
         let promise = Promise.all([
             qrEngine || QrScanner.createQrEngine(),
@@ -361,7 +361,7 @@ class QrScanner {
     _onDecodeError(error) {
         // default error handler; can be overwritten in the constructor
         if (error === QrScanner.NO_QR_CODE_FOUND) return;
-        console.log(error);
+        (error);
     }
 
     _getCameraStream(facingMode, exact = false) {
@@ -513,7 +513,7 @@ const fileSelector = document.getElementById('file-selector');
 const fileQrResult = document.getElementById('file-qr-result');
 
 function setResult(label, result) {
-    console.log("=================================================> " + result);
+    ("=================================================> " + result);
 
     label.textContent = result;
     // camQrResultTimestamp.textContent = new Date().toString();
@@ -532,7 +532,7 @@ const scanner = new QrScanner(video, result => setResult(camQrResult, result), e
     camQrResult.textContent = error;
     camQrResult.style.color = 'inherit';
 
-    //console.log(error);
+    //(error);
 });
 scanner.start().then(() => {
     scanner.hasFlash().then(hasFlash => {
@@ -559,7 +559,7 @@ window.scanner = scanner;
 // });
 
 // document.getElementById('img-show-scan-region').addEventListener('click', (e) => {
-//     console.log("img-show-scan-region triggered." + e.target);
+//     ("img-show-scan-region triggered." + e.target);
 
 //     const input = e.target;
 //     const label = input.parentNode;

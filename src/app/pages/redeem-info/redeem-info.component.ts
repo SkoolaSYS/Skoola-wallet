@@ -30,14 +30,14 @@ export class RedeemInfoComponent implements OnInit {
       this.router.navigate(['invalid-qr-link']);
     }
     this.services.redeemInfo(this.services.qrData.id).subscribe((res: any) => {
-      console.log(res);
+      (res);
       this.amountRedeem = res.amountRedeem
       this.ownerRedeem = res.ownerRedeem
       this.centreRedeem = res.centerRedeem
       this.dateRedeem = Utility.formatDate(new Date(res.dateRedeem));
     }),
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.services.logout();
     }
   }
