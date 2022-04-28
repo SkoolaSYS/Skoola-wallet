@@ -2,7 +2,6 @@ import { OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-split-header',
@@ -33,12 +32,13 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
       let obj;
       try {
         obj = JSON.parse(data);
+        console.log("counter:", obj.counter);
 
         // update notification badge
         this.service.counter = obj.counter;
       }
-      catch (e) {  
-        Utility.log(e);
+      catch (e) {
+        console.log(e);         
       }
 
     }
@@ -59,6 +59,7 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
+      //console.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.currencyType = res[0].account.type.currency.symbol;
       this.topupBalance = res[0].status.topupBalance;
@@ -73,7 +74,7 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.service.logout();
     });
 
@@ -83,15 +84,16 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;      
       //var accnum = res.customValues.filter(getAccNumber);
       // for (var i=0; i < accnum.length; i++){
-    
+      //   console.log(accnum[i].value);
       // }
+      // console.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
       
       // if (accnum.length > 0)
       //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.service.logout();
     });
 
@@ -120,6 +122,7 @@ export class SplitHeaderComponent implements OnInit, OnDestroy {
   }
 
   tab1(): void{
+    console.log(true)
     var content1 = document.getElementById('content1');
     var content3 = document.getElementById('content3');
     var btn1 = document.getElementById('btn1');

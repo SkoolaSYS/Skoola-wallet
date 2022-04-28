@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-products-details',
@@ -19,7 +18,7 @@ export class ProductsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.services.merchantProduct(this.services.qrData.merchantId).subscribe((res: any) => {
       this.productList = res;
-      Utility.log(this.productList)
+      console.log(this.productList, "lols")
       try{
         this.data.push([{
             productName : this.productList.productName,

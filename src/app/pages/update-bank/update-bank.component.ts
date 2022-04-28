@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-update-bank',
@@ -38,6 +37,7 @@ export class UpdateBankComponent implements OnInit {
       this.bankData = res;
       this.bankFormAccName = this.bankData.bankAccName
       this.bankFormAccNumber= this.bankData.bankAccNumber
+      //console.log(res);
     });
     
     this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
@@ -46,6 +46,7 @@ export class UpdateBankComponent implements OnInit {
       if (this.bankObject != null){
           this.bankFormName = this.bankObject.id
       }
+      //console.log(res);
     });
 
     this.spinner.hide();
@@ -57,6 +58,7 @@ export class UpdateBankComponent implements OnInit {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
+      //console.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -68,7 +70,7 @@ export class UpdateBankComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.service.logout();
     });
 
@@ -77,12 +79,13 @@ export class UpdateBankComponent implements OnInit {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.service.logout();
     });
   }
 
   async doUpdateBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
+    //console.log("click confirm");
     this.spinner.show();
 
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){

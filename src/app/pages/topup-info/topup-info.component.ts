@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
-import { TRANSACTION_TYPE, Utility } from 'src/utils';
+import { TRANSACTION_TYPE } from 'src/utils';
 
 @Component({
   selector: 'app-topup-info',
@@ -33,14 +33,14 @@ export class TopupInfoComponent implements OnInit {
       this.merchantName= res.name;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.services.logout();
     });
   }
 
   async confirm():Promise<void>{
     //const currentUser: any = await this.services.currentUser;
-    //(currentUser)
+    //console.log(currentUser)
     if(this.services.topupBalance > parseFloat(this.amount)){
       const balance = parseFloat(this.services.topupBalance);
       const amount = parseFloat(this.amount);

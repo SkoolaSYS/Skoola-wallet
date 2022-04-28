@@ -36,7 +36,7 @@ export class CardRequestComponent implements OnInit {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
-      //(res)
+      //console.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -48,7 +48,7 @@ export class CardRequestComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      (err);
+      console.log(err);
       // this.service.logout();
     });
 
@@ -57,7 +57,7 @@ export class CardRequestComponent implements OnInit {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value; 
     },
     (err) => {
-      (err);
+      console.log(err);
       // this.service.logout();
     });
   }
@@ -77,17 +77,17 @@ export class CardRequestComponent implements OnInit {
             this.router.navigate(['dashboard']);
           });
         }catch(e){
-        ("City")
+        console.log("City")
         this.ngPopups.alert('Update your City',{theme: 'material', title: 'Oops...'});
         this.router.navigate(["update-profile"]);
         }
        }catch(e){
-        ("postalCode")
+        console.log("postalCode")
         this.ngPopups.alert('Update your Postal Code',{theme: 'material', title: 'Oops...'});
         this.router.navigate(["update-profile"]);
        } 
     }catch(e){
-      ("address")
+      console.log("address")
       this.ngPopups.alert('Update your Residence Address',{theme: 'material', title: 'Oops...'});
       this.router.navigate(["update-profile"]);
     }

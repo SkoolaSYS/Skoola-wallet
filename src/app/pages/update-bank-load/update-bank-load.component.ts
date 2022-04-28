@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-update-bank-load',
@@ -90,7 +89,7 @@ export class UpdateBankLoadComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      Utility.log(err);
+      (err);
       // this.service.logout();
     });
 
@@ -99,7 +98,7 @@ export class UpdateBankLoadComponent implements OnInit {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;
     },
     (err) => {
-      Utility.log(err);
+      (err);
       // this.service.logout();
     });
   }

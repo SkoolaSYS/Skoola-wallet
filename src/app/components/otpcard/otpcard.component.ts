@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Utility } from 'src/utils';
 import { BotService } from '../../services/bot.service';
 import { Services } from '../../services/service';
 
@@ -23,11 +22,11 @@ export class OtpcardComponent implements OnInit {
 
   enterTac(): void {
     let $this = this
-    Utility.log("TAC sent.")
+    console.log("TAC sent.")
     this.botService.sendTacRequest({
       tac: $this.otp
     }).subscribe(res => {
-      Utility.log("LABT is completed!")
+      console.log("LABT is completed!")
     })
   }
 

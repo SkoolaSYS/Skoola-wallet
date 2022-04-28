@@ -28,11 +28,12 @@ export class TopupQrComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const currentUser: any = await this.services.currentUser;
-    Utility.log(currentUser);
+    console.log(currentUser);
     this.isRedeem = currentUser.redeem;
     this.isRecycle = currentUser.recycle;
+    console.log(this.isRecycle,"hdhdh")
     if ((this.isRedeem && this.services.redeemQr) || this.services.redeemDetail) {
-      Utility.log("isRedeem")
+      console.log("abc")
       this.services.redeemQr = false;
       this.redeem = true;
       this.services.redeemQrCode().subscribe(async (res: any) => {
@@ -62,6 +63,7 @@ export class TopupQrComponent implements OnInit {
         "recycleWaste": this.services.recycleWaste,
         "recycleWeight": this.services.recycleWeight
       }
+      console.log(data)
       await this.services.encrypt({ text: JSON.stringify(data) }).toPromise()
       this.href = this.services.qrData.decryptText
     }

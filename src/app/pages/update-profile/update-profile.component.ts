@@ -22,9 +22,9 @@ export class UpdateProfileComponent implements OnInit {
   cardNumber: any;
   transactionAmount: any;
   goldAmount: any;    // per transaction gold amount
-  goldWhole: any;    // accumulated gold amount
+  goldWhole: any;;    // accumulated gold amount
   goldFraction: any;  // accumulated gold amount
-
+  
 
   constructor(private service: Services, private router: Router, private ngPopups: NgPopupsService, private ng2ImgMax: Ng2ImgMaxService, private spinner: NgxSpinnerService) { }
 
@@ -33,9 +33,12 @@ export class UpdateProfileComponent implements OnInit {
     this.activetransaction = this.service.activetransaction;
     if (this.activetransaction === true) {
       this.transactionAmount = this.service.transactionData.amount;
-      this.goldAmount = this.service.transactionData.gold;
+      this.goldAmount = this.service.transactionData.gold;  
     }
+
+    // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
+      //console.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -46,45 +49,49 @@ export class UpdateProfileComponent implements OnInit {
 
       this.service.userAccount = res[0].account;
     },
-      (err) => {
-        Utility.log(err);
-      });
+    (err) => {
+      console.log(err);
+      // this.service.logout();
+    });
 
     this.service.getProfileData().subscribe((res: any) => {
+      // console.log(res);
       this.userName = res.name;
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;
     },
-      (err) => {
-        Utility.log(err);
-      });
+    (err) => {
+      console.log(err);
+      // this.service.logout();
+    });
     const currentUser: any = await this.service.currentUser;
-
+    console.log(currentUser);
+    
     // TODO: Pre-fill user profile fields with data from cbs here.
     // try{
     //   this.updateForm.email = currentUser.email;
     // }catch(e){
     //   this.updateForm.email = null;
     // }
-
-    try {
-      this.updateForm.phone = currentUser.customValues.find(object => object.internalName == "mobilePhone").value;
-    } catch (e) {
+      
+    try{
+      this.updateForm.phone = currentUser.customValues.find(object => object.internalName == "mobilePhone").value; 
+    }catch(e){
       this.updateForm.phone = null;
     }
 
-    try {
-      this.updateForm.address = currentUser.customValues.find(object => object.internalName == "address").value;
-    } catch (e) {
+    try{
+      this.updateForm.address =  currentUser.customValues.find(object => object.internalName == "address").value; 
+    }catch(e){
       this.updateForm.address = null;
     }
-    try {
-      this.updateForm.postalCode = currentUser.customValues.find(object => object.internalName == "postalCode").value;
-    } catch (e) {
+    try{
+      this.updateForm.postalCode =  currentUser.customValues.find(object => object.internalName == "postalCode").value;
+    }catch(e){
       this.updateForm.postalCode = null;
     }
-    try {
-      this.updateForm.city = currentUser.customValues.find(object => object.internalName == "city").value;
-    } catch (e) {
+    try{
+      this.updateForm.city= currentUser.customValues.find(object => object.internalName == "city").value;
+    }catch(e){
       this.updateForm.city = null;
     }
 
@@ -94,25 +101,25 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   uploadedImage: File;
-
-  onSelectedFile(event) {
+  
+  onSelectedFile(event){
     const self = this;
 
-    if (event.target.files && event.target.files[0]) {
+    if (event.target.files && event.target.files[0]){
       const reader: FileReader = new FileReader();
-      reader.onload = function () {
-        self.imageSrc = reader.result;
+      reader.onload = function() {
+        self.imageSrc = reader.result;  
       }
 
       reader.readAsDataURL(event.target.files[0]);
       this.file = event.target.files[0];
       this.ng2ImgMax.resizeImage(this.file, 100, 100).subscribe(
         result => {
-          this.uploadedImage = new File([result], result.name);
-          this.file = this.uploadedImage;
+          this.uploadedImage =new File([result], result.name);
+          this.file=this.uploadedImage;
         },
         error => {
-          Utility.log('Oh no!', error);
+          console.log('Oh no!', error);
         }
       );
     }
@@ -122,7 +129,10 @@ export class UpdateProfileComponent implements OnInit {
     let formData: FormData = new FormData();
     let data: any = {};
     let customValues: any[] = [];
-
+    
+    // if (this.updateForm.email)
+    //   data.email = this.updateForm.email;
+        
     if (this.updateForm.phone)
       customValues.push({
         "internalName": "mobilePhone",
@@ -146,24 +156,24 @@ export class UpdateProfileComponent implements OnInit {
         "internalName": "city",
         "value": this.updateForm.city
       });
-
-    if (customValues.length != 0)
+      
+    if (customValues.length != 0)  
       data.customValues = customValues;
-
+           
     formData.append("updateParams", JSON.stringify(data));
 
     if (this.file)
       formData.append("file", this.file);
     this.spinner.show();
     await this.service.updateProfileWithImage(formData).toPromise()
-      .then(() => {
-        this.spinner.hide();
-        this.ngPopups.alert('Your profile has been sucessfully updated!', { theme: 'material', title: 'Success!' });
-        this.router.navigate(['dashboard']);
-      })
-      .catch((err) => {
-        this.spinner.hide();
-        this.ngPopups.alert('There was an error in your submission!', { theme: 'material', title: 'Oops...' });
-      });
+    .then(() => {
+      this.spinner.hide();
+      this.ngPopups.alert('Your profile has been sucessfully updated!',{theme: 'material', title: 'Success!'});
+      this.router.navigate(['dashboard']);
+    })
+    .catch((err) => {
+      this.spinner.hide();
+      this.ngPopups.alert('There was an error in your submission!',{theme: 'material', title: 'Oops...'});
+    });
   }
 }

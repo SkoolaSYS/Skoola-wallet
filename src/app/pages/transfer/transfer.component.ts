@@ -35,10 +35,11 @@ export class TransferComponent implements OnInit {
     this.service.forms.transferForm = this.transferForm;
     this.service.opsTagging = 'transfer';
     this.service.getMemberList().subscribe((res: any) => {
+      // console.log(res);
       this.membersList = res.elements;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
     });
 
     this.services.getProfileData().subscribe(async (res: any) => {
@@ -47,7 +48,7 @@ export class TransferComponent implements OnInit {
     this.isMerchant = currentUser.merchant;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
     });
     
     this.transferForm.effectiveDate = Utility.formatDate(new Date());

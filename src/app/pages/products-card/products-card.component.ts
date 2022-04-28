@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-products-card',
@@ -17,10 +16,10 @@ export class ProductsCardComponent implements OnInit {
   constructor(private services:Services) { }
 
   ngOnInit(): void {
-    Utility.log(this.services.qrData.merchantId)
+    console.log(this.services.qrData.merchantId)
     this.services.merchantProduct(this.services.qrData.merchantId).subscribe((res: any) => {
       this.productList = res;
-      Utility.log(this.productList)
+      console.log(this.productList, "lols")
       try{
         for(var i = 0; i< this.productList.price.length; i++){
            this.data.push([{

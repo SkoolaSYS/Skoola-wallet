@@ -38,10 +38,10 @@ export class WithdrawComponent implements OnInit {
       this.bankAccName = this.bankData.bankAccName;
       this.bankAccNumber = this.bankData.bankAccNumber;
       this.bankName = this.bankData.bankName;
-      //(this.bankData);
+      //console.log(this.bankData);
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
     });
     // const today = new Date();
     // const day = today.getDate();

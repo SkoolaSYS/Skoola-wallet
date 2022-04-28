@@ -61,7 +61,7 @@ export class BankloadAmountComponent implements OnInit {
         }
         else {
           this.botService.form.amount = this.amount;
-          //Utility.log(this.botService.form.amount);
+          //console.log(this.botService.form.amount);
 
           this.router.navigate(['bankload-username']); 
         }

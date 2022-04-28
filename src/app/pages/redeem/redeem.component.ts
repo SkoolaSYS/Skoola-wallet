@@ -38,7 +38,7 @@ export class RedeemComponent implements OnInit {
       this.redeemProvider = res.serviceRedeem
       this.redeemCurrent = res.currentRedeem
       this.balanceGoldProvider = res.balanceGoldProvider
-      // (this.redeemCurrent)
+      // console.log(this.redeemCurrent)
     })
     
   }

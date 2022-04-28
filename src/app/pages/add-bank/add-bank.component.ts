@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-add-bank',
@@ -55,39 +54,39 @@ export class AddBankComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
 
       // function getAccNumber(element, index, array) { 
-      //     (element.internalName);
+      //     console.log(element.internalName);
       //     if (element.internalName == 'AccNumber') 
       //       return index;
       // }
 
-      // (res);
+      // console.log(res);
       this.userName = res.name;
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber").value;      
       //var accnum = res.customValues.filter(getAccNumber);
       // for (var i=0; i < accnum.length; i++){
-      //   (accnum[i].value);
+      //   console.log(accnum[i].value);
       // }
-      // ('accnum : ' + accnum[0].value);
+      // console.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
       
       // if (accnum.length > 0)
       //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
     },
     (err) => {
-      Utility.log(err);
+      console.log(err);
       // this.service.logout();
     });   
   }
   
   async doAddBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
-    //("click confirm");
+    //console.log("click confirm");
     this.spinner.show();
 
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){

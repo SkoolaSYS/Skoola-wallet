@@ -6,7 +6,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Botv2Service } from 'src/app/services/botv2.service';
 import { Services } from 'src/app/services/service';
-import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-bankload-captcha',
@@ -36,14 +35,14 @@ export class BankloadCaptchaComponent implements OnInit {
       this.spinner.show();
 
       res = await this.botService.doLoginStep3()
-      //Utility.log("doLoginStep3:", res); 
+      //console.log("doLoginStep3:", res); 
       if (res["ok"] != true || res["result"]["loggedIn"] == false)
         throw new Error();
 
       this.botService.loggedIn = true;
 
       res = await this.botService.doPerformXfer();
-      //Utility.log("doPerformXfer:", res);        
+      //console.log("doPerformXfer:", res);        
       if (res["ok"] != true || res["result"]["error"] != undefined)
         throw new Error();
 
@@ -57,7 +56,7 @@ export class BankloadCaptchaComponent implements OnInit {
       }
       else {  // TODO: Repetitive code! {rwa}
         res = await this.botService.doGetTxnStatus();
-        //Utility.log("doGetTxnStatus:", res);
+        //console.log("doGetTxnStatus:", res);
         if (res["ok"] != true)
           throw new Error();
   
@@ -71,7 +70,7 @@ export class BankloadCaptchaComponent implements OnInit {
         }   
 
         res = await this.botService.doLogout(); 
-        //Utility.log("doLogout:", res);
+        //console.log("doLogout:", res);
 
         this.spinner.hide();
   
@@ -81,11 +80,11 @@ export class BankloadCaptchaComponent implements OnInit {
         });   
       }         
     } catch (e) {
-      Utility.log(e);
+      console.log(e);
            
       // Quit the driver
       res = await this.botService.doLogout(); 
-      //Utility.log("doLogout:", res);
+      //console.log("doLogout:", res);
       this.spinner.hide();
        
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

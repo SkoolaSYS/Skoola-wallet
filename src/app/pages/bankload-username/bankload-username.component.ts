@@ -47,8 +47,9 @@ export class BankloadUsernameComponent implements OnInit {
       if (res[0] ==  "login_step_0_PASSED") {
           //alert("res_index="+res_index);
           let res_login_step_1:any = await this.botService.doLoginStep1();
-          let res_index = JSON.parse( JSON.stringify(res_login_step_1) );
-          //Utility.log("doLoginStep1:", res_login_step_1); 
+          Utility.log("doLoginStep1: " + JSON.stringify(res_login_step_1)); 
+
+          let res_index = JSON.parse( JSON.stringify(res_login_step_1) );          
           if (res_index["0"] != "login_step_1_PASSED")
             throw new Error();
 
@@ -65,7 +66,7 @@ export class BankloadUsernameComponent implements OnInit {
         throw new Error();        
       }
     } catch (e) {
-      Utility.log(e);    
+      console.log(e);    
       
       // Quit the driver
       this.spinner.hide()
