@@ -8,8 +8,7 @@ import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-bankload-amount',
-  templateUrl: './bankload-amount.component.html',
-  styleUrls: ['./bankload-amount.component.scss']
+  templateUrl: './bankload-amount.component.html'
 })
 export class BankloadAmountComponent implements OnInit {  
   amount: string;
@@ -61,7 +60,6 @@ export class BankloadAmountComponent implements OnInit {
         }
         else {
           this.botService.form.amount = this.amount;
-          //console.log(this.botService.form.amount);
 
           this.router.navigate(['bankload-username']); 
         }
@@ -83,8 +81,6 @@ export class BankloadAmountComponent implements OnInit {
       this.isTopup = true;
     else
       this.isTopup = false;
-
-    //console.log(this.isTopup);
   }
 }
 

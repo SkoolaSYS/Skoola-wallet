@@ -6,8 +6,7 @@ import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-pledge-list-details',
-  templateUrl: './pledge-list-details.component.html',
-  styleUrls: ['./pledge-list-details.component.scss']
+  templateUrl: './pledge-list-details.component.html'
 })
 export class PledgeListDetailsComponent implements OnInit {
   currentUser: any;

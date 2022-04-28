@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
-import { TRANSACTION_TYPE, Utility } from 'src/utils';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-redeem-info',
-  templateUrl: './redeem-info.component.html',
-  styleUrls: ['./redeem-info.component.scss']
+  templateUrl: './redeem-info.component.html'
 })
 export class RedeemInfoComponent implements OnInit {
  
@@ -30,14 +28,14 @@ export class RedeemInfoComponent implements OnInit {
       this.router.navigate(['invalid-qr-link']);
     }
     this.services.redeemInfo(this.services.qrData.id).subscribe((res: any) => {
-      console.log(res);
+      Utility.log(res);
       this.amountRedeem = res.amountRedeem
       this.ownerRedeem = res.ownerRedeem
       this.centreRedeem = res.centerRedeem
       this.dateRedeem = Utility.formatDate(new Date(res.dateRedeem));
     }),
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.services.logout();
     }
   }

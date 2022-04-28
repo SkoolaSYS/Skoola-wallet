@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Utility } from 'src/utils';
 import { Services } from '../../services/service';
 
 @Component({
@@ -21,7 +22,7 @@ export class RecentTransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAccountTransactionList().subscribe((res: any) => {
       this.transactionList = res.elements;
-      console.log(res);
+      Utility.log(res);
     })
   }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-add-bank',
@@ -31,7 +32,7 @@ export class AddBankComponent implements OnInit {
     this.spinner.show();
     this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks = res;
-      //console.log(this.banks);
+      //Utility.log(this.banks);
     });
     this.spinner.hide();
     this.activetransaction = this.service.activetransaction;
@@ -42,7 +43,7 @@ export class AddBankComponent implements OnInit {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
-      //console.log(res)
+      //Utility.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -54,39 +55,39 @@ export class AddBankComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
 
       // function getAccNumber(element, index, array) { 
-      //     console.log(element.internalName);
+      //     Utility.log(element.internalName);
       //     if (element.internalName == 'AccNumber') 
       //       return index;
       // }
 
-      // console.log(res);
+      // Utility.log(res);
       this.userName = res.name;
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber").value;      
       //var accnum = res.customValues.filter(getAccNumber);
       // for (var i=0; i < accnum.length; i++){
-      //   console.log(accnum[i].value);
+      //   Utility.log(accnum[i].value);
       // }
-      // console.log('accnum : ' + accnum[0].value);
+      // Utility.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
       
       // if (accnum.length > 0)
       //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });   
   }
   
   async doAddBank(bankFormName,bankFormAccName:string,bankFormAccNumber:string){
-    //console.log("click confirm");
+    //Utility.log("click confirm");
     this.spinner.show();
 
     if (bankFormName != null && bankFormAccName != null && bankFormAccNumber != null){

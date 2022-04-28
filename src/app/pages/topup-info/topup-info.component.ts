@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
 import { Services } from 'src/app/services/service';
-import { TRANSACTION_TYPE } from 'src/utils';
+import { TRANSACTION_TYPE, Utility } from 'src/utils';
 
 @Component({
   selector: 'app-topup-info',
-  templateUrl: './topup-info.component.html',
-  styleUrls: ['./topup-info.component.scss']
+  templateUrl: './topup-info.component.html'
 })
 export class TopupInfoComponent implements OnInit {
   amount:any
@@ -33,14 +32,14 @@ export class TopupInfoComponent implements OnInit {
       this.merchantName= res.name;
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.services.logout();
     });
   }
 
   async confirm():Promise<void>{
     //const currentUser: any = await this.services.currentUser;
-    //console.log(currentUser)
+    //Utility.log(currentUser)
     if(this.services.topupBalance > parseFloat(this.amount)){
       const balance = parseFloat(this.services.topupBalance);
       const amount = parseFloat(this.amount);

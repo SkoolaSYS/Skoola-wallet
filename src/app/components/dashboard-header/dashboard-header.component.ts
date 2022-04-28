@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from 'src/app/animation-effect';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-dashboard-header',
@@ -29,13 +30,13 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       let obj;
       try {
         obj = JSON.parse(data);
-        //console.log("counter:", obj.counter);
+        //Utility.log("counter:", obj.counter);
 
         // update notification badge
         this.service.counter = obj.counter;
       }
       catch (e) {
-        console.log(e);         
+        Utility.log(e);         
       }
 
     }
@@ -56,7 +57,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
-      //console.log(res)
+      //Utility.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -68,7 +69,7 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
 
@@ -78,16 +79,16 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value;      
       //var accnum = res.customValues.filter(getAccNumber);
       // for (var i=0; i < accnum.length; i++){
-      //   console.log(accnum[i].value);
+      //   Utility.log(accnum[i].value);
       // }
-      // console.log('accnum : ' + accnum[0].value);
+      // Utility.log('accnum : ' + accnum[0].value);
       // this.cardNumber = res.customValues[3].value;
       
       // if (accnum.length > 0)
       //   this.cardNumber = accnum[0].value ? accnum[0].value : ''
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
 

@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
+import { Utility } from 'src/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -127,7 +128,6 @@ export class Services {
             })
         };
         return this.http.get('/rest/members/me', headerOptions).pipe(tap (data => {
-            // console.log(data);
             this.storeSession({accessToken: authorizationData});
             this.currentUser = of(data).toPromise();
             this.authToken = authorizationData;
@@ -136,7 +136,6 @@ export class Services {
             this.allowWithdrawal = data.allowWithdrawal;
         },
         (err) => {
-            // console.log(err);
             this.ngPopups.alert(err.error.errorCode + '!\n ' + err.error.errorDetails);
 			this.username='';
 			this.password='';
@@ -153,198 +152,112 @@ export class Services {
     }
 
     public getAccountBalance(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('/rest/accounts/info', headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('/rest/accounts/info', this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('getAccountBalance() Error...');
-            console.log(err);
+            Utility.log('getAccountBalance() Error...');
+            Utility.log(err);
         }));
     }
 
     public getAccountTransactionList(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('/rest/accounts/default/history', headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('/rest/accounts/default/history', this.headerOptions).pipe(tap (data => {
+
         },
         (err) => {
-            console.log('getTransactionHistory() Error...');
-            console.log(err);
+            Utility.log('getTransactionHistory() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getProfileData(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-                
-            })
-        };
-        return this.http.get('rest/members/me', headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('rest/members/me', this.headerOptions).pipe(tap (data => {
             this.currentUser = of(data).toPromise();
         },
         (err) => {
-            console.log('getProfileData() Error...');
-            console.log(err);
+            Utility.log('getProfileData() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getTransferTypes(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('/rest/transferTypes', headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('/rest/transferTypes', this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('getTransferType() Error...');
-            console.log(err);
+            Utility.log('getTransferType() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getMemberList(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('rest/members', headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('rest/members', this.headerOptions).pipe(tap (data => {
+           
         },
         (err) => {
-            console.log('getMemberListing() Error...');
-            console.log(err);
+            Utility.log('getMemberListing() Error...');
+            Utility.log(err);
         }));;
     }
     public loadById(merchantId:string){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get( "/rest/members/"+merchantId, headerOptions).pipe(tap (data => {
+        return this.http.get( "/rest/members/"+merchantId, this.headerOptions).pipe(tap (data => {
          
         },
         (err) => {
-            console.log('loadById() Error...');
-            console.log(err);
+            Utility.log('loadById() Error...');
+            Utility.log(err);
         }));;
     }
     public paymentTransfer(data: any){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        console.log('paymentTransfer data : ' + data.toMemberId);
-        return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions).pipe(tap (data => {            
-            console.log(data);
+        Utility.log('paymentTransfer data : ' + data.toMemberId);
+        return this.http.post('/rest/payments/confirmMemberPayment', data , this.headerOptions).pipe(tap (data => {            
+            
         },
         (err) => {
-            console.log('MemberPerformPayment() Error : ' + err);
+            Utility.log('MemberPerformPayment() Error : ' + err);
         }));;
     }
 
     public changeMemberProfilePassword(data: any){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.post('/rest/members/changeMemberProfilePassword', data , headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.post('/rest/members/changeMemberProfilePassword', data , this.headerOptions).pipe(tap (data => {
+           
         },
         (err) => {
-            console.log('changeMemberProfilePassword() Error...');
-            console.log(err);
+            Utility.log('changeMemberProfilePassword() Error...');
+            Utility.log(err);
         }));;
     }
 
     // For uploading user profile with image (rwa)
     public updateProfileWithImage(data: FormData) {
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.post('/rest/members/updateProfileWithImage', data , headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.post('/rest/members/updateProfileWithImage', data , this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('uploadFile() Error...');
-            console.log(err);
+            Utility.log('updateProfileWithImage() Error...');
+            Utility.log(err);
         }));;
     }
 
     public uploadVerificationData(data: FormData) {
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.post('/rest/members/uploadVerificationData', data , headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.post('/rest/members/uploadVerificationData', data , this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('uploadVerificationData() Error...');
-            console.log(err);
+            Utility.log('uploadVerificationData() Error...');
+            Utility.log(err);
         }));;
     }
 
-    public getMemberByAccountNumber(accountNo: String) {
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.get('/rest/members/accNumber/'+accountNo, headerOptions).pipe(tap (data => {
-            // console.log(data);
+    public getMemberByAccountNumber(accountNo: String) { 
+        return this.http.get('/rest/members/accNumber/'+accountNo, this.headerOptions).pipe(tap (data => {
+           
             this.receiver = of(data).toPromise();
         },
         (err) => {
-            console.log('getMemberByAccountNumber() Error...');
-            console.log(err);
+            Utility.log('getMemberByAccountNumber() Error...');
+            Utility.log(err);
         }));;
     }
 
@@ -359,228 +272,129 @@ export class Services {
         };  
 
         return this.http.get('/rest/payments/walletPaymentData', headerOptions).pipe(tap (data => {
-            // console.log(data);
+            
             this.receiver = of(data.toMember).toPromise();
             this.transactionData.fee = data.transactionFee;
             this.transactionData.gold = data.goldAmount;
         },
         (err) => {
-            console.log('getWalletPaymentData() Error...');
-            console.log(err);
+            Utility.log('getWalletPaymentData() Error...');
+            Utility.log(err);
         }));;
     }
-    public sendAddBank(data:any){
-        console.log(data);
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.post('/rest/members/addBank',data, headerOptions).pipe(tap (data => {
-             //console.log(data);
+    public sendAddBank(data:any){ 
+        return this.http.post('/rest/members/addBank',data, this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('sendAddBank() Error...');
-            console.log(err);
+            Utility.log('sendAddBank() Error...');
+            Utility.log(err);
         }));;
     }
     public sendAddBankLoad(data:any){
-        console.log(data);
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.post('/rest/members/addBankLoad',data, headerOptions).pipe(tap (data => {
-             //console.log(data);
+        return this.http.post('/rest/members/addBankLoad',data, this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('sendAddBank() Error...');
-            console.log(err);
+            Utility.log('sendAddBankLoad() Error...');
+            Utility.log(err);
         }));;
     }
     public sendUpdateBankLoad(data:any){
-        console.log(data);
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.post('/rest/members/updateBankLoad',data, headerOptions).pipe(tap (data => {
-             //console.log(data);
+        return this.http.post('/rest/members/updateBankLoad',data, this.headerOptions).pipe(tap (data => {
+             
         },
         (err) => {
-            console.log('sendAddBank() Error...');
-            console.log(err);
+            Utility.log('sendAddBank() Error...');
+            Utility.log(err);
         }));;
     }
     public getBankData(bankCountry){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('rest/accounts/banks/'+bankCountry, headerOptions).pipe(tap (data => {
+        return this.http.get('rest/accounts/banks/'+bankCountry, this.headerOptions).pipe(tap (data => {
             this.bankData = data;
         },
         (err) => {
-            console.log('getBankData() Error...');
-            console.log(err);
+            Utility.log('getBankData() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getMemberBankData(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('rest/accounts/getMemberBankData', headerOptions).pipe(tap (data => {
+        return this.http.get('rest/accounts/getMemberBankData', this.headerOptions).pipe(tap (data => {
             this.memberBankData = data;
         },
         (err) => {
-            console.log('getBankDataMember() Error...');
-            console.log(err);
+            Utility.log('getMemberBankData() Error...');
+            Utility.log(err);
         }));;
     }
     public getMemberBankLoadData(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('rest/accounts/getMemberBankLoadData', headerOptions).pipe(tap (data => {
+        return this.http.get('rest/accounts/getMemberBankLoadData', this.headerOptions).pipe(tap (data => {
             this.memberBankData = data;
         },
         (err) => {
-            console.log('getBankDataMember() Error...');
-            console.log(err);
+            Utility.log('getMemberBankLoadData() Error...');
+            Utility.log(err);
         }));;
     }
     public sendUpdateBank(data:any){
-        console.log(data);
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.post('/rest/members/updateBank',data, headerOptions).pipe(tap (data => {
-             //console.log(data);
+        return this.http.post('/rest/members/updateBank',data, this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('sendUpdateBank() Error...');
-            console.log(err);
+            Utility.log('sendUpdateBank() Error...');
+            Utility.log(err);
         }));;
     }
     public doWithdrawal(data: any){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.post('/rest/payments/confirmWithdrawal', data , headerOptions).pipe(tap (data => {            
-            //console.log(data);
+        return this.http.post('/rest/payments/confirmWithdrawal', data , this.headerOptions).pipe(tap (data => {            
+            
         },
         (err) => {
-            console.log('MemberPerformPayment() Error : ' + err);
+            Utility.log('MemberPerformPayment() Error : ' + err);
         }));;
     }
     public getTransactionFeeAmount(transactionTypeId){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transactionTypeId, headerOptions).pipe(tap (data => {
+        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transactionTypeId, this.headerOptions).pipe(tap (data => {
             this.transactionFeeAmount = data;
         },
         (err) => {
-            console.log('getTransactionFeeAmount() Error...');
-            console.log(err);
+            Utility.log('getTransactionFeeAmount() Error...');
+            Utility.log(err);
         }));;
     }
 
     public signupUser(data: any){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-            })
-        };
-        console.log(data);
-        return this.http.post('/rest/public/signupUser', data , headerOptions).pipe(tap (data => {            
-            console.log(data);
+        Utility.log(data);
+        return this.http.post('/rest/public/signupUser', data , this.headerOptions).pipe(tap (data => {            
             
         },
         (err) => {
-            console.log('signupUser() Error...');
-            console.log(err);
+            Utility.log('signupUser() Error...');
+            Utility.log(err);
 
         }));;
     }
 
     public requestCard(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('/rest/members/requestPhysicalCard',headerOptions).pipe(tap (data => {            
-            //console.log(data);
-            
+        return this.http.get('/rest/members/requestPhysicalCard',this.headerOptions).pipe(tap (data => {            
+           
         },
         (err) => {
-            console.log('requestCard() Error...');
-            console.log(err);
+            Utility.log('requestCard() Error...');
+            Utility.log(err);
 
         }));;
     }
 
     //calculate-average-gold
-    public calAvgGold(){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.get('/rest/members/calAvgGold',headerOptions).pipe(tap (res => {
-            //console.log(res);
+    public calAvgGold(){ 
+        return this.http.get('/rest/members/calAvgGold',this.headerOptions).pipe(tap (res => {
              this.averageGold = res;
         },
         (err) => {
-            console.log('calAvgGold() Error...');
-            console.log(err);
+            Utility.log('calAvgGold() Error...');
+            Utility.log(err);
         }));;
     }
 
@@ -599,46 +413,29 @@ export class Services {
              this.sellGold = res;
         },
         (err) => {
-            console.log('sellGoldComponent() Error...');
-            console.log(err);
+            Utility.log('sellGoldComponent() Error...');
+            Utility.log(err);
         }));;
     }
 
     //sell-gold-details 
     public sellGoldDetails(data:any){
-       // console.log(data);
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            }),
-        };  
-        return this.http.post('rest/members/sellGoldDetails',data, headerOptions).pipe(tap (data => {
-             //console.log(data);
+        return this.http.post('rest/members/sellGoldDetails',data, this.headerOptions).pipe(tap (data => {
+             
         },
         (err) => {
-            console.log('sellGoldDetails() Error...');
-            console.log(err);
+            Utility.log('sellGoldDetails() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getSellGoldData(order){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };
-        return this.http.get('rest/members/getSellGoldData/'+order, headerOptions).pipe(tap (data => {
+        return this.http.get('rest/members/getSellGoldData/'+order, this.headerOptions).pipe(tap (data => {
             this.sellGoldData = data;
         },
         (err) => {
-            console.log('getSellGoldData() Error...');
-            console.log(err);
+            Utility.log('getSellGoldData() Error...');
+            Utility.log(err);
         }));;
     }
 
@@ -657,79 +454,46 @@ export class Services {
                  this.buyGold = res;
             },
             (err) => {
-                console.log('buyGoldComponent() Error...');
-                console.log(err);
+                Utility.log('buyGoldComponent() Error...');
+                Utility.log(err);
             }));;
         }
 
     //buy-gold-details 
     public buyGoldDetails(data:any){
-        //console.log(data);
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            }),
-        };  
-        return this.http.post('rest/members/buyGoldDetails',data, headerOptions).pipe(tap (data => {
-             //console.log(data);
+        return this.http.post('rest/members/buyGoldDetails',data, this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log('buyGoldDetails() Error...');
-            console.log(err);
+            Utility.log('buyGoldDetails() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getGoldData(value: String) {
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-        return this.http.get('/rest/members/goldData/'+value, headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('/rest/members/goldData/'+value, this.headerOptions).pipe(tap (data => {
             this.receiver = of(data).toPromise();
         },
         (err) => {
-            console.log('getGoldData() Error...');
-            console.log(err);
+            Utility.log('getGoldData() Error...');
+            Utility.log(err);
         }));;
     }
 
     public getBankLoadData() {
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-
-        return this.http.get('/rest/payments/bankLoadData', headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.get('/rest/payments/bankLoadData', this.headerOptions).pipe(tap (data => {
+    
         },
         (err) => {
-            console.log(err);
+            Utility.log(err);
         }));;
     }
     public topupAtMerchant(data:any) {
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-
-        return this.http.post('/rest/payments/topupAtMerchant', data,headerOptions).pipe(tap (data => {
-            // console.log(data);
+        return this.http.post('/rest/payments/topupAtMerchant', data,this.headerOptions).pipe(tap (data => {
+            
         },
         (err) => {
-            console.log(err);
+            Utility.log(err);
         }));;
     }
 
@@ -747,38 +511,22 @@ export class Services {
     }
 
     public decrypt(data:any){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-
-        return this.http.post('/rest/members/decryptText', data,headerOptions).pipe(tap (data => {
-            //console.log(data);
+        return this.http.post('/rest/members/decryptText', data,this.headerOptions).pipe(tap (data => {
+            
             this.qrData = data
         },
         (err) => {
-            console.log(err);
+            Utility.log(err);
         }));;
     }
 
     public encrypt(data:any){
-        const headerOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                Authorization: this.token
-            })
-        };  
-
-        return this.http.post('/rest/members/encryptText', data,headerOptions).pipe(tap (data => {
-            //console.log(data);
+        return this.http.post('/rest/members/encryptText', data,this.headerOptions).pipe(tap (data => {
+            
             this.qrData = data
         },
         (err) => {
-            console.log(err);
+            Utility.log(err);
         }));;
     }
 
@@ -797,135 +545,78 @@ export class Services {
                      this.redeemGold = res;
                 },
                 (err) => {
-                    console.log('redeemComponent() Error...');
-                    console.log(err);
+                    Utility.log('redeemComponent() Error...');
+                    Utility.log(err);
                 }));;
             }
     
         //redeem-details 
         public redeemDetails(data:any){
-            console.log(data);
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.post('rest/members/redeemDetails',data, headerOptions).pipe(tap (data => {
-                 //console.log(data);
+            return this.http.post('rest/members/redeemDetails',data, this.headerOptions).pipe(tap (data => {
+                 
             },
             (err) => {
-                console.log('redeemDetails() Error...');
-                console.log(err);
+                Utility.log('redeemDetails() Error...');
+                Utility.log(err);
             }));;
         }
         //generate-qr-redeem
-        public redeemQrCode(){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/redeemQrCode',headerOptions).pipe(tap (res => {
+        public redeemQrCode(){  
+            return this.http.get('/rest/members/redeemQrCode',this.headerOptions).pipe(tap (res => {
                  this.redeemQr = res;
             },
             (err) => {
-                console.log('redeemQrCode() Error...');
-                console.log(err);
+                Utility.log('redeemQrCode() Error...');
+                Utility.log(err);
             }));;
         }
         //cancel-redeem
-        public redeemCancel(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };  
-            return this.http.get('/rest/members/redeemCancel/'+data,headerOptions).pipe(tap (res => {
+        public redeemCancel(data:any){ 
+            return this.http.get('/rest/members/redeemCancel/'+data,this.headerOptions).pipe(tap (res => {
                  this.redeemQr = res;
             },
             (err) => {
-                console.log('redeemCancel() Error...');
-                console.log(err);
+                Utility.log('redeemCancel() Error...');
+                Utility.log(err);
             }));;
         }
          //display redeem provider
-         public redeemProvider(){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/redeemProvider',headerOptions).pipe(tap (res => {
+         public redeemProvider(){ 
+            return this.http.get('/rest/members/redeemProvider',this.headerOptions).pipe(tap (res => {
             },
             (err) => {
-                console.log('redeemProvider() Error...');
-                console.log(err);
+                Utility.log('redeemProvider() Error...');
+                Utility.log(err);
             }));;
          }
           //display redeem center
           public redeemCenter(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/redeemCenter/'+data,headerOptions).pipe(tap (res => {
+            return this.http.get('/rest/members/redeemCenter/'+data,this.headerOptions).pipe(tap (res => {
                  
             },
             (err) => {
-                console.log('redeemCenter() Error...');
-                console.log(err);
+                Utility.log('redeemCenter() Error...');
+                Utility.log(err);
             }));;
          }
          //display redeem info
          public redeemInfo(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/redeemInfo/'+data,headerOptions).pipe(tap (res => {
+            return this.http.get('/rest/members/redeemInfo/'+data,this.headerOptions).pipe(tap (res => {
                  
             },
             (err) => {
-                console.log('redeemInfo() Error...');
-                console.log(err);
+                Utility.log('redeemInfo() Error...');
+                Utility.log(err);
             }));;
          }
          //display redeem scan
          public redeemScan(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/redeemScan/'+data,headerOptions).pipe(tap (res => {
+            return this.http.get('/rest/members/redeemScan/'+data,this.headerOptions).pipe(tap (res => {
                  
             },
             (err) => {
-                console.log('redeemScan() Error...');
-                console.log(err);
+                Utility.log('redeemScan() Error...');
+                Utility.log(err);
             }));;
          }
          //pledge-components
@@ -943,211 +634,124 @@ export class Services {
                  this.pledgeGold = res;
             },
             (err) => {
-                console.log('pledgeComponent() Error...');
-                console.log(err);
+                Utility.log('pledgeComponent() Error...');
+                Utility.log(err);
             }));;
         }
         //pledge-details 
         public pledgeDetails(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.post('rest/members/pledgeDetails',data, headerOptions).pipe(tap (data => {
-                 //console.log(data);
+            return this.http.post('rest/members/pledgeDetails',data, this.headerOptions).pipe(tap (data => {
+                
             },
             (err) => {
-                console.log('pledgeDetails() Error...');
-                console.log(err);
+                Utility.log('pledgeDetails() Error...');
+                Utility.log(err);
             }));;
         }
         //display pledge provider
-        public pledgeProvider(data:any){
-            // console.log(data);
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/pledgeProvider/'+data,headerOptions).pipe(tap (res => {
+        public pledgeProvider(data:any){  
+            return this.http.get('/rest/members/pledgeProvider/'+data, this.headerOptions).pipe(tap (res => {
             },
             (err) => {
-                console.log('pledgeProvider() Error...');
-                console.log(err);
+                Utility.log('pledgeProvider() Error...');
+                Utility.log(err);
             }));;
             
          }
 
          //calculate pledge
-         public calculatePledge(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('/rest/members/calculatePledge/'+data,headerOptions).pipe(tap (res => {
+         public calculatePledge(data:any){ 
+            return this.http.get('/rest/members/calculatePledge/'+data, this.headerOptions).pipe(tap (res => {
                  
             },
             (err) => {
-                console.log('calculatePledge() Error...');
-                console.log(err);
+                Utility.log('calculatePledge() Error...');
+                Utility.log(err);
             }));;
          }
 
          //get list pledge user
          public getPledgeList(){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };
-            return this.http.get('rest/members/getPledgeList/', headerOptions).pipe(tap (data => {
+            return this.http.get('rest/members/getPledgeList/', this.headerOptions).pipe(tap (data => {
                 
             },
             (err) => {
-                console.log('getPledgeList() Error...');
-                console.log(err);
+                Utility.log('getPledgeList() Error...');
+                Utility.log(err);
             }));;
         }
 
         //get list pledge provider
         public getPledgeListProvider(){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };
-            return this.http.get('rest/members/getPledgeListProvider/', headerOptions).pipe(tap (data => {
+            return this.http.get('rest/members/getPledgeListProvider/', this.headerOptions).pipe(tap (data => {
                
             },
             (err) => {
-                console.log('getPledgeListProvider() Error...');
-                console.log(err);
+                Utility.log('getPledgeListProvider() Error...');
+                Utility.log(err);
             }));;
         }
         //get pledge id
         public getPledgeId(value: String) {
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };  
-            return this.http.get('/rest/members/getPledgeId/'+value, headerOptions).pipe(tap (data => {
-                // console.log(data);
+            return this.http.get('/rest/members/getPledgeId/'+value, this.headerOptions).pipe(tap (data => {
                 this.receiver = of(data).toPromise();
                 this.idPledge = value;
             },
             (err) => {
-                console.log('getPledgeId() Error...');
-                console.log(err);
+                Utility.log('getPledgeId() Error...');
+                Utility.log(err);
             }));;
         }
 
         //pay pledge
         public payPledge(value:String){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                }),
-            };  
-            return this.http.get('rest/members/payPledge/'+value, headerOptions).pipe(tap (data => {
-                 //console.log(data);
+            return this.http.get('rest/members/payPledge/'+value, this.headerOptions).pipe(tap (data => {
+                 //Utility.log(data);
             },
             (err) => {
-                console.log('payPledge() Error...');
-                console.log(err);
+                Utility.log('payPledge() Error...');
+                Utility.log(err);
             }));;
         }
 
         public uploadMerchantVerificationData(data:FormData, cert:boolean){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };  
-            return this.http.post('/rest/members/uploadMerchantVerificationData/'+cert, data , headerOptions).pipe(tap (data => {
-                // console.log(data);
+            return this.http.post('/rest/members/uploadMerchantVerificationData/'+cert, data , this.headerOptions).pipe(tap (data => {
+                
             },
             (err) => {
-                console.log('uploadVerificationData() Error...');
-                console.log(err);
+                Utility.log('uploadMerchantVerificationData() Error...');
+                Utility.log(err);
             }));;
         }
 
         public merchantProduct(value: String){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };
-            return this.http.get('rest/members/merchantProductsList/'+value, headerOptions).pipe(tap (data => {
+            return this.http.get('rest/members/merchantProductsList/'+value, this.headerOptions).pipe(tap (data => {
                 this.sellGoldData = data;
             },
             (err) => {
-                console.log('merchantProduct() Error...');
-                console.log(err);
+                Utility.log('merchantProduct() Error...');
+                Utility.log(err);
             }));;
         }
 
         public merchantRecycle(){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };
-            return this.http.get('rest/members/merchantRecycleList', headerOptions).pipe(tap (data => {
+           
+            return this.http.get('rest/members/merchantRecycleList', this.headerOptions).pipe(tap (data => {
                 this.sellGoldData = data;
             },
             (err) => {
-                console.log('merchantRecycle() Error...');
-                console.log(err);
+                Utility.log('merchantRecycle() Error...');
+                Utility.log(err);
             }));;
         }
 
         public recyclePayment(data:any){
-            const headerOptions = {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                    Authorization: this.token
-                })
-            };
-            return this.http.post('rest/members/recyclePayment',data, headerOptions).pipe(tap (data => {
+            return this.http.post('rest/members/recyclePayment',data, this.headerOptions).pipe(tap (data => {
                 
             },
             (err) => {
-                console.log('merchantRecycle() Error...');
-                console.log(err);
+                Utility.log('recyclePayment() Error...');
+                Utility.log(err);
             }));;
         }
 }

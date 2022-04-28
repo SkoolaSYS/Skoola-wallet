@@ -1,10 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Html5Qrcode, Html5QrcodeScanner } from 'html5-qrcode';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { Html5Qrcode } from 'html5-qrcode';
 import { Router } from '@angular/router';
 import { Services } from 'src/app/services/service';
-import { Console } from 'node:console';
-import { JsonpClientBackend } from '@angular/common/http';
+import { Utility } from 'src/utils';
 @Component({
   selector: 'app-qr-view',
   templateUrl: './qr-view.component.html'
@@ -45,8 +43,8 @@ export class qrViewComponent implements OnInit{
   }
   // onScanSuccess(decodedText, decodedResult) {
   //   // Handle on success condition with the decoded text or result.
-  //   console.log(`Scan result: ${decodedText}`, decodedResult);
-  //   console.log(decodedText)
+  //   Utility.log(`Scan result: ${decodedText}`, decodedResult);
+  //   Utility.log(decodedText)
   //   document.location.href = decodedText
   //   //(FIXME) Aiman --> dont use reload if possible
     

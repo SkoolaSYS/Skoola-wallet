@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgPopup, NgPopupsService } from 'ng-popups';
+import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Utility } from 'src/utils';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class CardRequestComponent implements OnInit {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
-      //console.log(res)
+      //Utility.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -48,7 +49,7 @@ export class CardRequestComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
 
@@ -57,7 +58,7 @@ export class CardRequestComponent implements OnInit {
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value; 
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
   }
@@ -77,17 +78,17 @@ export class CardRequestComponent implements OnInit {
             this.router.navigate(['dashboard']);
           });
         }catch(e){
-        console.log("City")
+        Utility.log("City")
         this.ngPopups.alert('Update your City',{theme: 'material', title: 'Oops...'});
         this.router.navigate(["update-profile"]);
         }
        }catch(e){
-        console.log("postalCode")
+        Utility.log("postalCode")
         this.ngPopups.alert('Update your Postal Code',{theme: 'material', title: 'Oops...'});
         this.router.navigate(["update-profile"]);
        } 
     }catch(e){
-      console.log("address")
+      Utility.log("address")
       this.ngPopups.alert('Update your Residence Address',{theme: 'material', title: 'Oops...'});
       this.router.navigate(["update-profile"]);
     }

@@ -3,8 +3,7 @@ import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-invalid-qr-link',
-  templateUrl: './invalid-qr-link.component.html',
-  styleUrls: ['./invalid-qr-link.component.scss']
+  templateUrl: './invalid-qr-link.component.html'
 })
 export class InvalidQrLinkComponent implements OnInit {
 redeem;

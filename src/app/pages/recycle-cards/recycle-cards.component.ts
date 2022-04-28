@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-recycle-cards',
@@ -52,7 +53,7 @@ export class RecycleCardsComponent implements OnInit {
 
 
   incQuantity(i: string) {
-    console.log(i)
+    Utility.log(i)
     this.userInputWeight[parseInt(i)] = this.userInputWeight[parseInt(i)] + 500;
 
   }

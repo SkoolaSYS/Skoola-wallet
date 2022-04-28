@@ -4,8 +4,7 @@ import { Services } from 'src/app/services/service';
 
 @Component({
   selector: 'app-topup-amount',
-  templateUrl: './topup-amount.component.html',
-  styleUrls: ['./topup-amount.component.scss']
+  templateUrl: './topup-amount.component.html'
 })
 export class TopupAmountComponent implements OnInit {
   amountTopup:any
@@ -14,7 +13,6 @@ export class TopupAmountComponent implements OnInit {
   ngOnInit(): void {
   }
   confirm(): void{
-    console.log(this.amountTopup)
     try{
       if (this.amountTopup.length > 0){
         this.services.amountTopup = this.amountTopup

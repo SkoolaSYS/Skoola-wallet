@@ -26,7 +26,6 @@ export class RecycleInfoComponent implements OnInit {
   async ngOnInit(): Promise <void> {
     const currentUser: any = await this.services.currentUser;
     this.isMerchant = currentUser.merchant
-    console.log(this.services.qrData, "qrdata");
     this.amount = this.services.qrData.amount;
     this.merchant = this.services.qrData.merchantId;
     this.recycleWaste = this.services.qrData.recycleWaste;

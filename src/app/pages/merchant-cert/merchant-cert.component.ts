@@ -4,6 +4,7 @@ import { NgPopupsService } from 'ng-popups';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-merchant-cert',
@@ -35,7 +36,7 @@ export class MerchantCertComponent implements OnInit {
 
     // this.activetransaction = true;
     this.service.getAccountBalance().subscribe((res: any) => {
-      //console.log(res)
+      //Utility.log(res)
       this.currentBalance = res[0].status.availableBalance;
       this.service.currentBalance = this.currentBalance;
       this.currencyType = res[0].account.type.currency.symbol;
@@ -47,17 +48,17 @@ export class MerchantCertComponent implements OnInit {
       this.service.userAccount = res[0].account;
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
 
     this.service.getProfileData().subscribe((res: any) => {
-      // console.log(res);
+      // Utility.log(res);
       this.userName = res.name;
       this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value; 
     },
     (err) => {
-      console.log(err);
+      Utility.log(err);
       // this.service.logout();
     });
   }
@@ -93,7 +94,7 @@ export class MerchantCertComponent implements OnInit {
           this.cert = true;
         },
         error => {
-          console.log('Oh no!', error);
+          Utility.log('Oh no!', error);
         }
       );
     }
@@ -114,7 +115,7 @@ export class MerchantCertComponent implements OnInit {
          this.files[1]=this.uploadedImage;
         },
         error => {
-          console.log('Oh no!', error);
+          Utility.log('Oh no!', error);
         }
       );
     }
@@ -136,7 +137,7 @@ export class MerchantCertComponent implements OnInit {
           this.files[2]=this.uploadedImage;
         },
         error => {
-          console.log('Oh no!', error);
+          Utility.log('Oh no!', error);
         }
       );
     }

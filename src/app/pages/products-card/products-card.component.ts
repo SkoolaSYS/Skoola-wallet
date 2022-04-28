@@ -16,10 +16,8 @@ export class ProductsCardComponent implements OnInit {
   constructor(private services:Services) { }
 
   ngOnInit(): void {
-    console.log(this.services.qrData.merchantId)
     this.services.merchantProduct(this.services.qrData.merchantId).subscribe((res: any) => {
       this.productList = res;
-      console.log(this.productList, "lols")
       try{
         for(var i = 0; i< this.productList.price.length; i++){
            this.data.push([{

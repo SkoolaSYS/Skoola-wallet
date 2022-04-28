@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Services } from 'src/app/services/service';
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-mini-dashboard-header',
-  templateUrl: './mini-dashboard-header.component.html',
-  styleUrls: ['./mini-dashboard-header.component.scss']
+  templateUrl: './mini-dashboard-header.component.html'
 })
 export class MiniDashboardHeaderComponent implements OnInit {
   activetransaction: boolean;
@@ -30,13 +30,13 @@ export class MiniDashboardHeaderComponent implements OnInit {
       let obj;
       try {
         obj = JSON.parse(data);
-        // console.log("counter:", obj.counter);
+        // Utility.log("counter:", obj.counter);
 
         // update notification badge
         this.service.counter = obj.counter;
       }
       catch (e) {
-        console.log(e);         
+        Utility.log(e);         
       }
 
     }
@@ -55,7 +55,7 @@ export class MiniDashboardHeaderComponent implements OnInit {
     }
         // this.activetransaction = true;
         this.service.getAccountBalance().subscribe((res: any) => {
-          //console.log(res)
+          //Utility.log(res)
           this.currentBalance = res[0].status.availableBalance;
           this.service.currentBalance = this.currentBalance;
           this.currencyType = res[0].account.type.currency.symbol;
@@ -67,18 +67,18 @@ export class MiniDashboardHeaderComponent implements OnInit {
           this.service.userAccount = res[0].account;
         },
         (err) => {
-          // console.log(err);
+          // Utility.log(err);
           // this.service.logout();
         });
     
         this.service.getProfileData().subscribe((res: any) => {
-          // console.log(res);
+          // Utility.log(res);
           this.userName = res.name;
           this.cardNumber = res.customValues.find(object => object.internalName == "AccNumber")?.value; 
         },
         (err) => {
           // this.service.logout();
-          // console.log(err);
+          // Utility.log(err);
         });
   }
   async bell(): Promise <void>{

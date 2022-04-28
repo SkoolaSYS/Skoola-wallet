@@ -4,8 +4,7 @@ import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-pledge-details-view',
-  templateUrl: './pledge-details-view.component.html',
-  styleUrls: ['./pledge-details-view.component.scss']
+  templateUrl: './pledge-details-view.component.html'
 })
 export class PledgeDetailsViewComponent implements OnInit {
 dateGold

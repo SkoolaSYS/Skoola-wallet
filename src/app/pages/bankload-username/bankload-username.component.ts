@@ -10,8 +10,7 @@ import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-bankload-username',
-  templateUrl: './bankload-username.component.html',
-  styleUrls: ['./bankload-username.component.scss']
+  templateUrl: './bankload-username.component.html'
 })
 export class BankloadUsernameComponent implements OnInit {
   username: string;

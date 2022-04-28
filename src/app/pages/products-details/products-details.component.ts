@@ -18,7 +18,6 @@ export class ProductsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.services.merchantProduct(this.services.qrData.merchantId).subscribe((res: any) => {
       this.productList = res;
-      console.log(this.productList, "lols")
       try{
         this.data.push([{
             productName : this.productList.productName,

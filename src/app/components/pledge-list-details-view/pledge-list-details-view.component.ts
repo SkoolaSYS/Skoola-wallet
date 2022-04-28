@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgPopup, NgPopupsService } from 'ng-popups';
+import { NgPopupsService } from 'ng-popups';
 import { Services } from 'src/app/services/service';
 import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-pledge-list-details-view',
-  templateUrl: './pledge-list-details-view.component.html',
-  styleUrls: ['./pledge-list-details-view.component.scss']
+  templateUrl: './pledge-list-details-view.component.html'
 })
 export class PledgeListDetailsViewComponent implements OnInit {
   value: String;
