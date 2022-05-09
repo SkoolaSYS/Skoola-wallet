@@ -74,7 +74,7 @@ export class CardRequestComponent implements OnInit {
           this.spinner.show();
           await this.service.requestCard().toPromise().then(() => {
             this.spinner.hide();
-            this.ngPopups.alert('You have succesfully request a D8-p Card!',{theme: 'material', title: 'Success!'});
+            this.ngPopups.alert('You have succesfully request a D-8P card!',{theme: 'material', title: 'Success!'});
             this.router.navigate(['dashboard']);
           });
         }catch(e){
