@@ -231,7 +231,14 @@ export class Services {
 
     // For uploading user profile with image (rwa)
     public updateProfileWithImage(data: FormData) {
-        return this.http.post('/rest/members/updateProfileWithImage', data , this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateProfileWithImage', data , headerOptions).pipe(tap (data => {
             
         },
         (err) => {
@@ -241,7 +248,15 @@ export class Services {
     }
 
     public uploadVerificationData(data: FormData) {
-        return this.http.post('/rest/members/uploadVerificationData', data , this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+
+        return this.http.post('/rest/members/uploadVerificationData', data , headerOptions).pipe(tap (data => {
             
         },
         (err) => {
@@ -715,7 +730,15 @@ export class Services {
         }
 
         public uploadMerchantVerificationData(data:FormData, cert:boolean){
-            return this.http.post('/rest/members/uploadMerchantVerificationData/'+cert, data , this.headerOptions).pipe(tap (data => {
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };  
+    
+            return this.http.post('/rest/members/uploadMerchantVerificationData/'+cert, data ,headerOptions).pipe(tap (data => {
                 
             },
             (err) => {
