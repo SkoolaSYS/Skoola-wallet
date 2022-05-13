@@ -381,7 +381,15 @@ export class Services {
 
     public signupUser(data: any){
         Utility.log(data);
-        return this.http.post('/rest/public/signupUser', data , this.headerOptions).pipe(tap (data => {            
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            })
+        };
+
+        return this.http.post('/rest/public/signupUser', data , headerOptions).pipe(tap (data => {            
             
         },
         (err) => {
