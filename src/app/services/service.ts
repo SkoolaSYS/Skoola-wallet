@@ -201,7 +201,15 @@ export class Services {
         }));;
     }
     public loadById(merchantId:string){
-        return this.http.get( "/rest/members/"+merchantId, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get( "/rest/members/"+merchantId, headerOptions).pipe(tap (data => {
          
         },
         (err) => {
@@ -266,7 +274,14 @@ export class Services {
     }
 
     public getMemberByAccountNumber(accountNo: String) { 
-        return this.http.get('/rest/members/accNumber/'+accountNo, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/members/accNumber/'+accountNo, headerOptions).pipe(tap (data => {
            
             this.receiver = of(data).toPromise();
         },
@@ -298,7 +313,14 @@ export class Services {
         }));;
     }
     public sendAddBank(data:any){ 
-        return this.http.post('/rest/members/addBank',data, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/addBank',data, headerOptions).pipe(tap (data => {
             
         },
         (err) => {
@@ -353,7 +375,14 @@ export class Services {
         }));;
     }
     public sendUpdateBank(data:any){
-        return this.http.post('/rest/members/updateBank',data, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/updateBank',data, headerOptions).pipe(tap (data => {
             
         },
         (err) => {
@@ -380,7 +409,6 @@ export class Services {
     }
 
     public signupUser(data: any){
-        Utility.log(data);
         const headerOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
@@ -388,7 +416,7 @@ export class Services {
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
             })
         };
-
+        Utility.log(data);
         return this.http.post('/rest/public/signupUser', data , headerOptions).pipe(tap (data => {            
             
         },
@@ -400,7 +428,14 @@ export class Services {
     }
 
     public requestCard(){
-        return this.http.get('/rest/members/requestPhysicalCard',this.headerOptions).pipe(tap (data => {            
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/members/requestPhysicalCard', headerOptions).pipe(tap (data => {            
            
         },
         (err) => {
@@ -494,7 +529,14 @@ export class Services {
     }
 
     public getGoldData(value: String) {
-        return this.http.get('/rest/members/goldData/'+value, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/members/goldData/'+value, headerOptions).pipe(tap (data => {
             this.receiver = of(data).toPromise();
         },
         (err) => {
@@ -504,7 +546,14 @@ export class Services {
     }
 
     public getBankLoadData() {
-        return this.http.get('/rest/payments/bankLoadData', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.get('/rest/payments/bankLoadData', headerOptions).pipe(tap (data => {
     
         },
         (err) => {
@@ -512,7 +561,14 @@ export class Services {
         }));;
     }
     public topupAtMerchant(data:any) {
-        return this.http.post('/rest/payments/topupAtMerchant', data,this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/payments/topupAtMerchant', data, headerOptions).pipe(tap (data => {
             
         },
         (err) => {
@@ -534,7 +590,14 @@ export class Services {
     }
 
     public decrypt(data:any){
-        return this.http.post('/rest/members/decryptText', data,this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/decryptText', data, headerOptions).pipe(tap (data => {
             
             this.qrData = data
         },
@@ -544,7 +607,14 @@ export class Services {
     }
 
     public encrypt(data:any){
-        return this.http.post('/rest/members/encryptText', data,this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+        return this.http.post('/rest/members/encryptText', data, headerOptions).pipe(tap (data => {
             
             this.qrData = data
         },
@@ -716,7 +786,14 @@ export class Services {
         }
         //get pledge id
         public getPledgeId(value: String) {
-            return this.http.get('/rest/members/getPledgeId/'+value, this.headerOptions).pipe(tap (data => {
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            };  
+            return this.http.get('/rest/members/getPledgeId/'+value, headerOptions).pipe(tap (data => {
                 this.receiver = of(data).toPromise();
                 this.idPledge = value;
             },
