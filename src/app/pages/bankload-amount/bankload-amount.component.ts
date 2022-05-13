@@ -44,14 +44,14 @@ export class BankloadAmountComponent implements OnInit {
         const balance = parseFloat(this.services.currentBalance);
         const amount = parseFloat(this.amount);
 
-        if (amount > maxAmount) {
+        if (!this.isMerchant && (amount > maxAmount)) {
           this.dialog.open(AlertDialogComponent, { 
             data: { 
               message: "The entered amount exceeds the maximum limit allowed for e-Wallet topup." 
             } 
           });
         }
-        else if ((balance+amount) > maxBalance) {
+        else if (!this.isMerchant && ((balance+amount) > maxBalance)) {
           this.dialog.open(AlertDialogComponent, { 
             data: { 
               message: "The new account balance exceeds the maximum limit allowed for an e-Wallet account." 
