@@ -2616,7 +2616,7 @@ input[type="checkbox"]:checked ~ label .middle {
 }
 .heads{
   position: relative;
-  animation: spin-front 7s infinite;
+  animation: spin-back 7s infinite;
 }
 .heads, .kopama, .gmi, .jaminstore, .komunitiLtl, .ohsem-twop{
   backface-visibility: hidden;
@@ -2642,7 +2642,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .jaminstore{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 7s infinite;
+  animation: spin-front 7s infinite;
   z-index: 10;
   margin-top: 6px;
   margin-left: 20%;
@@ -2650,7 +2650,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .komunitiLtl{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 7s infinite;
+  animation: spin-front 7s infinite;
   z-index: 10;
   margin-top: 6px;
   margin-left: 25%;
@@ -2659,7 +2659,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .gmi{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 7s infinite;
+  animation: spin-front 7s infinite;
   z-index: 10;
   margin-top: 10%;
   margin-left: 20%;
@@ -2667,7 +2667,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .kopama{
     position: absolute;
     transform: rotateY(180deg);
-    animation: spin-back 7s infinite;
+    animation: spin-front 7s infinite;
     z-index: 10;
     margin-top: 6px;
     margin-left: 25%;
@@ -2676,7 +2676,7 @@ input[type="checkbox"]:checked ~ label .middle {
 .ohsem-twop{
   position: absolute;
   transform: rotateY(180deg);
-  animation: spin-back 7s infinite;
+  animation: spin-front 7s infinite;
   z-index: 10;
   margin-top: 45px;
   margin-left: 25%;

@@ -152,7 +152,16 @@ export class Services {
     }
 
     public getAccountBalance(){
-        return this.http.get('/rest/accounts/info', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get('/rest/accounts/info', headerOptions).pipe(tap (data => {
             
         },
         (err) => {
@@ -162,7 +171,16 @@ export class Services {
     }
 
     public getAccountTransactionList(){
-        return this.http.get('/rest/accounts/default/history', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get('/rest/accounts/default/history', headerOptions).pipe(tap (data => {
 
         },
         (err) => {
@@ -172,7 +190,17 @@ export class Services {
     }
 
     public getProfileData(){
-        return this.http.get('rest/members/me', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+                
+            })
+        };
+
+        return this.http.get('rest/members/me', headerOptions).pipe(tap (data => {
             this.currentUser = of(data).toPromise();
         },
         (err) => {
@@ -192,7 +220,17 @@ export class Services {
     }
 
     public getMemberList(){
-        return this.http.get('rest/members', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+                
+            })
+        };
+
+        return this.http.get('rest/members', headerOptions).pipe(tap (data => {
            
         },
         (err) => {
@@ -218,8 +256,16 @@ export class Services {
         }));;
     }
     public paymentTransfer(data: any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
         Utility.log('paymentTransfer data : ' + data.toMemberId);
-        return this.http.post('/rest/payments/confirmMemberPayment', data , this.headerOptions).pipe(tap (data => {            
+        return this.http.post('/rest/payments/confirmMemberPayment', data , headerOptions).pipe(tap (data => {            
             
         },
         (err) => {
@@ -347,7 +393,16 @@ export class Services {
         }));;
     }
     public getBankData(bankCountry){
-        return this.http.get('rest/accounts/banks/'+bankCountry, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get('rest/accounts/banks/'+bankCountry, headerOptions).pipe(tap (data => {
             this.bankData = data;
         },
         (err) => {
@@ -357,7 +412,16 @@ export class Services {
     }
 
     public getMemberBankData(){
-        return this.http.get('rest/accounts/getMemberBankData', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get('rest/accounts/getMemberBankData', headerOptions).pipe(tap (data => {
             this.memberBankData = data;
         },
         (err) => {
@@ -398,8 +462,17 @@ export class Services {
             Utility.log('MemberPerformPayment() Error : ' + err);
         }));;
     }
-    public getTransactionFeeAmount(transactionTypeId){
-        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transactionTypeId, this.headerOptions).pipe(tap (data => {
+    public getTransactionFeeAmount(transactionTypeId){        
+        const headerOptions = {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            Authorization: this.token
+        })
+    };
+
+        return this.http.get('rest/accounts/getTransactionFeeAmount/'+transactionTypeId, headerOptions).pipe(tap (data => {
             this.transactionFeeAmount = data;
         },
         (err) => {
@@ -447,7 +520,16 @@ export class Services {
 
     //calculate-average-gold
     public calAvgGold(){ 
-        return this.http.get('/rest/members/calAvgGold',this.headerOptions).pipe(tap (res => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };  
+
+        return this.http.get('/rest/members/calAvgGold', headerOptions).pipe(tap (res => {
              this.averageGold = res;
         },
         (err) => {
@@ -488,7 +570,16 @@ export class Services {
     }
 
     public getSellGoldData(order){
-        return this.http.get('rest/members/getSellGoldData/'+order, this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get('rest/members/getSellGoldData/'+order, headerOptions).pipe(tap (data => {
             this.sellGoldData = data;
         },
         (err) => {
@@ -675,7 +766,16 @@ export class Services {
         }
          //display redeem provider
          public redeemProvider(){ 
-            return this.http.get('/rest/members/redeemProvider',this.headerOptions).pipe(tap (res => {
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                }),
+            };  
+
+            return this.http.get('/rest/members/redeemProvider', headerOptions).pipe(tap (res => {
             },
             (err) => {
                 Utility.log('redeemProvider() Error...');
