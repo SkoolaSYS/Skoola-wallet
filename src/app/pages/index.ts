@@ -51,3 +51,4 @@ export * from './products-card/products-card.component';
 export * from './products-details/products-details.component';
 export * from './recycle-cards/recycle-cards.component';
 export * from './recycle-info/recycle-info.component';
+export * from './merchant-agreement-page/merchant-agreement-page.component';

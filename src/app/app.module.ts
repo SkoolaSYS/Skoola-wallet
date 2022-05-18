@@ -83,7 +83,8 @@ import {
   ProductsCardComponent,
   ProductsDetailsComponent,
   RecycleCardsComponent,
-  RecycleInfoComponent
+  RecycleInfoComponent,
+  MerchantAgreementPageComponent
 } from './pages';
 
 import {
@@ -107,7 +108,7 @@ import {
   RedeemDetailsViewComponent,
   PledgeDetailsViewComponent,
   PledgeListDetailsViewComponent,
-
+  MerchantTermsConditionComponent
 } from './components';
 
 import { Services } from 'src/app/services/service';
@@ -208,6 +209,7 @@ export class SafeUrlPipe implements PipeTransform {
     ProductsDetailsComponent,
     RecycleCardsComponent,
     RecycleInfoComponent,
+    MerchantAgreementPageComponent,
     
     // components
     DashboardHeaderComponent,
@@ -233,6 +235,7 @@ export class SafeUrlPipe implements PipeTransform {
     PledgeDetailsViewComponent,
     PledgeListDetailsViewComponent,
     AlertDialogComponent,
+    MerchantTermsConditionComponent,
 
     // pipes
     SafeHtmlPipe,

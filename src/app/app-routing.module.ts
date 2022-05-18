@@ -55,6 +55,7 @@ import {
   ProductsDetailsComponent,
   RecycleCardsComponent,
   RecycleInfoComponent,
+  MerchantAgreementPageComponent,
 } from './pages';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
@@ -220,6 +221,10 @@ export const routes: Routes = [
  {
   path:'user-agreement-page', component:  UserAgreementPageComponent ,
   //  canActivate: [AuthenticationGuard]
+ },
+ {
+  path:'merchant-agreement-page', component:  MerchantAgreementPageComponent,
+   canActivate: [AuthenticationGuard]
  },
  {
   path:'acknowledgement-page', component:  AcknowledgementPageComponent ,

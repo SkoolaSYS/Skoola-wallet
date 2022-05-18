@@ -8,6 +8,7 @@
         <div class="navItem text-center" mat-list-item *ngIf="bankLoadData" routerLink="/update-bank-load">Update Bank Load</div>
         <!-- <div class="navItem text-center" mat-list-item *ngIf="!isMerchant" routerLink="/topup-amount">Topup by Merchant</div> -->
         <div class="navItem text-center" mat-list-item *ngIf="isMerchant" routerLink="/qr-code">Scan QR Topup</div>
+        <div class="navItem text-center" mat-list-item *ngIf="isMerchant" routerLink="/merchant-agreement-page">Merchant Agreement Page</div>
         <!-- <div class="navItem text-center" mat-list-item *ngIf="requestCard" routerLink="/card-request"><small></small>Request D-8P Card</div> -->
         <div class="navItem text-center" mat-list-item routerLink="/recent-transactions">Recent Transactions</div>
         <div class="navItem text-center" mat-list-item *ngIf="isMerchant" (click)="whatsapp()">Withdrawal</div>

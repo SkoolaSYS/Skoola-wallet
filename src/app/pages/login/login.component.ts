@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
       this.isMerchant = currentUser.merchant;
 
       if(this.isMerchant){
-        this.router.navigate(['merchant-cert']);
+
+        this.router.navigate(['merchant-agreement-page']);
       }else{
         this.router.navigate(['id-verification']);
       }
@@ -85,14 +86,29 @@ export class LoginComponent implements OnInit {
 
          if (this.isNotIdVerified){
            if (this.isMerchant){
-            this.router.navigate(['merchant-cert']);
+            let merch = localStorage.getItem("agree-merch");
+            if (merch == null){
+              this.router.navigate(['merchant-agreement-page']);
+            }else{
+              this.router.navigate(['merchant-cert']);
+            }
           }else{
            this.router.navigate(['id-verification']);
           }
          }else{
-         this.router.navigate(['dashboard']);
+          if (this.isMerchant){
+            let merch = localStorage.getItem("agree-merch");
+            console.log(merch)
+            if (merch == null){
+              this.router.navigate(['merchant-agreement-page']);
+            }else{
+              this.router.navigate(['dashboard']);
+            }
+         }else{
+          this.router.navigate(['dashboard']);
          }
        }
+      }
     });
   }
 }

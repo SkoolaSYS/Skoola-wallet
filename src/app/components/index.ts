@@ -1,4 +1,3 @@
-import { from } from 'rxjs';
 
 export * from './dashboard-header/dashboard-header.component';
 export * from './transaction-view/transaction-view.component';
@@ -20,3 +19,4 @@ export * from './split-header/split-header.component';
 export * from './redeem-details-view/redeem-details-view.component';
 export * from './pledge-details-view/pledge-details-view.component';
 export * from './pledge-list-details-view/pledge-list-details-view.component';
+export * from './merchant-terms-condition/merchant-terms-condition.component';
