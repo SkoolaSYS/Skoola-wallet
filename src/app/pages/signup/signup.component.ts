@@ -13,6 +13,15 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class SignupComponent implements OnInit {
   // Onboarding process (kinah)
+  userName: boolean = true;
+  userNameLong: boolean = true;
+  nameFull: boolean = true;
+  emailAddr: boolean = true;
+  emailValid: boolean = true;
+  ic: boolean = true;
+  phone: boolean = true;
+  newPass: boolean = true;
+  confirmPass: boolean = true;
   hide: boolean = true;
   hideConfirm: boolean=true;
   loginUsername : string;
@@ -145,25 +154,62 @@ export class SignupComponent implements OnInit {
     let data: any = {};
     let customValues: any[] = [];
 
-    if (Utility.validateEmail(this.emailAddress) == true){
+    
 
       if (this.createPassword != this.confirmPassword){
           this.ngPopups.alert('Password mismatch. Please re-keyin your new password!',{theme:'material',title:'Oops...'});
           this.createPassword='';
           this.confirmPassword='';
       }else{
+        var agreeCheckbox = <HTMLInputElement> document.getElementById("checkAgree");
+        if(agreeCheckbox.checked != true){
+          this.ngPopups.alert('Please tick User Agreement!',{theme:'material',title:'Oops...'});
+        }else{
+        if(this.emailAddress){
+          this.emailAddr = true;
+          if (Utility.validateEmail(this.emailAddress)){
+            this.emailValid = true;
+          }else{
+            this.emailValid = false;
+          }
+        }else{
+          this.emailAddr = false;
+        }
+
+        if(this.loginUsername){
+          this.userName = true;
+          if(this.loginUsername.length > 4){
+            this.userNameLong = true;
+          }else{
+            this.userNameLong = false;
+          }
+        }else{
+          this.userName = false;
+        }
+
+        if(this.fullName){
+          this.nameFull = true;
+        }else{
+          this.nameFull = false;
+        }
         
-        if (this.nricNumber)
+        if (this.nricNumber){
+        this.ic = true;
         customValues.push({
           "internalName": "NRIC",
           "value": this.nricNumber
-        });
+        });}else{
+          this.ic = false;
+        }
 
-        if (this.noTelephone)
+        if (this.noTelephone){
+        this.phone = true;
         customValues.push({
           "internalName": "mobilePhone",
           "value": this.noTelephone
-        });
+        });}else{
+          this.phone = false;
+        }
 
         if (this.homeAddress)
         customValues.push({
@@ -183,10 +229,22 @@ export class SignupComponent implements OnInit {
           "value": this.stateCity
         });
 
+        if(this.createPassword){
+          this.newPass = true;
+        }else{
+          this.newPass = false;
+        }
+
+        if(this.confirmPassword){
+          this.confirmPass = true;
+        }else{
+          this.confirmPass = false;
+        }
+
         if (customValues.length != 0)  
         data.customValues = customValues;
         
-        if (this.loginUsername!= null && this.fullName != null && this.emailAddress != null && this.noTelephone != null && this.nricNumber != null && this.createPassword != null && customValues != null && this.parentId != null ){
+        if (this.userName && this.nameFull && this.emailAddr && this.phone && this.ic && this.newPass && customValues != null && this.parentId != null ){
           this.errorMessage.push({field:this.loginUsername,reason:"Username has been used"})
           this.spinner.show();
           await this.services.signupUser({
@@ -207,9 +265,7 @@ export class SignupComponent implements OnInit {
           });
           }
       }
-    }else{
-      this.spinner.hide();
-      this.ngPopups.alert("Email invalid",{theme:'material',title:'Oops...'});
-    }
+    
   }
+}
 }

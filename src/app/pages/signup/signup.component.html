@@ -35,10 +35,10 @@
                                                                     maxlength="12" [(ngModel)]="loginUsername"
                                                                     required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="username.touched && ! username.valid">
+                                                                    *ngIf="!userName">
                                                                     Username is required.</div>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="username.errors?.minlength">
+                                                                    *ngIf="!userNameLong">
                                                                     Username must be at least 4 characters long.</div>
                                                             </div>
                                                         </div>
@@ -50,7 +50,7 @@
                                                                     name="fullname" #fullname="ngModel"
                                                                     [(ngModel)]="fullName" required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="fullname.touched && ! fullname.valid">Full
+                                                                    *ngIf="!nameFull">Full
                                                                     Name is required.</div>
                                                             </div>
                                                         </div>
@@ -62,8 +62,10 @@
                                                                     #emailAdd="ngModel" id="emailAdd" name="emailAdd"
                                                                     [(ngModel)]="emailAddress" required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="emailAdd.touched && ! emailAdd.valid">Fill in
+                                                                    *ngIf="!emailAddr">Fill in
                                                                     your email address.</div>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!emailValid">Invalid email address.</div>
                                                             </div>
                                                         </div>
 
@@ -74,8 +76,8 @@
                                                                     #phoneAdd="ngModel" id="phoneAdd" name="phoneAdd"
                                                                     [(ngModel)]="noTelephone" required autocomplete="off"/>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="phoneAdd.touched && ! phoneAdd.valid">Fill in
-                                                                    your No. Telephone.</div>
+                                                                    *ngIf="!phone">Fill in
+                                                                    your Telephone No.</div>
                                                             </div>
                                                         </div>
 
@@ -87,7 +89,7 @@
                                                                     id="nricNo" name="nricNo" [(ngModel)]="nricNumber"
                                                                     required/>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="nricNo.touched && ! nricNo.valid">National
+                                                                    *ngIf="!ic">National
                                                                     Identity Card No. is required.</div>
                                                             </div>
                                                         </div>
@@ -102,7 +104,7 @@
                                                                     [(ngModel)]="createPassword" [type]="hide ? 'password' : 'text'" required />
                                                                     <i class="bi-eye-slash" id="togglePassword1" (click)="showPassword()"></i>
                                                                 <div class="alert alert-danger"
-                                                                    *ngIf="createPass.touched && ! createPass.valid">
+                                                                    *ngIf="!newPass">
                                                                     Password is required.</div>
                                                             </div>
                                                             
@@ -117,6 +119,9 @@
                                                                     name="confirm-password"
                                                                     [(ngModel)]="confirmPassword" [type]="hideConfirm ? 'password' : 'text'" required />
                                                                     <i class="bi-eye-slash" id="togglePassword2" (click)="showConfirmPassword()"></i>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!confirmPass">
+                                                                    Confirm Password is required.</div>
                                                             </div>
                                                         </div>
                                                        
