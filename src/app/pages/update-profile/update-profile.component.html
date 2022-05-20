@@ -34,7 +34,7 @@
                     Update Profile
                   </div>
                   <form autocomplete="off">
-                    <div class="text-center mt-2 mb-2">
+                    <div class="text-center mt-2 mb-4">
                       User Profile Image
                     </div>
                     <div class="upload-part">
@@ -51,11 +51,11 @@
                         <input class="form-control d8p-input-normal min-height-60" id="userEmail" type="text" placeholder="example@example.com" [(ngModel)]="updateForm.email" name="userEmail" #userEmail="ngModel">
                         <button class="snap-btn">Change</button>
                       </div> -->
-                    <div class="text-center mt-2 mb-2">
+                    <div class="text-center mt-4 mb-2">
                       Residence Address
                     </div>
                     <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                      <input class="d8p-input-form d8p-input-normal min-height-60" [(ngModel)]="updateForm.address"
+                      <input class="d8p-input-form1 d8p-input-normal min-height-60" [(ngModel)]="updateForm.address"
                         name="homeAddress" #homeAddress="ngModel" id="homeAddress">
                       <!-- <button class="snap-btn">Change</button> -->
                     </div>
@@ -63,7 +63,7 @@
                       Postcode
                     </div>
                     <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                      <input class="d8p-input-form d8p-input-normal min-height-60" [(ngModel)]="updateForm.postalCode"
+                      <input class="d8p-input-form1 d8p-input-normal min-height-60" [(ngModel)]="updateForm.postalCode"
                         name="postalCode" #postalCode="ngModel" id="postalCode" placeholder="eg: 47810" maxlength="5"
                         type="text">
                       <!-- <button class="snap-btn">Change</button> -->
@@ -72,7 +72,7 @@
                       City
                     </div>
                     <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                      <input class="d8p-input-form d8p-input-normal min-height-60" [(ngModel)]="updateForm.city" name="city"
+                      <input class="d8p-input-form1 d8p-input-normal min-height-60" [(ngModel)]="updateForm.city" name="city"
                         #city="ngModel" id="city" type="text" placeholder="eg: Kuala Lumpur">
                       <!-- <button class="snap-btn">Change</button> -->
                     </div>
@@ -80,7 +80,7 @@
                       Mobile Phone Number
                     </div>
                     <div class="upload-part row no-gutters justify-content-center mt-4 mb-4">
-                      <input class="d8p-input-form d8p-input-normal min-height-60" id="phoneNo" type="text"
+                      <input class="d8p-input-form1 d8p-input-normal min-height-60" id="phoneNo" type="text"
                         [(ngModel)]="updateForm.phone" name="phoneNo" #phoneNo="ngModel" maxlength="12"
                         placeholder="0123456789">
                       <!-- <button class="snap-btn">Change</button> -->
@@ -88,7 +88,7 @@
                     <div class="row no-gutters justify-content-center">
                     <div class="row no-gutters justify-content-center">
                       <div class="col-12">
-                        <div class="button-container text-center mt-2" style="height: 120px;">
+                        <div class="button-container text-center mt-2" style="height: 90px;">
                           <a class="d8p-btn-default mt-3" (click)="onSubmit()">
                             <div class="--text">Confirm</div>
                             <div class="--icon"><img class="p-1 max-width-30-px"
