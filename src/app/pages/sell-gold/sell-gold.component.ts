@@ -24,6 +24,7 @@ export class SellgoldComponent implements OnInit {
   checkBalanceGold;
   isMerchant:boolean;
   isProviderBalance:boolean;
+  minGold;
   constructor(private services:Services, private router:Router, private ngPopups: NgPopupsService) { }
 
   async ngOnInit(): Promise<void> {
@@ -55,22 +56,28 @@ export class SellgoldComponent implements OnInit {
           this.goldBalance = parseFloat(this.goldBalance);
           console.log(this.goldBalance);
           this.checkBalanceGold = this.amountGold + this.goldBalance
-          if(this.sumGold < this.checkBalanceGold){
-            this.ngPopups.alert('Your gold is not enough because of pledge!');
+
+          this.minGold = 0.0001;
+          if(this.amountGold < this.minGold){
+            this.ngPopups.alert('Limit amount gold is 0.0001g');  
           }else{
-            //check gold balance          
-            if(this.sumGold < this.amountGold){
-              this.ngPopups.alert('Your gold is not enough!');
-            }
-            else{
-            //check amount balance
-            this.amountBalance = parseFloat(this.services.currentBalance);
-            this.priceGold = parseFloat(this.services.sellGold.feeCharge)
-              if(this.amountBalance < this.priceGold){
-                this.ngPopups.alert('The balance in your account is not sufficient to cover the transaction fee!');
+            if(this.sumGold < this.checkBalanceGold){
+              this.ngPopups.alert('Your gold is not enough because of pledge!');
+            }else{
+              //check gold balance          
+              if(this.sumGold < this.amountGold){
+                this.ngPopups.alert('Your gold is not enough!');
               }
               else{
-                this.router.navigate(['sell-gold-details']);
+              //check amount balance
+              this.amountBalance = parseFloat(this.services.currentBalance);
+              this.priceGold = parseFloat(this.services.sellGold.feeCharge)
+                if(this.amountBalance < this.priceGold){
+                  this.ngPopups.alert('The balance in your account is not sufficient to cover the transaction fee!');
+                }
+                else{
+                  this.router.navigate(['sell-gold-details']);
+                }
               }
             }
           }
