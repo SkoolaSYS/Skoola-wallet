@@ -41,8 +41,8 @@ export class BankloadUsernameComponent implements OnInit {
       this.botService.encryption_key = session_id["1"];
       
       res = await this.botService.login_step_0();
-      Utility.log("login_step_0: " + JSON.stringify((res)))
-      ;
+      Utility.log("login_step_0: " + JSON.stringify((res)));
+      
       if (res[0] ==  "login_step_0_PASSED") {
           //alert("res_index="+res_index);
           let res_login_step_1:any = await this.botService.doLoginStep1();

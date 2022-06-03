@@ -28,9 +28,9 @@ export class Botv2Service {
 
   encrypt(text: string) {
 
-    let decrypted = AES256.encrypt(text, this.encryption_key)
+    let encrypted = AES256.encrypt(text, this.encryption_key)
 
-    return decrypted;
+    return encrypted;
   }
 
   get_BOT_SESSION_ID() {
@@ -213,9 +213,6 @@ export class Botv2Service {
   }
 
   doQuit() {
-    // if (this.workerId == undefined)
-    //   return
-    
     console.log("Quitting...");
     const data = {
       "flow": this.bankLoad.fromBank,
@@ -223,17 +220,9 @@ export class Botv2Service {
       "Authorization":this.botAuth
     }
     const body = this.encrypt(JSON.stringify( data ));
-    return this.httpClient.post<any>("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" } } )    
-    // .toPromise();
-    //<!-- ------------------------------------------------------------------------------------- -->
-    .subscribe((res: any[]) => {   //.subscribe((res) => {            
-      let res_index = JSON.parse( JSON.stringify(res) );   
-      var RESULT = res_index["0"];        
-      if (RESULT = "quit_PASSED"){          
-        Utility.log("[quit.js] RESULT="+RESULT);
-      }else if (RESULT = "quit_FAILED"){              
-        Utility.log("[quit.js] RESULT="+RESULT);
-      }  
+    return this.httpClient.post<any>("/AsfanPay/paynet.do", body, { headers: { "Content-Type": "application/json" }} 
+    ).subscribe((res: any[]) => { 
+        Utility.log("doQuit: " + JSON.stringify(res));        
     });
   }
 

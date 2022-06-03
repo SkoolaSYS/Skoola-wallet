@@ -54,9 +54,9 @@ export class BankloadOtpComponent implements OnInit {
       }
 
       // It's all over, so quit the driver
-      //res = await this.botService.doLogout();
-      //console.log("doLogout:", res);
-      res = await this.botService.doQuit();
+      res = await this.botService.doLogout();
+      console.log("doLogout:", res);
+      // res = await this.botService.doQuit();
       // Utility.log("doQuit: " + JSON.stringify(res));
       this.spinner.hide();
 
