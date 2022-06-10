@@ -54,11 +54,15 @@
                                     <div class="container-fluid p-0 menu-grid">
                                         <div class="row no-gutters justify-content-center">
                                             <div class="row" >
-                                                <div class="col-6 col-md-3" *ngFor="let product of data; let i = index">
-                                                    <div class="card">
-                                                        <img class="card-image-top" [src]="product[0].productImage" alt="">
+                                                <div class="col-6 col-md-3 mb-3 mt-3" *ngFor="let product of data">
+                                                    <a href="../#/products-details?id={{product[0].productId}}">
+                                                    <div class="card" >
+                                                        <!-- <img class="card-image-top" [src]="product[0].productImage" alt=""> -->
+                                                        <img class="card-image-top" src="assets/products/writing-image.jpeg" alt="">
                                                         <div class="card-title">{{product[0].productName}}</div>
+                                                        
                                                     </div>
+                                                    </a>
                                                 </div>
                                             </div>
 

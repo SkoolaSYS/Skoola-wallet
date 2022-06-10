@@ -23,6 +23,7 @@ export class Services {
     private $confirmnewpassword: string;
     public  amountTopup:string
     public  amountRecycle:string;
+    public  amountServicePay: string;
     public  recycleWeight: string;
     public  recycleWaste: string;
     public  forms: any = {};
@@ -430,7 +431,16 @@ export class Services {
         }));;
     }
     public getMemberBankLoadData(){
-        return this.http.get('rest/accounts/getMemberBankLoadData', this.headerOptions).pipe(tap (data => {
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                Authorization: this.token
+            })
+        };
+
+        return this.http.get('rest/accounts/getMemberBankLoadData', headerOptions).pipe(tap (data => {
             this.memberBankData = data;
         },
         (err) => {
@@ -933,8 +943,15 @@ export class Services {
         }
 
         public merchantProduct(value: String){
-            return this.http.get('rest/members/merchantProductsList/'+value, this.headerOptions).pipe(tap (data => {
-                this.sellGoldData = data;
+            const headerOptions = {
+                headers: new HttpHeaders({
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    Authorization: this.token
+                })
+            }; 
+            return this.http.get('rest/members/merchantProductsList/'+value, headerOptions).pipe(tap (data => {
+                
             },
             (err) => {
                 Utility.log('merchantProduct() Error...');
@@ -943,9 +960,8 @@ export class Services {
         }
 
         public merchantRecycle(){
-           
             return this.http.get('rest/members/merchantRecycleList', this.headerOptions).pipe(tap (data => {
-                this.sellGoldData = data;
+               
             },
             (err) => {
                 Utility.log('merchantRecycle() Error...');
@@ -959,6 +975,26 @@ export class Services {
             },
             (err) => {
                 Utility.log('recyclePayment() Error...');
+                Utility.log(err);
+            }));;
+        }
+      
+        public merchantProductId(data:any){
+            return this.http.get('rest/members/merchantProductsListDetails/'+data, this.headerOptions).pipe(tap (data => {
+                
+            },
+            (err) => {
+                Utility.log('recyclePayment() Error...');
+                Utility.log(err);
+            }));;
+        }
+        public servicePay(data: any){
+            Utility.log(data)
+            return this.http.post('rest/members/servicePayUser', data, this.headerOptions).pipe(tap (data => {
+                
+            },
+            (err) => {
+                Utility.log('servicePay() Error...');
                 Utility.log(err);
             }));;
         }
