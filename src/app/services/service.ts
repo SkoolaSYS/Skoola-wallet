@@ -509,6 +509,24 @@ export class Services {
 
         }));;
     }
+    public specialSignupUser(data: any){
+        const headerOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            })
+        };
+        Utility.log(data);
+        return this.http.post('/rest/public/specialSignupUser', data , headerOptions).pipe(tap (data => {            
+            
+        },
+        (err) => {
+            Utility.log('signupUser() Error...');
+            Utility.log(err);
+
+        }));;
+    }
 
     public requestCard(){
         const headerOptions = {

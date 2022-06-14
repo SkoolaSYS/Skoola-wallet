@@ -56,10 +56,9 @@ import {
   RecycleCardsComponent,
   RecycleInfoComponent,
   MerchantAgreementPageComponent,
+  SpecialSignupComponent
 } from './pages';
-import {
-  SignupActiveComponent
-} from './signup'
+
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
 import { BankloadXotpComponent } from './pages/bankload-xotp/bankload-xotp.component';
@@ -322,7 +321,7 @@ export const routes: Routes = [
   canActivate: [AuthenticationGuard]
 },
 {
-  path: 'register', component: SignupActiveComponent,
+  path: 'register', component: SpecialSignupComponent,
   canActivate: [AuthenticationGuard]
 },
  { path: '**', component: LoginComponent }
