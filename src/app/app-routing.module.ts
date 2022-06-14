@@ -322,7 +322,7 @@ export const routes: Routes = [
 },
 {
   path: 'register', component: SpecialSignupComponent,
-  canActivate: [AuthenticationGuard]
+  // canActivate: [AuthenticationGuard]
 },
  { path: '**', component: LoginComponent }
 ];
