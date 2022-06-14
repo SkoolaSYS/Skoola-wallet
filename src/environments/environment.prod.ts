@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  proxyTarget: "http://localhost:8080/komeps",
+  proxyTarget: "https://cbs.d-8p.com:8443/komeps",
   logging: false
 };

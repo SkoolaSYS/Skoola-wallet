@@ -25,8 +25,8 @@ export class Utility {
     let newUrl: string = "";
 
     if (url) {
-      const imageId: string = url.split("=")[1];
-      newUrl = environment.proxyTarget + "/thumbnail?id=" + imageId;  
+      const queryStr = url.split("komeps")[1];
+      newUrl = environment.proxyTarget + queryStr;  
     }
     
     return newUrl;

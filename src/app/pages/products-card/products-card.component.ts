@@ -27,7 +27,7 @@ export class ProductsCardComponent implements OnInit {
             productName : this.productList.productName[i],
             productDesc: this.productList.productDesc[i],
             productPrice: this.productList.price[i],
-            productImage: this.productList.images[i]
+            productImage: Utility.rebaseImageUrl(this.productList.images[i].thumbnailUrl)
         }])
         }
 

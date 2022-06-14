@@ -33,7 +33,7 @@ export class ProductsDetailsComponent implements OnInit {
             productName : this.productList.productName,
             productDesc: this.productList.productDesc,
             productPrice: this.productList.price,
-            productImage: this.productList.productImage
+            productImage: Utility.rebaseImageUrl(this.productList.images.fullUrl)
         }])
         this.userInput.push(0);
     });
