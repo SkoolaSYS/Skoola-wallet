@@ -84,7 +84,7 @@ import {
   ProductsDetailsComponent,
   RecycleCardsComponent,
   RecycleInfoComponent,
-  MerchantAgreementPageComponent
+  MerchantAgreementPageComponent,
 } from './pages';
 
 import {
@@ -110,6 +110,10 @@ import {
   PledgeListDetailsViewComponent,
   MerchantTermsConditionComponent
 } from './components';
+
+import {
+  SignupActiveComponent
+} from './signup';
 
 import { Services } from 'src/app/services/service';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
@@ -210,6 +214,9 @@ export class SafeUrlPipe implements PipeTransform {
     RecycleCardsComponent,
     RecycleInfoComponent,
     MerchantAgreementPageComponent,
+
+    // signup
+    SignupActiveComponent,
     
     // components
     DashboardHeaderComponent,
@@ -240,6 +247,7 @@ export class SafeUrlPipe implements PipeTransform {
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
+    SignupActiveComponent,
   ],
   imports: [
     BrowserModule,

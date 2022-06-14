@@ -1,0 +1,141 @@
+<div class="container-fluid common-cls loginpg grey-gradient p-0">
+    <div class="row">
+        <div class="col-12">
+            <div id="container">
+                <div class="signup-bg">
+                    <div class="d8p-main-back-btn">
+                        <div class="row no-gutters">
+                            <div class="col-9">
+                                <div class="dashboard-header">
+                                    <div class="text-center">
+                                        <img class="logo" src="assets/icons-img/logo-title-signup@3x.png"
+                                            routerLink="/login" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
+                        <div class="container-fluid p-0">
+                            <div class="text-center">
+                                <img class="logo-Active" src="assets/logo-img/hidayahgroup.jpg"/>
+                                <img class="logo-Active" src="assets/logo-img/kedutaan_republic_indonesia.jpg"/>
+
+                            </div>
+                            <!-- <div class="text-center">
+                                <img class="logo" src="assets/logo-img/kedutaan_republic_indonesia.jpg"/>
+                            </div> -->
+                            <div class="row no-gutters justify-content-center">
+                                <div class="col-10 col-xl-6">
+                                    <div class="container-fluid">
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="col-12 col-xl-6">
+                                                <div class="container-fluid p-0">
+                                                    <form id="formSignup" autocomplete="off">
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="d8p-form d8p-input-normal"
+                                                                    placeholder="Full Name" type="text" id="fullname"
+                                                                    name="fullname" #fullname="ngModel" [(ngModel)]="fullName"
+                                                                    required autocomplete="off"/>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!nameFull">Full
+                                                                    Name is required.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="d8p-form d8p-input-normal"
+                                                                    placeholder="Email Address" type="email"
+                                                                    #emailAdd="ngModel" id="emailAdd" name="emailAdd" 
+                                                                    [(ngModel)]="emailAddress" required autocomplete="off"/>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!emailAddr">Fill in
+                                                                    your email address.</div>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!emailValid">Invalid email address.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="d8p-form d8p-input-normal"
+                                                                    placeholder="Telephone No." type="text"
+                                                                    #phoneAdd="ngModel" id="phoneAdd" name="phoneAdd"
+                                                                    [(ngModel)]="noTelephone" required autocomplete="off"/>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!phone">Fill in
+                                                                    your Telephone No.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="d8p-form d8p-input-normal"
+                                                                    placeholder="National Identity Card No." type="text"
+                                                                    minlength="12" maxlength="12" #nricNo="ngModel"
+                                                                    id="nricNo" name="nricNo" [(ngModel)]="nricNumber"
+                                                                    required/>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!ic">National
+                                                                    Identity Card No. is required.</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="d8p-form d8p-input-normal"
+                                                                    placeholder="New Username" type="text"
+                                                                    pattern="([A-z0-9À-ž]){2,}" id="username"
+                                                                    name="username" #username="ngModel" minlength="4"
+                                                                    maxlength="12" [(ngModel)]="loginUsername" required autocomplete="off"/>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!userName">
+                                                                    Username is required.</div>
+                                                                <div class="alert alert-danger"
+                                                                    *ngIf="!userNameLong">
+                                                                    Username must be at least 4 characters long.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="formPlaceholder row no-gutters justify-content-center">
+                                                            <div class="col-12">
+                                                                <input class="d8p-form d8p-input-normal"
+                                                                    placeholder="New Password" type="password"
+                                                                    pattern="([A-z0-À-ž]){1,13}" minlength="4"
+                                                                    maxlength="12" #createPass="ngModel"
+                                                                    id="create-password" name="create-password" [(ngModel)]="createPassword"
+                                                                    [type]="hide ? 'password' : 'text'" required />
+                                                                    <i class="bi-eye-slash" id="togglePassword1" (click)="showPassword()"></i>
+                                                                <div class="alert alert-danger" *ngIf="!newPass">
+                                                                    New Password is required.</div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters justify-content-center">
+                            <div class="col-12">
+                                <div class="button-container text-center mt-2">
+                                    <a class="d8p-btn-default" >
+                                        <div class="--text">Confirm</div>
+                                        <div class="--icon"><img class="p-1 max-width-30-px" src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+  </ngx-spinner>
