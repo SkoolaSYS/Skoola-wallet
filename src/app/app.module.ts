@@ -212,8 +212,6 @@ export class SafeUrlPipe implements PipeTransform {
     RecycleCardsComponent,
     RecycleInfoComponent,
     MerchantAgreementPageComponent,
-
-    // signup
     SpecialSignupComponent,
     
     // components
@@ -245,7 +243,6 @@ export class SafeUrlPipe implements PipeTransform {
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
-    SpecialSignupComponent,
   ],
   imports: [
     BrowserModule,
