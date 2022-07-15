@@ -42,9 +42,13 @@ export class SignupComponent implements OnInit {
   agree:string;
   yesCard:string;
   cardSelection:string;
-  errorMessage :any=
-   [{field:"email",reason:"Email has been used"}]
-  public href: string = "";
+  errorMessage:any = [
+    { field: "email", reason: "Email has been used" },
+    { field: "mobilePhone", reason: "Phone number has been used" }
+  ];
+  
+   public href: string = "";
+  
   constructor(
     private services:Services,
     private ngPopups: NgPopupsService, 

@@ -25,8 +25,10 @@ export class SpecialSignupComponent implements OnInit {
   noTelephone : string;
   nricNumber : string;
   createPassword : string;
-  errorMessage :any=
-   [{field:"email",reason:"Email has been used"}]
+  errorMessage:any = [
+    { field: "email", reason: "Email has been used" },
+    { field: "mobilePhone", reason: "Phone number has been used" }
+  ];
   errorObj:any;
   hide: boolean = true;
 
