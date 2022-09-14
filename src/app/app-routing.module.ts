@@ -8,7 +8,6 @@ import {
   DashboardComponent,
   TransferComponent,
   TransactionDetailsComponent,
-  BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
   RecentTransactionsComponent,
@@ -122,10 +121,6 @@ export const routes: Routes = [
   },
   {
     path: 'bankload-helper', component: BankloadHelperComponent,
-   canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'bankload-details', component: BankloadDetailsComponent,
    canActivate: [AuthenticationGuard]
   },
   {

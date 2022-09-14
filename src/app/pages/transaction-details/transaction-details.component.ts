@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Services } from 'src/app/services/service';
-import { Router } from '@angular/router';
-import { TRANSACTION_TYPE, Utility } from 'src/utils';
+import { Component, OnInit } from "@angular/core";
+import { Services } from "src/app/services/service";
+import { Router } from "@angular/router";
+import { TRANSACTION_TYPE, Utility } from "src/utils";
 import { NgxSpinnerService } from "ngx-spinner";
-import { MatDialog } from '@angular/material/dialog';
-import { AlertDialogComponent } from 'src/app/components/alert-dialog/alert-dialog.component';
+import { MatDialog } from "@angular/material/dialog";
+import { AlertDialogComponent } from "src/app/components/alert-dialog/alert-dialog.component";
 
 @Component({
-  selector: 'app-transaction-details',
-  templateUrl: './transaction-details.component.html'
+  selector: "app-transaction-details",
+  templateUrl: "./transaction-details.component.html",
 })
 export class TransactionDetailsComponent implements OnInit {
   form: any;
@@ -20,8 +20,9 @@ export class TransactionDetailsComponent implements OnInit {
   transactionFee: any;
   goldAmount: any;
   storedValue: number;
+  isFavourite: boolean;
 
-  constructor(private services: Services, private router: Router, private spinner: NgxSpinnerService, private dialog: MatDialog) { }
+  constructor(private services: Services, private router: Router, private spinner: NgxSpinnerService, private dialog: MatDialog) {}
   async ngOnInit(): Promise<void> {
     this.spinner.hide();
     this.currentUser = await this.services.currentUser;
@@ -30,68 +31,69 @@ export class TransactionDetailsComponent implements OnInit {
     this.receiver = await this.services.receiver;
 
     try {
-      if (this.currentUser.images && this.currentUser.images.length != 3)
-        this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
-      if (this.receiver.images && this.receiver.images.length != 3)
-        this.receiverImg = Utility.rebaseImageUrl(this.receiver.images[0].thumbnailUrl);
-    }
-    catch {
+      if (this.currentUser.images && this.currentUser.images.length != 3) this.senderImg = Utility.rebaseImageUrl(this.currentUser.images[0].thumbnailUrl);
+      if (this.receiver.images && this.receiver.images.length != 3) this.receiverImg = Utility.rebaseImageUrl(this.receiver.images[0].thumbnailUrl);
+    } catch {
       // Reloading? go back to transfer page
-      this.router.navigate(['transfer']);
+      this.router.navigate(["transfer"]);
     }
 
     // TODO: Original display format is '24 AUG 2020'
     this.effectiveDate = this.form.effectiveDate;
     this.transactionFee = this.services.transactionData.fee;
-    this.goldAmount = this.services.transactionData.gold;  
+    this.goldAmount = this.services.transactionData.gold;
     // console.log(`Gold: ${this.services.transactionData.gold} --> ${parseFloat(this.services.transactionData.gold).toFixed(4)}`);
+    this.isFavourite = JSON.parse(this.router.url.split('?')[1].split('=')[1])
   }
-  
-  otpSubmit(otp: string) {
+
+  otpSubmit(params: any) {
     this.spinner.show();
-    
-   this.services.activetransaction = true;
-   this.services.transactionData.amount = this.form.amount;
 
-    this.services.paymentTransfer({
-      toMemberId: this.receiver.id,           // this.form.toMemberId,
-      toMemberPrincipal: this.receiver.name,  // this.form.toMemberPrincipal,
-      amount: this.form.amount,
-      transactionPassword: otp,
-      description: this.form.description,
-      transactionTypeId: TRANSACTION_TYPE.Transfer
-    }).subscribe(
-      (res) => {
-        this.spinner.hide();
+    this.services.activetransaction = true;
+    this.services.transactionData.amount = this.form.amount;
 
-        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "The fund has been successfully transferred." } });
-        dialogRef.afterClosed().subscribe(async () => {
-          this.services.activetransaction = true;
-          this.services.transactionData.amount = this.form.amount;
+    this.services
+      .paymentTransfer({
+        toMemberId: this.receiver.id, // this.form.toMemberId,
+        toMemberPrincipal: this.receiver.name, // this.form.toMemberPrincipal,
+        amount: this.form.amount,
+        transactionPassword: params.otp,
+        description: this.form.description,
+        transactionTypeId: TRANSACTION_TYPE.Transfer,
+        saveFavourite: params.saveFavourite
+      })
+      .subscribe(
+        (res) => {
+          this.spinner.hide();
 
-          // TODO: Should be done in web push handler
-          // update counter
-          this.services.counter = this.services.counter + 1;
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "The fund has been successfully transferred." } });
+          dialogRef.afterClosed().subscribe(async () => {
+            this.services.activetransaction = true;
+            this.services.transactionData.amount = this.form.amount;
 
-          // write to storage
-          const data = {
-            counter: this.services.counter
-          }
-    
-          const currentUser: any = await this.services.currentUser;
-          localStorage.setItem(currentUser.id.toString(), JSON.stringify(data));
-      
-          this.router.navigate(['dashboard']);
-        });
-      },
-      (err) => {
-        this.spinner.hide();
+            // TODO: Should be done in web push handler
+            // update counter
+            this.services.counter = this.services.counter + 1;
 
-        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
-        dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['dashboard']);
-        });
-      }
-    )
+            // write to storage
+            const data = {
+              counter: this.services.counter,
+            };
+
+            const currentUser: any = await this.services.currentUser;
+            localStorage.setItem(currentUser.id.toString(), JSON.stringify(data));
+
+            this.router.navigate(["dashboard"]);
+          });
+        },
+        (err) => {
+          this.spinner.hide();
+
+          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
+          dialogRef.afterClosed().subscribe(() => {
+            this.router.navigate(["dashboard"]);
+          });
+        }
+      );
   }
 }

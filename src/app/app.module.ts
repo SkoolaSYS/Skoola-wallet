@@ -37,7 +37,6 @@ import {
   DashboardComponent,
   TransferComponent,
   TransactionDetailsComponent,
-  BankloadDetailsComponent,
   WithdrawComponent,
   WithdrawDetailsComponent,
   RecentTransactionsComponent,
@@ -93,7 +92,6 @@ import {
   TransactionViewComponent,
   TransferRecipientComponent,
   OtpcardComponent,
-  BankDetailsComponent,
   WithdrawBankDetailsComponent,
   BuyGoldDetailsViewComponent,
   BuygoldTopViewComponent,
@@ -102,7 +100,6 @@ import {
   ShoppingProductsComponent,
   qrViewComponent,
   BuynearTopViewComponent,
-  OtpbankComponent,
   MatsidenavComponent,
   TermsConditionComponent,
   SplitHeaderComponent,
@@ -111,7 +108,6 @@ import {
   PledgeListDetailsViewComponent,
   MerchantTermsConditionComponent
 } from './components';
-
 
 import { Services } from 'src/app/services/service';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
@@ -155,7 +151,6 @@ export class SafeUrlPipe implements PipeTransform {
     DashboardComponent,
     TransferComponent,
     TransactionDetailsComponent,
-    BankloadDetailsComponent,
     WithdrawComponent,
     WithdrawDetailsComponent,
     RecentTransactionsComponent,
@@ -219,8 +214,6 @@ export class SafeUrlPipe implements PipeTransform {
     TransactionViewComponent,
     TransferRecipientComponent,
     OtpcardComponent,
-    OtpbankComponent,
-    BankDetailsComponent,
     WithdrawBankDetailsComponent,
     BuyGoldDetailsViewComponent,
     BuygoldTopViewComponent,
@@ -229,7 +222,6 @@ export class SafeUrlPipe implements PipeTransform {
     ShoppingProductsComponent,
     qrViewComponent,
     BuynearTopViewComponent,
-    OtpbankComponent,
     MatsidenavComponent,
     CardRequestComponent,
     TermsConditionComponent,

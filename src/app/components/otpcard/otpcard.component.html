@@ -1,4 +1,10 @@
 <div class="container-fluid">
+
+  <!-- Allow to save as favourite -->
+  <div *ngIf="isFavourite == false">
+    <input type="checkbox" name="saveFavourite" id="saveFavourite" [(ngModel)]="saveFavourite">  Save as favourite
+  </div>
+
   <!-- Authenication Method -->
   <!--<div class="row no-gutters justify-content-center">
     <div class="col-9 titlebg">
@@ -99,7 +105,7 @@
           <div class="row no-gutters justify-content-center">
             <div class="col-12 col-xl-9">
               <div class="button-container text-center mt-2" style="height: 120px; position: fixed; left: 25%;">
-                <button class="d8p-btn-default mt-3" (click)="otpSubmit.emit(otp)">
+                <button class="d8p-btn-default mt-3" (click)="otpSubmit.emit({ otp: otp, saveFavourite: saveFavourite })">
                   <div class="--text">Confirm</div>
                   <div class="--icon"><img class="p-1 max-width-30-px"
                       src="assets/icons-img/tick-only-signup@2x.png" /></div>

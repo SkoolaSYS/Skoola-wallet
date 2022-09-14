@@ -90,29 +90,32 @@
                             Recipient's Account Number
                           </div>
                         </div>
+
+                        <div class="row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="col-10" style="text-align: center;">
+                            <select class="d8p-select arrowstyle" name="recipient-members" [(ngModel)]="transferForm.favourite" (change)="favouriteChanged()">
+                              <option>Choose favourite</option>
+                              <option *ngFor="let member of favouriteList" [ngValue]="member.accNumber">
+                                {{member.name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+
                         <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
                           <div class="col-10" style="text-align: center;">
                             <input class="d8p-form d8p-input-normal" placeholder="Eg: 60015803802" type="number"
                               name="recipient-accountno" [(ngModel)]="transferForm.toAccountNo" />
                           </div>
                         </div>
-                        <div class="row no-gutters justify-content-center mt-4 mb-4">
-                          <div class="col-10" style="text-align: center;">
-                            <select class="d8p-select arrowstyle" name="recipient-members"
-                              [(ngModel)]="transferForm.toMemberId" style="display:none;">
-                              <option>choose favorite</option>
-                              <!-- <option>Amar</option> -->
-                              <!-- <option>Rosli</option> -->
-                              <option *ngFor="let member of membersList" [ngValue]="member.id">
-                                {{member.name}}
-                              </option>
-                            </select>
-                          </div>
-                        </div>
+                      
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <br><br><br>
+
                 <!-- Reference -->
                 <div class="container-fluid">
                   <div class="row no-gutters">

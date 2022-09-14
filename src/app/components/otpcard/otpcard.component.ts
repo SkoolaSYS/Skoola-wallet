@@ -1,6 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Utility } from 'src/utils';
-import { BotService } from '../../services/bot.service';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Services } from '../../services/service';
 
 @Component({
@@ -10,25 +8,12 @@ import { Services } from '../../services/service';
 export class OtpcardComponent implements OnInit {
   otp: number;
   @Output() otpSubmit: EventEmitter<any> = new EventEmitter<any>();
-  botService: BotService;
-  private opsTagging: string;
+  @Input() isFavourite: boolean;
+  @Output() saveFavourite: boolean = false;
 
-  constructor(botService: BotService, private service: Services) {
-    this.botService = botService
+  constructor(private service: Services) {
   }
 
-  ngOnInit(): void {
-    this.opsTagging = this.service.opsTagging;
-  }
-
-  enterTac(): void {
-    let $this = this
-    Utility.log("TAC sent.")
-    this.botService.sendTacRequest({
-      tac: $this.otp
-    }).subscribe(res => {
-      Utility.log("LABT is completed!")
-    })
-  }
-
+  ngOnInit(): void {}
+  
 }
