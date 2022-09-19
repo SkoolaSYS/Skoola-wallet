@@ -20,8 +20,8 @@
       "secure": false,  
       "logLevel": "debug"  
    },
-   "/AsfanPay": {  
-      "target": "http://192.168.101.30:8080",  
+   "/d8p-opg": {  
+      "target": "http://localhost:8000",  
       "secure": false,  
       "logLevel": "debug"  
    }        
