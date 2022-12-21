@@ -62,87 +62,23 @@ export class BankloadPasswordComponent implements OnInit {
 
     try {
       this.spinner.show();
-
       this.botService.loggedIn = false;
-      res = await this.botService.doLoginStep2()
-      //console.log("doLoginStep2:", res); 
-      
-      if (res["result"]["loggedIn"] == "false") {
-        throw new Error();
-      }
-      else if (res["result"]["loggedIn"] == "invalid") {
-        // handle invalid login error   
-        res = await this.botService.doQuit();
-        this.spinner.hide();
 
-        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "Invalid login. Please try again." } });
-        dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['bankload-username']);
-        });
-      }
-      else if (res["result"]["captchaRequired"] == "true") {
-        this.spinner.hide();
-
-        this.botService.bankLoad.captchaImage = res["result"]["captchaImage"];
-        this.router.navigate(['bankload-captcha']);     
-      }
-      else {
-        // loggedIn must be true
-        //console.log('after login step 2')
-        this.botService.loggedIn = true;
-
-        res = await this.botService.doPerformXfer();
-        Utility.log("doPerformXfer: " + JSON.stringify(res));        
-        // if (res["ok"] != true || res["result"]["error"] != undefined)
-        //   throw new Error();
-  
-        if (res["result"]["xotpRequired"] == "true") {
-          this.spinner.hide();
-          this.router.navigate(['bankload-xotp']);
-        }
-        else if (res["result"]["otpRequired"] == "true") {
-          //console.log("otpRequired")
-          this.spinner.hide();
-          this.router.navigate(['bankload-otp']);
-        }
-        else {  // TODO: Repetitive code! {rwa}
-          res = await this.botService.doGetTxnStatus();
-          Utility.log("doGetTxnStatus: " + JSON.stringify(res));
-          // if (res["ok"] != true)
-          //   throw new Error();
-    
-          let statusMessage: string;
-          // Display final status
-          if (res["result"]["completed"] == "true" ) {
-            const ref = res["result"]["bankReference"];
-            statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
-          } else {
-            statusMessage = "There was an error processing your request. Please try again.";
-          }   
-
-          res = await this.botService.doLogout(); 
-          Utility.log("doLogout: " + JSON.stringify(res));
-
-          this.spinner.hide();
-    
-          const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
-          dialogRef.afterClosed().subscribe(() => {
-            this.router.navigate(['dashboard']);
-          });   
-        }
-      }         
-    } catch (e) {
-      console.log(e);
+      Utility.log("Calling handleDoLoginFn...");
+      await this.botService.handleDoLoginFn(this.router, this.spinner, this.dialog, "doLoginStep2");
+      Utility.log("handleDoLoginFn completed.");
+    } 
+    catch (e) {
+      Utility.error(e.name + ": " + e.message);
            
       // Quit the driver
       if (this.botService.loggedIn == true) {
         res = await this.botService.doLogout(); 
-        Utility.log("doLogout: " + JSON.stringify(res));
       }
       else {
         res = await this.botService.doQuit(); 
-        // Utility.log("doQuit: " + JSON.stringify(res));        
       }
+
       this.spinner.hide();
        
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

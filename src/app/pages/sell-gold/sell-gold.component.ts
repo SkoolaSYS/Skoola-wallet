@@ -54,7 +54,7 @@ export class SellgoldComponent implements OnInit {
           this.amountGold = parseFloat(this.amountGold);
           this.sumGold = parseFloat(res[0].gold.sumGoldAmount.toFixed(5));
           this.goldBalance = parseFloat(this.goldBalance);
-          console.log(this.goldBalance);
+          Utility.log(this.goldBalance);
           this.checkBalanceGold = this.amountGold + this.goldBalance
 
           this.minGold = 0.0001;

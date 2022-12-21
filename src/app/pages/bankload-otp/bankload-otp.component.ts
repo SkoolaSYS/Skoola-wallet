@@ -33,44 +33,51 @@ export class BankloadOtpComponent implements OnInit {
     try {
       this.spinner.show();
 
-      res = await this.botService.doConfirmTxn();
-      Utility.log("doConfirmTxn: " + JSON.stringify(res));
-      // if (res["ok"] != true)
-      //   throw new Error();
-      
-      res = await this.botService.doGetTxnStatus();
-      Utility.log("doGetTxnStatus: " + JSON.stringify(res));
-      // if (res["ok"] != true)
-      //   throw new Error();
+      if (this.botService.bankLoad.next == "doLoginStep3") {
 
-      let statusMessage: string;
-      // Display final status
-      if (res["result"]["completed"] == "true" ) {
-        const ref = res["result"]["bankReference"];
-        statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
-      } else {
-        this.spinner.hide();
-        statusMessage = "There was an error processing your request. Please try again.";
+        Utility.log("Calling handleDoLoginFn...");
+        await this.botService.handleDoLoginFn(this.router, this.spinner, this.dialog, "doLoginStep3", this.botService.form.otp);
+        Utility.log("handleDoLoginFn completed.");
       }
+      else if (this.botService.bankLoad.next == "doFillXferForm") {
+      
+        res = await this.botService.doFillXferForm();
 
-      // It's all over, so quit the driver
-      res = await this.botService.doLogout();
-      console.log("doLogout:", res);
-      // res = await this.botService.doQuit();
-      // Utility.log("doQuit: " + JSON.stringify(res));
-      this.spinner.hide();
+        if (res["ok"] != true)
+          throw new Error(res["error"]);
+  
+        if (res["result"]["otpRequired"] == true) {
+          this.spinner.hide();
 
-      const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
-      dialogRef.afterClosed().subscribe(() => {
-        this.router.navigate(['dashboard']);
-      });        
+          console.assert(res["result"]["next"] != undefined, "No valid 'next' endpoint specified.");
+
+          this.botService.bankLoad.next = res["result"]["next"];  // doConfirmTxn
+          this.router.navigate(['bankload-otp']);
+        }
+        else {
+
+          Utility.log("Calling handleDoGetTxnStatus...");
+          await this.botService.handleDoGetTxnStatus(this.router, this.spinner, this.dialog);
+          Utility.log("handleDoGetTxnStatus completed.");
+        }
+      }
+      else if (this.botService.bankLoad.next == "doConfirmTxn") {
+        
+        res = await this.botService.doConfirmTxn();
+
+        if (res["ok"] != true)
+          throw new Error(res["error"]);
+        
+        Utility.log("Calling handleDoGetTxnStatus...");
+        await this.botService.handleDoGetTxnStatus(this.router, this.spinner, this.dialog);
+        Utility.log("handleDoGetTxnStatus completed.");
+      }
     }
     catch (e) {
-      console.log(e);
+      Utility.error(e.name + ": " + e.message);
       
       // this.spinner.show();
       res = await this.botService.doLogout(); 
-      Utility.log("doLogout: " + JSON.stringify(res));
       this.spinner.hide();
 
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });

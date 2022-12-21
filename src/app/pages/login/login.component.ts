@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
          }else{
           if (this.isMerchant){
             let merch = localStorage.getItem("agree-merch");
-            console.log(merch)
+            Utility.log(merch)
             if (merch == null){
               this.router.navigate(['merchant-agreement-page']);
             }else{

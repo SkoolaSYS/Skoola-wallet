@@ -40,35 +40,31 @@ export class BankloadUsernameComponent implements OnInit {
       let session_id:any = await this.botService.get_BOT_SESSION_ID();
       this.botService.encryption_key = session_id["1"];
       
-      res = await this.botService.login_step_0();
-      Utility.log("login_step_0: " + JSON.stringify((res)));
+      res = await this.botService.doLoginStep0();
       
-      if (res[0] ==  "login_step_0_PASSED") {
-          //alert("res_index="+res_index);
-          let res_login_step_1:any = await this.botService.doLoginStep1();
-          Utility.log("doLoginStep1: " + JSON.stringify(res_login_step_1)); 
+      if (res["ok"] ==  true) {
+          res = await this.botService.doLoginStep1();
 
-          let res_index = JSON.parse( JSON.stringify(res_login_step_1) );          
-          if (res_index["0"] != "login_step_1_PASSED")
-            throw new Error();
+          if (res["ok"] != true)
+            throw new Error(res["error"]);
 
-          this.botService.form.secureImage = res_index["1"];
-          this.botService.form.secretPhrase = res_index["2"];
+          this.botService.form.secureImage = res["result"]["secretImage"];
+          this.botService.form.secretPhrase = res["result"]["secretPhrase"];
     
           this.spinner.hide();
           this.router.navigate(['bankload-password']);
       }
       else {
-        Utility.log("[login_step_0]RESULT="+res[0]);  
-        Utility.log("[login_step_0]res="+res);  
-        
-        throw new Error();        
+        throw new Error(res["error"]);        
       }
-    } catch (e) {
-      console.log(e);    
+    } 
+    catch (e) {
+      Utility.error(e.name + ": " + e.message);    
       
       // Quit the driver
+      res = await this.botService.doQuit(); 
       this.spinner.hide()
+
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['dashboard']);

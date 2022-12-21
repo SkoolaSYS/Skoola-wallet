@@ -42,7 +42,7 @@ export class TransactionDetailsComponent implements OnInit {
     this.effectiveDate = this.form.effectiveDate;
     this.transactionFee = this.services.transactionData.fee;
     this.goldAmount = this.services.transactionData.gold;
-    // console.log(`Gold: ${this.services.transactionData.gold} --> ${parseFloat(this.services.transactionData.gold).toFixed(4)}`);
+    // Utility.log(`Gold: ${this.services.transactionData.gold} --> ${parseFloat(this.services.transactionData.gold).toFixed(4)}`);
     this.isFavourite = JSON.parse(this.router.url.split('?')[1].split('=')[1])
   }
 

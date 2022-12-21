@@ -53,4 +53,12 @@ export class Utility {
 
     console.log(message);
   }
+
+  // Set 'override' to true in order to force printing to console (USE WITH CARE!).
+  static error(message: string, override: boolean = false) {
+    if (environment.logging == false && override == false)
+      return;
+
+    console.error(message);
+  }
 }

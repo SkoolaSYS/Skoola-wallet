@@ -35,57 +35,22 @@ export class BankloadCaptchaComponent implements OnInit {
     try {
       this.spinner.show();
 
-      res = await this.botService.doLoginStep3()
-      //Utility.log("doLoginStep3:", res); 
-      if (res["ok"] != true || res["result"]["loggedIn"] == false)
-        throw new Error();
+      if (this.botService.bankLoad.next == "doLoginStep3") {
 
-      this.botService.loggedIn = true;
-
-      res = await this.botService.doPerformXfer();
-      //Utility.log("doPerformXfer:", res);        
-      if (res["ok"] != true || res["result"]["error"] != undefined)
-        throw new Error();
-
-      if (res["result"]["xotpRequired"] == true) {
-        this.spinner.hide();
-        this.router.navigate(['bankload-xotp']);
+        Utility.log("Calling handleDoLoginFn...");
+        await this.botService.handleDoLoginFn(this.router, this.spinner, this.dialog, "doLoginStep3", this.botService.form.captchaText);
+        Utility.log("handleDoLoginFn completed.");
       }
-      else if (res["result"]["otpRequired"] == true) {
-        this.spinner.hide();
-        this.router.navigate(['bankload-otp']);
+      else {
+        // handle other cases
+        Utility.log("Not supported 'next' action.")
       }
-      else {  // TODO: Repetitive code! {rwa}
-        res = await this.botService.doGetTxnStatus();
-        //Utility.log("doGetTxnStatus:", res);
-        if (res["ok"] != true)
-          throw new Error();
-  
-        let statusMessage: string;
-        // Display final status
-        if (res["result"]["completed"] == true ) {
-          const ref = res["result"]["bankReference"];
-          statusMessage = `You have successfully loaded RM${this.botService.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
-        } else {
-          statusMessage = "There was an error processing your request. Please try again.";
-        }   
-
-        res = await this.botService.doLogout(); 
-        //Utility.log("doLogout:", res);
-
-        this.spinner.hide();
-  
-        const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: statusMessage } });
-        dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['dashboard']);
-        });   
-      }         
-    } catch (e) {
-      Utility.log(e);
+    } 
+    catch (e) {
+      Utility.error(e.name + ": " + e.message);
            
       // Quit the driver
       res = await this.botService.doLogout(); 
-      //Utility.log("doLogout:", res);
       this.spinner.hide();
        
       const dialogRef = this.dialog.open(AlertDialogComponent, { data: { message: "There was an error processing your request. Please try again." } });
@@ -94,5 +59,4 @@ export class BankloadCaptchaComponent implements OnInit {
       });
    }
   } 
-
 }
