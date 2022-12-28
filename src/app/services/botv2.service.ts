@@ -97,7 +97,7 @@ export class Botv2Service {
   doLoginStep3(answer: string){
     const data = {
       "flow": this.bankLoad.fromBank,
-      "action": "login_step3",
+      "action": "login_step_3",
       "answer": answer,
       "Authorization":this.botAuth
     }
@@ -116,6 +116,10 @@ export class Botv2Service {
 
     if (res["ok"] == false) {
       throw new Error(res["error"]);
+    }
+    else if (res["result"]["approvalRequired"] == true) {
+      spinner.hide();
+      router.navigate(["bankload-approval"]);
     }
     else if (res["result"]["otpRequired"] == true) {
       spinner.hide();
@@ -272,13 +276,14 @@ export class Botv2Service {
     })).toPromise();    
   }
 
-  doConfirmTxn() {
-    const data = {
+  doConfirmTxn(otp: boolean) {
+    let data: any = {
       "flow": this.bankLoad.fromBank,
       "action": "confirm_txn",
-      "tac": this.form.otp.toString(),
+      "otp": this.form.otp.toString(),
       "Authorization":this.botAuth
     }
+
     const body = this.encrypt(JSON.stringify( data ));
     return this.httpClient.post("/d8p-opg/paynet.do", 
       body, { headers: { "Content-Type": "application/json"} }

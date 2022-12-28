@@ -118,6 +118,7 @@ import { BankloadOtpComponent } from './pages/bankload-otp/bankload-otp.componen
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
+import { BankloadApprovalComponent } from './pages/bankload-approval/bankload-approval.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -200,6 +201,7 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadPasswordComponent,
     BankloadXotpComponent,
     BankloadOtpComponent,
+    BankloadApprovalComponent,
     BankloadHelperComponent,
     BankloadCaptchaComponent,
     RedeemInfoComponent,

@@ -4,6 +4,7 @@ import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from '../../services/service';
 import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Utility } from 'src/utils';
 
 @Component({
   selector: 'app-login',

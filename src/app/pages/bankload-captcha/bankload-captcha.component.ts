@@ -26,6 +26,8 @@ export class BankloadCaptchaComponent implements OnInit {
     this.captchaImage = this.botService.bankLoad.captchaImage;
     const currentUser: any = await this.service.currentUser;
     this.isMerchant = currentUser.merchant;
+
+    this.captchaText = "";
   }
 
   async submit() {    

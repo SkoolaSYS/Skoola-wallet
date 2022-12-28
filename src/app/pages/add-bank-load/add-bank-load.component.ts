@@ -42,7 +42,7 @@ export class AddBankLoadComponent implements OnInit {
       this.banks[7] = res[7]; this.banks[7]["disabled"] = true;     // AFFIN
       this.banks[8] = res[8]; this.banks[8]["disabled"] = true;     // RAJHI
       this.banks[9] = res[9]; this.banks[9]["disabled"] = true;      // ALLIANCE
-      this.banks[10] = res[10]; this.banks[10]["disabled"] = true;  // AMBANK
+      this.banks[10] = res[10];    // AMBANK
       this.banks[11] = res[11];    // MUAMALAT
       this.banks[12] = res[12]; this.banks[12]["disabled"] = true; // BSN
       this.banks[13] = res[13]; this.banks[13]["disabled"] = true;  // CITIBANK

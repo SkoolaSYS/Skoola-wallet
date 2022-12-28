@@ -24,6 +24,8 @@ export class BankloadOtpComponent implements OnInit {
     this.spinner.hide();
     const currentUser: any = await this.services.currentUser;
     this.isMerchant = currentUser.merchant;
+
+    this.otp = "";
   }
 
   async submit() {
@@ -46,6 +48,8 @@ export class BankloadOtpComponent implements OnInit {
         if (res["ok"] != true)
           throw new Error(res["error"]);
   
+        // TODO: should we also handle case of approvalRequired here?  
+        
         if (res["result"]["otpRequired"] == true) {
           this.spinner.hide();
 
@@ -63,7 +67,7 @@ export class BankloadOtpComponent implements OnInit {
       }
       else if (this.botService.bankLoad.next == "doConfirmTxn") {
         
-        res = await this.botService.doConfirmTxn();
+        res = await this.botService.doConfirmTxn(true);
 
         if (res["ok"] != true)
           throw new Error(res["error"]);

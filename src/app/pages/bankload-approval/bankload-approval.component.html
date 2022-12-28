@@ -1,0 +1,134 @@
+<div>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+          <span class="bar top"></span>
+          <span class="bar middle"></span>
+          <span class="bar bottom"></span>
+  </label>
+  <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <app-matsidenav></app-matsidenav>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box" *ngIf="!isMerchant">
+              <app-dashboard-header></app-dashboard-header>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box" *ngIf="isMerchant">
+              <app-split-header></app-split-header>
+            </div>
+          </div>
+        </div>
+          
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9"> 
+              <div class="dashboard-content-box pb-5">
+                <!-- Quick links -->
+                <div class="container-fluid quicklinkbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">
+                            BANK LOAD
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                          <div class="col-3 flex-align-center flex-column border-right-white">
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/icon-bankload2.png" /></div>
+                          </div>
+                          <div class="col-9 pl-3 color-white font-size-15">
+                              Funds residing in my internet banking account will be used to load my D-8P Acc. MYR e-Wallet.
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- OTP -->
+                <form (submit)="submit()">
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              MOBILE APPROVAL
+                            </div>
+                          </div>
+                          
+                          <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10" style="text-align: center;">
+                              <!-- <input class="d8p-form d8p-input-normal" placeholder="" type="password" minlength="6" maxlength="6" name="otp" [(ngModel)]="otp" /> -->
+                              <p>You will receive a notification on your smartphone to approve or reject the transaction.</p>
+                            </div>
+                          </div>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Confirmation -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Confirmation
+                            </div>
+
+                            <br><br>
+
+                            <div class="row no-gutters justify-content-center">
+                              <div class="col-11">
+                                <input type="checkbox" name="ack" id="ack" [(ngModel)]="ack" (click)="chkChanged()">  I've approved/rejected my transaction via smartphone.
+
+
+                              </div>
+                              <div class="row no-gutters justify-content-center">
+                                <div class="col-11">
+                                  <div class="button-container text-center mt-2">
+                                    <button class="d8p-btn-default mt-3 margin-left-20" id="continue" disabled>
+                                      <div class="--text">Continue</div>
+                                      <div class="--icon"><img class="p-1 max-width-30-px"
+                                          src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                                      </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">
+    Your request is being submitted. This may take a while.<br><br>
+    Please do not close this window or click the Back button on your browser or device.  
+  </p>
+</ngx-spinner>

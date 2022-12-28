@@ -72,6 +72,7 @@ export class BankloadUsernameComponent implements OnInit {
     }
   }
 }
+
 function getImageBank(bankCode: string): string {
   let banks = new Map([
     ["1", "assets/banks/maybank_logo.png"],    // Maybank Berhad
