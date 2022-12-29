@@ -144,10 +144,16 @@ export class Botv2Service {
     
     // Display final status
     if (res["ok"] == true ) {
-      const ref = res["result"]["bankReference"];
-      statusMessage = `You have successfully loaded RM${this.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
+
+      if (res["success"] == true) {
+        const ref = res["result"]["bankReference"];
+        statusMessage = `You have successfully loaded RM${this.form.amount.toFixed(2)} into your wallet account (REF: ${ref}).`;
+      }
+      else {
+        statusMessage = "There was an error processing your request. Please try again.";
+      }
     } else {
-      statusMessage = "There was an error processing your request. Please try again.";
+      throw new Error(res["error"]);
     }   
 
     res = await this.doLogout(); 
