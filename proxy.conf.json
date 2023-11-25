@@ -21,7 +21,7 @@
       "logLevel": "debug"  
    },
    "/d8p-opg": {  
-      "target": "http://localhost:8000",  
+      "target": "http://localhost:8000",
       "secure": false,  
       "logLevel": "debug"  
    }        

@@ -32,12 +32,11 @@ export class UpdateBankLoadComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.spinner.show();
 
-    this.service.getMemberBankLoadData().subscribe((res: any) => {
-      this.bankData = res;
-      this.bankFormAccName = this.bankData.bankAccName
-      this.bankFormAccNumber= this.bankData.bankAccNumber
-      //(res);
-    });
+    let res: any = await this.service.getMemberBankLoadData().toPromise();
+
+    this.bankData = res;
+    this.bankFormAccName = this.bankData.bankAccName;
+    this.bankFormAccNumber= this.bankData.bankAccNumber;
 
     this.service.getBankData(this.bankFormCountry).subscribe((res: any) => {
       this.banks[0] = res[0]    // MAYBANK
@@ -106,16 +105,16 @@ export class UpdateBankLoadComponent implements OnInit {
     //("click confirm");
     this.spinner.show();
     var err:boolean = false;
-    var nameLen:Number = bankFormAccName.length; 
-    for(var i = 0; nameLen > i;i++){
+    var nameLen:number = bankFormAccName.length; 
+    for(var i = 0; nameLen > i; i++){
       if(!isNaN(parseInt(bankFormAccName.charAt(i)))){
         this.ngPopups.alert('Oops, please re-enter your bank account name.')
         this.spinner.hide();
         return;
       }
     }
-    var numberLen:Number = bankFormAccNumber.length; 
-    for(var i = 0; numberLen > i;i++){
+    var numberLen:number = bankFormAccNumber.length; 
+    for(var i = 0; numberLen > i; i++){
       if(isNaN(parseInt(bankFormAccNumber.charAt(i)))){
         this.ngPopups.alert('Oops, please re-enter your bank account number.')
         this.spinner.hide();
@@ -127,15 +126,19 @@ export class UpdateBankLoadComponent implements OnInit {
       bankId: bankFormName,
       bankAccName: bankFormAccName,
       bankAccNumber: bankFormAccNumber
-    }).toPromise().then(() => {
+      }).toPromise().then(() => {
+        this.spinner.hide();
+        this.ngPopups.alert('Your bank details has been sucessfully updated!');
+        this.router.navigate(['dashboard']);
+      })
+      .catch((err) => {
+        this.spinner.hide();
+        this.ngPopups.alert('There was an error in your submission!');
+      });  
+    }
+    else {
       this.spinner.hide();
-      this.ngPopups.alert('Your bank details has been sucessfully updated!');
-      this.router.navigate(['dashboard']);
-    })
-    .catch((err) => {
-      this.spinner.hide();
-      this.ngPopups.alert('There was an error in your submission!');
-    });  
-  }}
+    }
+  }
 
 }
