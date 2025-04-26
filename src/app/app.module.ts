@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -22,14 +22,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
-
+import { MatInputModule } from '@angular/material/input'; // Import MatInputModule
+import { MatFormFieldModule } from '@angular/material/form-field'; // Import MatFormFieldModule
 import { NgPopupsModule } from 'ng-popups';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule} from "@angular/material/core";
 
 import {
   LoginComponent,
@@ -85,6 +87,8 @@ import {
   RecycleInfoComponent,
   MerchantAgreementPageComponent,
   SpecialSignupComponent
+  SpecialSignupComponent,
+  DirectComponent,
 } from './pages';
 
 import {
@@ -119,6 +123,8 @@ import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
 import { BankloadApprovalComponent } from './pages/bankload-approval/bankload-approval.component';
+import { IndirectComponent } from './pages/indirect/indirect.component';
+import { DirectpageComponent } from './page/directpage/directpage.component';
 
 @Pipe({
   name: 'safeHtml'
@@ -233,10 +239,14 @@ export class SafeUrlPipe implements PipeTransform {
     PledgeListDetailsViewComponent,
     AlertDialogComponent,
     MerchantTermsConditionComponent,
+    DirectComponent,
+    IndirectComponent,
 
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
+    IndirectComponent,
+    DirectpageComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,3 +52,5 @@ export * from './recycle-cards/recycle-cards.component';
 export * from './recycle-info/recycle-info.component';
 export * from './merchant-agreement-page/merchant-agreement-page.component';
 export * from './special-signup/special-signup.component';
+export * from './indirect/indirect.component';
+export * from './direct/direct.component';

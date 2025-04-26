@@ -56,6 +56,8 @@ import {
   RecycleInfoComponent,
   MerchantAgreementPageComponent,
   SpecialSignupComponent
+  DirectComponent,
+  IndirectComponent
 } from './pages';
 
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
@@ -175,6 +177,14 @@ export const routes: Routes = [
   {
     path: 'buynear-cart-details', component: BuynearCartDetailsComponent,
    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'direct', component: DirectComponent,
+  //  canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'indirect', component: IndirectComponent,
+  //  canActivate: [AuthenticationGuard]
   },
   {
     path: 'signup', component: SignupComponent,
