@@ -1,1 +1,135 @@
-<p>indirect works!</p>
+<div>
+    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;" />
+    <label class="handburger" for="myInput">
+      <span class="bar top"></span>
+      <span class="bar middle"></span>
+      <span class="bar bottom"></span>
+    </label>
+  
+    <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <app-matsidenav></app-matsidenav>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box" *ngIf="!isMerchant">
+                <app-dashboard-header></app-dashboard-header>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box" *ngIf="isMerchant">
+                <app-split-header></app-split-header>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-content-box pb-5">
+                <!-- Quick links -->
+                <div class="container-fluid quicklinkbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg">RECEIPTS FPX</div>
+                        </div>
+                        <div
+                          class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75"
+                        >
+                          <div
+                            class="col-3 flex-align-center flex-column border-right-white"
+                          >
+                            <div class="height-80 text-center">
+                              <img
+                                class="max-width-55"
+                                src="assets/icons-img/fpx.png"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-9 pl-3 color-white font-size-15">
+                            Wait a second, your receipt is being printed...
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Raw FPX response (optional for debug) -->
+                <div class="container-fluid bg-dark text-white p-3 my-4">
+                  <h4>Raw FPX Response</h4>
+                  <pre>{{ fullResponse }}</pre>
+                </div>
+  
+                <!-- receipts display -->
+                <main class="receipts-system">
+                  <div class="top">
+                    <h1 class="title">FPX Receipt Details</h1>
+                    <div class="printer"></div>
+                  </div>
+                  <div class="receipts-wrapper">
+                    <div class="receipts">
+                      <div *ngIf="fpxData" class="receipt">
+                        <div class="route">
+                          <img
+                            class="max-width-55"
+                            src="assets/icons-img/fpx.png"
+                          />
+                        </div>
+                        <div class="details">
+                          <div class="item">
+                            <span>Status</span>
+                            <h3>{{ fpxData.status }}</h3>
+                          </div>
+                          <div class="item">
+                            <span>Transaction ID</span>
+                            <h3>{{ fpxData.txnId }}</h3>
+                          </div>
+                          <div class="item">
+                            <span>Seller Order No</span>
+                            <h3>{{ fpxData.sellerOrder }}</h3>
+                          </div>
+                          <div class="item">
+                            <span>Date & Time</span>
+                            <h3>{{ fpxData.datetime }}</h3>
+                          </div>
+                          <div class="item">
+                            <span>Bank</span>
+                            <h3>{{ fpxData.bank }}</h3>
+                          </div>
+                          <div class="item">
+                            <span>Amount</span>
+                            <h3>{{ fpxData.amount }}</h3>
+                          </div>
+                          <div class="item">
+                            <span>Note</span>
+                            <h3>{{ fpxData.note }}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+  <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+  </ngx-spinner>
+  

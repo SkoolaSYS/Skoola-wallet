@@ -1,0 +1,295 @@
+<div>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+      <mat-nav-list>
+        <app-matsidenav></app-matsidenav>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box" *ngIf="!isMerchant">
+              <app-dashboard-header></app-dashboard-header>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-header-box" *ngIf="isMerchant">
+              <app-split-header></app-split-header>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div class="dashboard-content-box pb-5">
+              <div class="container-fluid quicklinkbg">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">
+                          BANK LOAD FPX
+                        </div>
+                      </div>
+                      <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                        <div class="col-3 flex-align-center flex-column border-right-white">
+                          <div class="height-80 text-center">
+                            <img class="max-width-55" src="https://www.uat-sandbox.com/fpx_logo.jpg" />
+                          </div>
+                        </div>
+                        <div class="col-9 pl-3 color-white font-size-15">
+                          Funds residing in your internet banking account will be used to load your D-8P Acc. The transaction will be charged RM 1.00.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row no-gutters justify-content-center">
+                <div class="col-12 col-xl-9 titlebg">
+                  Choose Top-Up Amount (RM)
+                </div>
+              </div>
+
+              <div class="wrapper">
+                <button class="d8p-btn-fpx mt-3 margin-left-20" (click)="fillInput('10')">
+                  <div class="--text text-white">RM 10</div>
+                </button>
+                <button class="d8p-btn-fpx mt-3 margin-left-20" (click)="fillInput('20')">
+                  <div class="--text text-white">RM 20</div>
+                </button>
+                <button class="d8p-btn-fpx mt-3 margin-left-20" (click)="fillInput('30')">
+                  <div class="--text text-white">RM 30</div>
+                </button>
+                <button class="d8p-btn-fpx mt-3 margin-left-20" (click)="fillInput('50')">
+                  <div class="--text text-white">RM 50</div>
+                </button>
+                <button class="d8p-btn-fpx mt-3 margin-left-20" (click)="fillInput('100')">
+                  <div class="--text text-white">RM 100</div>
+                </button>
+                <button class="d8p-btn-fpx mt-3 margin-left-20" (click)="fillInput('150')">
+                  <div class="--text text-white">RM 150</div>
+                </button>
+              </div>
+
+              <div class="row no-gutters justify-content-center">
+                <div class="col-12 col-xl-9 titlebg">
+                  Enter Top-Up Amount (RM)
+                </div>
+              </div>
+
+              <form id="myForm" *ngIf="showForm" (submit)="displaySummary(); $event.preventDefault()">
+                <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="formPlaceholder row no-gutters justify-content-center mt-4 mb-4">
+                          <div class="col-10" style="text-align: center;">
+                            <input class="d8p-form d8p-input-normal" placeholder="Eg: RM100" type="number" name="amount" [(ngModel)]="amount" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mt-2 mb-2">
+                  <label>
+                    <input type="checkbox" (click)="toggleButtonState()" required>
+                    This transaction will be charged RM 1.00.
+                  </label>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <br><br>
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-11">
+                              <div class="button-container text-center mt-2">
+                                <button class="d8p-btn-default mt-3 margin-left-20" [disabled]="isButtonDisabled">
+                                  <div class="--text">Continue</div>
+                                  <div class="--icon">
+                                    <img class="p-1 max-width-30-px" src="assets/icons-img/tick-only-signup@2x.png" />
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <form name="form1" id="form1" method="post" *ngIf="!showForm">
+                <div class="main-container-fpx">
+                  <div class="container-fpx">
+                    <div class="bottom-part">
+                      <div class="word-section">
+                        <h1>Summary</h1>
+                      </div>
+                      <div class="plan-section row">
+                        <div class="form-group col-sm-4">
+                          <label>Product Description</label>
+                          <input
+                            class="form-control"
+                            id="fpx_productDesc"
+                            name="fpx_productDesc"
+                            [(ngModel)]="productDesc"
+                            value="E-Wallet KOMEPS D-8P Top-Up"
+                            onmouseover="load_description('1')"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-4">
+                          <label>Exchange Order#</label>
+                          <input
+                            class="form-control"
+                            id="fpx_sellerExOrderNo"
+                            name="fpx_sellerExOrderNo"
+                            [(ngModel)]="exOrderNumber"
+                            onmouseover="load_description('2')"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-4">
+                          <label>Order#</label>
+                          <input
+                            class="form-control"
+                            id="fpx_sellerOrderNo"
+                            name="fpx_sellerOrderNo"
+                            [(ngModel)]="orderNumber"
+                            onmouseover="load_description('3')"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-3">
+                          <label>Product Price (RM)</label>
+                          <input
+                            class="form-control"
+                            id="product_price"
+                            name="product_price"
+                            [(ngModel)]="amount"
+                            (blur)="calculateTotal()"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-3">
+                          <label>Transaction Charge (RM)</label>
+                          <input
+                            class="form-control"
+                            id="transaction_charge"
+                            name="transaction_charge"
+                            [(ngModel)]="fee"
+                            (blur)="calculateTotal()"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-3">
+                          <label>Total (RM)</label>
+                          <input
+                            class="form-control"
+                            id="product_total"
+                            name="fpx_txnAmount"
+                            [value]="amount && fee ? (amount + fee) : ''"
+                            readonly
+                            onmouseover="load_description('4')"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-3" id="d_email">
+                          <label>Email</label>
+                          <input
+                            class="form-control"
+                            id="fpx_buyerEmail"
+                            name="fpx_buyerEmail"
+                            [(ngModel)]="email"
+                            type="email"
+                            onmouseover="load_description('5')"
+                            size="20"
+                          />
+                        </div>
+              
+                        <div class="form-group col-sm-3" id="d_select_bank">
+                          <label onmouseover="load_description('7')">Select Bank</label>
+                          <select
+                            class="form-control"
+                            id="payment_mode"
+                            [(ngModel)]="bankType"
+                            name="payment_mode"
+                            (change)="changeBankType($event.target.value)"
+                          >
+                            <option value="">Select Bank</option>
+                            <option value="B2C">B2C (Retail Banking)</option>
+                            <option value="B2B" disabled>B2B</option>
+                          </select>
+                        </div>
+              
+                        <div class="form-group col-sm-4" id="d_display_bank">
+                          <label onmouseover="load_description('8')">Select Bank</label>
+                          <select
+                            class="form-control"
+                            id="fpx_buyerbankid"
+                            name="fpx_buyerbankid"
+                            [(ngModel)]="selectedBankId"
+                            required
+                          >
+                            <option value="" disabled selected>-- Select Bank --</option>
+                            <option *ngFor="let bank of bankList" [value]="bank.bank_id">{{ bank.bank_display }}</option>
+                          </select>
+                        </div>
+              
+                        <div class="form-group col-sm-12" id="d_ok1">
+                          <input type="checkbox" id="chk1" [(ngModel)]="agree1" name="chk1" (change)="verifyProceed()" value="ON" />
+                          I agree to be charged RM <span id="t_charge">{{ fee }}</span> for this transaction
+                        </div>
+              
+                        <div class="form-group col-sm-12" id="d_ok2">
+                          <input type="checkbox" id="chk2" [(ngModel)]="agree2" name="chk2" (change)="verifyProceed()" value="ON" />
+                          By clicking on <b>"Proceed"</b> button, you hereby agree with
+                          <a href="https://www.mepsfpx.com.my/FPXMain/termsAndConditions.jsp" target="_blank"><b>FPX's Terms & Condition</b></a>
+                        </div>
+                      </div>
+              
+                      <div class="btn-section">
+                        <button class="btn-payment btn-fpx" type="button" (click)="proceedToFpxPayment()">Proceed to Payment</button>
+                        <button class="btn-submit btn-fpx" type="button" (click)="cancelOrder()">Cancel Order</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>

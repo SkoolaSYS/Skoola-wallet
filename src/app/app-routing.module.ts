@@ -55,20 +55,25 @@ import {
   RecycleCardsComponent,
   RecycleInfoComponent,
   MerchantAgreementPageComponent,
-  SpecialSignupComponent
+  SpecialSignupComponent,
   DirectComponent,
-  IndirectComponent
+  IndirectComponent,
 } from './pages';
 
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
+import { BankloadFpxComponent } from './pages/bankload-fpx/bankload-fpx.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
 import { BankloadXotpComponent } from './pages/bankload-xotp/bankload-xotp.component';
 import { BankloadOtpComponent } from './pages/bankload-otp/bankload-otp.component';
-import { BankloadApprovalComponent } from './pages/bankload-approval/bankload-approval.component';
+// import { BankloadApprovalComponent } from './pages/bankload-approval/bankload-approval.component';
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
 import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
 import { AuthenticationGuard } from './services/authentication.guard';
+import { SignupMayaComponent, PreSignupComponent , SubscribeComponent} from './projects';
+import { OrderComponent } from './projects/maya/order/order.component';
+import { MenuComponent } from './projects/maya/menu/menu.component';
+import { CanteenComponent } from './projects/maya/canteen/canteen.component';
 
 export const routes: Routes = [
   {
@@ -99,6 +104,10 @@ export const routes: Routes = [
   //  canActivate: [AuthenticationGuard]
   // },
   {
+    path: 'fpx', component: BankloadFpxComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
     path: 'bankload', component: BankloadAmountComponent,
    canActivate: [AuthenticationGuard]
   },
@@ -122,14 +131,36 @@ export const routes: Routes = [
     path: 'bankload-otp', component: BankloadOtpComponent,
    canActivate: [AuthenticationGuard]
   },
-  {
-    path: 'bankload-approval', component: BankloadApprovalComponent,
-   canActivate: [AuthenticationGuard]
-  },
+  // {
+  //   path: 'bankload-approval', component: BankloadApprovalComponent,
+  //  canActivate: [AuthenticationGuard]
+  // },
   {
     path: 'bankload-helper', component: BankloadHelperComponent,
    canActivate: [AuthenticationGuard]
   },
+  {
+    path: 'subscribe', component: SubscribeComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'order', component: OrderComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'menu', component: MenuComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'canteen', component: CanteenComponent,
+   canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'pre-register-maya', component: PreSignupComponent,
+  },
+  {
+    path: 'register-maya', component: SignupMayaComponent,
+  }, 
   {
     path: 'withdraw', component: WithdrawComponent,
    canActivate: [AuthenticationGuard]

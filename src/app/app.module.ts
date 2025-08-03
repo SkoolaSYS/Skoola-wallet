@@ -86,7 +86,6 @@ import {
   RecycleCardsComponent,
   RecycleInfoComponent,
   MerchantAgreementPageComponent,
-  SpecialSignupComponent
   SpecialSignupComponent,
   DirectComponent,
 } from './pages';
@@ -115,6 +114,7 @@ import {
 
 import { Services } from 'src/app/services/service';
 import { BankloadAmountComponent } from './pages/bankload-amount/bankload-amount.component';
+import { BankloadFpxComponent } from './pages/bankload-fpx/bankload-fpx.component';
 import { BankloadUsernameComponent } from './pages/bankload-username/bankload-username.component';
 import { BankloadPasswordComponent } from './pages/bankload-password/bankload-password.component';
 import { BankloadXotpComponent } from './pages/bankload-xotp/bankload-xotp.component';
@@ -122,7 +122,14 @@ import { BankloadOtpComponent } from './pages/bankload-otp/bankload-otp.componen
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
-import { BankloadApprovalComponent } from './pages/bankload-approval/bankload-approval.component';
+import { SignupMayaComponent } from './projects';
+import { PreSignupComponent } from './projects/maya/pre-signup/pre-signup.component';
+import { MayaService } from './projects';
+import { SubscribeComponent } from './projects/maya/subscribe/subscribe.component';
+import { MenuComponent } from './projects/maya/menu/menu.component';
+import { OrderComponent } from './projects/maya/order/order.component';
+import { CanteenComponent } from './projects/maya/canteen/canteen.component';
+import { CurrencyFormatDirective } from './projects/maya/currency-format.directive';
 import { IndirectComponent } from './pages/indirect/indirect.component';
 import { DirectpageComponent } from './page/directpage/directpage.component';
 
@@ -207,7 +214,8 @@ export class SafeUrlPipe implements PipeTransform {
     BankloadPasswordComponent,
     BankloadXotpComponent,
     BankloadOtpComponent,
-    BankloadApprovalComponent,
+    BankloadFpxComponent,
+    // BankloadApprovalComponent,
     BankloadHelperComponent,
     BankloadCaptchaComponent,
     RedeemInfoComponent,
@@ -216,7 +224,13 @@ export class SafeUrlPipe implements PipeTransform {
     RecycleInfoComponent,
     MerchantAgreementPageComponent,
     SpecialSignupComponent,
-    
+    SubscribeComponent,
+    MenuComponent,
+    SignupMayaComponent,
+    PreSignupComponent,
+    OrderComponent,
+    CanteenComponent,
+    CurrencyFormatDirective,
     // components
     DashboardHeaderComponent,
     TransactionViewComponent,
@@ -254,11 +268,19 @@ export class SafeUrlPipe implements PipeTransform {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    BrowserModule,
+    BrowserAnimationsModule, // Add BrowserAnimationsModule
+    FormsModule, // Add FormsModule
+    MatInputModule, // Add MatInputModule
+    MatDatepickerModule, // Add MatDatepickerModule
+    MatFormFieldModule, // Add MatFormFieldModule
+    MatNativeDateModule, // Add MatNativeDateModule
     MatTabsModule,
     MatRadioModule,
     MatTooltipModule,
@@ -283,13 +305,17 @@ export class SafeUrlPipe implements PipeTransform {
       // }
     ),
     NgxSpinnerModule,
-    MatDialogModule 
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
   providers: [
     Services, 
     { provide: MAT_DIALOG_DATA, useValue: [] },
     [{provide: LocationStrategy, useClass: HashLocationStrategy}],
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, width: "90%" }}
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, width: "90%" }},
+    MatNativeDateModule,
+    MayaService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [AlertDialogComponent]
