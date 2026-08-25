@@ -18,3 +18,4 @@ export * from './redeem-details-view/redeem-details-view.component';
 export * from './pledge-details-view/pledge-details-view.component';
 export * from './pledge-list-details-view/pledge-list-details-view.component';
 export * from './merchant-terms-condition/merchant-terms-condition.component';
+export * from './re-entry-header/re-entry-header.component';

@@ -1,6 +1,6 @@
 {  
     "/rest/": {  
-       "target": "http://localhost:8080/komeps",  
+       "target": "https://cbs.komeps.co.uk:8443/komeps",  
        "changeOrigin": true,
        "secure": false,  
        "logLevel": "debug"  

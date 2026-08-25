@@ -1,0 +1,117 @@
+<div>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+      <mat-nav-list>
+        <app-matsidenav></app-matsidenav>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <app-split-header></app-split-header>
+          </div>
+        </div>
+        <div class="container-fluid quicklinkbg">
+          <div class="row no-gutters">
+            <div class="col-12">
+              <div class="container-fluid p-0 menu-grid">
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">
+                    Order
+                  </div>
+                </div>
+                <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                  <div class="col-3 flex-align-center flex-column border-right-white">
+                  </div>
+                  <div class="col-9 pl-3 color-white font-size-15">
+                    Your Order page is where you can manage incoming orders from your customers. Here, you can view the
+                    details of each order, track their status, and update them accordingly.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div>
+                <!-- Display menu by canteen ID -->
+                <!-- <h2>Menu for Canteen ID {{ canteenId }}</h2>
+                <ul>
+                  <li *ngFor="let item of menuItems">
+                    {{ item.name }} - {{ currencyType }}{{ item.price }}
+                  </li>
+                </ul> -->
+
+                <!-- Display ordered item table -->
+                <!-- <h2>Ordered Items</h2>
+                <table>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Pickup Time</th>
+                  </tr>
+                  <tr *ngFor="let item of orderedItems">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.pickupTime | date: 'medium' }}11:00 AM</td>
+                  </tr>
+                </table> -->
+                <div class="row no-gutters justify-content-center">
+                  <div class="col-12 col-xl-9 titlebg">
+                    Orders List
+                  </div>
+                </div>
+                <!-- Dropdown menu to select sorting options -->
+                <!-- <div>
+  <label for="statusSort">Sort by Status:</label>
+  <select id="statusSort" (change)="sortData($event.target.value)">
+    <option value="Pending">Pending</option>
+    <option value="Finish">Finish</option>
+    <option value="Preparing">Preparing</option>
+  </select>
+</div> -->
+                <!-- <h1>Orders Items</h1> -->
+                <table class="rwd-table">
+                  <tr>
+                    <th>ITEM</th>
+                    <th>QUANTITY</th>
+                    <th>PICKUP</th>
+                    <th>STATUS</th>
+                    <th></th>
+                  </tr>
+                  <tr *ngFor="let item of orderedItems">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.pickupTime | date: 'medium' }}<span class="time"> 11:00 AM </span></td>
+                    <td>
+                      <div class="select-container">
+                        <select style="background-color: #34495E; color: #fff; border: none;">
+                          <option value="Pending">PENDING</option>
+                          <option value="Finish">FINISH</option>
+                          <option value="Preparing">PREPARING</option>
+                          <option value="Cancel" disabled>CANCEL</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

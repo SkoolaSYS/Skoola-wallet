@@ -1,0 +1,82 @@
+<div class="container-fluid common-cls loginpg grey-gradient p-0">
+    <div class="row">
+        <div class="col-12">
+            <div class="login-bg">
+                <div class="d8p-main-back-btn">
+                    <div class="row no-gutters">
+                        <div class="col-9">
+                            <div class="dashboard-header">
+                                <div class="text-center">
+                                    <img class="logo" src="assets/icons-img/logo-title-signup@3x.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
+                    <div class="login-container max-width-100 overflow-hidden">
+                        <div class="logoContainer" *ngIf="spinLogo">
+                            <img class="penjara max-width-60" src="assets/icons-img/penjara.jpeg" />
+                            <img class="heads max-width-60" src="assets/icons-img/d-8logonew-login@2x.png" />
+                        </div>
+                        <div class="logoContainer overflow-hidden">
+                            <!-- <img class="heads max-width-60" src="assets/icons-img/d-8logonew-login@2x.png" /> -->
+                            <!-- <img class="heads max-width-60" src="assets/logo-img/penjara2.png" /> -->
+                            <img src="assets/logo-img/penjara2.png" />
+                        </div>
+
+                        <!-- <form (submit)="submit(); $event.preventDefault()" autocomplete="off">
+                            <div class="form-group" class="form-control d8p-input-normal min-height-55">
+                              <input type="text" placeholder="Username" [(ngModel)]="username" name="username" class="form-control" />
+                            </div>
+                            <div class="form-group" class="form-control d8p-input-normal min-height-55">
+                              <input [type]="hide ? 'password' : 'text'" placeholder="Password" [(ngModel)]="password" name="password" class="form-control" />
+                              <i class="bi-eye-slash" (click)="togglePassword()" style="cursor:pointer;"></i>
+                            </div>
+                            <div class="text-center mt-3">
+                              <button class="btn btn-primary" type="submit">Login</button>
+                            </div>
+                          </form> -->
+                          <form (submit)="submit()" autocomplete="off">
+                            <div class="formfield max-width-100">
+                                <div class="input-group mb-3 mt-4 group-input-border-radius">
+                                    <input type="text" placeholder="Username" [(ngModel)]="username" name="username" class="form-control" />
+                                </div>
+                                <div class="input-group mt-4 mb-3 group-input-border-radius">
+                                    <input [type]="hide ? 'password' : 'text'" placeholder="Password" [(ngModel)]="password" name="password" class="form-control" />
+                                        <i style="margin-top: 18px; z-index: 10;" class="bi-eye-slash" id="togglePassword" (click)="togglePassword()"></i>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text group-input-icon-field" id="basic-addon2">
+                                            <button class="d8p-transparent-btn" *ngIf="services.password">
+                                                <img class="btnicon" src="assets/icons-img/login-unlock@3x.png" />
+                                            </button>
+                                            <button class="d8p-transparent-btn" type="submit">
+                                                <img class="btnicon" src="assets/icons-img/login-lock@3x.png" />
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="button-container text-center">
+                        <a class="d8p-btn-grey-vt" routerLink="/network-participants-list">
+                            <div class="--text">Network Participants List</div>
+                            <div class="--icon"><img class="npl-icon max-width-30-px"
+                                    src="assets/icons-img/npl-merchant-icon@3x.png" /></div>
+                        </a>
+                    </div>
+                    <img class="signupline" src="assets/icons-img/line-gradient-login-bottom.png" />
+                    <div class="sponsored text-center">
+                        <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/d-8pplus-sponsored@3x.png" />
+                        <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/short-line-gradient.png" />
+                        <img class="max-width-30 mr-2 mr-xl-4 " src="assets/icons-img/komeps-sponsored@3x.png" />
+                        <img class="max-width-20 mr-2 mr-xl-4" src="assets/icons-img/short-line-gradient.png" />
+                        <img class="max-width-20 ml-2 ml-xl-4" src="assets/icons-img/d8p-eid@2x.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+        <p style="font-size: 20px; color: white">Please wait...</p>
+      </ngx-spinner>

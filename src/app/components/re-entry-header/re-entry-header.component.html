@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="headergoldbox d-flex headerGoldboxPosition">
+        <div class="white-line"></div>
+        <div class="gram-txt">
+          <div class="goldWhole">{{ goldWhole }}.</div>
+          <div class="goldFraction">{{ goldFraction }} g</div>
+        </div>
+        <div class="half-gold"></div>
+      </div>
+    </div>
+    <div class="col-3">
+      <img class="d8plogo" src="assets/icons-img/dahsboard-header-d8plogo@3x.png" routerLink="/dashboard" />
+    </div>
+    <div class="col-2">
+      <button class="dashboard-bell" type="button" (click)="bell()">
+        <span class="dashboard-bell material-icons">notifications</span>
+        <span class="dashboard-bell-badge" *ngIf="condition">{{counter}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+<img class="max-width-100" src="assets/icons-img/linegrey1.png" style="top: 3px; position: relative;" />
+<div class="container min-height-168" id="dashboard-inner">
+  <div class="row flex-align-center">
+    <div class="dbCol border-right-db">
+      <button class="btn1" id="btn1" (click)="tab1()">MYR</button>
+    </div>
+    <!-- <div class="dbCol border-right-db">
+      <button class="btn2" id="btn2">KOPEN</button>
+    </div> -->
+    <div class="dbCol">
+      <button class="btn3" id="btn3" (click)="tab3()">KOPEN</button>
+    </div>
+  </div>
+  <div class="main">
+    <div id="content1" class="content">
+      <div class="d8p-normal-text text-center mt-3 text-secondary">
+        D-8P Acc. No.: {{ cardNumber }}
+      </div>
+      <div class="d8p-h3 text-center mt-4">
+        {{ currencyType }} 
+        <span class="font-weight-bold">{{
+          currentBalance | number: '1.2-2'
+          }}RM 100.00</span>
+      </div>
+      <div class="dashboard-gold-box" *ngIf="activetransaction==true">
+        <div class="summary-currency-view">
+          <span class="mr-2"><img src="assets/icons-img/icon-debitsmall3.png" /></span>
+          RM {{ transactionAmount | number: '1.2-2' }}
+        </div>
+        <div class="summary-gold-view">
+          {{ goldAmount | number: '.4-4' }} g
+          <span class="ml-2"><img src="assets/icons-img/icon-creditsmall1.png" /></span>
+        </div>
+      </div>
+    </div>
+    <div id="content2" class="content">
+
+    </div>
+    <div id="content3" class="content">
+      <!-- <div class="row no-gutters justify-content-center">
+      </div> -->
+    </div>
+  </div>
+</div>

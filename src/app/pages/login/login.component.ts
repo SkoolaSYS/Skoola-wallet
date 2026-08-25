@@ -5,6 +5,7 @@ import { Services } from '../../services/service';
 import { NgPopupsService } from 'ng-popups';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Utility } from 'src/utils';
+import { MayaService } from '../../projects/maya/maya.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   public isNotIdVerified: boolean;
   public isMerchant: boolean;
 
-  constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService) { }
+  constructor(public services: Services, private router: Router,private ngPopups: NgPopupsService, private spinner: NgxSpinnerService, private mayaService: MayaService) { }
 
   async ngOnInit(): Promise<void> {
     this.spinner.hide();
@@ -58,6 +59,53 @@ export class LoginComponent implements OnInit {
       document.getElementById("togglePassword").setAttribute("class", "bi-eye-slash");
     }
   }
+
+  checkSchoolUser(currentUser: any): void {
+
+  const email =
+    currentUser.email ||
+    currentUser.username ||
+    this.services.username;
+
+  if (!email) {
+    this.router.navigate(['dashboard']);
+    return;
+  }
+
+  this.mayaService
+    .checkSchoolParentByEmail(email)
+    .subscribe(
+      (response: any) => {
+
+        console.log('School parent response:', response);
+
+        if (response.isSchoolParent) {
+
+          localStorage.setItem(
+            'school-parent',
+            JSON.stringify(response.parent)
+          );
+
+          this.router.navigate(['school-dashboard']);
+
+        } else {
+
+          localStorage.removeItem('school-parent');
+
+          this.router.navigate(['dashboard']);
+        }
+      },
+      (error) => {
+
+        console.error(
+          'School parent check error:',
+          error
+        );
+
+        this.router.navigate(['dashboard']);
+      }
+    );
+}
 
   // showPasswd(){
   //   var clickPswd = <HTMLInputElement> document.getElementById("loginPassword");
@@ -106,7 +154,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['dashboard']);
             }
          }else{
-          this.router.navigate(['dashboard']);
+          this.checkSchoolUser(currentUser);
          }
        }
       }

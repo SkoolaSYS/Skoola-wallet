@@ -109,7 +109,8 @@ import {
   RedeemDetailsViewComponent,
   PledgeDetailsViewComponent,
   PledgeListDetailsViewComponent,
-  MerchantTermsConditionComponent
+  MerchantTermsConditionComponent,
+  ReEntryHeaderComponent
 } from './components';
 
 import { Services } from 'src/app/services/service';
@@ -122,9 +123,9 @@ import { BankloadOtpComponent } from './pages/bankload-otp/bankload-otp.componen
 import { BankloadHelperComponent } from './pages/bankload-helper/bankload-helper.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { BankloadCaptchaComponent } from './pages/bankload-captcha/bankload-captcha.component';
-import { SignupMayaComponent } from './projects';
+import { SignupMayaComponent } from './projects/';
 import { PreSignupComponent } from './projects/maya/pre-signup/pre-signup.component';
-import { MayaService } from './projects';
+import { MayaService } from './projects/';
 import { SubscribeComponent } from './projects/maya/subscribe/subscribe.component';
 import { MenuComponent } from './projects/maya/menu/menu.component';
 import { OrderComponent } from './projects/maya/order/order.component';
@@ -132,6 +133,11 @@ import { CanteenComponent } from './projects/maya/canteen/canteen.component';
 import { CurrencyFormatDirective } from './projects/maya/currency-format.directive';
 import { IndirectComponent } from './pages/indirect/indirect.component';
 import { DirectpageComponent } from './page/directpage/directpage.component';
+import { ReEntryDashboardComponent } from './projects/re-entry/dashboard/re-entry-dashboard.component';
+import { ReEntryLoginComponent } from './projects/re-entry/login/re-entry-login.component';
+import { KopenComponent } from './projects/re-entry/kopen/kopen.component';
+import { SchoolDashboardComponent } from './projects/maya/school-dashboard/school-dashboard.component';
+
 
 @Pipe({
   name: 'safeHtml'
@@ -231,6 +237,9 @@ export class SafeUrlPipe implements PipeTransform {
     OrderComponent,
     CanteenComponent,
     CurrencyFormatDirective,
+    ReEntryDashboardComponent,
+    ReEntryLoginComponent,
+    KopenComponent,
     // components
     DashboardHeaderComponent,
     TransactionViewComponent,
@@ -255,12 +264,14 @@ export class SafeUrlPipe implements PipeTransform {
     MerchantTermsConditionComponent,
     DirectComponent,
     IndirectComponent,
+    ReEntryHeaderComponent,
 
     // pipes
     SafeHtmlPipe,
     SafeUrlPipe,
     IndirectComponent,
     DirectpageComponent,
+    SchoolDashboardComponent,
   ],
   imports: [
     BrowserModule,

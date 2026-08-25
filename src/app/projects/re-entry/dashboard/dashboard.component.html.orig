@@ -1,0 +1,226 @@
+<div>
+  <button class="d8p-handburger" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+    <!-- <button (click)="onTogglePosition(nav_position)" mat-button></button> -->
+      <mat-icon>
+        <svg width="25" height="45">
+          <path d="M0,3 25,3" stroke="#fff" stroke-width="3"/>
+          <path d="M0,12 25,12" stroke="#fff" stroke-width="3"/>
+          <path d="M0,21 25,21" stroke="#fff" stroke-width="3"/>
+      </svg>
+      </mat-icon>
+  </button>
+  <!-- Nav block - start -->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over" position="end">
+        <mat-nav-list>
+          <div class="mt-4" mat-list-item routerLink="/update-profile"><small><img class="m-2 max-width-20" [src]="imageSrc" style="height: 4rem;width: 4rem;" /></small>Update Profile</div>
+          <div class="mt-4" mat-list-item routerLink="/recent-transactions"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-inbox.svg" /></small>Recent transaction</div>
+          <div class="mt-4" mat-list-item routerLink="/id-verification"><small><img class="m-2 max-width-20" src="assets/icons-img/id-verify-nav.png" /></small>Government ID</div>
+          <div class="mt-2" mat-list-item (click)="logout()"><small><img class="m-2 max-width-20" src="assets/icons-img/d8p-logout.svg" /></small>Logout</div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- Nav block - end -->
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-fluid p-0">
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9">
+              <div class="dashboard-header-box">
+                <app-dashboard-header></app-dashboard-header>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row no-gutters justify-content-center">
+            <div class="col-12 col-xl-9"> 
+              <div class="dashboard-content-box">
+                <!-- Quick links -->
+                <div class="container-fluid quicklinkbg" >
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 aling-text-top titlebg" style="border: 1px solid #8D8D8D;">
+                            Quick Links
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5">
+                          <div class="col-3 flex-align-center flex-column">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info2.png" style="padding-bottom: 0.5rem; height: 1.75rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-60" src="assets/icons-img/quicklinks-transfer-ios@2x.png" /></div>
+                          </div>
+                          <div class="col-3 flex-align-center flex-column border-right-white">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info2.png" style="padding-bottom: 0.5rem; height: 1.75rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/quicklinks-utilities-ios@2x.png" /></div>
+                          </div>
+                          <div class="col-3 flex-align-center flex-column border-right-white">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info2.png" style="padding-bottom: 0.5rem; height: 1.75rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/bankload"><img class="max-width-60" src="assets/icons-img/quicklinks-bankload-ios@2x.png" /></div>
+                          </div>
+                          <div class="col-3 flex-align-center flex-column">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info2.png" style="padding-bottom: 0.5rem; height: 1.75rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/buy-gold"><img class="max-width-60" src="assets/icons-img/quicklinks-buygold-ios@2x.png" /></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Transfer -->
+                <div class="container-fluid transferbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg" style="border: 1px solid #8D8D8D;">
+                            Transfer
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mb-4">
+                          <div class="col-4 flex-align-center flex-column border-right-grey pb-4 pb-xl-5" style="height: 7rem;">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/bankload"><img class="max-width-75" src="assets/icons-img/bankload-icon-ltst@2x.png" style="padding-right: 1rem; padding-top: 0.5rem;"/></div>
+                          </div>
+                          <div class="col-4 flex-align-center flex-column border-right-grey pb-4 pb-xl-5" style="height: 7rem;">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/transfer"><img class="max-width-70" src="assets/icons-img/transfer-ios-ltst@2x.png" style="padding-right: 1rem; padding-top: 0.5rem;"/></div>
+                          </div>
+                          <div class="col-4 flex-align-center flex-column pb-4 pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/buy-gold"><img class="max-width-65" src="assets/icons-img/buygold-ios-ltst@2x.png" style="padding-right: 1rem; padding-top: 0.5rem;"/></div>
+                          </div>
+                          <div class="col-4 flex-align-center flex-column border-top-grey border-right-grey pt-2 pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem; "/></div>
+                            <div class="height-60 text-center" (click)="doRoute()"><img class="max-width-60" src="assets/icons-img/withdraw-ios-ltst@2x.png" /></div>
+                          </div>
+                          <div class="col-4 flex-align-center flex-column border-top-grey border-right-grey pt-2 pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/remitgold-ios-ltst@2x.png" /></div>
+                          </div>
+                          <div class="col-4 flex-align-center flex-column border-top-grey pt-2 pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-30" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/sell-gold"><img class="max-width-55" src="assets/icons-img/sellgold-ios-ltst@2x.png" /></div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Payment -->
+                <div class="container-fluid paymentbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg" style="border: 1px solid #8D8D8D;">
+                            Payment
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mb-2">
+                          <div class="col-3 flex-align-center flex-column border-right-grey pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" style="height: 1rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/payments-salaryfew-ios@2x.png" /></div>
+                          </div>
+                          <div class="col-3 flex-align-center flex-column border-right-grey pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" style="height: 1rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/payment-salarybig-ios@2x.png" /></div>
+                          </div>
+                          <div class="col-3 flex-align-center flex-column border-right-grey pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" style="height: 1rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/payments-utilities-ios@2x.png" /></div>
+                          </div>
+
+                          <div class="col-3 flex-align-center flex-column pb-xl-5">
+                            <div class="text-right w-100 pr-2"><img class="max-width-40" src="assets/icons-img/icon-info1.png" style="height: 1rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/payments-donate-ios@2x.png" /></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Advanced Gold Services -->
+                <div class="container-fluid advgoldbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg" style="border: 1px solid #8D8D8D;">
+                            Advanced Gold Services
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mb-2">
+                          <div class="col-6 flex-align-center flex-column border-right-grey pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/redeem-ios-ltst@2x.png"  /></div>
+                          </div>
+                          <div class="col-6 flex-align-center flex-column pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/pledge-ios-ltst@2x.png"  /></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Market Place -->
+                <div class="container-fluid marketplacebg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg" style="border: 1px solid #8D8D8D;">
+                            Market Place
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mb-2">
+                          <div class="col-6 flex-align-center flex-column border-right-grey pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center" routerLink="/buynear-shopping"><img class="max-width-60" src="assets/icons-img/buynear-ios-ltst@2x.png"  /></div>
+                          </div>
+                          <div class="col-6 flex-align-center flex-column pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1.25rem;padding-right: 0.5rem;"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/buyglobal-ios-ltst@2x.png"  /></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Invest -->
+                <div class="container-fluid investbg">
+                  <div class="row no-gutters">
+                    <div class="col-12">
+                      <div class="container-fluid p-0 menu-grid">
+                        <div class="row no-gutters justify-content-center">
+                          <div class="col-12 col-xl-9 titlebg" style="border: 1px solid #8D8D8D;">
+                            Invest
+                          </div>
+                        </div>
+                        <div class="row no-gutters mt-2 mb-2">
+                          <div class="col-4 flex-align-center flex-column border-right-grey pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1rem"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/asnafbiz-ios-ltst@2x.png"  /></div>
+                          </div>
+                          <div class="col-4 flex-align-center border-right-grey flex-column pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1rem"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/d8pmm-ios-ltst@2x.png"  /></div>
+                          </div>
+                          <div class="col-4 flex-align-center flex-column pb-4">
+                            <div class="text-right w-100 pr-2"><img class="max-width-20" src="assets/icons-img/icon-info1.png" style="height: 1rem"/></div>
+                            <div class="height-60 text-center"><img class="max-width-60" src="assets/icons-img/d8petf-ios-ltst@2x.png"  /></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,397 @@
+<div class="school-page">
+
+  <!-- SIDENAV -->
+  <input
+    type="checkbox"
+    id="schoolMenu"
+    (click)="sidenav.toggle()"
+    style="display: none;"
+  >
+
+  <label class="school-hamburger" for="schoolMenu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <mat-sidenav-container>
+
+    <mat-sidenav
+      #sidenav
+      mode="over"
+      position="end"
+    >
+      <mat-nav-list>
+        <app-matsidenav></app-matsidenav>
+      </mat-nav-list>
+    </mat-sidenav>
+
+
+    <!-- ============================= -->
+    <!-- BLUE TOP AREA -->
+    <!-- ============================= -->
+
+    <div class="blue-header-section">
+
+      <div class="dashboard-wrapper top-wrapper">
+
+        <!-- SKOOLA LOGO -->
+        <div class="skoola-logo-container">
+          <img
+            src="assets/logo-img/skoola-right.png"
+            alt="Skoola"
+            class="skoola-logo"
+          >
+        </div>
+
+
+        <!-- WELCOME -->
+        <div class="welcome-section">
+
+          <div>
+            <p class="welcome-small">
+              Welcome back
+            </p>
+
+            <h1>
+              {{ schoolParent?.name }}
+            </h1>
+
+            <p class="school-subtitle">
+              School E-Wallet
+            </p>
+          </div>
+
+          <div class="profile-circle">
+            {{ getInitial() }}
+          </div>
+
+        </div>
+
+        <!-- WALLET -->
+        <div class="wallet-card">
+
+          <div class="wallet-header">
+
+            <div>
+              <span class="wallet-label">
+                Available Balance
+              </span>
+
+              <h2 class="wallet-amount">
+                RM {{ walletBalance | number:'1.2-2' }}
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              class="wallet-topup-btn"
+              (click)="topUp()"
+            >
+              <span class="topup-plus">+</span>
+              Top Up
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- WHITE CONTENT AREA -->
+    <!-- ============================= -->
+
+    <div class="white-content-section">
+
+      <div class="dashboard-wrapper content-wrapper">
+
+        <!-- MY CHILD -->
+
+      <div class="section-heading">
+
+        <div>
+          <h3>My Child</h3>
+
+          <p>
+            Linked school account
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="student-card">
+
+        <div class="student-picture">
+          <img
+            src="assets/icons-img/skoola-student.png"
+            alt="Student"
+            class="student-image"
+          >
+        </div>
+
+        <div class="student-info">
+
+          <h4>
+            {{ student?.name || 'Student' }}
+          </h4>
+
+          <p>
+            Student ID:
+            {{ schoolParent?.student_id }}
+          </p>
+
+          <p *ngIf="student?.className">
+            {{ student.className }}
+          </p>
+
+        </div>
+
+        <div class="student-status">
+          Active
+        </div>
+
+      </div>
+
+
+      <!-- ============================= -->
+      <!-- SCHOOL SERVICES -->
+      <!-- ============================= -->
+
+      <div class="section-heading">
+
+        <div>
+          <h3>School Services</h3>
+
+          <p>
+            Everything you need for school
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="service-grid">
+
+
+        <!-- ATTENDANCE -->
+        <div
+          class="service-item"
+          (click)="openAttendance()"
+        >
+
+          <div class="service-icon blue">
+
+            <img
+              src="assets/icons-img/skoola-attendance.png"
+              alt="Attendance"
+            >
+
+          </div>
+
+          <span>
+            Attendance
+          </span>
+
+        </div>
+
+
+        <!-- SCHOOL AI -->
+        <div
+          class="service-item"
+          (click)="openSchoolChat()"
+        >
+
+          <div class="service-icon blue">
+
+            <img
+              src="assets/icons-img/skoola-chatbg.png"
+              alt="School AI"
+            >
+
+          </div>
+
+          <span>
+            AI Chat
+          </span>
+
+        </div>
+
+
+        <!-- PAYMENTS -->
+        <div
+          class="service-item"
+          (click)="openPayments()"
+        >
+
+          <div class="service-icon blue">
+            <img
+              src="assets/icons-img/skoola-fees.png"
+              alt="School Fees"
+            >
+          </div>
+
+          <span>
+            School Fees
+          </span>
+
+        </div>
+
+
+        <!-- MARKETPLACE -->
+        <div
+          class="service-item"
+          (click)="openMarketplace()"
+        >
+
+          <div class="service-icon blue">
+
+            <img
+              src="assets/icons-img/skoola-marketplace.png"
+              alt="Marketplace"
+            >
+
+          </div>
+
+          <span>
+            Marketplace
+          </span>
+
+        </div>
+
+
+        <!-- TOP UP -->
+        <div
+          class="service-item"
+          (click)="topUp()"
+        >
+
+          <div class="service-icon blue">
+            <img
+              src="assets/icons-img/skoola-topup.png"
+              alt="Top Up"
+            >
+          </div>
+
+          <span>
+            Top Up
+          </span>
+
+        </div>
+
+
+        <!-- TRANSFER -->
+        <div
+          class="service-item"
+          routerLink="/transfer"
+        >
+
+          <div class="service-icon blue">
+
+            <img
+              src="assets/icons-img/skoola-wallet.png"
+              alt="Transfer"
+            >
+
+          </div>
+
+          <span>
+            Transfer
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ============================= -->
+      <!-- RECENT ACTIVITY -->
+      <!-- ============================= -->
+
+      <div class="section-heading recent-heading">
+
+        <div>
+
+          <h3>
+            Recent Activity
+          </h3>
+
+          <p>
+            Latest wallet transactions
+          </p>
+
+        </div>
+
+        <button
+          class="see-all"
+          (click)="openTransactions()"
+        >
+          See all
+        </button>
+
+      </div>
+
+
+      <div class="transaction-card">
+
+        <div
+          class="transaction-row"
+          *ngFor="let transaction of recentTransactions"
+        >
+
+          <div
+            class="transaction-symbol"
+            [class.incoming]="transaction.amount > 0"
+          >
+            {{ transaction.amount > 0 ? '↓' : '↑' }}
+          </div>
+
+
+          <div class="transaction-details">
+
+            <h5>
+              {{ transaction.title }}
+            </h5>
+
+            <p>
+              {{ transaction.date }}
+            </p>
+
+          </div>
+
+
+          <div
+            class="transaction-value"
+            [class.credit]="transaction.amount > 0"
+          >
+
+            {{ transaction.amount > 0 ? '+' : '-' }}
+
+            RM
+
+            {{
+              (
+                transaction.amount < 0
+                  ? -transaction.amount
+                  : transaction.amount
+              ) | number:'1.2-2'
+            }}
+
+          </div>
+
+        </div>
+
+      </div>
+
+        <div class="bottom-space"></div>
+
+      </div> <!-- dashboard-wrapper content-wrapper -->
+
+    </div> <!-- white-content-section -->
+
+  </mat-sidenav-container>
+
+</div> <!-- school-page -->

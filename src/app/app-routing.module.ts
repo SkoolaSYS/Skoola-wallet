@@ -74,6 +74,10 @@ import { SignupMayaComponent, PreSignupComponent , SubscribeComponent} from './p
 import { OrderComponent } from './projects/maya/order/order.component';
 import { MenuComponent } from './projects/maya/menu/menu.component';
 import { CanteenComponent } from './projects/maya/canteen/canteen.component';
+import { ReEntryDashboardComponent } from './projects/re-entry/dashboard/re-entry-dashboard.component';
+import { ReEntryLoginComponent } from './projects/re-entry/login/re-entry-login.component';
+import {KopenComponent } from './projects/re-entry/kopen/kopen.component';
+import { SchoolDashboardComponent } from './projects/maya/school-dashboard/school-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -85,11 +89,21 @@ export const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
+    path: 're-entry-login', component: ReEntryLoginComponent
+  },
+  {
     path: 'loginPwd', component: LoginPwdComponent
   },
   {
     path: 'dashboard', component: DashboardComponent,
    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 're-entry-dashboard', component: ReEntryDashboardComponent,
+  //  canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'kopen', component: KopenComponent,
   },
   {
     path: 'transfer', component: TransferComponent,
@@ -365,6 +379,12 @@ export const routes: Routes = [
   path: 'register', component: SpecialSignupComponent,
   // canActivate: [AuthenticationGuard]
 },
+
+{
+  path: 'school-dashboard',
+  component: SchoolDashboardComponent
+},
+
  { path: '**', component: LoginComponent }
 ];
 

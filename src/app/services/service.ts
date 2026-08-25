@@ -1048,4 +1048,47 @@ export class Services {
 			Utility.log(err);
 		}));
 	}
+	// Smart School Module start
+    public getChildsData(value: String) {
+		const headerOptions = {
+		  headers: new HttpHeaders({
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+			Authorization: this.token
+		  })
+		};
+		
+		return this.http.get('rest/members/getDependantList?from=' + value, headerOptions).pipe(
+		  tap(data => {
+	
+			  Utility.log(JSON.stringify(data));
+	
+			},
+			(err) => {
+			  Utility.log('getChildsData() Error...');
+			  Utility.log(err);
+			})
+		);
+	  }
+
+	  public subscribePay(data: any){
+		Utility.log(data)
+		const headerOptions = {
+			headers: new HttpHeaders({
+			  'Access-Control-Allow-Origin': '*',
+			  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+			  Authorization: this.token
+			})
+		  };
+		
+		return this.http.post('rest/members/activateMember?memberId='+ data,{}, headerOptions).pipe(tap (data => {
+			
+		},
+		(err) => {
+			Utility.log('subscribePay() Error...');
+			Utility.log(err);
+		}));
+	}
+	   // Smart School Module stop
+
 }

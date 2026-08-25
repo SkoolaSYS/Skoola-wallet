@@ -1,0 +1,235 @@
+<div>
+  <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+  <label class="handburger" for="myInput">
+    <span class="bar top"></span>
+    <span class="bar middle"></span>
+    <span class="bar bottom"></span>
+  </label>
+  <!-- Nav block - start -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" position="end">
+      <mat-nav-list>
+        <app-matsidenav></app-matsidenav>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!-- Nav block - end -->
+    <mat-sidenav-content fxFlexFill>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <app-dashboard-header></app-dashboard-header>
+          </div>
+        </div>
+        <div class="row no-gutters justify-content-center">
+          <div class="col-12 col-xl-9">
+            <div>
+              <!-- Quick links -->
+              <div class="container-fluid quicklinkbg">
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <div class="container-fluid p-0 menu-grid">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">
+                          Order
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Form for placing an order -->
+              <div>
+                <h2 style="text-align:center;">Place an Order</h2>
+                <form (submit)="placeOrder()">
+                  <!-- Customer Name section -->
+                  <!-- You can uncomment and use the following if needed -->
+
+                  <!-- Child section -->
+                  <div class="container-fluid fifthbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Child
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10" style="text-align: center;">
+                              <select class="d8p-select arrowstyle" [(ngModel)]="order.studentName"
+                                (change)="onChildSelected()" required>
+                                <option disabled selected>Choose Child</option>
+                                <option *ngFor="let data of student" [value]="data.name">{{ data.name }}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Menu section -->
+                  <div class="container-fluid fifthbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Menu
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10" style="text-align: center;">
+                              <select class="d8p-select arrowstyle" [(ngModel)]="order.menuItemId"
+                                (change)="onMenuItemSelected()" required>
+                                <option disabled selected>Choose menu</option>
+                                <option *ngFor="let menu of menuItems1" [value]="menu.name">{{ menu.name }} {{
+                                  currencyType }}{{ menu.price }}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Quantity section -->
+                  <div class="container-fluid fifthbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Quantity
+                            </div>
+                          </div>
+                          <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10" style="text-align: center;">
+                              <input class="d8p-select arrowstyle" type="number" placeholder="Quantity"
+                                [(ngModel)]="order.quantity" (ngModelChange)="quantityChanged()" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Pickup Time section -->
+                  <div class="container-fluid fifthbg">
+                    <div class="row no-gutters">
+                      <div class="col-12">
+                        <div class="container-fluid p-0 menu-grid">
+                          <div class="row no-gutters justify-content-center">
+                            <div class="col-12 col-xl-9 titlebg">
+                              Pickup Time
+                            </div>
+                          </div>
+                          <!-- <div class="row no-gutters justify-content-center mt-4 mb-4">
+                            <div class="col-10" style="text-align: center;">
+                              <input class="d8p-select arrowstyle" type="datetime-local" [(ngModel)]="order.pickupStartTime" name="startDateTime"
+                                required>
+                            </div>
+                          </div> -->
+                          <!-- 2 -->
+                          <!-- <form [formGroup]="reservationForm">
+                            <div class="form-group">
+                              <label for="startDate">Start Date:</label>
+                              <input matInput [matDatepicker]="startDatePicker" formControlName="startDate">
+                              <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                              <mat-datepicker #startDatePicker></mat-datepicker>
+                            </div>
+                            <div class="form-group">
+                              <label for="endDate">End Date:</label>
+                              <input matInput [matDatepicker]="endDatePicker" formControlName="endDate">
+                              <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                              <mat-datepicker #endDatePicker></mat-datepicker>
+                            </div>
+                          </form> -->
+                          <div class="col-10 text-center mt-4 ml-4">
+                            <ngb-datepicker #dp [displayMonths]="1" [dayTemplate]="t"></ngb-datepicker>
+
+                            <ng-template #t let-date="date" let-focused="focused">
+                              <span class="custom-day" (click)="onDateSelection($event, date)" [class.focused]="focused"
+                                [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+                                [class.faded]="isHovered(date) || isInside(date)"
+                                [class.selected]="isDateSelected(date)" (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null" [class.disabled]="isDateDisabled(date)">
+                                {{ date.day }}
+                              </span>
+                            </ng-template>
+                            <div class="row no-gutters justify-content-center mt-4 mb-4">
+                              <div class="col-10 text-center">
+                                <mat-form-field appearance="fill">
+                                  <mat-label>Time</mat-label>
+                                  <input matInput class="time-picker" type="time" id="appt" name="appt" />
+                                </mat-form-field>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Place Order button -->
+                  <div class="row no-gutters justify-content-center">
+                    <div>
+                      <div class="button-container text-center mt-2">
+                        <button class="d8p-btn-order mt-900" type="submit">
+                          <div class="--text">Place Order</div>
+                          <div class="--icon"></div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!-- Confirmed Orders table -->
+                <div class="container-fluid">
+                  <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9">
+                      <div class="row no-gutters justify-content-center">
+                        <div class="col-12 col-xl-9 titlebg">
+                          Confirmed Orders
+                        </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <!-- <th>#</th> -->
+                              <th>Student</th>
+                              <th>Menu</th>
+                              <th>Quantity</th>
+                              <th>Total Price</th>
+                              <th>Pickup Time</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- Loop through confirmed orders and display them -->
+                            <tr *ngFor="let item of menuItems; let i = index">
+                              <td hidden>{{ i + 1 }}</td>
+                              <td>{{ item.studentName }}</td>
+                              <td>{{ item.name }}</td>
+                              <td>{{ item.quantity }}</td>
+                              <td>{{ currencyType }}{{ item.price }}</td>
+                              <td>{{ item.pickupTime | date:'medium' }}</td>
+                              <td>
+                                <button (click)="editOrder(item.id)">Edit</button>
+                                <button (click)="deleteOrder(item.id)">Delete</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Confirmed Orders table -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,95 @@
+<div class="container-fluid common-cls loginpg grey-gradient p-0">
+  <div class="row">
+    <div class="col-12">
+      <div id="container">
+        <div class="signup-bg">
+          <div class="d8p-main-back-btn">
+            <div class="row no-gutters">
+              <div class="col-9">
+                <div class="dashboard-header">
+                  <div class="text-center">
+                    <img class="logo" src="assets/icons-img/logo-title-signup@3x.png" routerLink="/login" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img class="signupline" src="assets/icons-img/line-gradient-signup.png" />
+
+            <p>Please login using the same id and password as registered on the Smart School Portal</p>
+
+            <div class="container-fluid p-0">
+              <div class="row no-gutters justify-content-center">
+                <div class="col-10 col-xl-6">
+                  <!-- <div class="d8p-radiobttn-text text-center mt-2 mb-2">Sign up with us to feel the
+                                      D-8P
+                                      System's<br>'Save in grams' Gold FinTech experience!</div> -->
+                  <div class="container-fluid">
+                    <div class="row no-gutters justify-content-center">
+                      <div class="col-12 col-xl-6">
+                        <div class="container-fluid p-0">
+                          <form id="formSignup" autocomplete="off">
+                            <div class="formPlaceholder row no-gutters justify-content-center">
+                              <div class="col-12">
+                                <input class="d8p-form d8p-input-normal" placeholder="User ID" type="text" id="userId" name="userId" 
+                                [(ngModel)]="userId" required autocomplete="off" />
+                                <!-- <input class="d8p-form d8p-input-normal"
+                                                                  placeholder="Username" type="text"
+                                                                  pattern="([A-z0-9À-ž]){2,}" id="username"
+                                                                  name="username" #username="ngModel" minlength="4"
+                                                                  maxlength="12" [(ngModel)]="loginUsername"
+                                                                  required autocomplete="off"/>
+                                                              <div class="alert alert-danger"
+                                                                  *ngIf="!userName">
+                                                                  Username is required.</div>
+                                                              <div class="alert alert-danger"
+                                                                  *ngIf="!userNameLong">
+                                                                  Username must be at least 4 characters long.</div> -->
+                              </div>
+                            </div>
+
+                            <div class="formPlaceholder row no-gutters justify-content-center">
+                              <div class="col-12">
+                                <input class="d8p-form d8p-input-normal" placeholder="Password" type="password" id="password" name="password" 
+                                [(ngModel)]="password" required />
+                                <i class="bi-eye-slash" id="togglePassword1" (click)="showPassword()"></i>
+                                <!-- <input class="d8p-form d8p-input-normal"
+                                                                  placeholder="Password" type="password"
+                                                                  pattern="([A-z0-À-ž]){1,13}" minlength="4"
+                                                                  maxlength="12" #createPass="ngModel"
+                                                                  id="create-password" name="create-password"
+                                                                  [(ngModel)]="createPassword" [type]="hide ? 'password' : 'text'" required />
+                                                                  <i class="bi-eye-slash" id="togglePassword1" (click)="showPassword()"></i>
+                                                              <div class="alert alert-danger"
+                                                                  *ngIf="!newPass">
+                                                                  Password is required.</div> -->
+                              </div>
+                            </div>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row no-gutters justify-content-center">
+              <div class="col-12">
+                <div class="button-container text-center mt-2">
+                  <a class="d8p-btn-default" (click)="authenticateUser()" id="confirmButton">
+                    <div class="--text">Confirm</div>
+                    <div class="--icon"><img class="p-1 max-width-30-px" src="assets/icons-img/tick-only-signup@2x.png" /></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner size="medium" color="#fff" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>

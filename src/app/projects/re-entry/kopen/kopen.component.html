@@ -1,0 +1,377 @@
+<div>
+    <input type="checkbox" id="myInput" (click)="sidenav.toggle()" style="display: none;">
+    <label class="handburger" for="myInput">
+        <span class="bar top"></span>
+        <span class="bar middle"></span>
+        <span class="bar bottom"></span>
+    </label>
+    <!-- Nav block - start -->
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" position="end">
+            <mat-nav-list>
+                <app-matsidenav></app-matsidenav>
+            </mat-nav-list>
+        </mat-sidenav>
+        <!-- Nav block - end -->
+        <mat-sidenav-content fxFlexFill>
+            <div class="container-fluid p-0">
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9">
+                        <app-re-entry-header></app-re-entry-header>
+                    </div>
+                </div>
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-12 col-xl-9">
+                        <div>
+                            <!-- Quick links -->
+                            <div class="container-fluid quicklinkbg">
+                                <div class="row no-gutters">
+                                    <div class="col-12">
+                                        <div class="container-fluid p-0 menu-grid">
+                                            <div class="row no-gutters justify-content-center">
+                                                <div class="col-12 col-xl-9 titlebg">
+                                                    KOPEN STORE
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="row no-gutters mt-2 mt-xl-4 pb-xl-4 mb-3 mb-xl-5 flex-valign-75">
+                                                <div class="col-3 flex-align-center flex-column border-right-white">
+                                                </div>
+                                                <div class="col-9 pl-3 color-white font-size-15">
+                                                    This Kopen Store is for inmate family to buy daily need for inmate
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+
+                                <!-- <app-shopping-products></app-shopping-products> -->
+                                <div class="container-fluid p-0">
+                                    <!-- 1st iteration -->
+                                    <div class="row no-gutters">
+                                        <div class="col-6">
+                                            <div
+                                                class="row no-gutters prod-box border-darkgrey-slim border-right-none p-2">
+                                                <div class="col-7">
+                                                    <div class="font-size-15 font-weight-bold mb-2">Towel</div>
+                                                    <!-- <div class="font-size-13 color-lightgrey mb-2">Towel</div> -->
+                                                    <!--Below quantity button only enable buy near flow -->
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="text-right">
+                                                        <img class="max-width-15-px"
+                                                            src="../../../assets/icons-img/icon-info1.png" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="row no-gutters grey-gradient border-darkgrey-slim border-top-none border-right-none">
+                                                <div class="col-1">
+                                                    <img class="max-width-100"
+                                                        src="../../../assets/icons-img/imagegold2.png" />
+                                                </div>
+                                                <div
+                                                    class="col-5 pl-1 letter-spacing-closer font-arial font-size-12 color-cyan text-left flex-align-start">
+                                                    ++ 0.0015 g
+                                                </div>
+                                                <div
+                                                    class="col-6 pr-1 letter-spacing-closer font-arial font-size-12 color-textgrey text-right flex-align-end">
+                                                    RM 4.50
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row no-gutters prod-box border-darkgrey-slim p-2">
+                                                <div class="col-7">
+                                                    <div class="font-size-15 font-weight-bold mb-2">Soap</div>
+                                                    <!-- <div class="font-size-13 color-lightgrey mb-2">Chocolate Bar</div> -->
+                                                    <!--Below quantity button only enable buy near flow -->
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="text-right">
+                                                        <img class="max-width-15-px"
+                                                            src="../../../assets/icons-img/icon-info1.png" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="row no-gutters grey-gradient border-darkgrey-slim border-top-none border-right-none">
+                                                <div class="col-1">
+                                                    <img class="max-width-100"
+                                                        src="../../../assets/icons-img/imagegold2.png" />
+                                                </div>
+                                                <div
+                                                    class="col-5 pl-1 letter-spacing-closer font-arial font-size-12 color-cyan text-left flex-align-start">
+                                                    ++ 0.0015 g
+                                                </div>
+                                                <div
+                                                    class="col-6 pr-1 letter-spacing-closer font-arial font-size-12 color-textgrey text-right flex-align-end">
+                                                    RM 4.50
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 2nd iteration -->
+                                    <div class="row no-gutters">
+                                        <div class="col-6">
+                                            <div
+                                                class="row no-gutters prod-box border-darkgrey-slim border-right-none p-2">
+                                                <div class="col-7">
+                                                    <div class="font-size-15 font-weight-bold mb-2">Tooth Brush</div>
+                                                    <!-- <div class="font-size-13 color-lightgrey mb-2">Yogurt Drink</div> -->
+                                                    <!--Below quantity button only enable buy near flow -->
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="text-right">
+                                                        <img class="max-width-15-px"
+                                                            src="../../../assets/icons-img/icon-info1.png" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="row no-gutters grey-gradient border-darkgrey-slim border-top-none border-right-none">
+                                                <div class="col-1">
+                                                    <img class="max-width-100"
+                                                        src="../../../assets/icons-img/imagegold2.png" />
+                                                </div>
+                                                <div
+                                                    class="col-5 pl-1 letter-spacing-closer font-arial font-size-12 color-cyan text-left flex-align-start">
+                                                    ++ 0.0015 g
+                                                </div>
+                                                <div
+                                                    class="col-6 pr-1 letter-spacing-closer font-arial font-size-12 color-textgrey text-right flex-align-end">
+                                                    RM 4.50
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row no-gutters prod-box border-darkgrey-slim p-2">
+                                                <div class="col-7">
+                                                    <div class="font-size-15 font-weight-bold mb-2">Shampoo</div>
+                                                    <!-- <div class="font-size-13 color-lightgrey mb-2">Chocolate Bar</div> -->
+                                                    <!--Below quantity button only enable buy near flow -->
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="text-right">
+                                                        <img class="max-width-15-px"
+                                                            src="../../../assets/icons-img/icon-info1.png" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="row no-gutters grey-gradient border-darkgrey-slim border-top-none border-right-none">
+                                                <div class="col-1">
+                                                    <img class="max-width-100"
+                                                        src="../../../assets/icons-img/imagegold2.png" />
+                                                </div>
+                                                <div
+                                                    class="col-5 pl-1 letter-spacing-closer font-arial font-size-12 color-cyan text-left flex-align-start">
+                                                    ++ 0.0015 g
+                                                </div>
+                                                <div
+                                                    class="col-6 pr-1 letter-spacing-closer font-arial font-size-12 color-textgrey text-right flex-align-end">
+                                                    RM 4.50
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <!-- Advance Product Search -->
+                                <div class="container-fluid">
+                                    <div class="row no-gutters justify-content-center">
+                                        <div class="col-12 col-xl-9">
+                                            <div class="container-fluid p-0 menu-grid">
+                                                <div class="row no-gutters justify-content-center">
+                                                    <div class="col-12 col-xl-9 titlebg">Advance Product Search</div>
+                                                </div>
+                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
+                                                    <div class="col-10 col-xl-4">
+                                                        <div class="formfield max-width-100">
+                                                            <div class="input-group mb-3 group-input-border-radius">
+                                                                <input type="text"
+                                                                    class="form-control d8p-input-normal min-height-60"
+                                                                    placeholder="Ex: Peanut Butter"
+                                                                    name="advance-search" aria-label="advance-search"
+                                                                    aria-describedby="basic-addon2" />
+                                                                <div class="input-group-append">
+                                                                    <span
+                                                                        class="input-group-text group-input-icon-field">
+                                                                        <button class="d8p-transparent-btn">
+                                                                            <img class="btnicon"
+                                                                                src="assets/icons-img/icon-correct1.png" />
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Request Product -->
+                                <div class="container-fluid">
+                                    <div class="row no-gutters justify-content-center">
+                                        <div class="col-12 col-xl-9">
+                                            <div class="container-fluid p-0 menu-grid">
+                                                <div class="row no-gutters justify-content-center">
+                                                    <div class="col-12 col-xl-9 titlebg">Request Item</div>
+                                                </div>
+                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
+                                                    <div class="col-10 col-xl-4">
+                                                        <div class="formfield max-width-100">
+                                                            <div class="input-group mb-3 group-input-border-radius">
+                                                                <input type="text"
+                                                                    class="form-control d8p-input-normal min-height-60"
+                                                                    placeholder="Ex: Peanut Butter"
+                                                                    name="advance-search" aria-label="advance-search"
+                                                                    aria-describedby="basic-addon2" />
+                                                                <div class="input-group-append">
+                                                                    <span
+                                                                        class="input-group-text group-input-icon-field">
+                                                                        <button class="d8p-transparent-btn">
+                                                                            <img class="btnicon"
+                                                                                src="assets/icons-img/icon-correct1.png" />
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- inmates name -->
+                                <div class="container-fluid">
+                                    <div class="row no-gutters justify-content-center">
+                                        <div class="col-12 col-xl-9">
+                                            <div class="container-fluid p-0 menu-grid">
+                                                <div class="row no-gutters justify-content-center">
+                                                    <div class="col-12 col-xl-9 titlebg">Inmates Name</div>
+                                                </div>
+                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
+                                                    <div class="col-10 col-xl-4">
+                                                        <div class="formfield max-width-100">
+                                                            <div class="input-group mb-3 group-input-border-radius">
+                                                                <input type="text"
+                                                                    class="form-control d8p-input-normal min-height-60"
+                                                                    placeholder="Ex:Muhamad Ali"
+                                                                    name="advance-search" aria-label="advance-search"
+                                                                    aria-describedby="basic-addon2" />
+                                                                <!-- <div class="input-group-append">
+                                                                    <span
+                                                                        class="input-group-text group-input-icon-field">
+                                                                        <button class="d8p-transparent-btn">
+                                                                            <img class="btnicon"
+                                                                                src="assets/icons-img/icon-correct1.png" />
+                                                                        </button>
+                                                                    </span>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Search by Category -->
+                                <div class="container-fluid">
+                                    <div class="row no-gutters justify-content-center">
+                                        <div class="col-12 col-xl-9">
+                                            <div class="container-fluid p-0 menu-grid">
+                                                <div class="row no-gutters justify-content-center">
+                                                    <div class="col-12 col-xl-9 titlebg">Search by Category</div>
+                                                </div>
+                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
+                                                    <div class="col-10 col-xl-4">
+                                                        <select class="arrowstyle-white d8p-select-white"
+                                                            name="category" required style="background-color: #eee">
+                                                            <option>Groceries</option>
+                                                            <option>Seafood</option>
+                                                            <option>Electronics</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Inmate Selection -->
+                                <!-- <div class="inmate">
+                      <label>Select Inmate ID:</label>
+                      <input [(ngModel)]="selectedInmate" placeholder="Enter Inmate ID" />
+                    </div> -->
+
+                                <!-- Item List -->
+                                <!-- <div class="grid">
+                                    <div class="card" *ngFor="let item of items">
+                                        <img [src]="item.image || 'https://via.placeholder.com/100'" />
+                                        <h4>{{item.name}}</h4>
+                                        <p>RM {{item.price}}</p>
+                                        <button (click)="addToCart(item)">Add to Cart</button>
+                                    </div>
+                                </div> -->
+
+                                <!-- Cart -->
+                                <!-- <div class="cart">
+                                    <h3>Cart</h3>
+
+                                    <div *ngFor="let item of cart">
+                                        {{item.name}} x {{item.qty}} = RM {{item.qty * item.price}}
+                                        <button (click)="removeFromCart(item)">Remove</button>
+                                    </div>
+
+                                    <h4>Total: RM {{getTotal()}}</h4>
+                                    <button (click)="checkout()">Checkout</button>
+                                </div> -->
+
+                                <!-- Confirmation -->
+                                <div class="container-fluid">
+                                    <div class="row no-gutters justify-content-center">
+                                        <div class="col-12 col-xl-9">
+                                            <div class="container-fluid p-0 menu-grid">
+                                                <div class="row no-gutters justify-content-center">
+                                                    <div class="col-12 col-xl-9 titlebg">Confirmation</div>
+                                                </div>
+                                                <div class="row no-gutters justify-content-center mt-4 mb-4">
+                                                    <div class="col-10">
+                                                        <div class="button-container text-center">
+                                                            <button class="d8p-btn-default"
+                                                                routerLink="/buynear-cart-details">
+                                                                Confirm
+                                                                <span class="ml-2"><img class="p-1 max-width-25-px"
+                                                                        src="assets/icons-img/icon-correct2.png" /></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

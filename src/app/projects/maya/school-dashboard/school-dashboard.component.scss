@@ -1,0 +1,740 @@
+.school-page {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  position: relative;
+  overflow-x: hidden;
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.dashboard-wrapper {
+  width: 100%;
+  max-width: 430px;
+
+  margin: 0 auto;
+
+  padding: 25px 18px 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.school-hamburger {
+  position: absolute;
+
+  top: 22px;
+  right: 22px;
+
+  width: 42px;
+  height: 42px;
+
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 13px;
+
+  background: rgba(255,255,255,.9);
+
+  box-shadow:
+    0 5px 20px rgba(30, 64, 175, .08);
+
+  cursor: pointer;
+}
+
+.school-hamburger span {
+  width: 20px;
+  height: 2px;
+
+  background: #334155;
+
+  margin: 2.5px 0;
+
+  border-radius: 5px;
+}
+
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome-section {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-right: 55px;
+
+  margin-bottom: 26px;
+}
+
+.welcome-small {
+  margin: 0 0 4px;
+
+  font-size: 13px;
+
+  color: #718096;
+}
+
+.welcome-section h1 {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+.school-subtitle {
+  margin: 5px 0 0;
+
+  color: #062e6f;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.profile-circle {
+  width: 52px;
+  height: 52px;
+
+  min-width: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      135deg,
+      #03205e,
+      #0d4891
+    );
+
+  box-shadow:
+    0 8px 20px rgba(37, 99, 235, .25);
+}
+
+
+/* =========================================
+   WALLET CARD
+========================================= */
+
+.wallet-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.12);
+
+  margin-bottom: 0;
+}
+
+.wallet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* Available Balance */
+
+.wallet-label {
+  display: block;
+
+  color: #1e293b;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* RM balance */
+
+.wallet-amount {
+  margin: 7px 0 0;
+
+  color: #2563eb;
+
+  font-size: 30px;
+  font-weight: 700;
+}
+
+
+/* Top Up button */
+
+.wallet-topup-btn {
+  border: none;
+
+  background: #073caf;
+  color: #ffffff;
+
+  padding: 10px 16px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 14px rgba(37, 99, 235, 0.25);
+}
+
+.topup-plus {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+.section-heading {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin:
+    25px 2px 14px;
+}
+
+.section-heading h3 {
+  margin: 0;
+
+  color: #1e293b;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   STUDENT
+========================================= */
+
+.student-card {
+  display: flex;
+
+  align-items: center;
+
+  padding: 17px;
+
+  border-radius: 18px;
+
+  background: white;
+
+  border:
+    1px solid #edf2f7;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, .045);
+}
+
+.student-picture {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 14px;
+
+  background: #eff6ff;
+  border-radius: 17px;
+
+  overflow: hidden;
+}
+
+.student-image {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+}
+
+.student-info {
+  flex: 1;
+}
+
+.student-info h4 {
+  margin: 0 0 5px;
+
+  color: #1e293b;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.student-info p {
+  margin: 2px 0;
+
+  color: #8491a5;
+
+  font-size: 12px;
+}
+
+.student-status {
+  padding:
+    6px 11px;
+
+  border-radius: 50px;
+
+  background: #dcfce7;
+
+  color: #15803d;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   SERVICES
+========================================= */
+
+.service-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 13px;
+}
+
+.service-item {
+  min-height: 115px;
+
+  padding: 15px 8px;
+
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: white;
+
+  border:
+    1px solid #edf2f7;
+
+  box-shadow:
+    0 6px 20px rgba(15, 23, 42, .035);
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.service-item:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 11px 26px rgba(15, 23, 42, .08);
+}
+
+.service-icon {
+  width: 51px;
+  height: 51px;
+
+  border-radius: 16px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.service-icon img {
+  max-width: 37px;
+  max-height: 37px;
+
+  object-fit: contain;
+}
+
+.service-icon.blue {
+  background: #eff6ff;
+}
+
+.service-icon.purple {
+  background: #f5f3ff;
+}
+
+.service-icon.green {
+  background: #ecfdf5;
+
+  color: #059669;
+}
+
+.service-icon.orange {
+  background: #fff7ed;
+}
+
+.service-icon.pink {
+  background: #fdf2f8;
+
+  color: #db2777;
+}
+
+.service-icon.cyan {
+  background: #ecfeff;
+}
+
+.emoji-icon {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.service-item > span {
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   TRANSACTIONS
+========================================= */
+
+.recent-heading {
+  margin-top: 30px;
+}
+
+.see-all {
+  border: 0;
+
+  background: transparent;
+
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.transaction-card {
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: white;
+
+  border:
+    1px solid #edf2f7;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, .04);
+}
+
+.transaction-row {
+  min-height: 70px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 13px 16px;
+
+  border-bottom:
+    1px solid #f1f5f9;
+}
+
+.transaction-row:last-child {
+  border-bottom: 0;
+}
+
+.transaction-symbol {
+  width: 43px;
+  height: 43px;
+
+  min-width: 43px;
+
+  border-radius: 14px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 12px;
+
+  background: #fff1f2;
+
+  color: #e11d48;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.transaction-symbol.incoming {
+  background: #ecfdf5;
+
+  color: #059669;
+}
+
+.transaction-details {
+  flex: 1;
+}
+
+.transaction-details h5 {
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.transaction-details p {
+  margin: 4px 0 0;
+
+  color: #a0aec0;
+
+  font-size: 11px;
+}
+
+.transaction-value {
+  color: #e11d48;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: right;
+}
+
+.transaction-value.credit {
+  color: #059669;
+}
+
+
+/* =========================================
+   NORMAL WALLET
+========================================= */
+
+.main-wallet-btn {
+  width: 100%;
+
+  margin-top: 22px;
+
+  padding: 15px 17px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  border:
+    1px solid #dbe5f0;
+
+  border-radius: 15px;
+
+  background: white;
+
+  color: #475569;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.bottom-space {
+  height: 35px;
+}
+
+/* =========================================
+   SKOOLA LOGO
+========================================= */
+
+.skoola-logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0 15px;
+}
+
+.skoola-logo {
+  width: 120px !important;
+  max-width: 120px !important;
+  height: auto !important;
+  object-fit: contain;
+  display: block;
+}
+
+/*===========================================
+   BACKGROUND COLOR
+=========================================*/
+
+.blue-header-section {
+  width: 100%;
+
+  background: linear-gradient(
+    135deg,
+    #1d4ed8 0%,
+    #2563eb 55%,
+    #3b82f6 100%
+  );
+
+  border-radius: 0 0 28px 28px;
+}
+
+
+/* LOGO */
+
+.skoola-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.skoola-logo {
+  width: 120px !important;
+  max-width: 120px !important;
+  height: auto !important;
+}
+
+
+/* WELCOME TEXT */
+
+.blue-header-section .welcome-small {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.blue-header-section .welcome-section h1 {
+  color: #ffffff;
+}
+
+.blue-header-section .school-subtitle {
+  color: #dbeafe;
+}
+
+
+/* PROFILE CIRCLE */
+
+.blue-header-section .profile-circle {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+/* WALLET */
+
+.white-content-section {
+  width: 100%;
+  background: #ffffff;
+}
+
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 420px) {
+
+  .dashboard-wrapper {
+    padding: 25px 15px 20px;
+  }
+
+  .welcome-section h1 {
+    font-size: 19px;
+  }
+
+  .wallet-amount {
+    font-size: 29px;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 420px) {
+
+  .dashboard-wrapper {
+    padding:
+      25px 15px 20px;
+  }
+
+  .welcome-section h1 {
+    font-size: 19px;
+  }
+
+  .wallet-amount {
+    font-size: 29px;
+  }
+
+  .service-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+}

@@ -3,6 +3,8 @@ import { fadeInAnimation } from '../../animation-effect/index';
 import { Services } from 'src/app/services/service';
 import { Router } from '@angular/router';
 import { NgPopupsService } from 'ng-popups';
+import { HttpClient } from '@angular/common/http';
+import { MayaService } from 'src/app/projects/maya/maya.service';
 
 
 @Component({
@@ -21,36 +23,158 @@ export class DashboardComponent implements OnInit {
   public isPledgeProvider:boolean;
   public isProvider: boolean;
   public isRecycle:boolean;
+  public isParent: boolean = false;
+  public currentUser: any;
   btnAdd: any;
   app: any;
-  constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService) {}
+  constructor(private services: Services, private router: Router, private ngPopups: NgPopupsService, private http: HttpClient, private mayaService: MayaService) {}
 
   ngOnInit(): void {
-    this.services.getProfileData().subscribe(async (res: any) => {
-      const currentUser: any = await this.services.currentUser;
-      this.isNotIdVerified = this.isUserIdNotVerified(currentUser);
-      this.allowWithdrawal = currentUser.allowWithdrawal;
-      this.isMerchant = currentUser.merchant;
-      this.isRedeem = currentUser.redeem;
-      this.isPledge = currentUser.pledge;
-      this.isPledgeProvider = currentUser.pledgeProvider;
-      this.isProvider = currentUser.provider;
-      this.isRecycle = currentUser.recycle;
-      localStorage.setItem("parent", currentUser.parentId);
+    this.services.getProfileData().subscribe(
+      async (res: any) => {
+        const currentUser: any = await this.services.currentUser;
+        this.currentUser = currentUser;
 
-    },
-    (err) => {
-      // (err);
-    });
+        console.log('PROFILE RESPONSE:', res);
+        console.log('CURRENT USER:', currentUser);
+        console.log('CURRENT USER ID:', currentUser.id);
+        console.log('CURRENT USER EMAIL:', currentUser.email);
+        console.log('PARENT ID:', currentUser.parentId);
 
-    // TODO: To to decide whether we want to display profile image on side-nav bar.
-    // // If user has only 3 images, it means the user has not uploaded a profile image
-    // if (currentUser.images && currentUser.images.length != 3) {
-    //   this.imageSrc = Utility.rebaseImageUrl(currentUser.images[0].thumbnailUrl);
-    // }
-    
-    
+        if (currentUser.email) {
+
+        this.mayaService
+          .checkSchoolParentByEmail(currentUser.email)
+          .subscribe(
+            (response: any) => {
+
+              console.log(
+                'SCHOOL PARENT CHECK:',
+                response
+              );
+
+              if (response.isSchoolParent === true) {
+
+                console.log(
+                  'Redirecting to school dashboard'
+                );
+
+                localStorage.setItem(
+                  'school-parent',
+                  JSON.stringify(response.parent)
+                );
+
+                this.router.navigate([
+                  'school-dashboard'
+                ]);
+
+                return;
+              }
+
+            },
+            (error) => {
+              console.error(
+                'School parent check failed:',
+                error
+              );
+            }
+          );
+      }
+
+        this.isNotIdVerified =
+          this.isUserIdNotVerified(currentUser);
+
+        this.allowWithdrawal =
+          currentUser.allowWithdrawal;
+
+        this.isMerchant =
+          currentUser.merchant;
+
+        this.isRedeem =
+          currentUser.redeem;
+
+        this.isPledge =
+          currentUser.pledge;
+
+        this.isPledgeProvider =
+          currentUser.pledgeProvider;
+
+        this.isProvider =
+          currentUser.provider;
+
+        this.isRecycle =
+          currentUser.recycle;
+
+        // Parent exists when parentId has a value
+        this.isParent = !!currentUser.parentId;
+
+        console.log('FINAL isParent:', this.isParent);
+
+        if (currentUser.parentId) {
+          localStorage.setItem(
+            'parent',
+            currentUser.parentId.toString()
+          );
+        } else {
+          localStorage.removeItem('parent');
+        }
+      },
+      (err) => {
+        console.error('Failed to load profile:', err);
+      }
+    );
   }
+
+  openMarketplace(): void {
+    window.open('https://murbaltl.com', '_blank');
+  }
+
+  openSchoolChat(): void {
+    if (!this.currentUser || !this.currentUser.email) {
+      console.error('Current user email was not found');
+      this.ngPopups.alert('Unable to identify your account email.');
+      return;
+    }
+
+    const email = encodeURIComponent(this.currentUser.email);
+
+    const chatUrl =
+      'http://localhost:4300/chat?email=' + email;
+
+    window.open(chatUrl, '_blank');
+  }
+
+  openAttendance(): void {
+    if (!this.currentUser || !this.currentUser.email) {
+      this.ngPopups.alert('Unable to identify your email.');
+      return;
+    }
+
+    const email = this.currentUser.email;
+
+    this.http.post<any>(
+      'http://localhost:5000/my3sss-login',
+      { email: email }
+    ).subscribe(
+      response => {
+        if (!response.loginUrl) {
+          this.ngPopups.alert('Unable to open attendance.');
+          return;
+        }
+
+        window.open(response.loginUrl, '_blank');
+      },
+      error => {
+        console.error('My3SSS login error:', error);
+
+        this.ngPopups.alert(
+          error.error?.message ||
+          'Unable to connect to My3SSS.'
+        );
+      }
+    );
+  }
+
   logout(): void {
     this.services.logout();
     this.router.navigate(['login']);
