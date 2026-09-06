@@ -100,7 +100,7 @@ openMarketplace(): void {
     }
 
     const url =
-      'http://72.61.151.99:4200/chat?email=' +
+      'https://ai.skoola.my//chat?email=' +
       encodeURIComponent(email);
 
     window.open(url, '_blank');

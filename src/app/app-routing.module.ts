@@ -78,11 +78,20 @@ import { ReEntryDashboardComponent } from './projects/re-entry/dashboard/re-entr
 import { ReEntryLoginComponent } from './projects/re-entry/login/re-entry-login.component';
 import {KopenComponent } from './projects/re-entry/kopen/kopen.component';
 import { SchoolDashboardComponent } from './projects/maya/school-dashboard/school-dashboard.component';
+import { SkoolaLoginComponent } from './projects/maya/skoola-login/skoola-login.component';
 
 export const routes: Routes = [
+  // OLD DEFAULT LOGIN
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full'
+  // },
+
+  // SKOOLA DEFAULT LOGIN
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'skoola-login',
     pathMatch: 'full'
   },
   {
@@ -385,7 +394,20 @@ export const routes: Routes = [
   component: SchoolDashboardComponent
 },
 
- { path: '**', component: LoginComponent }
+{
+  path: 'skoola-login',
+  component: SkoolaLoginComponent,
+  pathMatch: 'full'
+},
+
+ // OLD FALLBACK
+  // { path: '**', component: LoginComponent }
+
+  // SKOOLA FALLBACK
+  {
+    path: '**',
+    redirectTo: 'skoola-login'
+  }
 ];
 
 @NgModule({

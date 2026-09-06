@@ -137,6 +137,7 @@ import { ReEntryDashboardComponent } from './projects/re-entry/dashboard/re-entr
 import { ReEntryLoginComponent } from './projects/re-entry/login/re-entry-login.component';
 import { KopenComponent } from './projects/re-entry/kopen/kopen.component';
 import { SchoolDashboardComponent } from './projects/maya/school-dashboard/school-dashboard.component';
+import { SkoolaLoginComponent } from './projects/maya/skoola-login/skoola-login.component';
 
 
 @Pipe({
@@ -272,6 +273,7 @@ export class SafeUrlPipe implements PipeTransform {
     IndirectComponent,
     DirectpageComponent,
     SchoolDashboardComponent,
+    SkoolaLoginComponent,
   ],
   imports: [
     BrowserModule,
