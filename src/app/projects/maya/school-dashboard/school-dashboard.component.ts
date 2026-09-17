@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-school-dashboard',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 export class SchoolDashboardComponent implements OnInit {
 
   schoolParent: any;
+  showSchoolChat = false;
+  schoolChatUrl: SafeResourceUrl | null = null;
 
   // Temporary data.
   // Later we will get these from the e-wallet API / school API.
@@ -53,7 +56,8 @@ openMarketplace(): void {
   
 
   constructor(
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -92,6 +96,7 @@ openMarketplace(): void {
 
 
   openSchoolChat(): void {
+
     const email = this.schoolParent?.email;
 
     if (!email) {
@@ -100,10 +105,29 @@ openMarketplace(): void {
     }
 
     const url =
-      'https://ai.skoola.my//chat?email=' +
+      'https://ai.skoola.my/chat?email=' +
       encodeURIComponent(email);
 
-    window.open(url, '_blank');
+    this.schoolChatUrl =
+      this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+    this.showSchoolChat = true;
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  closeSchoolChat(): void {
+
+    this.showSchoolChat = false;
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
   }
 
 

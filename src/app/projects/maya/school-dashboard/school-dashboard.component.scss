@@ -341,6 +341,100 @@
   font-weight: 700;
 }
 
+/* =========================================
+   SCHOOL CHAT AREA
+========================================= */
+
+.school-chat-section {
+  width: 100%;
+  background: #ffffff;
+  min-height: 700px;
+}
+
+
+/* TOP BAR */
+
+.chat-top-bar {
+  width: 100%;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 22px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  position: relative;
+
+  box-sizing: border-box;
+}
+
+
+/* BACK BUTTON */
+
+.chat-back-btn {
+  border: none;
+  background: transparent;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #2563eb;
+
+  padding: 8px 0;
+
+  cursor: pointer;
+}
+
+
+/* TITLE */
+
+.chat-title {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+
+/* IFRAME */
+
+.school-chat-frame {
+  display: block;
+
+  width: 100%;
+  height: 750px;
+
+  border: none;
+
+  margin: 0;
+  padding: 0;
+
+  background: #ffffff;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .school-chat-frame {
+    height: 720px;
+  }
+
+  .chat-top-bar {
+    padding: 0 18px;
+  }
+
+}
 
 /* =========================================
    SERVICES
