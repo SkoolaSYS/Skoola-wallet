@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MayaService } from '../maya.service';
 
 @Component({
   selector: 'app-school-dashboard',
@@ -15,10 +16,17 @@ export class SchoolDashboardComponent implements OnInit {
 
   // Temporary data.
   // Later we will get these from the e-wallet API / school API.
-  walletBalance: number = 150.00;
+  walletBalance: number = 0.00;
 
 student: any = {
+  id: '',
+  studentId: '',
   name: '',
+  email: '',
+  mobile: '',
+  relationship: '',
+  dateOfBirth: '',
+  status: '',
   className: ''
 };
 
@@ -51,39 +59,132 @@ getInitial(): string {
 }
 
 openMarketplace(): void {
-  window.open('https://murbaltl.com', '_blank');
+  this.router.navigate(['projects/maya/skoola-marketplace']);
 }
   
 
   constructor(
-    private router: Router,
-    private sanitizer: DomSanitizer
-  ) {}
+  private router: Router,
+  private sanitizer: DomSanitizer,
+  private mayaService: MayaService
+) {}
 
   ngOnInit(): void {
 
-    const data = localStorage.getItem('school-parent');
+  const data = localStorage.getItem('school-parent');
 
-    if (data) {
-
-      this.schoolParent = JSON.parse(data);
-
-      console.log(
-        'School dashboard parent:',
-        this.schoolParent
-      );
-
-      this.student.studentId =
-        this.schoolParent.student_id;
-
-    } else {
-
-      // User shouldn't normally reach here
-      // without school parent information.
-      this.router.navigate(['dashboard']);
-    }
+  if (!data) {
+    this.router.navigate(['skoola-login']);
+    return;
   }
 
+  this.schoolParent = JSON.parse(data);
+
+  console.log(
+    'School dashboard parent:',
+    this.schoolParent
+  );
+
+  // Load child/dependent from CBS
+  this.loadCbsChild();
+  this.loadCbsBalance();
+}
+
+loadCbsChild(): void {
+
+  this.mayaService
+    .getCbsDependents()
+    .subscribe(
+
+      (response: any) => {
+
+        console.log(
+          'CBS dependents:',
+          response
+        );
+
+        if (
+          response &&
+          response.success &&
+          response.dependents &&
+          response.dependents.length > 0
+        ) {
+
+          const child = response.dependents[0];
+
+          this.student = {
+            id: child.childId,
+
+            // CBS user code, e.g. U1-D2
+            studentId: child.userCode,
+
+            name: child.fullName,
+            email: child.email,
+            mobile: child.mobile,
+
+            relationship: child.relationship,
+            dateOfBirth: child.dateOfBirth,
+
+            status: child.status,
+
+            className: ''
+          };
+
+          console.log(
+            'CBS child loaded:',
+            this.student
+          );
+
+        } else {
+
+          console.warn(
+            'No CBS child linked to this user.'
+          );
+
+        }
+      },
+
+      (error) => {
+
+        console.error(
+          'Unable to load CBS child:',
+          error
+        );
+
+      }
+    );
+}
+
+loadCbsBalance(): void {
+
+  this.mayaService
+    .getCbsBalance()
+    .subscribe(
+      (response: any) => {
+
+        console.log('CBS balance:', response);
+
+        if (
+          response &&
+          response.success &&
+          response.availableBalance !== undefined
+        ) {
+          this.walletBalance =
+            Number(response.availableBalance) || 0;
+        }
+
+      },
+      (error) => {
+
+        console.error(
+          'Unable to load CBS balance:',
+          error
+        );
+
+        this.walletBalance = 0;
+      }
+    );
+}
 
   topUp(): void {
     this.router.navigate(['topup-amount']);

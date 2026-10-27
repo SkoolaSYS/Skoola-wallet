@@ -79,6 +79,7 @@ import { ReEntryLoginComponent } from './projects/re-entry/login/re-entry-login.
 import {KopenComponent } from './projects/re-entry/kopen/kopen.component';
 import { SchoolDashboardComponent } from './projects/maya/school-dashboard/school-dashboard.component';
 import { SkoolaLoginComponent } from './projects/maya/skoola-login/skoola-login.component';
+import { SkoolaMarketplaceComponent } from './projects/maya/skoola-marketplace/skoola-marketplace.component';
 
 export const routes: Routes = [
   // OLD DEFAULT LOGIN
@@ -392,6 +393,11 @@ export const routes: Routes = [
 {
   path: 'school-dashboard',
   component: SchoolDashboardComponent
+},
+
+{
+  path: 'projects/maya/skoola-marketplace',
+  component: SkoolaMarketplaceComponent
 },
 
 {

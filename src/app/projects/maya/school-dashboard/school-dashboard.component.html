@@ -142,9 +142,9 @@
             </h4>
 
             <p>
-              Student ID:
-              {{ schoolParent?.student_id }}
-            </p>
+                Student ID:
+                {{ student?.studentId || '-' }}
+              </p>
 
             <p *ngIf="student?.className">
               {{ student.className }}
@@ -153,7 +153,7 @@
           </div>
 
           <div class="student-status">
-            Active
+            {{ student?.status || 'Active' }}
           </div>
 
         </div>
@@ -179,17 +179,17 @@
         <div class="service-grid">
 
 
-          <!-- ATTENDANCE -->
-          <div class="service-item" (click)="openAttendance()">
+          <!-- TOPUP -->
+          <div class="service-item" (click)="openPayments()">
 
             <div class="service-icon blue">
 
-              <img src="assets/icons-img/skoola-attendance.png" alt="Attendance">
+              <img src="assets/icons-img/skoola-topup.png" alt="Topup">
 
             </div>
 
             <span>
-              Attendance
+              Topup
             </span>
 
           </div>
@@ -211,27 +211,11 @@
           </div>
 
 
-          <!-- PAYMENTS -->
-          <div class="service-item" (click)="openPayments()">
-
-            <div class="service-icon blue">
-              <img src="assets/icons-img/skoola-fees.png" alt="School Fees">
-            </div>
-
-            <span>
-              School Fees
-            </span>
-
-          </div>
-
-
           <!-- MARKETPLACE -->
           <div class="service-item" (click)="openMarketplace()">
 
             <div class="service-icon blue">
-
               <img src="assets/icons-img/skoola-marketplace.png" alt="Marketplace">
-
             </div>
 
             <span>
@@ -241,15 +225,31 @@
           </div>
 
 
-          <!-- TOP UP -->
-          <div class="service-item" (click)="topUp()">
+          <!-- SCHOOL FEES -->
+          <div class="service-item" (click)="openPayments()">
 
             <div class="service-icon blue">
-              <img src="assets/icons-img/skoola-topup.png" alt="Top Up">
+
+              <img src="assets/icons-img/skoola-fees.png" alt="Skoola Fees">
+
             </div>
 
             <span>
-              Top Up
+              School Fees
+            </span>
+
+          </div>
+
+
+          <!-- ATTENDANCE -->
+          <div class="service-item" (click)="openAttendnace()">
+
+            <div class="service-icon blue">
+              <img src="assets/icons-img/skoola-attendance.png" alt="Attendance">
+            </div>
+
+            <span>
+              Attendance
             </span>
 
           </div>

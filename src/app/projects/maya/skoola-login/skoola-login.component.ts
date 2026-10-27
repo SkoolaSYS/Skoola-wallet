@@ -120,163 +120,137 @@ export class SkoolaLoginComponent implements OnInit {
 
   submit(): void {
 
-    this.errorMessage = '';
+  this.errorMessage = '';
 
-    if (
-      !this.services.username ||
-      !this.services.password
-    ) {
+  if (!this.services.username || !this.services.password) {
+    this.errorMessage =
+      'Please enter your username and password.';
+    return;
+  }
 
-      this.errorMessage =
-        'Please enter your username and password.';
+  this.loading = true;
+  this.spinner.show();
 
-      return;
-    }
+  this.mayaService
+    .loginCbs(
+      this.services.username,
+      this.services.password
+    )
+    .subscribe(
 
-    this.loading = true;
+      (response: any) => {
 
-    this.services
-      .login(
-        this.services.username,
-        this.services.password
-      )
-      .subscribe(
+        console.log(
+          'CBS login successful:',
+          response.user
+        );
 
-        async () => {
-
-          this.spinner.show();
-
-          if (
-            this.services.forceChangePassword
-          ) {
-
-            this.loading = false;
-            this.spinner.hide();
-
-            this.ngPopups.alert(
-              'Credential Update. You need to change your credentials!',
-              {
-                theme: 'material'
-              }
-            );
-
-            this.router.navigate([
-              'update-username-pwd'
-            ]);
-
-            return;
-          }
-
-
-          const currentUser: any =
-            await this.services.currentUser;
-
-          console.log(
-            'Skoola current user:',
-            currentUser
-          );
-
-          this.isNotIdVerified =
-            this.isUserIdNotVerified(
-              currentUser
-            );
-
-          this.isMerchant =
-            currentUser.merchant;
-
-
-          /*
-           * Keep the existing merchant logic
-           */
-          if (this.isMerchant) {
-
-            this.loading = false;
-
-            const merch =
-              localStorage.getItem(
-                'agree-merch'
-              );
-
-            Utility.log(merch);
-
-            if (
-              this.isNotIdVerified
-            ) {
-
-              if (merch == null) {
-
-                this.router.navigate([
-                  'merchant-agreement-page'
-                ]);
-
-              } else {
-
-                this.router.navigate([
-                  'merchant-cert'
-                ]);
-              }
-
-            } else {
-
-              if (merch == null) {
-
-                this.router.navigate([
-                  'merchant-agreement-page'
-                ]);
-
-              } else {
-
-                this.router.navigate([
-                  'dashboard'
-                ]);
-              }
-            }
-
-            return;
-          }
-
-
-          /*
-           * Normal Skoola parent account
-           */
-          if (this.isNotIdVerified) {
-
-            this.loading = false;
-            this.spinner.hide();
-
-            this.router.navigate([
-              'id-verification'
-            ]);
-
-            return;
-          }
-
-
-          /*
-           * User is authenticated and verified.
-           * Now confirm they are a Skoola parent.
-           */
-          this.checkSchoolUser(
-            currentUser
-          );
-
-        },
-
-        (error) => {
-
-          console.error(
-            'Skoola login error:',
-            error
-          );
-
+        if (
+          !response ||
+          !response.success ||
+          !response.accessToken ||
+          !response.user
+        ) {
           this.spinner.hide();
-
           this.loading = false;
 
           this.errorMessage =
-            'Invalid username or password.';
+            'Invalid login response.';
+          return;
         }
-      );
-  }
+
+        /*
+         * Store CBS authentication separately.
+         *
+         * Do NOT use the old "accessToken" key yet because
+         * legacy Services uses that for /rest/... Basic Auth.
+         */
+        localStorage.setItem(
+          'cbsAccessToken',
+          response.accessToken
+        );
+
+        localStorage.setItem(
+          'cbsUser',
+          JSON.stringify(response.user)
+        );
+
+        /*
+         * Store useful CBS user details.
+         */
+        if (response.user.walletNumber) {
+          localStorage.setItem(
+            'cbsWalletNumber',
+            response.user.walletNumber
+          );
+        }
+
+        /*
+         * Update currentUser so the existing Skoola pages
+         * can access the logged-in user.
+         */
+        const currentUser: any = {
+          id: response.user.userId,
+          userId: response.user.userId,
+          userCode: response.user.userCode,
+
+          name: response.user.fullName,
+          fullName: response.user.fullName,
+
+          email: response.user.email,
+          mobile: response.user.mobile,
+
+          organizationId:
+            response.user.organizationId,
+
+          clusterId:
+            response.user.clusterId,
+
+          walletNumber:
+            response.user.walletNumber,
+
+          currency:
+            response.user.currency,
+
+          /*
+           * Compatibility values for old Wallet components.
+           */
+          merchant: false,
+          idVerifiedStatus: 'Verified'
+        };
+
+        this.services.currentUser =
+          Promise.resolve(currentUser);
+
+        /*
+         * Now check whether this CBS user is also
+         * registered as a Skoola parent.
+         */
+        this.checkSchoolUser(currentUser);
+      },
+
+      (error) => {
+
+        console.error(
+          'CBS login error:',
+          error
+        );
+
+        this.spinner.hide();
+        this.loading = false;
+
+        if (error.status === 401) {
+          this.errorMessage =
+            'Invalid username or password.';
+        } else if (error.status === 403) {
+          this.errorMessage =
+            'Your account is not allowed to login.';
+        } else {
+          this.errorMessage =
+            'Unable to connect to CBS. Please try again.';
+        }
+      }
+    );
+}
 
 }

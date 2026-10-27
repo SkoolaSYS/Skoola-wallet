@@ -1,0 +1,151 @@
+<div class="marketplace-page">
+
+  <!-- HEADER -->
+  <div class="marketplace-header">
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="goBack()"
+      aria-label="Back"
+    >
+      ‹
+    </button>
+
+    <div class="header-title">
+      <h1>Marketplace</h1>
+      <p>Choose a merchant</p>
+    </div>
+
+  </div>
+
+
+  <!-- CONTENT -->
+  <div class="marketplace-content">
+
+    <!-- SEARCH -->
+    <div
+      class="search-box"
+      *ngIf="!loading && merchants.length > 0"
+    >
+      <span class="search-icon">⌕</span>
+
+      <input
+        type="text"
+        placeholder="Search merchant"
+      >
+    </div>
+
+
+    <!-- LOADING -->
+    <div
+      class="state-container"
+      *ngIf="loading"
+    >
+      <div class="spinner"></div>
+      <p>Loading merchants...</p>
+    </div>
+
+
+    <!-- ERROR -->
+    <div
+      class="state-container error-state"
+      *ngIf="!loading && errorMessage"
+    >
+      <div class="state-icon">!</div>
+
+      <h3>Unable to load merchants</h3>
+
+      <p>{{ errorMessage }}</p>
+
+      <button
+        type="button"
+        class="retry-button"
+        (click)="loadMerchants()"
+      >
+        Try Again
+      </button>
+    </div>
+
+
+    <!-- EMPTY -->
+    <div
+      class="state-container"
+      *ngIf="
+        !loading &&
+        !errorMessage &&
+        merchants.length === 0
+      "
+    >
+      <div class="empty-store">🏪</div>
+
+      <h3>No merchants available</h3>
+
+      <p>
+        There are currently no merchants available.
+      </p>
+    </div>
+
+
+    <!-- MERCHANTS -->
+    <div
+      class="merchant-section"
+      *ngIf="
+        !loading &&
+        !errorMessage &&
+        merchants.length > 0
+      "
+    >
+
+      <div class="section-title">
+        Available Merchants
+      </div>
+
+      <div
+        class="merchant-card"
+        *ngFor="let merchant of merchants"
+        (click)="openMerchant(merchant)"
+      >
+
+        <div class="merchant-logo">
+          🏪
+        </div>
+
+
+        <div class="merchant-info">
+
+          <div class="merchant-name">
+            {{ merchant.businessName }}
+          </div>
+
+          <div
+            class="merchant-address"
+            *ngIf="merchant.businessAddress"
+          >
+            {{ merchant.businessAddress }}
+          </div>
+
+          <div class="merchant-bottom">
+
+            <span class="status-dot"></span>
+
+            <span class="merchant-status">
+              Open
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="merchant-arrow">
+          ›
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
